@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>MetaNet Tutorial</title>
+  <meta name="description" content="This is a tutorial for the network analysis R package MetaNet." />
+  <meta name="generator" content="bookdown 0.32 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="MetaNet Tutorial" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="This is a tutorial for the network analysis R package MetaNet." />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="MetaNet Tutorial" />
+  
+  <meta name="twitter:description" content="This is a tutorial for the network analysis R package MetaNet." />
+  
+
+<meta name="author" content="Peng Chen" />
+
+
+<meta name="date" content="2023-03-07" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+
+<link rel="next" href="introduction.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">MetaNet tutorial</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> About</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#install"><i class="fa fa-check"></i><b>1.1</b> Install</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>2</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="introduction.html"><a href="introduction.html#network"><i class="fa fa-check"></i><b>2.1</b> Network</a></li>
+<li class="chapter" data-level="2.2" data-path="introduction.html"><a href="introduction.html#network-in-omics"><i class="fa fa-check"></i><b>2.2</b> Network in omics</a></li>
+<li class="chapter" data-level="2.3" data-path="introduction.html"><a href="introduction.html#software"><i class="fa fa-check"></i><b>2.3</b> Software</a></li>
+<li class="chapter" data-level="2.4" data-path="introduction.html"><a href="introduction.html#metanet"><i class="fa fa-check"></i><b>2.4</b> MetaNet</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="construction.html"><a href="construction.html"><i class="fa fa-check"></i><b>3</b> Construction</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="construction.html"><a href="construction.html#normalization"><i class="fa fa-check"></i><b>3.1</b> Pre-processing</a></li>
+<li class="chapter" data-level="3.2" data-path="construction.html"><a href="construction.html#pairwise-relationship"><i class="fa fa-check"></i><b>3.2</b> Pairwise relationship</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="construction.html"><a href="construction.html#correlation"><i class="fa fa-check"></i><b>3.2.1</b> Correlation</a></li>
+<li class="chapter" data-level="3.2.2" data-path="construction.html"><a href="construction.html#distance"><i class="fa fa-check"></i><b>3.2.2</b> Distance</a></li>
+<li class="chapter" data-level="3.2.3" data-path="construction.html"><a href="construction.html#sparcc"><i class="fa fa-check"></i><b>3.2.3</b> SparCC</a></li>
+<li class="chapter" data-level="3.2.4" data-path="construction.html"><a href="construction.html#others"><i class="fa fa-check"></i><b>3.2.4</b> Others</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="construction.html"><a href="construction.html#build-network"><i class="fa fa-check"></i><b>3.3</b> Build network</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="construction.html"><a href="construction.html#normally-build"><i class="fa fa-check"></i><b>3.3.1</b> Normally build</a></li>
+<li class="chapter" data-level="3.3.2" data-path="construction.html"><a href="construction.html#multi-tables"><i class="fa fa-check"></i><b>3.3.2</b> Multi-tables</a></li>
+<li class="chapter" data-level="3.3.3" data-path="construction.html"><a href="construction.html#edgelist"><i class="fa fa-check"></i><b>3.3.3</b> Edgelist</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="construction.html"><a href="construction.html#rmt-optimize"><i class="fa fa-check"></i><b>3.4</b> RMT optimize</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="manipulation.html"><a href="manipulation.html"><i class="fa fa-check"></i><b>4</b> Manipulation</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="manipulation.html"><a href="manipulation.html#annotation"><i class="fa fa-check"></i><b>4.1</b> Annotation</a></li>
+<li class="chapter" data-level="4.2" data-path="manipulation.html"><a href="manipulation.html#filter-sub-net"><i class="fa fa-check"></i><b>4.2</b> Filter (Sub-net)</a></li>
+<li class="chapter" data-level="4.3" data-path="manipulation.html"><a href="manipulation.html#skeleton"><i class="fa fa-check"></i><b>4.3</b> Skeleton</a></li>
+<li class="chapter" data-level="4.4" data-path="manipulation.html"><a href="manipulation.html#export"><i class="fa fa-check"></i><b>4.4</b> Export</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="visualization.html"><a href="visualization.html"><i class="fa fa-check"></i><b>5</b> Visualization</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="visualization.html"><a href="visualization.html#basic-plot"><i class="fa fa-check"></i><b>5.1</b> Basic plot</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="visualization.html"><a href="visualization.html#set-attri"><i class="fa fa-check"></i><b>5.1.1</b> Set attributes</a></li>
+<li class="chapter" data-level="5.1.2" data-path="visualization.html"><a href="visualization.html#plot-setting"><i class="fa fa-check"></i><b>5.1.2</b> Plot setting</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="visualization.html"><a href="visualization.html#layout"><i class="fa fa-check"></i><b>5.2</b> Layout</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="visualization.html"><a href="visualization.html#basic-layout"><i class="fa fa-check"></i><b>5.2.1</b> Basic layout</a></li>
+<li class="chapter" data-level="5.2.2" data-path="visualization.html"><a href="visualization.html#group-layout"><i class="fa fa-check"></i><b>5.2.2</b> Group layout</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="visualization.html"><a href="visualization.html#other-styles"><i class="fa fa-check"></i><b>5.3</b> Other styles</a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="visualization.html"><a href="visualization.html#ggplot"><i class="fa fa-check"></i><b>5.3.1</b> ggplot</a></li>
+<li class="chapter" data-level="5.3.2" data-path="visualization.html"><a href="visualization.html#gephi"><i class="fa fa-check"></i><b>5.3.2</b> Gephi</a></li>
+<li class="chapter" data-level="5.3.3" data-path="visualization.html"><a href="visualization.html#cytoscape"><i class="fa fa-check"></i><b>5.3.3</b> Cytoscape</a></li>
+<li class="chapter" data-level="5.3.4" data-path="visualization.html"><a href="visualization.html#networkd3"><i class="fa fa-check"></i><b>5.3.4</b> NetworkD3</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="topology.html"><a href="topology.html"><i class="fa fa-check"></i><b>6</b> Topology</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="topology.html"><a href="topology.html#complex-network"><i class="fa fa-check"></i><b>6.1</b> Complex network</a></li>
+<li class="chapter" data-level="6.2" data-path="topology.html"><a href="topology.html#topology-indexes"><i class="fa fa-check"></i><b>6.2</b> Topology indexes</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="stability.html"><a href="stability.html"><i class="fa fa-check"></i><b>7</b> Stability</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="stability.html"><a href="stability.html#robustness-tests"><i class="fa fa-check"></i><b>7.1</b> Robustness tests</a></li>
+<li class="chapter" data-level="7.2" data-path="stability.html"><a href="stability.html#community-stability"><i class="fa fa-check"></i><b>7.2</b> Community stability</a>
+<ul>
+<li class="chapter" data-level="7.2.1" data-path="stability.html"><a href="stability.html#robustness"><i class="fa fa-check"></i><b>7.2.1</b> Robustness</a></li>
+<li class="chapter" data-level="7.2.2" data-path="stability.html"><a href="stability.html#vulnerability"><i class="fa fa-check"></i><b>7.2.2</b> Vulnerability</a></li>
+<li class="chapter" data-level="7.2.3" data-path="stability.html"><a href="stability.html#cohesion"><i class="fa fa-check"></i><b>7.2.3</b> Cohesion</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="multi-omics.html"><a href="multi-omics.html"><i class="fa fa-check"></i><b>8</b> multi-omics</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="multi-omics.html"><a href="multi-omics.html#case-study"><i class="fa fa-check"></i><b>8.1</b> Case study</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="./" target="blank">Author: Peng Chen</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">MetaNet Tutorial</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="header">
+<h1 class="title">MetaNet Tutorial</h1>
+<p class="author"><em>Peng Chen</em></p>
+<p class="date"><em>2023-03-07</em></p>
+</div>
+<div id="about" class="section level1 hasAnchor" number="1">
+<h1><span class="header-section-number">Chapter 1</span> About<a href="index.html#about" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="install" class="section level2 hasAnchor" number="1.1">
+<h2><span class="header-section-number">1.1</span> Install<a href="index.html#install" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>MetaNet is a comprehensive network analysis package, especially in various biological omics.</p>
+<p>The latest version can be found in <a href="https://github.com/Asa12138/MetaNet" class="uri">https://github.com/Asa12138/MetaNet</a>.</p>
+<p>For data manipulation, we recommend to use <code>dplyr</code>. Some functions of <code>MetaNet</code> are dependent with <code>pcutils</code>, so you also need to install.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="index.html#cb1-1" aria-hidden="true" tabindex="-1"></a>remotes<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">&#39;Asa12138/pcutils&#39;</span>)</span>
+<span id="cb1-2"><a href="index.html#cb1-2" aria-hidden="true" tabindex="-1"></a>remotes<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">&#39;Asa12138/MetaNet&#39;</span>,<span class="at">dependencies=</span>T)</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="index.html#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(MetaNet)</span>
+<span id="cb2-2"><a href="index.html#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(igraph)</span>
+<span id="cb2-3"><a href="index.html#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="index.html#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co">#data manipulation</span></span>
+<span id="cb2-5"><a href="index.html#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb2-6"><a href="index.html#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(pcutils)</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="index.html#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span></code></pre></div>
+<pre><code>## R version 4.2.2 (2022-10-31)
+## Platform: aarch64-apple-darwin20 (64-bit)
+## Running under: macOS Ventura 13.0.1
+## 
+## Matrix products: default
+## BLAS:   /Library/Frameworks/R.framework/Versions/4.2-arm64/Resources/lib/libRblas.0.dylib
+## LAPACK: /Library/Frameworks/R.framework/Versions/4.2-arm64/Resources/lib/libRlapack.dylib
+## 
+## locale:
+## [1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8
+## 
+## attached base packages:
+## [1] stats     graphics  grDevices utils     datasets  methods   base     
+## 
+## other attached packages:
+## [1] pcutils_0.1.0 dplyr_1.0.10  igraph_1.3.5  MetaNet_0.1.0
+## 
+## loaded via a namespace (and not attached):
+##  [1] sass_0.4.4         tidyr_1.2.1        jsonlite_1.8.4     splines_4.2.2     
+##  [5] carData_3.0-5      bslib_0.4.2        shiny_1.7.4.9002   assertthat_0.2.1  
+##  [9] highr_0.10         yaml_2.3.6         ggrepel_0.9.2      pillar_1.8.1      
+## [13] backports_1.4.1    lattice_0.20-45    quantreg_5.94      glue_1.6.2        
+## [17] digest_0.6.31      promises_1.2.0.1   ggsignif_0.6.4     colorspace_2.0-3  
+## [21] plyr_1.8.8         htmltools_0.5.4    httpuv_1.6.7       Matrix_1.5-1      
+## [25] klaR_1.7-1         pkgconfig_2.0.3    broom_1.0.2        labelled_2.10.0   
+## [29] SparseM_1.81       haven_2.5.1        questionr_0.7.7    bookdown_0.32     
+## [33] purrr_1.0.1        xtable_1.8-4       scales_1.2.1       later_1.3.0       
+## [37] MatrixModels_0.5-1 tibble_3.1.8       combinat_0.0-8     mgcv_1.8-41       
+## [41] generics_0.1.3     car_3.1-1          ggplot2_3.4.0      ellipsis_0.3.2    
+## [45] ggpubr_0.5.0       cachem_1.0.6       agricolae_1.3-5    cli_3.6.0         
+## [49] survival_3.4-0     magrittr_2.0.3     mime_0.12          ggpp_0.5.0        
+## [53] evaluate_0.19      fansi_1.0.3        nlme_3.1-160       MASS_7.3-58.1     
+## [57] rstatix_0.7.1      forcats_0.5.2      vegan_2.6-4        tools_4.2.2       
+## [61] hms_1.1.2          lifecycle_1.0.3    stringr_1.5.0      munsell_0.5.0     
+## [65] cluster_2.1.4      compiler_4.2.2     jquerylib_0.1.4    rlang_1.0.6       
+## [69] grid_4.2.2         rstudioapi_0.14    miniUI_0.1.1.1     rmarkdown_2.19    
+## [73] gtable_0.3.1       ggpmisc_0.5.2      abind_1.4-5        DBI_1.1.3         
+## [77] reshape2_1.4.4     AlgDesign_1.2.1    R6_2.5.1           knitr_1.42.3      
+## [81] fastmap_1.1.0      utf8_1.2.2         permute_0.9-7      stringi_1.7.8     
+## [85] parallel_4.2.2     Rcpp_1.0.9         vctrs_0.5.1        tidyselect_1.2.0  
+## [89] xfun_0.36</code></pre>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+
+<a href="introduction.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/index.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

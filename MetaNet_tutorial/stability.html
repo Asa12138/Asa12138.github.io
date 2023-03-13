@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 7 Stability | MetaNet Tutorial</title>
+  <meta name="description" content="This is a tutorial for the network analysis R package MetaNet." />
+  <meta name="generator" content="bookdown 0.32 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 7 Stability | MetaNet Tutorial" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="This is a tutorial for the network analysis R package MetaNet." />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 7 Stability | MetaNet Tutorial" />
+  
+  <meta name="twitter:description" content="This is a tutorial for the network analysis R package MetaNet." />
+  
+
+<meta name="author" content="Peng Chen" />
+
+
+<meta name="date" content="2023-03-13" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="topology.html"/>
+<link rel="next" href="multi-omics.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">MetaNet tutorial</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> About</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#install"><i class="fa fa-check"></i><b>1.1</b> Install</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>2</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="introduction.html"><a href="introduction.html#network"><i class="fa fa-check"></i><b>2.1</b> Network</a></li>
+<li class="chapter" data-level="2.2" data-path="introduction.html"><a href="introduction.html#network-in-omics"><i class="fa fa-check"></i><b>2.2</b> Network in omics</a></li>
+<li class="chapter" data-level="2.3" data-path="introduction.html"><a href="introduction.html#software"><i class="fa fa-check"></i><b>2.3</b> Software</a></li>
+<li class="chapter" data-level="2.4" data-path="introduction.html"><a href="introduction.html#metanet"><i class="fa fa-check"></i><b>2.4</b> MetaNet</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="construction.html"><a href="construction.html"><i class="fa fa-check"></i><b>3</b> Construction</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="construction.html"><a href="construction.html#normalization"><i class="fa fa-check"></i><b>3.1</b> Pre-processing</a></li>
+<li class="chapter" data-level="3.2" data-path="construction.html"><a href="construction.html#pairwise-relationship"><i class="fa fa-check"></i><b>3.2</b> Pairwise relationship</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="construction.html"><a href="construction.html#correlation"><i class="fa fa-check"></i><b>3.2.1</b> Correlation</a></li>
+<li class="chapter" data-level="3.2.2" data-path="construction.html"><a href="construction.html#distance"><i class="fa fa-check"></i><b>3.2.2</b> Distance</a></li>
+<li class="chapter" data-level="3.2.3" data-path="construction.html"><a href="construction.html#sparcc"><i class="fa fa-check"></i><b>3.2.3</b> SparCC</a></li>
+<li class="chapter" data-level="3.2.4" data-path="construction.html"><a href="construction.html#others"><i class="fa fa-check"></i><b>3.2.4</b> Others</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="construction.html"><a href="construction.html#build-network"><i class="fa fa-check"></i><b>3.3</b> Build network</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="construction.html"><a href="construction.html#normally-build"><i class="fa fa-check"></i><b>3.3.1</b> Normally build</a></li>
+<li class="chapter" data-level="3.3.2" data-path="construction.html"><a href="construction.html#multi-tables"><i class="fa fa-check"></i><b>3.3.2</b> Multi-tables</a></li>
+<li class="chapter" data-level="3.3.3" data-path="construction.html"><a href="construction.html#edgelist"><i class="fa fa-check"></i><b>3.3.3</b> Edgelist</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="construction.html"><a href="construction.html#rmt-optimize"><i class="fa fa-check"></i><b>3.4</b> RMT optimize</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="manipulation.html"><a href="manipulation.html"><i class="fa fa-check"></i><b>4</b> Manipulation</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="manipulation.html"><a href="manipulation.html#annotation"><i class="fa fa-check"></i><b>4.1</b> Annotation</a></li>
+<li class="chapter" data-level="4.2" data-path="manipulation.html"><a href="manipulation.html#filter-sub-net"><i class="fa fa-check"></i><b>4.2</b> Filter (Sub-net)</a></li>
+<li class="chapter" data-level="4.3" data-path="manipulation.html"><a href="manipulation.html#skeleton"><i class="fa fa-check"></i><b>4.3</b> Skeleton</a></li>
+<li class="chapter" data-level="4.4" data-path="manipulation.html"><a href="manipulation.html#export"><i class="fa fa-check"></i><b>4.4</b> Export</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="visualization.html"><a href="visualization.html"><i class="fa fa-check"></i><b>5</b> Visualization</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="visualization.html"><a href="visualization.html#basic-plot"><i class="fa fa-check"></i><b>5.1</b> Basic plot</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="visualization.html"><a href="visualization.html#set-attri"><i class="fa fa-check"></i><b>5.1.1</b> Set attributes</a></li>
+<li class="chapter" data-level="5.1.2" data-path="visualization.html"><a href="visualization.html#plot-setting"><i class="fa fa-check"></i><b>5.1.2</b> Plot setting</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="visualization.html"><a href="visualization.html#layout"><i class="fa fa-check"></i><b>5.2</b> Layout</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="visualization.html"><a href="visualization.html#basic-layout"><i class="fa fa-check"></i><b>5.2.1</b> Basic layout</a></li>
+<li class="chapter" data-level="5.2.2" data-path="visualization.html"><a href="visualization.html#group-layout"><i class="fa fa-check"></i><b>5.2.2</b> Group layout</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="visualization.html"><a href="visualization.html#other-styles"><i class="fa fa-check"></i><b>5.3</b> Other styles</a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="visualization.html"><a href="visualization.html#ggplot"><i class="fa fa-check"></i><b>5.3.1</b> ggplot</a></li>
+<li class="chapter" data-level="5.3.2" data-path="visualization.html"><a href="visualization.html#gephi"><i class="fa fa-check"></i><b>5.3.2</b> Gephi</a></li>
+<li class="chapter" data-level="5.3.3" data-path="visualization.html"><a href="visualization.html#cytoscape"><i class="fa fa-check"></i><b>5.3.3</b> Cytoscape</a></li>
+<li class="chapter" data-level="5.3.4" data-path="visualization.html"><a href="visualization.html#networkd3"><i class="fa fa-check"></i><b>5.3.4</b> NetworkD3</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="topology.html"><a href="topology.html"><i class="fa fa-check"></i><b>6</b> Topology</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="topology.html"><a href="topology.html#complex-network"><i class="fa fa-check"></i><b>6.1</b> Complex network</a></li>
+<li class="chapter" data-level="6.2" data-path="topology.html"><a href="topology.html#modules"><i class="fa fa-check"></i><b>6.2</b> Modules</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="topology.html"><a href="topology.html#module-detection"><i class="fa fa-check"></i><b>6.2.1</b> Module detection</a></li>
+<li class="chapter" data-level="6.2.2" data-path="topology.html"><a href="topology.html#keystone"><i class="fa fa-check"></i><b>6.2.2</b> Keystone</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="topology.html"><a href="topology.html#topology-indexes"><i class="fa fa-check"></i><b>6.3</b> Topology indexes</a></li>
+<li class="chapter" data-level="6.4" data-path="topology.html"><a href="topology.html#random-network"><i class="fa fa-check"></i><b>6.4</b> Random network</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="stability.html"><a href="stability.html"><i class="fa fa-check"></i><b>7</b> Stability</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="stability.html"><a href="stability.html#robustness-tests"><i class="fa fa-check"></i><b>7.1</b> Robustness tests</a></li>
+<li class="chapter" data-level="7.2" data-path="stability.html"><a href="stability.html#community-stability"><i class="fa fa-check"></i><b>7.2</b> Community stability</a>
+<ul>
+<li class="chapter" data-level="7.2.1" data-path="stability.html"><a href="stability.html#robustness"><i class="fa fa-check"></i><b>7.2.1</b> Robustness</a></li>
+<li class="chapter" data-level="7.2.2" data-path="stability.html"><a href="stability.html#vulnerability"><i class="fa fa-check"></i><b>7.2.2</b> Vulnerability</a></li>
+<li class="chapter" data-level="7.2.3" data-path="stability.html"><a href="stability.html#cohesion"><i class="fa fa-check"></i><b>7.2.3</b> Cohesion</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="multi-omics.html"><a href="multi-omics.html"><i class="fa fa-check"></i><b>8</b> multi-omics</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="multi-omics.html"><a href="multi-omics.html#case-study"><i class="fa fa-check"></i><b>8.1</b> Case study</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="./" target="blank">Author: Peng Chen</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">MetaNet Tutorial</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="stability" class="section level1 hasAnchor" number="7">
+<h1><span class="header-section-number">Chapter 7</span> Stability<a href="stability.html#stability" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>It is very important to compare networks stability based on different groups. So MetaNet collects lots of methods to reflect the stability and complexity, these algorithms are coded using Parallel Computing which can be much faster.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="stability.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;otutab&quot;</span>,<span class="at">package =</span> <span class="st">&quot;MetaNet&quot;</span>)</span>
+<span id="cb1-2"><a href="stability.html#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="stability.html#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co">#extract three-group sub-nets</span></span>
+<span id="cb1-4"><a href="stability.html#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">hebing</span>(otutab,metadata<span class="sc">$</span>Group)<span class="ot">-&gt;</span>otutab_G</span>
+<span id="cb1-5"><a href="stability.html#cb1-5" aria-hidden="true" tabindex="-1"></a>sub_net_par<span class="ot">=</span><span class="fu">extract_sub_net</span>(co_net,otutab_G,<span class="at">save_net =</span> <span class="st">&quot;subnet&quot;</span>)</span></code></pre></div>
+<pre><code>## [1] &quot;extracting&quot;
+## [1] &quot;calculating topological indexes&quot;</code></pre>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="stability.html#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="st">&quot;subnet.rda&quot;</span>)</span>
+<span id="cb3-2"><a href="stability.html#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="stability.html#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(sub_nets)</span></code></pre></div>
+<pre><code>## [1] &quot;NS&quot; &quot;WS&quot; &quot;CS&quot;</code></pre>
+<div id="robustness-tests" class="section level2 hasAnchor" number="7.1">
+<h2><span class="header-section-number">7.1</span> Robustness tests<a href="stability.html#robustness-tests" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Robustness tests of networks were done with natural connectivity as it can reflect the stability of networks (<span class="citation">WU Jun (<a href="#ref-wujunNaturalConnectivityComplex2010" role="doc-biblioref">2010</a>)</span>). Specifically, natural connectivity was calculated after removing the nodes (remove five nodes from a network at one time until 70% of nodes disappear), and the downtrend level of natural connectivity indicated the connectivity performance of the network after being damaged to a certain extent.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="stability.html#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">robust_test</span>(sub_nets, <span class="at">partial =</span> <span class="fl">0.5</span>,<span class="at">step=</span><span class="dv">10</span>,<span class="at">reps=</span><span class="dv">9</span>,<span class="at">threads=</span><span class="dv">1</span>)<span class="ot">-&gt;</span>robust_res</span>
+<span id="cb5-2"><a href="stability.html#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot.robustness</span>(robust_res,<span class="at">mode =</span> <span class="dv">3</span>)</span></code></pre></div>
+<p><img src="MetaNet-Tutorial_files/figure-html/7-robust-test-1.png" width="672" /></p>
+</div>
+<div id="community-stability" class="section level2 hasAnchor" number="7.2">
+<h2><span class="header-section-number">7.2</span> Community stability<a href="stability.html#community-stability" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Community stability can be characterized by various indexes, such as <strong>robustness</strong>, <strong>vulnerability</strong> and <strong>cohesion</strong>. Networks with higher robustness and lower vulnerability tend to be more stable (<span class="citation">Yuan et al. (<a href="#ref-yuanClimateWarmingEnhances2021" role="doc-biblioref">2021</a>)</span>).
+Also, community stability is commonly associated with negative interactions, and high percentage of negative correlations within communities is essential for maintaining a stable ecological system.</p>
+<div id="robustness" class="section level3 hasAnchor" number="7.2.1">
+<h3><span class="header-section-number">7.2.1</span> Robustness<a href="stability.html#robustness" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The robustness was regarded as when 50% of nodes were randomly removed and results were based on 100 repetitions of the simulation.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="stability.html#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">robustness</span>(sub_nets,<span class="at">keystone=</span>F,<span class="at">reps=</span><span class="dv">9</span>,<span class="at">threads=</span><span class="dv">1</span>)<span class="ot">-&gt;</span>robustness_res</span>
+<span id="cb6-2"><a href="stability.html#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot.robust</span>(robustness_res)</span></code></pre></div>
+<p><img src="MetaNet-Tutorial_files/figure-html/7-robust-1.png" width="672" /></p>
+</div>
+<div id="vulnerability" class="section level3 hasAnchor" number="7.2.2">
+<h3><span class="header-section-number">7.2.2</span> Vulnerability<a href="stability.html#vulnerability" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>To evaluate the speed of disturbance spreading within a network, the global efficiency was regarded as the average of the efficiency over all pairs of nodes, which was calculated by the number of edges in the shortest path between paired nodes. The vulnerability, which reflected the relative contribution of each node to the globe efficiency, was represented by the maximal vulnerability of nodes in the network.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="stability.html#cb7-1" aria-hidden="true" tabindex="-1"></a>vulnerability_res<span class="ot">=</span><span class="fu">vulnerability</span>(sub_nets,<span class="at">threads =</span> <span class="dv">1</span>)</span>
+<span id="cb7-2"><a href="stability.html#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot.vulnerability</span>(vulnerability_res)</span></code></pre></div>
+<p><img src="MetaNet-Tutorial_files/figure-html/7-vulnerability-1.png" width="672" /></p>
+</div>
+<div id="cohesion" class="section level3 hasAnchor" number="7.2.3">
+<h3><span class="header-section-number">7.2.3</span> Cohesion<a href="stability.html#cohesion" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Cohesion was calculated to quantify the connectivity of microbial communities in each group. Cohesion contains both positive and negative cohesion values, which indicate that associations between taxa attributed to positive and negative species interactions as well as similarities and differences in niches of microbial taxa.</p>
+<p>Briefly, pairwise Pearson correlation matrix across taxa was calculated based on abundance-weighted matrix. After “taxa shuffle” null module-correcting with 200 simulations, average positive and negative correlations was calculated to get a connectedness matrix. Finally, positive and negative cohesions were calculated for each sample respectively by multiplying the abundance-weighted matrix and connectedness matrix. The absolute value of negative: positive cohesion is an important index for community stability.</p>
+<p><span class="math inline">\(cohesion=\sum_{i=1}^{m}{{\rm abundance}_i\times connectness}_i\)</span></p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="stability.html#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">Cohesion</span>(otutab,<span class="at">reps =</span> <span class="dv">16</span>,<span class="at">threads =</span> <span class="dv">1</span>)<span class="ot">-&gt;</span>cohesion_res</span></code></pre></div>
+<pre><code>## 
+  |                                                                            
+  |                                                                      |   0%
+  |                                                                            
+  |                                                                      |   1%
+  |                                                                            
+  |=                                                                     |   1%
+  |                                                                            
+  |=                                                                     |   2%
+  |                                                                            
+  |==                                                                    |   2%
+  |                                                                            
+  |==                                                                    |   3%
+  |                                                                            
+  |===                                                                   |   4%
+  |                                                                            
+  |===                                                                   |   5%
+  |                                                                            
+  |====                                                                  |   5%
+  |                                                                            
+  |====                                                                  |   6%
+  |                                                                            
+  |=====                                                                 |   6%
+  |                                                                            
+  |=====                                                                 |   7%
+  |                                                                            
+  |=====                                                                 |   8%
+  |                                                                            
+  |======                                                                |   8%
+  |                                                                            
+  |======                                                                |   9%
+  |                                                                            
+  |=======                                                               |   9%
+  |                                                                            
+  |=======                                                               |  10%
+  |                                                                            
+  |=======                                                               |  11%
+  |                                                                            
+  |========                                                              |  11%
+  |                                                                            
+  |========                                                              |  12%
+  |                                                                            
+  |=========                                                             |  12%
+  |                                                                            
+  |=========                                                             |  13%
+  |                                                                            
+  |==========                                                            |  14%
+  |                                                                            
+  |==========                                                            |  15%
+  |                                                                            
+  |===========                                                           |  15%
+  |                                                                            
+  |===========                                                           |  16%
+  |                                                                            
+  |============                                                          |  17%
+  |                                                                            
+  |============                                                          |  18%
+  |                                                                            
+  |=============                                                         |  18%
+  |                                                                            
+  |=============                                                         |  19%
+  |                                                                            
+  |==============                                                        |  19%
+  |                                                                            
+  |==============                                                        |  20%
+  |                                                                            
+  |==============                                                        |  21%
+  |                                                                            
+  |===============                                                       |  21%
+  |                                                                            
+  |===============                                                       |  22%
+  |                                                                            
+  |================                                                      |  22%
+  |                                                                            
+  |================                                                      |  23%
+  |                                                                            
+  |=================                                                     |  24%
+  |                                                                            
+  |=================                                                     |  25%
+  |                                                                            
+  |==================                                                    |  25%
+  |                                                                            
+  |==================                                                    |  26%
+  |                                                                            
+  |===================                                                   |  27%
+  |                                                                            
+  |===================                                                   |  28%
+  |                                                                            
+  |====================                                                  |  28%
+  |                                                                            
+  |====================                                                  |  29%
+  |                                                                            
+  |=====================                                                 |  29%
+  |                                                                            
+  |=====================                                                 |  30%
+  |                                                                            
+  |=====================                                                 |  31%
+  |                                                                            
+  |======================                                                |  31%
+  |                                                                            
+  |======================                                                |  32%
+  |                                                                            
+  |=======================                                               |  32%
+  |                                                                            
+  |=======================                                               |  33%
+  |                                                                            
+  |========================                                              |  34%
+  |                                                                            
+  |========================                                              |  35%
+  |                                                                            
+  |=========================                                             |  35%
+  |                                                                            
+  |=========================                                             |  36%
+  |                                                                            
+  |==========================                                            |  37%
+  |                                                                            
+  |==========================                                            |  38%
+  |                                                                            
+  |===========================                                           |  38%
+  |                                                                            
+  |===========================                                           |  39%
+  |                                                                            
+  |============================                                          |  39%
+  |                                                                            
+  |============================                                          |  40%
+  |                                                                            
+  |============================                                          |  41%
+  |                                                                            
+  |=============================                                         |  41%
+  |                                                                            
+  |=============================                                         |  42%
+  |                                                                            
+  |==============================                                        |  42%
+  |                                                                            
+  |==============================                                        |  43%
+  |                                                                            
+  |==============================                                        |  44%
+  |                                                                            
+  |===============================                                       |  44%
+  |                                                                            
+  |===============================                                       |  45%
+  |                                                                            
+  |================================                                      |  45%
+  |                                                                            
+  |================================                                      |  46%
+  |                                                                            
+  |=================================                                     |  47%
+  |                                                                            
+  |=================================                                     |  48%
+  |                                                                            
+  |==================================                                    |  48%
+  |                                                                            
+  |==================================                                    |  49%
+  |                                                                            
+  |===================================                                   |  49%
+  |                                                                            
+  |===================================                                   |  50%
+  |                                                                            
+  |===================================                                   |  51%
+  |                                                                            
+  |====================================                                  |  51%
+  |                                                                            
+  |====================================                                  |  52%
+  |                                                                            
+  |=====================================                                 |  52%
+  |                                                                            
+  |=====================================                                 |  53%
+  |                                                                            
+  |======================================                                |  54%
+  |                                                                            
+  |======================================                                |  55%
+  |                                                                            
+  |=======================================                               |  55%
+  |                                                                            
+  |=======================================                               |  56%
+  |                                                                            
+  |========================================                              |  56%
+  |                                                                            
+  |========================================                              |  57%
+  |                                                                            
+  |========================================                              |  58%
+  |                                                                            
+  |=========================================                             |  58%
+  |                                                                            
+  |=========================================                             |  59%
+  |                                                                            
+  |==========================================                            |  59%
+  |                                                                            
+  |==========================================                            |  60%
+  |                                                                            
+  |==========================================                            |  61%
+  |                                                                            
+  |===========================================                           |  61%
+  |                                                                            
+  |===========================================                           |  62%
+  |                                                                            
+  |============================================                          |  62%
+  |                                                                            
+  |============================================                          |  63%
+  |                                                                            
+  |=============================================                         |  64%
+  |                                                                            
+  |=============================================                         |  65%
+  |                                                                            
+  |==============================================                        |  65%
+  |                                                                            
+  |==============================================                        |  66%
+  |                                                                            
+  |===============================================                       |  67%
+  |                                                                            
+  |===============================================                       |  68%
+  |                                                                            
+  |================================================                      |  68%
+  |                                                                            
+  |================================================                      |  69%
+  |                                                                            
+  |=================================================                     |  69%
+  |                                                                            
+  |=================================================                     |  70%
+  |                                                                            
+  |=================================================                     |  71%
+  |                                                                            
+  |==================================================                    |  71%
+  |                                                                            
+  |==================================================                    |  72%
+  |                                                                            
+  |===================================================                   |  72%
+  |                                                                            
+  |===================================================                   |  73%
+  |                                                                            
+  |====================================================                  |  74%
+  |                                                                            
+  |====================================================                  |  75%
+  |                                                                            
+  |=====================================================                 |  75%
+  |                                                                            
+  |=====================================================                 |  76%
+  |                                                                            
+  |======================================================                |  77%
+  |                                                                            
+  |======================================================                |  78%
+  |                                                                            
+  |=======================================================               |  78%
+  |                                                                            
+  |=======================================================               |  79%
+  |                                                                            
+  |========================================================              |  79%
+  |                                                                            
+  |========================================================              |  80%
+  |                                                                            
+  |========================================================              |  81%
+  |                                                                            
+  |=========================================================             |  81%
+  |                                                                            
+  |=========================================================             |  82%
+  |                                                                            
+  |==========================================================            |  82%
+  |                                                                            
+  |==========================================================            |  83%
+  |                                                                            
+  |===========================================================           |  84%
+  |                                                                            
+  |===========================================================           |  85%
+  |                                                                            
+  |============================================================          |  85%
+  |                                                                            
+  |============================================================          |  86%
+  |                                                                            
+  |=============================================================         |  87%
+  |                                                                            
+  |=============================================================         |  88%
+  |                                                                            
+  |==============================================================        |  88%
+  |                                                                            
+  |==============================================================        |  89%
+  |                                                                            
+  |===============================================================       |  89%
+  |                                                                            
+  |===============================================================       |  90%
+  |                                                                            
+  |===============================================================       |  91%
+  |                                                                            
+  |================================================================      |  91%
+  |                                                                            
+  |================================================================      |  92%
+  |                                                                            
+  |=================================================================     |  92%
+  |                                                                            
+  |=================================================================     |  93%
+  |                                                                            
+  |=================================================================     |  94%
+  |                                                                            
+  |==================================================================    |  94%
+  |                                                                            
+  |==================================================================    |  95%
+  |                                                                            
+  |===================================================================   |  95%
+  |                                                                            
+  |===================================================================   |  96%
+  |                                                                            
+  |====================================================================  |  97%
+  |                                                                            
+  |====================================================================  |  98%
+  |                                                                            
+  |===================================================================== |  98%
+  |                                                                            
+  |===================================================================== |  99%
+  |                                                                            
+  |======================================================================|  99%
+  |                                                                            
+  |======================================================================| 100%</code></pre>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="stability.html#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot.cohesion</span>(cohesion_res,<span class="at">group =</span> <span class="st">&quot;Group&quot;</span>,metadata)</span></code></pre></div>
+<p><img src="MetaNet-Tutorial_files/figure-html/7-cohsion-1.png" width="672" /></p>
+
+</div>
+</div>
+</div>
+<h3>References<a href="references.html#references" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="ref-wujunNaturalConnectivityComplex2010" class="csl-entry">
+WU Jun, Mauricio Barahona. 2010. <span>“Natural <span>Connectivity</span> of <span>Complex Networks</span>.”</span> <em>Chinese Physics Letters</em> 27 (7): 78902–078902. <a href="https://doi.org/10.1088/0256-307X/27/7/078902">https://doi.org/10.1088/0256-307X/27/7/078902</a>.
+</div>
+<div id="ref-yuanClimateWarmingEnhances2021" class="csl-entry">
+Yuan, Mengting Maggie, Xue Guo, Linwei Wu, Ya Zhang, Naijia Xiao, Daliang Ning, Zhou Shi, et al. 2021. <span>“Climate Warming Enhances Microbial Network Complexity and Stability.”</span> <em>Nature Climate Change</em> 11 (4): 343–48. <a href="https://doi.org/10.1038/s41558-021-00989-9">https://doi.org/10.1038/s41558-021-00989-9</a>.
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="topology.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="multi-omics.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/06-stability.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

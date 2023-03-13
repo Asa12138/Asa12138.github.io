@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 3 Construction | MetaNet Tutorial</title>
+  <meta name="description" content="This is a tutorial for the network analysis R package MetaNet." />
+  <meta name="generator" content="bookdown 0.32 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 3 Construction | MetaNet Tutorial" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="This is a tutorial for the network analysis R package MetaNet." />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 3 Construction | MetaNet Tutorial" />
+  
+  <meta name="twitter:description" content="This is a tutorial for the network analysis R package MetaNet." />
+  
+
+<meta name="author" content="Peng Chen" />
+
+
+<meta name="date" content="2023-02-28" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="introduction.html"/>
+<link rel="next" href="manipulation.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="libs/htmlwidgets-1.6.1/htmlwidgets.js"></script>
+<script src="libs/sankeyNetwork-binding-0.3.2/sankeyNetwork.js"></script>
+<script src="libs/d3-4.13.0/d3.min.js"></script>
+<script src="libs/sankey-0.1/sankey.js"></script>
+<script src="libs/forceNetwork-binding-0.4/forceNetwork.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">MetaNet tutorial</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> About</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#install"><i class="fa fa-check"></i><b>1.1</b> Install</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>2</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="introduction.html"><a href="introduction.html#network"><i class="fa fa-check"></i><b>2.1</b> Network</a></li>
+<li class="chapter" data-level="2.2" data-path="introduction.html"><a href="introduction.html#network-in-omics"><i class="fa fa-check"></i><b>2.2</b> Network in omics</a></li>
+<li class="chapter" data-level="2.3" data-path="introduction.html"><a href="introduction.html#software"><i class="fa fa-check"></i><b>2.3</b> Software</a></li>
+<li class="chapter" data-level="2.4" data-path="introduction.html"><a href="introduction.html#metanet"><i class="fa fa-check"></i><b>2.4</b> MetaNet</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="construction.html"><a href="construction.html"><i class="fa fa-check"></i><b>3</b> Construction</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="construction.html"><a href="construction.html#normalization"><i class="fa fa-check"></i><b>3.1</b> Pre-processing</a></li>
+<li class="chapter" data-level="3.2" data-path="construction.html"><a href="construction.html#pairwise-relationship"><i class="fa fa-check"></i><b>3.2</b> Pairwise relationship</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="construction.html"><a href="construction.html#correlation"><i class="fa fa-check"></i><b>3.2.1</b> Correlation</a></li>
+<li class="chapter" data-level="3.2.2" data-path="construction.html"><a href="construction.html#distance"><i class="fa fa-check"></i><b>3.2.2</b> Distance</a></li>
+<li class="chapter" data-level="3.2.3" data-path="construction.html"><a href="construction.html#sparcc"><i class="fa fa-check"></i><b>3.2.3</b> SparCC</a></li>
+<li class="chapter" data-level="3.2.4" data-path="construction.html"><a href="construction.html#others"><i class="fa fa-check"></i><b>3.2.4</b> Others</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="construction.html"><a href="construction.html#build-network"><i class="fa fa-check"></i><b>3.3</b> Build network</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="construction.html"><a href="construction.html#normally-build"><i class="fa fa-check"></i><b>3.3.1</b> Normally build</a></li>
+<li class="chapter" data-level="3.3.2" data-path="construction.html"><a href="construction.html#multi-tables"><i class="fa fa-check"></i><b>3.3.2</b> Multi-tables</a></li>
+<li class="chapter" data-level="3.3.3" data-path="construction.html"><a href="construction.html#edgelist"><i class="fa fa-check"></i><b>3.3.3</b> Edgelist</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="construction.html"><a href="construction.html#rmt-optimize"><i class="fa fa-check"></i><b>3.4</b> RMT optimize</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="manipulation.html"><a href="manipulation.html"><i class="fa fa-check"></i><b>4</b> Manipulation</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="manipulation.html"><a href="manipulation.html#annotation"><i class="fa fa-check"></i><b>4.1</b> Annotation</a></li>
+<li class="chapter" data-level="4.2" data-path="manipulation.html"><a href="manipulation.html#filter-sub-net"><i class="fa fa-check"></i><b>4.2</b> Filter (Sub-net)</a></li>
+<li class="chapter" data-level="4.3" data-path="manipulation.html"><a href="manipulation.html#skeleton"><i class="fa fa-check"></i><b>4.3</b> Skeleton</a></li>
+<li class="chapter" data-level="4.4" data-path="manipulation.html"><a href="manipulation.html#export"><i class="fa fa-check"></i><b>4.4</b> Export</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="visualization.html"><a href="visualization.html"><i class="fa fa-check"></i><b>5</b> Visualization</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="visualization.html"><a href="visualization.html#basic-plot"><i class="fa fa-check"></i><b>5.1</b> Basic plot</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="visualization.html"><a href="visualization.html#set-attri"><i class="fa fa-check"></i><b>5.1.1</b> Set attributes</a></li>
+<li class="chapter" data-level="5.1.2" data-path="visualization.html"><a href="visualization.html#plot-setting"><i class="fa fa-check"></i><b>5.1.2</b> Plot setting</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="visualization.html"><a href="visualization.html#layout"><i class="fa fa-check"></i><b>5.2</b> Layout</a></li>
+<li class="chapter" data-level="5.3" data-path="visualization.html"><a href="visualization.html#other-styles"><i class="fa fa-check"></i><b>5.3</b> Other styles</a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="visualization.html"><a href="visualization.html#ggplot"><i class="fa fa-check"></i><b>5.3.1</b> ggplot</a></li>
+<li class="chapter" data-level="5.3.2" data-path="visualization.html"><a href="visualization.html#gephi"><i class="fa fa-check"></i><b>5.3.2</b> Gephi</a></li>
+<li class="chapter" data-level="5.3.3" data-path="visualization.html"><a href="visualization.html#cytoscape"><i class="fa fa-check"></i><b>5.3.3</b> Cytoscape</a></li>
+<li class="chapter" data-level="5.3.4" data-path="visualization.html"><a href="visualization.html#networkd3"><i class="fa fa-check"></i><b>5.3.4</b> NetworkD3</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="topology.html"><a href="topology.html"><i class="fa fa-check"></i><b>6</b> Topology</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="topology.html"><a href="topology.html#complex-network"><i class="fa fa-check"></i><b>6.1</b> Complex network</a></li>
+<li class="chapter" data-level="6.2" data-path="topology.html"><a href="topology.html#topology-indexes"><i class="fa fa-check"></i><b>6.2</b> Topology indexes</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="stability.html"><a href="stability.html"><i class="fa fa-check"></i><b>7</b> Stability</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="stability.html"><a href="stability.html#robustness-tests"><i class="fa fa-check"></i><b>7.1</b> Robustness tests</a></li>
+<li class="chapter" data-level="7.2" data-path="stability.html"><a href="stability.html#community-stability"><i class="fa fa-check"></i><b>7.2</b> Community stability</a>
+<ul>
+<li class="chapter" data-level="7.2.1" data-path="stability.html"><a href="stability.html#vulnerability"><i class="fa fa-check"></i><b>7.2.1</b> Vulnerability</a></li>
+<li class="chapter" data-level="7.2.2" data-path="stability.html"><a href="stability.html#cohesion"><i class="fa fa-check"></i><b>7.2.2</b> Cohesion</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="multi-omics.html"><a href="multi-omics.html"><i class="fa fa-check"></i><b>8</b> multi-omics</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="multi-omics.html"><a href="multi-omics.html#case-study"><i class="fa fa-check"></i><b>8.1</b> Case study</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="./" target="blank">Author: Peng Chen</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">MetaNet Tutorial</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="construction" class="section level1 hasAnchor" number="3">
+<h1><span class="header-section-number">Chapter 3</span> Construction<a href="construction.html#construction" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="normalization" class="section level2 hasAnchor" number="3.1">
+<h2><span class="header-section-number">3.1</span> Pre-processing<a href="construction.html#normalization" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The <code>trans()</code> function contains many normalization methods, suitable for pre-processing of different omics, some refer to <code>vegan::decostand()</code> (<span class="citation">Oksanen et al. (<a href="#ref-R-vegan" role="doc-biblioref">2022</a>)</span>).</p>
+<table>
+<caption><span id="tab:3-normalize">Table 3.1: </span> Normalization methods used in omics.</caption>
+<colgroup>
+<col width="8%" />
+<col width="91%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Method</strong></td>
+<td><strong>Description</strong></td>
+</tr>
+<tr class="even">
+<td>cpm</td>
+<td>Counts per million</td>
+</tr>
+<tr class="odd">
+<td>minmax</td>
+<td>linear transfer to (min, max)</td>
+</tr>
+<tr class="even">
+<td>acpm</td>
+<td>Counts per million, then asinh transfer</td>
+</tr>
+<tr class="odd">
+<td>log1</td>
+<td>log(n+1) transformat</td>
+</tr>
+<tr class="even">
+<td>total</td>
+<td>divide by total</td>
+</tr>
+<tr class="odd">
+<td>max</td>
+<td>divide by maximum</td>
+</tr>
+<tr class="even">
+<td>frequency</td>
+<td>divide by total and multiply by the number of non-zero items, so that the average of non-zero entries is one</td>
+</tr>
+<tr class="odd">
+<td>normalize</td>
+<td>make margin sum of squares equal to one</td>
+</tr>
+<tr class="even">
+<td>range</td>
+<td>standardize values into range 0 ... 1 (same to <code>minmax(0,1)</code>). If all values are constant, they will be transformed to 0.</td>
+</tr>
+<tr class="odd">
+<td>rank</td>
+<td>rank replaces abundance values by their increasing ranks leaving zeros unchanged</td>
+</tr>
+<tr class="even">
+<td>rank, rrank</td>
+<td>rank replaces abundance values by their increasing ranks leaving zeros unchanged, and rrank is similar but uses relative ranks with maximum 1</td>
+</tr>
+<tr class="odd">
+<td>pa</td>
+<td>scale x to presence/absence scale (0/1).</td>
+</tr>
+<tr class="even">
+<td>standardize</td>
+<td>scale x to zero mean and unit variance</td>
+</tr>
+<tr class="odd">
+<td>hellinger</td>
+<td>square root of method = “total”</td>
+</tr>
+<tr class="even">
+<td>log</td>
+<td>logarithmic transformation as suggested by Anderson et al. (2006): logb(x)+1 for x&gt;0, where bb is the base of the logarithm; zeros are left as zeros.</td>
+</tr>
+<tr class="odd">
+<td>alr</td>
+<td><p>Additive log ratio (“alr”) transformation (Aitchison 1986) reduces data skewness and compositionality bias.</p>
+<p><span class="math inline">\(alr=[log\frac{x_1}{x_D},…,log\frac{x_{D-1}}{x_D}]\)</span></p></td>
+</tr>
+<tr class="even">
+<td>clr</td>
+<td><p>centered log ratio (“clr”) transformation proposed by Aitchison (1986) reduces data skewness and compositionality bias.</p>
+<p><span class="math inline">\(clr=log\frac{x_r}{g(x_r)}\)</span></p></td>
+</tr>
+<tr class="odd">
+<td>rclr</td>
+<td><p>robust clr (“rclr”) is similar to regular clr (see above) but allows data that contains zeroes.</p>
+<p><span class="math inline">\(rclr=log\frac{x_r}{g(x_r&gt;0)}\)</span></p></td>
+</tr>
+</tbody>
+</table>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="construction.html#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(MetaNet)</span>
+<span id="cb4-2"><a href="construction.html#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(otutab,<span class="at">package =</span> <span class="st">&quot;MetaNet&quot;</span>)</span>
+<span id="cb4-3"><a href="construction.html#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co">#trans(otutab,method=&quot;cpm&quot;)%&gt;%head()</span></span>
+<span id="cb4-4"><a href="construction.html#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="fu">trans</span>(otutab,<span class="at">method=</span><span class="st">&quot;log1&quot;</span>)<span class="sc">%&gt;%</span><span class="fu">head</span>(<span class="dv">4</span>)</span></code></pre></div>
+<pre><code>##                                   NS1      NS2      NS3      NS4      NS5
+## s__un_f__Thermomonosporaceae 6.996681 7.560601 6.698268 7.211557 6.970730
+## s__Pelomonas_puraquae        7.582229 7.118826 7.767687 7.712891 7.973844
+## s__Rhizobacter_bergeniae     6.378426 6.129050 6.791221 6.804615 7.112327
+## s__Flavobacterium_terrae     5.501258 5.459586 7.501634 6.513230 7.276556
+##                                   NS6      WS1      WS2      WS3      WS4
+## s__un_f__Thermomonosporaceae 6.976348 7.133296 7.376508 7.193686 6.848005
+## s__Pelomonas_puraquae        7.512071 6.469250 6.206576 7.115582 7.158514
+## s__Rhizobacter_bergeniae     6.749931 6.405228 6.154858 6.976348 6.936343
+## s__Flavobacterium_terrae     6.198479 5.765191 7.563720 7.309212 6.903747
+##                                   WS5      WS6      CS1      CS2      CS3
+## s__un_f__Thermomonosporaceae 7.118016 6.919684 7.746733 7.831617 7.444249
+## s__Pelomonas_puraquae        6.860664 6.455199 7.174724 7.324490 6.739337
+## s__Rhizobacter_bergeniae     6.741701 6.508769 6.937314 7.497207 6.910751
+## s__Flavobacterium_terrae     6.359574 5.886104 6.985642 7.105786 6.626718
+##                                   CS4      CS5      CS6
+## s__un_f__Thermomonosporaceae 7.588830 7.266827 7.331715
+## s__Pelomonas_puraquae        7.029088 7.302496 7.069023
+## s__Rhizobacter_bergeniae     7.090910 7.085901 6.637258
+## s__Flavobacterium_terrae     6.049733 6.940222 7.253470</code></pre>
+<p><code>guolv()</code> and <code>hebing()</code> functions provide can help filter or aggregate the omics data.</p>
+</div>
+<div id="pairwise-relationship" class="section level2 hasAnchor" number="3.2">
+<h2><span class="header-section-number">3.2</span> Pairwise relationship<a href="construction.html#pairwise-relationship" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>How to determine the pairwise relationship, because the experimental data is generally relatively rare, we mainly relying on statistical inference.</p>
+<p>At present, there are mainly two ways, the first one is based on similarity or correlation <span class="citation">Faust and Raes (<a href="#ref-faustMicrobialInteractionsNetworks2012" role="doc-biblioref">2012</a>)</span>. for example: Spearman, Pearson, Bray-Curtis… based on abundance or incidence data, the similarity matrix between paired species can be calculated, and the randomized data can be used to repeatedly calculate the significance.Finally, meaningful similarities are retained in network.</p>
+<p>The second way for networks is based on regression. Divide species into source and target, and use multiple regression to calculate the relationship between species.</p>
+<p>Some tools use special methods to optimize the network construction, such as <strong>SparCC</strong>, etc.</p>
+<div id="correlation" class="section level3 hasAnchor" number="3.2.1">
+<h3><span class="header-section-number">3.2.1</span> Correlation<a href="construction.html#correlation" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><strong>Correlation</strong> is a statistical term describing the degree to which two variables move in coordination with one-another.</p>
+<p>Correlation calculation is the first step in all omics network analysis software, there are many method to get <span class="math inline">\(\rho\)</span> and <span class="math inline">\(p\)</span>-value. However, as the data size of omics grow larger and larger, many methods will become very time and computational resource consuming.</p>
+<p>Here, we provide the <code>c_net_cal()</code> function for one single table or two tables to calculate correlation <strong>fastly</strong> (Figure <a href="construction.html#fig:3-packages-comparison">3.1</a>), which will return a three elements list include <span class="math inline">\(\rho\)</span>, <span class="math inline">\(p\)</span>-value and <span class="math inline">\(p\)</span>-adjust.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="construction.html#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">#single table</span></span>
+<span id="cb6-2"><a href="construction.html#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">t</span>(otutab) <span class="ot">-&gt;</span> totu</span>
+<span id="cb6-3"><a href="construction.html#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="fu">c_net_cal</span>(totu,<span class="at">method =</span> <span class="st">&quot;spearman&quot;</span>, <span class="at">filename =</span>F,<span class="at">p.adjust.method =</span> <span class="cn">NULL</span>) <span class="ot">-&gt;</span> corr</span>
+<span id="cb6-4"><a href="construction.html#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(corr)</span></code></pre></div>
+<pre><code>## List of 3
+##  $ r       : num [1:464, 1:464] 0 -0.2508 0.1847 0.0114 0.2095 ...
+##   ..- attr(*, &quot;dimnames&quot;)=List of 2
+##   .. ..$ : chr [1:464] &quot;s__un_f__Thermomonosporaceae&quot; &quot;s__Pelomonas_puraquae&quot; &quot;s__Rhizobacter_bergeniae&quot; &quot;s__Flavobacterium_terrae&quot; ...
+##   .. ..$ : chr [1:464] &quot;s__un_f__Thermomonosporaceae&quot; &quot;s__Pelomonas_puraquae&quot; &quot;s__Rhizobacter_bergeniae&quot; &quot;s__Flavobacterium_terrae&quot; ...
+##  $ p.value : num [1:464, 1:464] 0 0.316 0.463 0.964 0.404 ...
+##   ..- attr(*, &quot;dimnames&quot;)=List of 2
+##   .. ..$ : chr [1:464] &quot;s__un_f__Thermomonosporaceae&quot; &quot;s__Pelomonas_puraquae&quot; &quot;s__Rhizobacter_bergeniae&quot; &quot;s__Flavobacterium_terrae&quot; ...
+##   .. ..$ : chr [1:464] &quot;s__un_f__Thermomonosporaceae&quot; &quot;s__Pelomonas_puraquae&quot; &quot;s__Rhizobacter_bergeniae&quot; &quot;s__Flavobacterium_terrae&quot; ...
+##  $ p.adjust: num [1:464, 1:464] 0 0.316 0.463 0.964 0.404 ...
+##   ..- attr(*, &quot;dimnames&quot;)=List of 2
+##   .. ..$ : chr [1:464] &quot;s__un_f__Thermomonosporaceae&quot; &quot;s__Pelomonas_puraquae&quot; &quot;s__Rhizobacter_bergeniae&quot; &quot;s__Flavobacterium_terrae&quot; ...
+##   .. ..$ : chr [1:464] &quot;s__un_f__Thermomonosporaceae&quot; &quot;s__Pelomonas_puraquae&quot; &quot;s__Rhizobacter_bergeniae&quot; &quot;s__Flavobacterium_terrae&quot; ...</code></pre>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="construction.html#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co">#two tables</span></span>
+<span id="cb8-2"><a href="construction.html#cb8-2" aria-hidden="true" tabindex="-1"></a>metadata[,<span class="dv">3</span><span class="sc">:</span><span class="dv">10</span>] <span class="ot">-&gt;</span> env</span>
+<span id="cb8-3"><a href="construction.html#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="fu">c_net_cal</span>(totu,env,<span class="at">method =</span> <span class="st">&quot;spearman&quot;</span>, <span class="at">filename =</span>F,<span class="at">p.adjust.method =</span> <span class="cn">NULL</span>) <span class="ot">-&gt;</span> corr2</span>
+<span id="cb8-4"><a href="construction.html#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(corr2)</span></code></pre></div>
+<pre><code>## List of 3
+##  $ r       : num [1:464, 1:8] 0.356 -0.5253 0.0918 -0.0114 -0.0196 ...
+##   ..- attr(*, &quot;dimnames&quot;)=List of 2
+##   .. ..$ : chr [1:464] &quot;s__un_f__Thermomonosporaceae&quot; &quot;s__Pelomonas_puraquae&quot; &quot;s__Rhizobacter_bergeniae&quot; &quot;s__Flavobacterium_terrae&quot; ...
+##   .. ..$ : chr [1:8] &quot;env1&quot; &quot;env2&quot; &quot;env3&quot; &quot;env4&quot; ...
+##  $ p.value : num [1:464, 1:8] 0.147 0.0252 0.717 0.9643 0.9384 ...
+##   ..- attr(*, &quot;dimnames&quot;)=List of 2
+##   .. ..$ : chr [1:464] &quot;s__un_f__Thermomonosporaceae&quot; &quot;s__Pelomonas_puraquae&quot; &quot;s__Rhizobacter_bergeniae&quot; &quot;s__Flavobacterium_terrae&quot; ...
+##   .. ..$ : chr [1:8] &quot;env1&quot; &quot;env2&quot; &quot;env3&quot; &quot;env4&quot; ...
+##  $ p.adjust: num [1:464, 1:8] 0.147 0.0252 0.717 0.9643 0.9384 ...
+##   ..- attr(*, &quot;dimnames&quot;)=List of 2
+##   .. ..$ : chr [1:464] &quot;s__un_f__Thermomonosporaceae&quot; &quot;s__Pelomonas_puraquae&quot; &quot;s__Rhizobacter_bergeniae&quot; &quot;s__Flavobacterium_terrae&quot; ...
+##   .. ..$ : chr [1:8] &quot;env1&quot; &quot;env2&quot; &quot;env3&quot; &quot;env4&quot; ...</code></pre>
+<div class="figure"><span style="display:block;" id="fig:3-packages-comparison"></span>
+<img src="MetaNet-Tutorial_files/figure-html/3-packages-comparison-1.png" alt="network build of packages comparison" width="672" />
+<p class="caption">
+Figure 3.1: network build of packages comparison
+</p>
+</div>
+</div>
+<div id="distance" class="section level3 hasAnchor" number="3.2.2">
+<h3><span class="header-section-number">3.2.2</span> Distance<a href="construction.html#distance" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>you can use <code>par_sim()</code> to calculate various distance to get the pairwise similarity matrix.</p>
+</div>
+<div id="sparcc" class="section level3 hasAnchor" number="3.2.3">
+<h3><span class="header-section-number">3.2.3</span> SparCC<a href="construction.html#sparcc" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>SparCC fits the Dirichlet distribution to the observed data, and iteratively calculates the proportion and correlation of species several times. The resulting correlation is the median of the distribution. <span class="math inline">\(p\)</span>-values were calculated using the bootstrap method.This metric is said to be more useful with non-normal microbiome data.</p>
+<p><span class="math inline">\(D(x_i,x_j)=var(\log(\frac{x_i}{x_j}))\)</span></p>
+<p><code>par_sparcc()</code> is available for SparCC calculation.</p>
+</div>
+<div id="others" class="section level3 hasAnchor" number="3.2.4">
+<h3><span class="header-section-number">3.2.4</span> Others<a href="construction.html#others" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>There are some other methods available for network construction in <a href="https://github.com/stefpeschel/NetCoMi"><strong>NetCoMi</strong></a></p>
+</div>
+</div>
+<div id="build-network" class="section level2 hasAnchor" number="3.3">
+<h2><span class="header-section-number">3.3</span> Build network<a href="construction.html#build-network" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="normally-build" class="section level3 hasAnchor" number="3.3.1">
+<h3><span class="header-section-number">3.3.1</span> Normally build<a href="construction.html#normally-build" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>If you have done the <code>c_net_cal()</code>, you can get a network (igraph object) easily by <code>c_net_build()</code>. Some common attributes will be set automatically.</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="construction.html#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">c_net_build</span>(corr,<span class="at">r_thres =</span> <span class="fl">0.6</span>,<span class="at">p_thres =</span> <span class="fl">0.05</span>,<span class="at">del_single =</span> T) <span class="ot">-&gt;</span> co_net</span>
+<span id="cb10-2"><a href="construction.html#cb10-2" aria-hidden="true" tabindex="-1"></a>co_net</span></code></pre></div>
+<pre><code>## IGRAPH cdf0152 UNW- 462 1401 -- 
+## + attr: n_type (g/c), name (v/c), v_group (v/c), v_class (v/c), size
+## | (v/n), label (v/c), shape (v/c), color (v/c), id (e/n), from (e/c),
+## | to (e/c), weight (e/n), cor (e/n), p.adjust (e/n), p.value (e/n),
+## | e_type (e/c), width (e/n), v_group_from (e/c), v_group_to (e/c),
+## | e_class (e/c), color (e/c), lty (e/n)
+## + edges from cdf0152 (vertex names):
+## [1] s__un_f__Thermomonosporaceae--s__Actinocorallia_herbida    
+## [2] s__un_f__Thermomonosporaceae--s__Kribbella_catacumbae      
+## [3] s__un_f__Thermomonosporaceae--s__Kineosporia_rhamnosa      
+## [4] s__un_f__Thermomonosporaceae--s__un_f__Micromonosporaceae  
+## + ... omitted several edges</code></pre>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="construction.html#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(co_net)</span></code></pre></div>
+<div class="figure"><span style="display:block;" id="fig:3-conet1"></span>
+<img src="MetaNet-Tutorial_files/figure-html/3-conet1-1.png" alt="Simple co-occurrence network" width="672" />
+<p class="caption">
+Figure 3.2: Simple co-occurrence network
+</p>
+</div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="construction.html#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">c_net_build</span>(corr2) <span class="ot">-&gt;</span> co_net2</span>
+<span id="cb13-2"><a href="construction.html#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(co_net2)</span></code></pre></div>
+<div class="figure"><span style="display:block;" id="fig:3-conet2"></span>
+<img src="MetaNet-Tutorial_files/figure-html/3-conet2-1.png" alt="Simple bipartite network" width="672" />
+<p class="caption">
+Figure 3.3: Simple bipartite network
+</p>
+</div>
+</div>
+<div id="multi-tables" class="section level3 hasAnchor" number="3.3.2">
+<h3><span class="header-section-number">3.3.2</span> Multi-tables<a href="construction.html#multi-tables" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>When you have more than two tables for correlation network analysis, you can choose the <code>multi_net_build()</code> to calculate and build network. For subsequent <strong>multi-omics analysis</strong>, see Chapter <a href="multi-omics.html#multi-omics">8</a>.</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="construction.html#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;multi_test&quot;</span>)</span>
+<span id="cb14-2"><a href="construction.html#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="co">#microbiome</span></span>
+<span id="cb14-3"><a href="construction.html#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(micro)</span>
+<span id="cb14-4"><a href="construction.html#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] 18 50</span></span>
+<span id="cb14-5"><a href="construction.html#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="co">#metabolome</span></span>
+<span id="cb14-6"><a href="construction.html#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(metab)</span>
+<span id="cb14-7"><a href="construction.html#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] 18 50</span></span>
+<span id="cb14-8"><a href="construction.html#cb14-8" aria-hidden="true" tabindex="-1"></a><span class="co">#transcriptome</span></span>
+<span id="cb14-9"><a href="construction.html#cb14-9" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(transc)</span>
+<span id="cb14-10"><a href="construction.html#cb14-10" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] 18 50</span></span>
+<span id="cb14-11"><a href="construction.html#cb14-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-12"><a href="construction.html#cb14-12" aria-hidden="true" tabindex="-1"></a><span class="fu">multi_net_build</span>(micro,metab,transc,<span class="at">mode =</span> <span class="st">&quot;full&quot;</span>,<span class="at">method =</span> <span class="st">&quot;spearman&quot;</span>,<span class="at">filename =</span> F)<span class="ot">-&gt;</span>multi1</span>
+<span id="cb14-13"><a href="construction.html#cb14-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-14"><a href="construction.html#cb14-14" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(multi1)</span></code></pre></div>
+<div class="figure"><span style="display:block;" id="fig:3-multinet1"></span>
+<img src="MetaNet-Tutorial_files/figure-html/3-multinet1-1.png" alt="Simple multi-omics network" width="672" />
+<p class="caption">
+Figure 3.4: Simple multi-omics network
+</p>
+</div>
+</div>
+<div id="edgelist" class="section level3 hasAnchor" number="3.3.3">
+<h3><span class="header-section-number">3.3.3</span> Edgelist<a href="construction.html#edgelist" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>If you already get the pairwise relationship of data from other approaches (database), you can form it into a edgelist and use <code>c_net_from_edgelist</code> to build network. It is useful for following analysis.</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="construction.html#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;edgelist&quot;</span>,<span class="at">package =</span> <span class="st">&quot;MetaNet&quot;</span>)</span>
+<span id="cb15-2"><a href="construction.html#cb15-2" aria-hidden="true" tabindex="-1"></a>dnet<span class="ot">=</span><span class="fu">c_net_from_edgelist</span>(arc_count,<span class="at">direct =</span> T)</span>
+<span id="cb15-3"><a href="construction.html#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(dnet)</span></code></pre></div>
+<div class="figure"><span style="display:block;" id="fig:3-directnet"></span>
+<img src="MetaNet-Tutorial_files/figure-html/3-directnet-1.png" alt="Simple directed network" width="672" />
+<p class="caption">
+Figure 3.5: Simple directed network
+</p>
+</div>
+</div>
+</div>
+<div id="rmt-optimize" class="section level2 hasAnchor" number="3.4">
+<h2><span class="header-section-number">3.4</span> RMT optimize<a href="construction.html#rmt-optimize" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The correlation-based relevance network method is most commonly used largely due to its simple calculation procedure and noise tolerance. However, most studies involving relevance network analysis use arbitrary thresholds (usually, we use r&gt;0.6, p&lt;0.05), and thus the constructed networks are subjective rather than objective.</p>
+This problem has been solved by a random matrix theory (RMT)-based approach (Figure <a href="construction.html#fig:3-RMT">3.6</a>), which is able to automatically identify a threshold for cellular network construction from microarray data (<span class="citation">Deng et al. (<a href="#ref-dengMolecularEcologicalNetwork2012" role="doc-biblioref">2012</a>)</span>).
+<div class="figure"><span style="display:block;" id="fig:3-RMT"></span>
+<img src="images/2-1.RMT.png" alt="Random matrix theory (RMT)-based approach" width="537" height="80%" />
+<p class="caption">
+Figure 3.6: Random matrix theory (RMT)-based approach
+</p>
+</div>
+<p>use <code>RMT_threshold()</code> , we can find the best r_threshold to make the network with smallest noise.</p>
+<p>the bigger log_LE, less log_LW, less log_see, bigger p_ks_test indicate the better r_threshold for a meaningful network construction.You can change the threshold range to calculate more finely.</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="construction.html#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">RMT_threshold</span>(corr<span class="sc">$</span>r,<span class="at">min_threshold =</span> <span class="fl">0.5</span>,<span class="at">max_threshold =</span> <span class="fl">0.9</span>, <span class="at">step =</span> <span class="fl">0.02</span>,<span class="at">quite =</span> T)<span class="ot">-&gt;</span>rmt_res</span>
+<span id="cb16-2"><a href="construction.html#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="do">## The Intermediate files saved in ./RMT_temp/ .</span></span>
+<span id="cb16-3"><a href="construction.html#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(rmt_res)</span></code></pre></div>
+<div class="figure"><span style="display:block;" id="fig:3-RMT-res"></span>
+<img src="MetaNet-Tutorial_files/figure-html/3-RMT-res-1.png" alt="RMT_threshold result from 0.5 to 0.9" width="672" />
+<p class="caption">
+Figure 3.7: RMT_threshold result from 0.5 to 0.9
+</p>
+</div>
+<pre><code>## [1] &quot;recommend r_threshold:  0.835&quot;
+## [1] 0.835</code></pre>
+<p>You can set the <code>gif=T</code> in <code>RMT_threshold</code> and get a gif file to observe the distribution of eigenvalue spacing for different r-thresholds.</p>
+<div class="figure"><span style="display:block;" id="fig:3-RMT-res2"></span>
+<img src="images/rmt_nnsd.gif" alt="the distribution of eigenvalue spacing from 0.5 to 0.9"  />
+<p class="caption">
+Figure 3.8: the distribution of eigenvalue spacing from 0.5 to 0.9
+</p>
+</div>
+
+</div>
+</div>
+<h3>References<a href="references.html#references" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="ref-dengMolecularEcologicalNetwork2012" class="csl-entry">
+Deng, Ye, Y. Jiang, Yunfeng Yang, Zhili He, Feng Luo, and Jizhong Zhou. 2012. <span>“Molecular Ecological Network Analyses.”</span> <em>BMC Bioinformatics</em>. <a href="https://doi.org/10.1186/1471-2105-13-113">https://doi.org/10.1186/1471-2105-13-113</a>.
+</div>
+<div id="ref-faustMicrobialInteractionsNetworks2012" class="csl-entry">
+Faust, Karoline, and J. Raes. 2012. <span>“Microbial Interactions: From Networks to Models.”</span> <em>Nature Reviews Microbiology</em>. <a href="https://doi.org/10.1038/nrmicro2832">https://doi.org/10.1038/nrmicro2832</a>.
+</div>
+<div id="ref-R-vegan" class="csl-entry">
+Oksanen, Jari, Gavin L. Simpson, F. Guillaume Blanchet, Roeland Kindt, Pierre Legendre, Peter R. Minchin, R. B. O’Hara, et al. 2022. <em>Vegan: Community Ecology Package</em>. <a href="https://github.com/vegandevs/vegan">https://github.com/vegandevs/vegan</a>.
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="introduction.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="manipulation.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/02-construction.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
