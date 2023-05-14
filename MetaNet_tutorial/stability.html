@@ -23,7 +23,7 @@
 <meta name="author" content="Peng Chen" />
 
 
-<meta name="date" content="2023-03-13" />
+<meta name="date" content="2023-03-27" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -92,7 +92,7 @@ code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
 code span.at { color: #7d9029; } /* Attribute */
 code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
+code span.bu { color: #008000; } /* BuiltIn */
 code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
 code span.ch { color: #4070a0; } /* Char */
 code span.cn { color: #880000; } /* Constant */
@@ -105,7 +105,7 @@ code span.er { color: #ff0000; font-weight: bold; } /* Error */
 code span.ex { } /* Extension */
 code span.fl { color: #40a070; } /* Float */
 code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
+code span.im { color: #008000; font-weight: bold; } /* Import */
 code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 code span.kw { color: #007020; font-weight: bold; } /* Keyword */
 code span.op { color: #666666; } /* Operator */
@@ -189,10 +189,11 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="4" data-path="manipulation.html"><a href="manipulation.html"><i class="fa fa-check"></i><b>4</b> Manipulation</a>
 <ul>
-<li class="chapter" data-level="4.1" data-path="manipulation.html"><a href="manipulation.html#annotation"><i class="fa fa-check"></i><b>4.1</b> Annotation</a></li>
-<li class="chapter" data-level="4.2" data-path="manipulation.html"><a href="manipulation.html#filter-sub-net"><i class="fa fa-check"></i><b>4.2</b> Filter (Sub-net)</a></li>
-<li class="chapter" data-level="4.3" data-path="manipulation.html"><a href="manipulation.html#skeleton"><i class="fa fa-check"></i><b>4.3</b> Skeleton</a></li>
-<li class="chapter" data-level="4.4" data-path="manipulation.html"><a href="manipulation.html#export"><i class="fa fa-check"></i><b>4.4</b> Export</a></li>
+<li class="chapter" data-level="4.1" data-path="manipulation.html"><a href="manipulation.html#attributes"><i class="fa fa-check"></i><b>4.1</b> Attributes</a></li>
+<li class="chapter" data-level="4.2" data-path="manipulation.html"><a href="manipulation.html#annotation"><i class="fa fa-check"></i><b>4.2</b> Annotation</a></li>
+<li class="chapter" data-level="4.3" data-path="manipulation.html"><a href="manipulation.html#filter-sub-net"><i class="fa fa-check"></i><b>4.3</b> Filter (Sub-net)</a></li>
+<li class="chapter" data-level="4.4" data-path="manipulation.html"><a href="manipulation.html#skeleton"><i class="fa fa-check"></i><b>4.4</b> Skeleton</a></li>
+<li class="chapter" data-level="4.5" data-path="manipulation.html"><a href="manipulation.html#export"><i class="fa fa-check"></i><b>4.5</b> Export</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="visualization.html"><a href="visualization.html"><i class="fa fa-check"></i><b>5</b> Visualization</a>
 <ul>
@@ -239,7 +240,6 @@ div.csl-indent {
 <ul>
 <li class="chapter" data-level="8.1" data-path="multi-omics.html"><a href="multi-omics.html#case-study"><i class="fa fa-check"></i><b>8.1</b> Case study</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
 <li><a href="./" target="blank">Author: Peng Chen</a></li>
 
@@ -267,18 +267,37 @@ div.csl-indent {
 <span id="cb1-2"><a href="stability.html#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="stability.html#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co">#extract three-group sub-nets</span></span>
 <span id="cb1-4"><a href="stability.html#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">hebing</span>(otutab,metadata<span class="sc">$</span>Group)<span class="ot">-&gt;</span>otutab_G</span>
-<span id="cb1-5"><a href="stability.html#cb1-5" aria-hidden="true" tabindex="-1"></a>sub_net_par<span class="ot">=</span><span class="fu">extract_sub_net</span>(co_net,otutab_G,<span class="at">save_net =</span> <span class="st">&quot;subnet&quot;</span>)</span></code></pre></div>
-<pre><code>## [1] &quot;extracting&quot;
-## [1] &quot;calculating topological indexes&quot;</code></pre>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="stability.html#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="st">&quot;subnet.rda&quot;</span>)</span>
-<span id="cb3-2"><a href="stability.html#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-3"><a href="stability.html#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(sub_nets)</span></code></pre></div>
-<pre><code>## [1] &quot;NS&quot; &quot;WS&quot; &quot;CS&quot;</code></pre>
+<span id="cb1-5"><a href="stability.html#cb1-5" aria-hidden="true" tabindex="-1"></a>sub_net_par<span class="ot">=</span><span class="fu">extract_sub_net</span>(co_net,otutab_G,<span class="at">save_net =</span> <span class="st">&quot;subnet&quot;</span>)</span>
+<span id="cb1-6"><a href="stability.html#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="st">&quot;subnet.rda&quot;</span>)</span>
+<span id="cb1-7"><a href="stability.html#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="stability.html#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(sub_nets)</span></code></pre></div>
+<p>Or just build a network for each group specifically:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="stability.html#cb2-1" aria-hidden="true" tabindex="-1"></a>totu<span class="ot">=</span><span class="fu">t</span>(otutab)</span>
+<span id="cb2-2"><a href="stability.html#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co">#check all rows matched</span></span>
+<span id="cb2-3"><a href="stability.html#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">all</span>(<span class="fu">rownames</span>(totu)<span class="sc">==</span><span class="fu">rownames</span>(metadata))</span></code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="stability.html#cb4-1" aria-hidden="true" tabindex="-1"></a>rmt<span class="ot">=</span>F</span>
+<span id="cb4-2"><a href="stability.html#cb4-2" aria-hidden="true" tabindex="-1"></a>sub_nets<span class="ot">=</span><span class="fu">lapply</span>(<span class="fu">levels</span>(metadata<span class="sc">$</span>Group), \(i){</span>
+<span id="cb4-3"><a href="stability.html#cb4-3" aria-hidden="true" tabindex="-1"></a>  totu[<span class="fu">rownames</span>(<span class="fu">filter</span>(metadata,Group<span class="sc">==!!</span>i)),]<span class="ot">-&gt;</span>t_tmp</span>
+<span id="cb4-4"><a href="stability.html#cb4-4" aria-hidden="true" tabindex="-1"></a>  t_tmp[,<span class="fu">colSums</span>(t_tmp)<span class="sc">&gt;</span><span class="dv">0</span>]<span class="ot">-&gt;</span>t_tmp</span>
+<span id="cb4-5"><a href="stability.html#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c_net_cal</span>(t_tmp)<span class="ot">-&gt;</span>c_tmp</span>
+<span id="cb4-6"><a href="stability.html#cb4-6" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(rmt){</span>
+<span id="cb4-7"><a href="stability.html#cb4-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">RMT_threshold</span>(c_tmp<span class="sc">$</span>r,<span class="at">quite =</span> T)<span class="ot">-&gt;</span>tmp_rmt</span>
+<span id="cb4-8"><a href="stability.html#cb4-8" aria-hidden="true" tabindex="-1"></a>    r_thres<span class="ot">=</span>tmp_rmt<span class="sc">$</span>r_threshold</span>
+<span id="cb4-9"><a href="stability.html#cb4-9" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb4-10"><a href="stability.html#cb4-10" aria-hidden="true" tabindex="-1"></a>  <span class="cf">else</span> r_thres<span class="ot">=</span><span class="fl">0.6</span></span>
+<span id="cb4-11"><a href="stability.html#cb4-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c_net_build</span>(c_tmp,<span class="at">r_thres =</span> r_thres,<span class="at">p_thres =</span> <span class="fl">0.01</span>,<span class="at">del_single =</span> T)<span class="ot">-&gt;</span>n_tmp</span>
+<span id="cb4-12"><a href="stability.html#cb4-12" aria-hidden="true" tabindex="-1"></a>  Abundance_df<span class="ot">=</span><span class="fu">data.frame</span>(<span class="st">&quot;Abundance&quot;</span><span class="ot">=</span><span class="fu">colSums</span>(t_tmp))</span>
+<span id="cb4-13"><a href="stability.html#cb4-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c_net_set</span>(n_tmp,Abundance_df,taxonomy<span class="sc">%&gt;%</span><span class="fu">select</span>(<span class="st">&quot;Phylum&quot;</span>),<span class="at">vertex_class =</span> <span class="st">&quot;Phylum&quot;</span>,<span class="at">vertex_size =</span> <span class="st">&quot;Abundance&quot;</span>)</span>
+<span id="cb4-14"><a href="stability.html#cb4-14" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb4-15"><a href="stability.html#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(sub_nets)<span class="ot">=</span><span class="fu">levels</span>(metadata<span class="sc">$</span>Group)</span></code></pre></div>
+<p>All calculation for network stability provide parallel version, use <code>parallel::detectCores()</code> to get you device cores and set <code>threads &gt;1</code> to use parallel calculation.</p>
 <div id="robustness-tests" class="section level2 hasAnchor" number="7.1">
 <h2><span class="header-section-number">7.1</span> Robustness tests<a href="stability.html#robustness-tests" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Robustness tests of networks were done with natural connectivity as it can reflect the stability of networks (<span class="citation">WU Jun (<a href="#ref-wujunNaturalConnectivityComplex2010" role="doc-biblioref">2010</a>)</span>). Specifically, natural connectivity was calculated after removing the nodes (remove five nodes from a network at one time until 70% of nodes disappear), and the downtrend level of natural connectivity indicated the connectivity performance of the network after being damaged to a certain extent.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="stability.html#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">robust_test</span>(sub_nets, <span class="at">partial =</span> <span class="fl">0.5</span>,<span class="at">step=</span><span class="dv">10</span>,<span class="at">reps=</span><span class="dv">9</span>,<span class="at">threads=</span><span class="dv">1</span>)<span class="ot">-&gt;</span>robust_res</span>
-<span id="cb5-2"><a href="stability.html#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot.robustness</span>(robust_res,<span class="at">mode =</span> <span class="dv">3</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="stability.html#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">#recommend reps bigger than 99, you can set `threads &gt;1` to use parallel calculation.</span></span>
+<span id="cb5-2"><a href="stability.html#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">robust_test</span>(sub_nets, <span class="at">partial =</span> <span class="fl">0.5</span>,<span class="at">step=</span><span class="dv">10</span>,<span class="at">reps=</span><span class="dv">9</span>,<span class="at">threads=</span><span class="dv">1</span>)<span class="ot">-&gt;</span>robust_res</span>
+<span id="cb5-3"><a href="stability.html#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot.robustness</span>(robust_res,<span class="at">mode =</span> <span class="dv">2</span>)</span></code></pre></div>
 <p><img src="MetaNet-Tutorial_files/figure-html/7-robust-test-1.png" width="672" /></p>
 </div>
 <div id="community-stability" class="section level2 hasAnchor" number="7.2">
@@ -288,15 +307,17 @@ Also, community stability is commonly associated with negative interactions, and
 <div id="robustness" class="section level3 hasAnchor" number="7.2.1">
 <h3><span class="header-section-number">7.2.1</span> Robustness<a href="stability.html#robustness" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>The robustness was regarded as when 50% of nodes were randomly removed and results were based on 100 repetitions of the simulation.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="stability.html#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">robustness</span>(sub_nets,<span class="at">keystone=</span>F,<span class="at">reps=</span><span class="dv">9</span>,<span class="at">threads=</span><span class="dv">1</span>)<span class="ot">-&gt;</span>robustness_res</span>
-<span id="cb6-2"><a href="stability.html#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot.robust</span>(robustness_res)</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="stability.html#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">#recommend reps bigger than 99, you can set `threads &gt;1` to use parallel calculation.</span></span>
+<span id="cb6-2"><a href="stability.html#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">robustness</span>(sub_nets,<span class="at">keystone=</span>F,<span class="at">reps=</span><span class="dv">9</span>,<span class="at">threads=</span><span class="dv">1</span>)<span class="ot">-&gt;</span>robustness_res</span>
+<span id="cb6-3"><a href="stability.html#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot.robust</span>(robustness_res,<span class="at">alpha=</span>T)</span></code></pre></div>
 <p><img src="MetaNet-Tutorial_files/figure-html/7-robust-1.png" width="672" /></p>
 </div>
 <div id="vulnerability" class="section level3 hasAnchor" number="7.2.2">
 <h3><span class="header-section-number">7.2.2</span> Vulnerability<a href="stability.html#vulnerability" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>To evaluate the speed of disturbance spreading within a network, the global efficiency was regarded as the average of the efficiency over all pairs of nodes, which was calculated by the number of edges in the shortest path between paired nodes. The vulnerability, which reflected the relative contribution of each node to the globe efficiency, was represented by the maximal vulnerability of nodes in the network.</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="stability.html#cb7-1" aria-hidden="true" tabindex="-1"></a>vulnerability_res<span class="ot">=</span><span class="fu">vulnerability</span>(sub_nets,<span class="at">threads =</span> <span class="dv">1</span>)</span>
-<span id="cb7-2"><a href="stability.html#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot.vulnerability</span>(vulnerability_res)</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="stability.html#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co">#You can set `threads &gt;1` to use parallel calculation.</span></span>
+<span id="cb7-2"><a href="stability.html#cb7-2" aria-hidden="true" tabindex="-1"></a>vulnerability_res<span class="ot">=</span><span class="fu">vulnerability</span>(sub_nets,<span class="at">threads =</span> <span class="dv">1</span>)</span>
+<span id="cb7-3"><a href="stability.html#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot.vulnerability</span>(vulnerability_res)</span></code></pre></div>
 <p><img src="MetaNet-Tutorial_files/figure-html/7-vulnerability-1.png" width="672" /></p>
 </div>
 <div id="cohesion" class="section level3 hasAnchor" number="7.2.3">
@@ -304,325 +325,18 @@ Also, community stability is commonly associated with negative interactions, and
 <p>Cohesion was calculated to quantify the connectivity of microbial communities in each group. Cohesion contains both positive and negative cohesion values, which indicate that associations between taxa attributed to positive and negative species interactions as well as similarities and differences in niches of microbial taxa.</p>
 <p>Briefly, pairwise Pearson correlation matrix across taxa was calculated based on abundance-weighted matrix. After “taxa shuffle” null module-correcting with 200 simulations, average positive and negative correlations was calculated to get a connectedness matrix. Finally, positive and negative cohesions were calculated for each sample respectively by multiplying the abundance-weighted matrix and connectedness matrix. The absolute value of negative: positive cohesion is an important index for community stability.</p>
 <p><span class="math inline">\(cohesion=\sum_{i=1}^{m}{{\rm abundance}_i\times connectness}_i\)</span></p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="stability.html#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">Cohesion</span>(otutab,<span class="at">reps =</span> <span class="dv">16</span>,<span class="at">threads =</span> <span class="dv">1</span>)<span class="ot">-&gt;</span>cohesion_res</span></code></pre></div>
-<pre><code>## 
-  |                                                                            
-  |                                                                      |   0%
-  |                                                                            
-  |                                                                      |   1%
-  |                                                                            
-  |=                                                                     |   1%
-  |                                                                            
-  |=                                                                     |   2%
-  |                                                                            
-  |==                                                                    |   2%
-  |                                                                            
-  |==                                                                    |   3%
-  |                                                                            
-  |===                                                                   |   4%
-  |                                                                            
-  |===                                                                   |   5%
-  |                                                                            
-  |====                                                                  |   5%
-  |                                                                            
-  |====                                                                  |   6%
-  |                                                                            
-  |=====                                                                 |   6%
-  |                                                                            
-  |=====                                                                 |   7%
-  |                                                                            
-  |=====                                                                 |   8%
-  |                                                                            
-  |======                                                                |   8%
-  |                                                                            
-  |======                                                                |   9%
-  |                                                                            
-  |=======                                                               |   9%
-  |                                                                            
-  |=======                                                               |  10%
-  |                                                                            
-  |=======                                                               |  11%
-  |                                                                            
-  |========                                                              |  11%
-  |                                                                            
-  |========                                                              |  12%
-  |                                                                            
-  |=========                                                             |  12%
-  |                                                                            
-  |=========                                                             |  13%
-  |                                                                            
-  |==========                                                            |  14%
-  |                                                                            
-  |==========                                                            |  15%
-  |                                                                            
-  |===========                                                           |  15%
-  |                                                                            
-  |===========                                                           |  16%
-  |                                                                            
-  |============                                                          |  17%
-  |                                                                            
-  |============                                                          |  18%
-  |                                                                            
-  |=============                                                         |  18%
-  |                                                                            
-  |=============                                                         |  19%
-  |                                                                            
-  |==============                                                        |  19%
-  |                                                                            
-  |==============                                                        |  20%
-  |                                                                            
-  |==============                                                        |  21%
-  |                                                                            
-  |===============                                                       |  21%
-  |                                                                            
-  |===============                                                       |  22%
-  |                                                                            
-  |================                                                      |  22%
-  |                                                                            
-  |================                                                      |  23%
-  |                                                                            
-  |=================                                                     |  24%
-  |                                                                            
-  |=================                                                     |  25%
-  |                                                                            
-  |==================                                                    |  25%
-  |                                                                            
-  |==================                                                    |  26%
-  |                                                                            
-  |===================                                                   |  27%
-  |                                                                            
-  |===================                                                   |  28%
-  |                                                                            
-  |====================                                                  |  28%
-  |                                                                            
-  |====================                                                  |  29%
-  |                                                                            
-  |=====================                                                 |  29%
-  |                                                                            
-  |=====================                                                 |  30%
-  |                                                                            
-  |=====================                                                 |  31%
-  |                                                                            
-  |======================                                                |  31%
-  |                                                                            
-  |======================                                                |  32%
-  |                                                                            
-  |=======================                                               |  32%
-  |                                                                            
-  |=======================                                               |  33%
-  |                                                                            
-  |========================                                              |  34%
-  |                                                                            
-  |========================                                              |  35%
-  |                                                                            
-  |=========================                                             |  35%
-  |                                                                            
-  |=========================                                             |  36%
-  |                                                                            
-  |==========================                                            |  37%
-  |                                                                            
-  |==========================                                            |  38%
-  |                                                                            
-  |===========================                                           |  38%
-  |                                                                            
-  |===========================                                           |  39%
-  |                                                                            
-  |============================                                          |  39%
-  |                                                                            
-  |============================                                          |  40%
-  |                                                                            
-  |============================                                          |  41%
-  |                                                                            
-  |=============================                                         |  41%
-  |                                                                            
-  |=============================                                         |  42%
-  |                                                                            
-  |==============================                                        |  42%
-  |                                                                            
-  |==============================                                        |  43%
-  |                                                                            
-  |==============================                                        |  44%
-  |                                                                            
-  |===============================                                       |  44%
-  |                                                                            
-  |===============================                                       |  45%
-  |                                                                            
-  |================================                                      |  45%
-  |                                                                            
-  |================================                                      |  46%
-  |                                                                            
-  |=================================                                     |  47%
-  |                                                                            
-  |=================================                                     |  48%
-  |                                                                            
-  |==================================                                    |  48%
-  |                                                                            
-  |==================================                                    |  49%
-  |                                                                            
-  |===================================                                   |  49%
-  |                                                                            
-  |===================================                                   |  50%
-  |                                                                            
-  |===================================                                   |  51%
-  |                                                                            
-  |====================================                                  |  51%
-  |                                                                            
-  |====================================                                  |  52%
-  |                                                                            
-  |=====================================                                 |  52%
-  |                                                                            
-  |=====================================                                 |  53%
-  |                                                                            
-  |======================================                                |  54%
-  |                                                                            
-  |======================================                                |  55%
-  |                                                                            
-  |=======================================                               |  55%
-  |                                                                            
-  |=======================================                               |  56%
-  |                                                                            
-  |========================================                              |  56%
-  |                                                                            
-  |========================================                              |  57%
-  |                                                                            
-  |========================================                              |  58%
-  |                                                                            
-  |=========================================                             |  58%
-  |                                                                            
-  |=========================================                             |  59%
-  |                                                                            
-  |==========================================                            |  59%
-  |                                                                            
-  |==========================================                            |  60%
-  |                                                                            
-  |==========================================                            |  61%
-  |                                                                            
-  |===========================================                           |  61%
-  |                                                                            
-  |===========================================                           |  62%
-  |                                                                            
-  |============================================                          |  62%
-  |                                                                            
-  |============================================                          |  63%
-  |                                                                            
-  |=============================================                         |  64%
-  |                                                                            
-  |=============================================                         |  65%
-  |                                                                            
-  |==============================================                        |  65%
-  |                                                                            
-  |==============================================                        |  66%
-  |                                                                            
-  |===============================================                       |  67%
-  |                                                                            
-  |===============================================                       |  68%
-  |                                                                            
-  |================================================                      |  68%
-  |                                                                            
-  |================================================                      |  69%
-  |                                                                            
-  |=================================================                     |  69%
-  |                                                                            
-  |=================================================                     |  70%
-  |                                                                            
-  |=================================================                     |  71%
-  |                                                                            
-  |==================================================                    |  71%
-  |                                                                            
-  |==================================================                    |  72%
-  |                                                                            
-  |===================================================                   |  72%
-  |                                                                            
-  |===================================================                   |  73%
-  |                                                                            
-  |====================================================                  |  74%
-  |                                                                            
-  |====================================================                  |  75%
-  |                                                                            
-  |=====================================================                 |  75%
-  |                                                                            
-  |=====================================================                 |  76%
-  |                                                                            
-  |======================================================                |  77%
-  |                                                                            
-  |======================================================                |  78%
-  |                                                                            
-  |=======================================================               |  78%
-  |                                                                            
-  |=======================================================               |  79%
-  |                                                                            
-  |========================================================              |  79%
-  |                                                                            
-  |========================================================              |  80%
-  |                                                                            
-  |========================================================              |  81%
-  |                                                                            
-  |=========================================================             |  81%
-  |                                                                            
-  |=========================================================             |  82%
-  |                                                                            
-  |==========================================================            |  82%
-  |                                                                            
-  |==========================================================            |  83%
-  |                                                                            
-  |===========================================================           |  84%
-  |                                                                            
-  |===========================================================           |  85%
-  |                                                                            
-  |============================================================          |  85%
-  |                                                                            
-  |============================================================          |  86%
-  |                                                                            
-  |=============================================================         |  87%
-  |                                                                            
-  |=============================================================         |  88%
-  |                                                                            
-  |==============================================================        |  88%
-  |                                                                            
-  |==============================================================        |  89%
-  |                                                                            
-  |===============================================================       |  89%
-  |                                                                            
-  |===============================================================       |  90%
-  |                                                                            
-  |===============================================================       |  91%
-  |                                                                            
-  |================================================================      |  91%
-  |                                                                            
-  |================================================================      |  92%
-  |                                                                            
-  |=================================================================     |  92%
-  |                                                                            
-  |=================================================================     |  93%
-  |                                                                            
-  |=================================================================     |  94%
-  |                                                                            
-  |==================================================================    |  94%
-  |                                                                            
-  |==================================================================    |  95%
-  |                                                                            
-  |===================================================================   |  95%
-  |                                                                            
-  |===================================================================   |  96%
-  |                                                                            
-  |====================================================================  |  97%
-  |                                                                            
-  |====================================================================  |  98%
-  |                                                                            
-  |===================================================================== |  98%
-  |                                                                            
-  |===================================================================== |  99%
-  |                                                                            
-  |======================================================================|  99%
-  |                                                                            
-  |======================================================================| 100%</code></pre>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="stability.html#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot.cohesion</span>(cohesion_res,<span class="at">group =</span> <span class="st">&quot;Group&quot;</span>,metadata)</span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="stability.html#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co">#recommend reps bigger than 199, you can set `threads &gt;1` to use parallel calculation.</span></span>
+<span id="cb8-2"><a href="stability.html#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">Cohesion</span>(otutab,<span class="at">reps =</span> <span class="dv">9</span>,<span class="at">threads =</span> <span class="dv">1</span>)<span class="ot">-&gt;</span>cohesion_res</span>
+<span id="cb8-3"><a href="stability.html#cb8-3" aria-hidden="true" tabindex="-1"></a>p1<span class="ot">=</span><span class="fu">plot.cohesion</span>(cohesion_res,<span class="at">group =</span> <span class="st">&quot;Group&quot;</span>,metadata,<span class="at">mode =</span> <span class="dv">1</span>)</span>
+<span id="cb8-4"><a href="stability.html#cb8-4" aria-hidden="true" tabindex="-1"></a>p2<span class="ot">=</span><span class="fu">plot.cohesion</span>(cohesion_res,<span class="at">group =</span> <span class="st">&quot;Group&quot;</span>,metadata,<span class="at">mode =</span> <span class="dv">2</span>)</span></code></pre></div>
+<pre><code>## [1] FALSE</code></pre>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="stability.html#cb10-1" aria-hidden="true" tabindex="-1"></a>p1<span class="sc">+</span>p2</span></code></pre></div>
 <p><img src="MetaNet-Tutorial_files/figure-html/7-cohsion-1.png" width="672" /></p>
 
 </div>
 </div>
 </div>
-<h3>References<a href="references.html#references" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<h3>References</h3>
 <div id="refs" class="references csl-bib-body hanging-indent">
 <div id="ref-wujunNaturalConnectivityComplex2010" class="csl-entry">
 WU Jun, Mauricio Barahona. 2010. <span>“Natural <span>Connectivity</span> of <span>Complex Networks</span>.”</span> <em>Chinese Physics Letters</em> 27 (7): 78902–078902. <a href="https://doi.org/10.1088/0256-307X/27/7/078902">https://doi.org/10.1088/0256-307X/27/7/078902</a>.

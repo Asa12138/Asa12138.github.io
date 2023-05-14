@@ -23,7 +23,7 @@
 <meta name="author" content="Peng Chen" />
 
 
-<meta name="date" content="2023-03-12" />
+<meta name="date" content="2023-03-27" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -94,7 +94,7 @@ code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
 code span.at { color: #7d9029; } /* Attribute */
 code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
+code span.bu { color: #008000; } /* BuiltIn */
 code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
 code span.ch { color: #4070a0; } /* Char */
 code span.cn { color: #880000; } /* Constant */
@@ -107,7 +107,7 @@ code span.er { color: #ff0000; font-weight: bold; } /* Error */
 code span.ex { } /* Extension */
 code span.fl { color: #40a070; } /* Float */
 code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
+code span.im { color: #008000; font-weight: bold; } /* Import */
 code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 code span.kw { color: #007020; font-weight: bold; } /* Keyword */
 code span.op { color: #666666; } /* Operator */
@@ -191,10 +191,11 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="4" data-path="manipulation.html"><a href="manipulation.html"><i class="fa fa-check"></i><b>4</b> Manipulation</a>
 <ul>
-<li class="chapter" data-level="4.1" data-path="manipulation.html"><a href="manipulation.html#annotation"><i class="fa fa-check"></i><b>4.1</b> Annotation</a></li>
-<li class="chapter" data-level="4.2" data-path="manipulation.html"><a href="manipulation.html#filter-sub-net"><i class="fa fa-check"></i><b>4.2</b> Filter (Sub-net)</a></li>
-<li class="chapter" data-level="4.3" data-path="manipulation.html"><a href="manipulation.html#skeleton"><i class="fa fa-check"></i><b>4.3</b> Skeleton</a></li>
-<li class="chapter" data-level="4.4" data-path="manipulation.html"><a href="manipulation.html#export"><i class="fa fa-check"></i><b>4.4</b> Export</a></li>
+<li class="chapter" data-level="4.1" data-path="manipulation.html"><a href="manipulation.html#attributes"><i class="fa fa-check"></i><b>4.1</b> Attributes</a></li>
+<li class="chapter" data-level="4.2" data-path="manipulation.html"><a href="manipulation.html#annotation"><i class="fa fa-check"></i><b>4.2</b> Annotation</a></li>
+<li class="chapter" data-level="4.3" data-path="manipulation.html"><a href="manipulation.html#filter-sub-net"><i class="fa fa-check"></i><b>4.3</b> Filter (Sub-net)</a></li>
+<li class="chapter" data-level="4.4" data-path="manipulation.html"><a href="manipulation.html#skeleton"><i class="fa fa-check"></i><b>4.4</b> Skeleton</a></li>
+<li class="chapter" data-level="4.5" data-path="manipulation.html"><a href="manipulation.html#export"><i class="fa fa-check"></i><b>4.5</b> Export</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="visualization.html"><a href="visualization.html"><i class="fa fa-check"></i><b>5</b> Visualization</a>
 <ul>
@@ -241,7 +242,6 @@ div.csl-indent {
 <ul>
 <li class="chapter" data-level="8.1" data-path="multi-omics.html"><a href="multi-omics.html#case-study"><i class="fa fa-check"></i><b>8.1</b> Case study</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
 <li><a href="./" target="blank">Author: Peng Chen</a></li>
 
@@ -428,13 +428,13 @@ Figure 6.5: Module eigenvalue of positive cluster.
 <div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="topology.html#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co">#map the original abundance table</span></span>
 <span id="cb14-2"><a href="topology.html#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">module_eigen</span>(co_net_pos_modu,totu)<span class="ot">-&gt;</span>co_net_pos_modu</span>
 <span id="cb14-3"><a href="topology.html#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="co">#plot the expression pattern.</span></span>
-<span id="cb14-4"><a href="topology.html#cb14-4" aria-hidden="true" tabindex="-1"></a>p1<span class="ot">=</span><span class="fu">module_expression</span>(co_net_pos_modu,totu,<span class="at">cor =</span> <span class="fl">0.5</span>)</span>
+<span id="cb14-4"><a href="topology.html#cb14-4" aria-hidden="true" tabindex="-1"></a>p1<span class="ot">=</span><span class="fu">module_expression</span>(co_net_pos_modu,totu,<span class="at">cor =</span> <span class="fl">0.6</span>,<span class="at">nrow =</span> <span class="dv">4</span>)<span class="sc">+</span><span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">5</span>,<span class="at">angle =</span> <span class="dv">90</span>,<span class="at">vjust =</span> <span class="fl">0.5</span>))</span>
 <span id="cb14-5"><a href="topology.html#cb14-5" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb14-6"><a href="topology.html#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="co">#correlate to metadata.</span></span>
 <span id="cb14-7"><a href="topology.html#cb14-7" aria-hidden="true" tabindex="-1"></a>env<span class="ot">=</span>metadata[,<span class="dv">3</span><span class="sc">:</span><span class="dv">8</span>]</span>
 <span id="cb14-8"><a href="topology.html#cb14-8" aria-hidden="true" tabindex="-1"></a>p2<span class="ot">=</span><span class="fu">cor_plot</span>(<span class="fu">get_module_eigen</span>(co_net_pos_modu),env)<span class="sc">+</span><span class="fu">coord_flip</span>()</span>
 <span id="cb14-9"><a href="topology.html#cb14-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-10"><a href="topology.html#cb14-10" aria-hidden="true" tabindex="-1"></a>p1<span class="sc">/</span>p2</span></code></pre></div>
+<span id="cb14-10"><a href="topology.html#cb14-10" aria-hidden="true" tabindex="-1"></a>p1<span class="sc">/</span>p2<span class="sc">+</span>patchwork<span class="sc">::</span><span class="fu">plot_layout</span>(<span class="at">heights =</span> <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">1</span>))</span></code></pre></div>
 <div class="figure"><span style="display:block;" id="fig:6-modu-exp-2"></span>
 <img src="MetaNet-Tutorial_files/figure-html/6-modu-exp-2.png" alt="Module eigenvalue of positive cluster." width="960" />
 <p class="caption">
@@ -888,19 +888,19 @@ Where N is nodes number of the network, represents the eigenvalue of the network
 <span id="cb24-8"><a href="topology.html#cb24-8" aria-hidden="true" tabindex="-1"></a>go<span class="ot">=</span><span class="fu">get_net_par</span>(go)</span>
 <span id="cb24-9"><a href="topology.html#cb24-9" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(<span class="fu">get_v</span>(go))</span></code></pre></div>
 <pre><code>##   name label size  v_group  shape  v_class   color degree clusteringC
-## 1   n1    n1   12 v_group1 circle v_class1 #a6bce3      6   0.4666667
-## 2   n2    n2   12 v_group1 circle v_class1 #a6bce3      6   0.2666667
-## 3   n3    n3   12 v_group1 circle v_class1 #a6bce3      5   0.1000000
-## 4   n4    n4   12 v_group1 circle v_class1 #a6bce3      6   0.2666667
-## 5   n5    n5   12 v_group1 circle v_class1 #a6bce3      5   0.4000000
-## 6   n6    n6   12 v_group1 circle v_class1 #a6bce3      8   0.1428571
+## 1   n1    n1   12 v_group1 circle v_class1 #a6bce3     12   0.1818182
+## 2   n2    n2   12 v_group1 circle v_class1 #a6bce3     10   0.2444444
+## 3   n3    n3   12 v_group1 circle v_class1 #a6bce3     10   0.2444444
+## 4   n4    n4   12 v_group1 circle v_class1 #a6bce3      5   0.2000000
+## 5   n5    n5   12 v_group1 circle v_class1 #a6bce3      8   0.2857143
+## 6   n6    n6   12 v_group1 circle v_class1 #a6bce3      5   0.3000000
 ##   betweenness eccentricity  closeness hub_score
-## 1    4.052453            3 0.01886792 0.6099101
-## 2    7.586977            3 0.01886792 0.4906159
-## 3    9.076623            3 0.01612903 0.2252965
-## 4    7.628211            3 0.01818182 0.4046792
-## 5    4.773485            3 0.01724138 0.4190230
-## 6   26.852724            3 0.01960784 0.5007966</code></pre>
+## 1   40.144078            2 0.02173913 1.0000000
+## 2   22.337912            3 0.02040816 0.8552635
+## 3   18.686765            3 0.02000000 0.9073534
+## 4    3.986948            3 0.01724138 0.4107643
+## 5   11.058859            3 0.01960784 0.7733400
+## 6    2.625397            3 0.01694915 0.5020124</code></pre>
 <div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="topology.html#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co">#use vertex.size to indicate degree</span></span>
 <span id="cb26-2"><a href="topology.html#cb26-2" aria-hidden="true" tabindex="-1"></a>go<span class="ot">=</span><span class="fu">c_net_set</span>(go,<span class="at">vertex_size =</span><span class="st">&quot;degree&quot;</span>)</span>
 <span id="cb26-3"><a href="topology.html#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(go,<span class="at">legend=</span>F,<span class="at">main=</span><span class="st">&quot;Size map to degree&quot;</span>)</span></code></pre></div>
@@ -934,7 +934,7 @@ Figure 6.13: Comparison of complex network and random network on some indexes.
 
 </div>
 </div>
-<h3>References<a href="references.html#references" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<h3>References</h3>
 <div id="refs" class="references csl-bib-body hanging-indent">
 <div id="ref-guimeraFunctionalCartographyComplex2005" class="csl-entry">
 Guimerà, R., and L. Amaral. 2005. <span>“Functional Cartography of Complex Metabolic Networks.”</span> <a href="https://doi.org/10.1038/nature03288">https://doi.org/10.1038/nature03288</a>.
