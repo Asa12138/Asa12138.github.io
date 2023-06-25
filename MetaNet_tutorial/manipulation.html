@@ -1,331 +1,162 @@
 <!DOCTYPE html>
-<html lang="" xml:lang="">
+<html lang="en">
 <head>
-
-  <meta charset="utf-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 4 Manipulation | MetaNet Tutorial</title>
-  <meta name="description" content="This is a tutorial for the network analysis R package MetaNet." />
-  <meta name="generator" content="bookdown 0.32 and GitBook 2.6.7" />
-
-  <meta property="og:title" content="Chapter 4 Manipulation | MetaNet Tutorial" />
-  <meta property="og:type" content="book" />
-  
-  <meta property="og:description" content="This is a tutorial for the network analysis R package MetaNet." />
-  <meta name="github-repo" content="rstudio/bookdown-demo" />
-
-  <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 4 Manipulation | MetaNet Tutorial" />
-  
-  <meta name="twitter:description" content="This is a tutorial for the network analysis R package MetaNet." />
-  
-
-<meta name="author" content="Peng Chen" />
-
-
-<meta name="date" content="2023-03-27" />
-
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="apple-mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
-  
-  
-<link rel="prev" href="construction.html"/>
-<link rel="next" href="visualization.html"/>
-<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
-<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
-
-
-
-
-
-
-
-
-<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
-<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
-<script src="libs/kePrint-0.0.1/kePrint.js"></script>
-<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
-<script src="libs/htmlwidgets-1.6.1/htmlwidgets.js"></script>
-<script src="libs/sankeyNetwork-binding-0.3.2/sankeyNetwork.js"></script>
-<script src="libs/d3-4.13.0/d3.min.js"></script>
-<script src="libs/sankey-0.1/sankey.js"></script>
-<script src="libs/forceNetwork-binding-0.4/forceNetwork.js"></script>
-
-
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Chapter 3 Manipulation | MetaNet Tutorial</title>
+<meta name="author" content="Peng Chen">
+<meta name="description" content="After we build a network, we can see the class of our network is metanet, which is a derived object from igraph. So all functions used for igraph can also use on our network. data(otutab,package =...">
+<meta name="generator" content="bookdown 0.32 with bs4_book()">
+<meta property="og:title" content="Chapter 3 Manipulation | MetaNet Tutorial">
+<meta property="og:type" content="book">
+<meta property="og:description" content="After we build a network, we can see the class of our network is metanet, which is a derived object from igraph. So all functions used for igraph can also use on our network. data(otutab,package =...">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Chapter 3 Manipulation | MetaNet Tutorial">
+<meta name="twitter:description" content="After we build a network, we can see the class of our network is metanet, which is a derived object from igraph. So all functions used for igraph can also use on our network. data(otutab,package =...">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.4.2/transition.js"></script><script src="libs/bs3compat-0.4.2/tabs.js"></script><script src="libs/bs3compat-0.4.2/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/kePrint-0.0.1/kePrint.js"></script><link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+<script src="libs/htmlwidgets-1.6.1/htmlwidgets.js"></script><script src="libs/sankeyNetwork-binding-0.3.2/sankeyNetwork.js"></script><script src="libs/d3-4.13.0/d3.min.js"></script><script src="libs/sankey-0.1/sankey.js"></script><script src="libs/forceNetwork-binding-0.4/forceNetwork.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
+    
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  </style>
 <style type="text/css">
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-    color: #aaaaaa;
-  }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { color: #008000; } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { color: #008000; font-weight: bold; } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-</style>
-
-<style type="text/css">
-/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
-div.csl-bib-body { }
-div.csl-entry {
-  clear: both;
-}
-.hanging div.csl-entry {
-  margin-left:2em;
-  text-indent:-2em;
-}
-div.csl-left-margin {
-  min-width:2em;
-  float:left;
-}
-div.csl-right-inline {
-  margin-left:2em;
-  padding-left:1em;
-}
-div.csl-indent {
-  margin-left: 2em;
-}
-</style>
-
-<link rel="stylesheet" href="style.css" type="text/css" />
+    /* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+    div.csl-bib-body { }
+    div.csl-entry {
+      clear: both;
+        }
+    .hanging div.csl-entry {
+      margin-left:2em;
+      text-indent:-2em;
+    }
+    div.csl-left-margin {
+      min-width:2em;
+      float:left;
+    }
+    div.csl-right-inline {
+      margin-left:2em;
+      padding-left:1em;
+    }
+    div.csl-indent {
+      margin-left: 2em;
+    }
+  </style>
+<link rel="stylesheet" href="style.css">
 </head>
+<body data-spy="scroll" data-target="#toc">
 
-<body>
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
 
-
-
-  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
-
-    <div class="book-summary">
-      <nav role="navigation">
-
-<ul class="summary">
-<li><a href="./">MetaNet tutorial</a></li>
-
-<li class="divider"></li>
-<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> About</a>
-<ul>
-<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#install"><i class="fa fa-check"></i><b>1.1</b> Install</a></li>
-</ul></li>
-<li class="chapter" data-level="2" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>2</b> Introduction</a>
-<ul>
-<li class="chapter" data-level="2.1" data-path="introduction.html"><a href="introduction.html#network"><i class="fa fa-check"></i><b>2.1</b> Network</a></li>
-<li class="chapter" data-level="2.2" data-path="introduction.html"><a href="introduction.html#network-in-omics"><i class="fa fa-check"></i><b>2.2</b> Network in omics</a></li>
-<li class="chapter" data-level="2.3" data-path="introduction.html"><a href="introduction.html#software"><i class="fa fa-check"></i><b>2.3</b> Software</a></li>
-<li class="chapter" data-level="2.4" data-path="introduction.html"><a href="introduction.html#metanet"><i class="fa fa-check"></i><b>2.4</b> MetaNet</a></li>
-</ul></li>
-<li class="chapter" data-level="3" data-path="construction.html"><a href="construction.html"><i class="fa fa-check"></i><b>3</b> Construction</a>
-<ul>
-<li class="chapter" data-level="3.1" data-path="construction.html"><a href="construction.html#normalization"><i class="fa fa-check"></i><b>3.1</b> Pre-processing</a></li>
-<li class="chapter" data-level="3.2" data-path="construction.html"><a href="construction.html#pairwise-relationship"><i class="fa fa-check"></i><b>3.2</b> Pairwise relationship</a>
-<ul>
-<li class="chapter" data-level="3.2.1" data-path="construction.html"><a href="construction.html#correlation"><i class="fa fa-check"></i><b>3.2.1</b> Correlation</a></li>
-<li class="chapter" data-level="3.2.2" data-path="construction.html"><a href="construction.html#distance"><i class="fa fa-check"></i><b>3.2.2</b> Distance</a></li>
-<li class="chapter" data-level="3.2.3" data-path="construction.html"><a href="construction.html#sparcc"><i class="fa fa-check"></i><b>3.2.3</b> SparCC</a></li>
-<li class="chapter" data-level="3.2.4" data-path="construction.html"><a href="construction.html#others"><i class="fa fa-check"></i><b>3.2.4</b> Others</a></li>
-</ul></li>
-<li class="chapter" data-level="3.3" data-path="construction.html"><a href="construction.html#build-network"><i class="fa fa-check"></i><b>3.3</b> Build network</a>
-<ul>
-<li class="chapter" data-level="3.3.1" data-path="construction.html"><a href="construction.html#normally-build"><i class="fa fa-check"></i><b>3.3.1</b> Normally build</a></li>
-<li class="chapter" data-level="3.3.2" data-path="construction.html"><a href="construction.html#multi-tables"><i class="fa fa-check"></i><b>3.3.2</b> Multi-tables</a></li>
-<li class="chapter" data-level="3.3.3" data-path="construction.html"><a href="construction.html#edgelist"><i class="fa fa-check"></i><b>3.3.3</b> Edgelist</a></li>
-</ul></li>
-<li class="chapter" data-level="3.4" data-path="construction.html"><a href="construction.html#rmt-optimize"><i class="fa fa-check"></i><b>3.4</b> RMT optimize</a></li>
-</ul></li>
-<li class="chapter" data-level="4" data-path="manipulation.html"><a href="manipulation.html"><i class="fa fa-check"></i><b>4</b> Manipulation</a>
-<ul>
-<li class="chapter" data-level="4.1" data-path="manipulation.html"><a href="manipulation.html#attributes"><i class="fa fa-check"></i><b>4.1</b> Attributes</a></li>
-<li class="chapter" data-level="4.2" data-path="manipulation.html"><a href="manipulation.html#annotation"><i class="fa fa-check"></i><b>4.2</b> Annotation</a></li>
-<li class="chapter" data-level="4.3" data-path="manipulation.html"><a href="manipulation.html#filter-sub-net"><i class="fa fa-check"></i><b>4.3</b> Filter (Sub-net)</a></li>
-<li class="chapter" data-level="4.4" data-path="manipulation.html"><a href="manipulation.html#skeleton"><i class="fa fa-check"></i><b>4.4</b> Skeleton</a></li>
-<li class="chapter" data-level="4.5" data-path="manipulation.html"><a href="manipulation.html#export"><i class="fa fa-check"></i><b>4.5</b> Export</a></li>
-</ul></li>
-<li class="chapter" data-level="5" data-path="visualization.html"><a href="visualization.html"><i class="fa fa-check"></i><b>5</b> Visualization</a>
-<ul>
-<li class="chapter" data-level="5.1" data-path="visualization.html"><a href="visualization.html#basic-plot"><i class="fa fa-check"></i><b>5.1</b> Basic plot</a>
-<ul>
-<li class="chapter" data-level="5.1.1" data-path="visualization.html"><a href="visualization.html#set-attri"><i class="fa fa-check"></i><b>5.1.1</b> Set attributes</a></li>
-<li class="chapter" data-level="5.1.2" data-path="visualization.html"><a href="visualization.html#plot-setting"><i class="fa fa-check"></i><b>5.1.2</b> Plot setting</a></li>
-</ul></li>
-<li class="chapter" data-level="5.2" data-path="visualization.html"><a href="visualization.html#layout"><i class="fa fa-check"></i><b>5.2</b> Layout</a>
-<ul>
-<li class="chapter" data-level="5.2.1" data-path="visualization.html"><a href="visualization.html#basic-layout"><i class="fa fa-check"></i><b>5.2.1</b> Basic layout</a></li>
-<li class="chapter" data-level="5.2.2" data-path="visualization.html"><a href="visualization.html#group-layout"><i class="fa fa-check"></i><b>5.2.2</b> Group layout</a></li>
-</ul></li>
-<li class="chapter" data-level="5.3" data-path="visualization.html"><a href="visualization.html#other-styles"><i class="fa fa-check"></i><b>5.3</b> Other styles</a>
-<ul>
-<li class="chapter" data-level="5.3.1" data-path="visualization.html"><a href="visualization.html#ggplot"><i class="fa fa-check"></i><b>5.3.1</b> ggplot</a></li>
-<li class="chapter" data-level="5.3.2" data-path="visualization.html"><a href="visualization.html#gephi"><i class="fa fa-check"></i><b>5.3.2</b> Gephi</a></li>
-<li class="chapter" data-level="5.3.3" data-path="visualization.html"><a href="visualization.html#cytoscape"><i class="fa fa-check"></i><b>5.3.3</b> Cytoscape</a></li>
-<li class="chapter" data-level="5.3.4" data-path="visualization.html"><a href="visualization.html#networkd3"><i class="fa fa-check"></i><b>5.3.4</b> NetworkD3</a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="6" data-path="topology.html"><a href="topology.html"><i class="fa fa-check"></i><b>6</b> Topology</a>
-<ul>
-<li class="chapter" data-level="6.1" data-path="topology.html"><a href="topology.html#complex-network"><i class="fa fa-check"></i><b>6.1</b> Complex network</a></li>
-<li class="chapter" data-level="6.2" data-path="topology.html"><a href="topology.html#modules"><i class="fa fa-check"></i><b>6.2</b> Modules</a>
-<ul>
-<li class="chapter" data-level="6.2.1" data-path="topology.html"><a href="topology.html#module-detection"><i class="fa fa-check"></i><b>6.2.1</b> Module detection</a></li>
-<li class="chapter" data-level="6.2.2" data-path="topology.html"><a href="topology.html#keystone"><i class="fa fa-check"></i><b>6.2.2</b> Keystone</a></li>
-</ul></li>
-<li class="chapter" data-level="6.3" data-path="topology.html"><a href="topology.html#topology-indexes"><i class="fa fa-check"></i><b>6.3</b> Topology indexes</a></li>
-<li class="chapter" data-level="6.4" data-path="topology.html"><a href="topology.html#random-network"><i class="fa fa-check"></i><b>6.4</b> Random network</a></li>
-</ul></li>
-<li class="chapter" data-level="7" data-path="stability.html"><a href="stability.html"><i class="fa fa-check"></i><b>7</b> Stability</a>
-<ul>
-<li class="chapter" data-level="7.1" data-path="stability.html"><a href="stability.html#robustness-tests"><i class="fa fa-check"></i><b>7.1</b> Robustness tests</a></li>
-<li class="chapter" data-level="7.2" data-path="stability.html"><a href="stability.html#community-stability"><i class="fa fa-check"></i><b>7.2</b> Community stability</a>
-<ul>
-<li class="chapter" data-level="7.2.1" data-path="stability.html"><a href="stability.html#robustness"><i class="fa fa-check"></i><b>7.2.1</b> Robustness</a></li>
-<li class="chapter" data-level="7.2.2" data-path="stability.html"><a href="stability.html#vulnerability"><i class="fa fa-check"></i><b>7.2.2</b> Vulnerability</a></li>
-<li class="chapter" data-level="7.2.3" data-path="stability.html"><a href="stability.html#cohesion"><i class="fa fa-check"></i><b>7.2.3</b> Cohesion</a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="8" data-path="multi-omics.html"><a href="multi-omics.html"><i class="fa fa-check"></i><b>8</b> multi-omics</a>
-<ul>
-<li class="chapter" data-level="8.1" data-path="multi-omics.html"><a href="multi-omics.html#case-study"><i class="fa fa-check"></i><b>8.1</b> Case study</a></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
-<li class="divider"></li>
-<li><a href="./" target="blank">Author: Peng Chen</a></li>
-
-</ul>
-
-      </nav>
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="">MetaNet Tutorial</a>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
     </div>
 
-    <div class="book-body">
-      <div class="body-inner">
-        <div class="book-header" role="navigation">
-          <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">MetaNet Tutorial</a>
-          </h1>
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html">Welcome</a></li>
+<li><a class="" href="introduction.html"><span class="header-section-number">1</span> Introduction</a></li>
+<li><a class="" href="construction.html"><span class="header-section-number">2</span> Construction</a></li>
+<li><a class="active" href="manipulation.html"><span class="header-section-number">3</span> Manipulation</a></li>
+<li><a class="" href="visualization.html"><span class="header-section-number">4</span> Visualization</a></li>
+<li><a class="" href="topology.html"><span class="header-section-number">5</span> Topology</a></li>
+<li><a class="" href="stability.html"><span class="header-section-number">6</span> Stability</a></li>
+<li><a class="" href="Multi-omics.html"><span class="header-section-number">7</span> Multi-omics</a></li>
+<li><a class="" href="references.html">References</a></li>
+</ul>
+
+        <div class="book-extra">
+          <p><a id="book-repo" href="https://github.com/Asa12138/MetaNet_tutorial">View book source <i class="fab fa-github"></i></a></p>
         </div>
-
-        <div class="page-wrapper" tabindex="-1" role="main">
-          <div class="page-inner">
-
-            <section class="normal" id="section-">
-<div id="manipulation" class="section level1 hasAnchor" number="4">
-<h1><span class="header-section-number">Chapter 4</span> Manipulation<a href="manipulation.html#manipulation" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="manipulation" class="section level1" number="3">
+<h1>
+<span class="header-section-number">3</span> Manipulation<a class="anchor" aria-label="anchor" href="#manipulation"><i class="fas fa-link"></i></a>
+</h1>
 <p>After we build a network, we can see the class of our network is metanet, which is a derived object from igraph. So all functions used for igraph can also use on our network.</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="manipulation.html#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(otutab,<span class="at">package =</span> <span class="st">&quot;MetaNet&quot;</span>)</span>
-<span id="cb19-2"><a href="manipulation.html#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="fu">t</span>(otutab) <span class="ot">-&gt;</span> totu</span>
-<span id="cb19-3"><a href="manipulation.html#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="fu">c_net_cal</span>(totu,<span class="at">method =</span> <span class="st">&quot;spearman&quot;</span>, <span class="at">filename =</span>F,<span class="at">p.adjust.method =</span> <span class="cn">NULL</span>) <span class="ot">-&gt;</span> corr</span>
-<span id="cb19-4"><a href="manipulation.html#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="fu">c_net_build</span>(corr,<span class="at">r_thres =</span> <span class="fl">0.6</span>,<span class="at">p_thres =</span> <span class="fl">0.05</span>,<span class="at">del_single =</span> T) <span class="ot">-&gt;</span> co_net</span>
-<span id="cb19-5"><a href="manipulation.html#cb19-5" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(co_net)</span></code></pre></div>
-<pre><code>## [1] &quot;metanet&quot; &quot;igraph&quot;</code></pre>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="va">otutab</span>,package <span class="op">=</span> <span class="st">"pcutils"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/t.html">t</a></span><span class="op">(</span><span class="va">otutab</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="va">totu</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/MetaNet/man/c_net_cal.html">c_net_cal</a></span><span class="op">(</span><span class="va">totu</span>,method <span class="op">=</span> <span class="st">"spearman"</span>, filename <span class="op">=</span><span class="cn">F</span>, p.adjust.method <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="va">corr</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/MetaNet/man/c_net_build.html">c_net_build</a></span><span class="op">(</span><span class="va">corr</span>,r_thres <span class="op">=</span> <span class="fl">0.6</span>,p_thres <span class="op">=</span> <span class="fl">0.05</span>,del_single <span class="op">=</span> <span class="cn">T</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="va">co_net</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="va">co_net</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] "metanet" "igraph"</span></span></code></pre></div>
 <p>Besides, there are some other functions for us to manipulate the metanet easily.</p>
-<div id="attributes" class="section level2 hasAnchor" number="4.1">
-<h2><span class="header-section-number">4.1</span> Attributes<a href="manipulation.html#attributes" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>We could get the attributes of whole network, each vertex and each edge by <code>get_()</code> as dataframe:</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="manipulation.html#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co">#get network attributes</span></span>
-<span id="cb21-2"><a href="manipulation.html#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="fu">get_n</span>(co_net)</span></code></pre></div>
-<pre><code>##   n_type
-## 1 single</code></pre>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="manipulation.html#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co">#get vertex attributes</span></span>
-<span id="cb23-2"><a href="manipulation.html#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="fu">get_v</span>(co_net)<span class="sc">%&gt;%</span><span class="fu">head</span>(<span class="dv">5</span>)</span></code></pre></div>
-<pre><code>##                           name  v_group  v_class size
-## 1 s__un_f__Thermomonosporaceae v_group1 v_group1    4
-## 2        s__Pelomonas_puraquae v_group1 v_group1    4
-## 3     s__Rhizobacter_bergeniae v_group1 v_group1    4
-## 4     s__Flavobacterium_terrae v_group1 v_group1    4
-## 5         s__un_g__Rhizobacter v_group1 v_group1    4
-##                          label  shape   color
-## 1 s__un_f__Thermomonosporaceae circle #a6bce3
-## 2        s__Pelomonas_puraquae circle #a6bce3
-## 3     s__Rhizobacter_bergeniae circle #a6bce3
-## 4     s__Flavobacterium_terrae circle #a6bce3
-## 5         s__un_g__Rhizobacter circle #a6bce3</code></pre>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="manipulation.html#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co">#get edge attributes</span></span>
-<span id="cb25-2"><a href="manipulation.html#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="fu">get_e</span>(co_net)<span class="sc">%&gt;%</span><span class="fu">head</span>(<span class="dv">5</span>)</span></code></pre></div>
-<pre><code>##   id                         from                            to    weight
-## 1  1 s__un_f__Thermomonosporaceae     s__Actinocorallia_herbida 0.6759546
-## 2  2 s__un_f__Thermomonosporaceae       s__Kribbella_catacumbae 0.6742386
-## 3  3 s__un_f__Thermomonosporaceae       s__Kineosporia_rhamnosa 0.7378741
-## 4  4 s__un_f__Thermomonosporaceae   s__un_f__Micromonosporaceae 0.6236449
-## 5  5 s__un_f__Thermomonosporaceae s__Flavobacterium_saliperosum 0.6045747
-##         cor   e_type     width v_group_from v_group_to e_class   color lty
-## 1 0.6759546 positive 0.6759546     v_group1   v_group1   intra #48A4F0   1
-## 2 0.6742386 positive 0.6742386     v_group1   v_group1   intra #48A4F0   1
-## 3 0.7378741 positive 0.7378741     v_group1   v_group1   intra #48A4F0   1
-## 4 0.6236449 positive 0.6236449     v_group1   v_group1   intra #48A4F0   1
-## 5 0.6045747 positive 0.6045747     v_group1   v_group1   intra #48A4F0   1</code></pre>
-<p>And we can see, some attributes have been set when we build the network like v_group, these are internal attributes of metanet and are related to the following analysis and visualization.</p>
-<table>
-<caption><span id="tab:4-attribute">Table 4.1: </span> Internal attributes of a metanet.</caption>
+<div id="attributes" class="section level2" number="3.1">
+<h2>
+<span class="header-section-number">3.1</span> Attributes<a class="anchor" aria-label="anchor" href="#attributes"><i class="fas fa-link"></i></a>
+</h2>
+<p>We could get the attributes of whole network, each vertex and each edge by <code>get_*()</code> as dataframe:</p>
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">#get network attributes</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/MetaNet/man/get_n.html">get_n</a></span><span class="op">(</span><span class="va">co_net</span><span class="op">)</span></span>
+<span><span class="co">#&gt;   n_type</span></span>
+<span><span class="co">#&gt; 1 single</span></span>
+<span><span class="co">#get vertex attributes</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/MetaNet/man/get_v.html">get_v</a></span><span class="op">(</span><span class="va">co_net</span><span class="op">)</span><span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="fl">5</span><span class="op">)</span></span>
+<span><span class="co">#&gt;                           name  v_group  v_class size</span></span>
+<span><span class="co">#&gt; 1 s__un_f__Thermomonosporaceae v_group1 v_class1    4</span></span>
+<span><span class="co">#&gt; 2        s__Pelomonas_puraquae v_group1 v_class1    4</span></span>
+<span><span class="co">#&gt; 3     s__Rhizobacter_bergeniae v_group1 v_class1    4</span></span>
+<span><span class="co">#&gt; 4     s__Flavobacterium_terrae v_group1 v_class1    4</span></span>
+<span><span class="co">#&gt; 5         s__un_g__Rhizobacter v_group1 v_class1    4</span></span>
+<span><span class="co">#&gt;                          label  shape   color</span></span>
+<span><span class="co">#&gt; 1 s__un_f__Thermomonosporaceae circle #a6bce3</span></span>
+<span><span class="co">#&gt; 2        s__Pelomonas_puraquae circle #a6bce3</span></span>
+<span><span class="co">#&gt; 3     s__Rhizobacter_bergeniae circle #a6bce3</span></span>
+<span><span class="co">#&gt; 4     s__Flavobacterium_terrae circle #a6bce3</span></span>
+<span><span class="co">#&gt; 5         s__un_g__Rhizobacter circle #a6bce3</span></span>
+<span><span class="co">#get edge attributes</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/MetaNet/man/get_e.html">get_e</a></span><span class="op">(</span><span class="va">co_net</span><span class="op">)</span><span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="fl">5</span><span class="op">)</span></span>
+<span><span class="co">#&gt;   id                         from</span></span>
+<span><span class="co">#&gt; 1  1 s__un_f__Thermomonosporaceae</span></span>
+<span><span class="co">#&gt; 2  2 s__un_f__Thermomonosporaceae</span></span>
+<span><span class="co">#&gt; 3  3 s__un_f__Thermomonosporaceae</span></span>
+<span><span class="co">#&gt; 4  4 s__un_f__Thermomonosporaceae</span></span>
+<span><span class="co">#&gt; 5  5 s__un_f__Thermomonosporaceae</span></span>
+<span><span class="co">#&gt;                              to    weight       cor</span></span>
+<span><span class="co">#&gt; 1     s__Actinocorallia_herbida 0.6759546 0.6759546</span></span>
+<span><span class="co">#&gt; 2       s__Kribbella_catacumbae 0.6742386 0.6742386</span></span>
+<span><span class="co">#&gt; 3       s__Kineosporia_rhamnosa 0.7378741 0.7378741</span></span>
+<span><span class="co">#&gt; 4   s__un_f__Micromonosporaceae 0.6236449 0.6236449</span></span>
+<span><span class="co">#&gt; 5 s__Flavobacterium_saliperosum 0.6045747 0.6045747</span></span>
+<span><span class="co">#&gt;     e_type     width v_group_from v_group_to e_class</span></span>
+<span><span class="co">#&gt; 1 positive 0.6759546     v_group1   v_group1   intra</span></span>
+<span><span class="co">#&gt; 2 positive 0.6742386     v_group1   v_group1   intra</span></span>
+<span><span class="co">#&gt; 3 positive 0.7378741     v_group1   v_group1   intra</span></span>
+<span><span class="co">#&gt; 4 positive 0.6236449     v_group1   v_group1   intra</span></span>
+<span><span class="co">#&gt; 5 positive 0.6045747     v_group1   v_group1   intra</span></span>
+<span><span class="co">#&gt;     color lty</span></span>
+<span><span class="co">#&gt; 1 #48A4F0   1</span></span>
+<span><span class="co">#&gt; 2 #48A4F0   1</span></span>
+<span><span class="co">#&gt; 3 #48A4F0   1</span></span>
+<span><span class="co">#&gt; 4 #48A4F0   1</span></span>
+<span><span class="co">#&gt; 5 #48A4F0   1</span></span></code></pre></div>
+<p>And we can see, some attributes have been set when we build the network like <code>v_group</code>, these are internal attributes of metanet and are related to the following analysis and visualization.</p>
+<div class="inline-table"><table class="table table-sm">
+<caption>
+<span id="tab:4-attribute">Table 3.1: </span> Internal attributes of a metanet.</caption>
 <colgroup>
-<col width="20%" />
-<col width="79%" />
+<col width="20%">
+<col width="79%">
 </colgroup>
-<thead>
-<tr class="header">
+<thead><tr class="header">
 <th>Attribute name</th>
 <th>Description</th>
-</tr>
-</thead>
+</tr></thead>
 <tbody>
 <tr class="odd">
 <td>v_group</td>
@@ -356,235 +187,206 @@ div.csl-indent {
 <td>the second type of edges, often be the intra or inter according to two vertex group. Related to the edge line type.</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <p>We will talk about how to set these attributes by ourselves for some specific analysis later.</p>
 </div>
-<div id="annotation" class="section level2 hasAnchor" number="4.2">
-<h2><span class="header-section-number">4.2</span> Annotation<a href="manipulation.html#annotation" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Sometimes we have lots of annotation tables need to add to the network, such as abundance table, taxonomy table and so on, we can use <code>anno_vertex()</code> and <code>anno_edge()</code> to do this. The annotation dataframe needs have rowname or a “name” column, <code>anno_vertex()</code> will automatically match the vertex name and combine the table.</p>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="manipulation.html#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anno_vertex</span>(co_net, taxonomy)<span class="ot">-&gt;</span>co_net1</span>
-<span id="cb27-2"><a href="manipulation.html#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="fu">get_v</span>(co_net1)<span class="sc">%&gt;%</span><span class="fu">head</span>(<span class="dv">5</span>)</span></code></pre></div>
-<pre><code>##                           name  v_group  v_class size
-## 1 s__un_f__Thermomonosporaceae v_group1 v_group1    4
-## 2        s__Pelomonas_puraquae v_group1 v_group1    4
-## 3     s__Rhizobacter_bergeniae v_group1 v_group1    4
-## 4     s__Flavobacterium_terrae v_group1 v_group1    4
-## 5         s__un_g__Rhizobacter v_group1 v_group1    4
-##                          label  shape   color     Kingdom            Phylum
-## 1 s__un_f__Thermomonosporaceae circle #a6bce3 k__Bacteria p__Actinobacteria
-## 2        s__Pelomonas_puraquae circle #a6bce3 k__Bacteria p__Proteobacteria
-## 3     s__Rhizobacter_bergeniae circle #a6bce3 k__Bacteria p__Proteobacteria
-## 4     s__Flavobacterium_terrae circle #a6bce3 k__Bacteria  p__Bacteroidetes
-## 5         s__un_g__Rhizobacter circle #a6bce3 k__Bacteria p__Proteobacteria
-##                    Class               Order                 Family
-## 1      c__Actinobacteria  o__Actinomycetales f__Thermomonosporaceae
-## 2  c__Betaproteobacteria  o__Burkholderiales      f__Comamonadaceae
-## 3 c__Gammaproteobacteria  o__Pseudomonadales    f__Pseudomonadaceae
-## 4      c__Flavobacteriia o__Flavobacteriales   f__Flavobacteriaceae
-## 5 c__Gammaproteobacteria  o__Pseudomonadales    f__Pseudomonadaceae
-##                          Genus                      Species
-## 1 g__un_f__Thermomonosporaceae s__un_f__Thermomonosporaceae
-## 2                 g__Pelomonas        s__Pelomonas_puraquae
-## 3               g__Rhizobacter     s__Rhizobacter_bergeniae
-## 4            g__Flavobacterium     s__Flavobacterium_terrae
-## 5               g__Rhizobacter         s__un_g__Rhizobacter</code></pre>
-<p><code>anno_edge()</code> receives the same format annotation dataframe with <code>anno_vertex()</code>, it will automatically match the “from” and “to” columns so that you can summary the links.</p>
-<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="manipulation.html#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anno_edge</span>(co_net, <span class="fu">select</span>(taxonomy,<span class="st">&quot;Phylum&quot;</span>))<span class="ot">-&gt;</span>co_net1</span>
-<span id="cb29-2"><a href="manipulation.html#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="fu">get_e</span>(co_net1)<span class="sc">%&gt;%</span><span class="fu">head</span>(<span class="dv">5</span>)</span></code></pre></div>
-<pre><code>##   id                         from                            to    weight
-## 1  1 s__un_f__Thermomonosporaceae     s__Actinocorallia_herbida 0.6759546
-## 2  2 s__un_f__Thermomonosporaceae       s__Kribbella_catacumbae 0.6742386
-## 3  3 s__un_f__Thermomonosporaceae       s__Kineosporia_rhamnosa 0.7378741
-## 4  4 s__un_f__Thermomonosporaceae   s__un_f__Micromonosporaceae 0.6236449
-## 5  5 s__un_f__Thermomonosporaceae s__Flavobacterium_saliperosum 0.6045747
-##         cor   e_type     width v_group_from v_group_to e_class   color lty
-## 1 0.6759546 positive 0.6759546     v_group1   v_group1   intra #48A4F0   1
-## 2 0.6742386 positive 0.6742386     v_group1   v_group1   intra #48A4F0   1
-## 3 0.7378741 positive 0.7378741     v_group1   v_group1   intra #48A4F0   1
-## 4 0.6236449 positive 0.6236449     v_group1   v_group1   intra #48A4F0   1
-## 5 0.6045747 positive 0.6045747     v_group1   v_group1   intra #48A4F0   1
-##         Phylum_from         Phylum_to
-## 1 p__Actinobacteria p__Actinobacteria
-## 2 p__Actinobacteria p__Actinobacteria
-## 3 p__Actinobacteria p__Actinobacteria
-## 4 p__Actinobacteria p__Actinobacteria
-## 5 p__Actinobacteria  p__Bacteroidetes</code></pre>
-<p>We provide a function <code>c_net_set()</code> for easily annotation if you have more than one table.</p>
-<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="manipulation.html#cb31-1" aria-hidden="true" tabindex="-1"></a>Abundance_df<span class="ot">=</span><span class="fu">data.frame</span>(<span class="st">&quot;Abundance&quot;</span><span class="ot">=</span><span class="fu">colSums</span>(totu))</span>
-<span id="cb31-2"><a href="manipulation.html#cb31-2" aria-hidden="true" tabindex="-1"></a>co_net1<span class="ot">&lt;-</span><span class="fu">c_net_set</span>(co_net,taxonomy,Abundance_df)</span>
-<span id="cb31-3"><a href="manipulation.html#cb31-3" aria-hidden="true" tabindex="-1"></a><span class="fu">get_v</span>(co_net1)<span class="sc">%&gt;%</span><span class="fu">head</span>(<span class="dv">5</span>)</span></code></pre></div>
-<pre><code>##                           name  v_group  v_class size
-## 1 s__un_f__Thermomonosporaceae v_group1 v_group1    4
-## 2        s__Pelomonas_puraquae v_group1 v_group1    4
-## 3     s__Rhizobacter_bergeniae v_group1 v_group1    4
-## 4     s__Flavobacterium_terrae v_group1 v_group1    4
-## 5         s__un_g__Rhizobacter v_group1 v_group1    4
-##                          label  shape   color     Kingdom            Phylum
-## 1 s__un_f__Thermomonosporaceae circle #a6bce3 k__Bacteria p__Actinobacteria
-## 2        s__Pelomonas_puraquae circle #a6bce3 k__Bacteria p__Proteobacteria
-## 3     s__Rhizobacter_bergeniae circle #a6bce3 k__Bacteria p__Proteobacteria
-## 4     s__Flavobacterium_terrae circle #a6bce3 k__Bacteria  p__Bacteroidetes
-## 5         s__un_g__Rhizobacter circle #a6bce3 k__Bacteria p__Proteobacteria
-##                    Class               Order                 Family
-## 1      c__Actinobacteria  o__Actinomycetales f__Thermomonosporaceae
-## 2  c__Betaproteobacteria  o__Burkholderiales      f__Comamonadaceae
-## 3 c__Gammaproteobacteria  o__Pseudomonadales    f__Pseudomonadaceae
-## 4      c__Flavobacteriia o__Flavobacteriales   f__Flavobacteriaceae
-## 5 c__Gammaproteobacteria  o__Pseudomonadales    f__Pseudomonadaceae
-##                          Genus                      Species Abundance
-## 1 g__un_f__Thermomonosporaceae s__un_f__Thermomonosporaceae     26147
-## 2                 g__Pelomonas        s__Pelomonas_puraquae     25217
-## 3               g__Rhizobacter     s__Rhizobacter_bergeniae     16592
-## 4            g__Flavobacterium     s__Flavobacterium_terrae     16484
-## 5               g__Rhizobacter         s__un_g__Rhizobacter     13895</code></pre>
-<p>If you have a vector and you absolutely know it matches the vertex name of network, you can use igraph method to annotate (Don’t recommend), same as the edge annotate vector:</p>
-<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="manipulation.html#cb33-1" aria-hidden="true" tabindex="-1"></a>co_net1<span class="ot">=</span>co_net</span>
-<span id="cb33-2"><a href="manipulation.html#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="co">#add vertex attribute</span></span>
-<span id="cb33-3"><a href="manipulation.html#cb33-3" aria-hidden="true" tabindex="-1"></a><span class="fu">V</span>(co_net1)<span class="sc">$</span>new_attri<span class="ot">=</span><span class="fu">seq_len</span>(<span class="fu">length</span>(co_net1))</span>
-<span id="cb33-4"><a href="manipulation.html#cb33-4" aria-hidden="true" tabindex="-1"></a><span class="fu">get_v</span>(co_net1)<span class="sc">%&gt;%</span><span class="fu">head</span>(<span class="dv">5</span>)</span></code></pre></div>
-<pre><code>##                           name  v_group  v_class size
-## 1 s__un_f__Thermomonosporaceae v_group1 v_group1    4
-## 2        s__Pelomonas_puraquae v_group1 v_group1    4
-## 3     s__Rhizobacter_bergeniae v_group1 v_group1    4
-## 4     s__Flavobacterium_terrae v_group1 v_group1    4
-## 5         s__un_g__Rhizobacter v_group1 v_group1    4
-##                          label  shape   color new_attri
-## 1 s__un_f__Thermomonosporaceae circle #a6bce3         1
-## 2        s__Pelomonas_puraquae circle #a6bce3         2
-## 3     s__Rhizobacter_bergeniae circle #a6bce3         3
-## 4     s__Flavobacterium_terrae circle #a6bce3         4
-## 5         s__un_g__Rhizobacter circle #a6bce3         5</code></pre>
-<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="manipulation.html#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co">#add edge attribute</span></span>
-<span id="cb35-2"><a href="manipulation.html#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="fu">E</span>(co_net1)<span class="sc">$</span>new_attri<span class="ot">=</span><span class="st">&quot;new attribute&quot;</span></span>
-<span id="cb35-3"><a href="manipulation.html#cb35-3" aria-hidden="true" tabindex="-1"></a><span class="fu">get_e</span>(co_net1)<span class="sc">%&gt;%</span><span class="fu">head</span>(<span class="dv">5</span>)</span></code></pre></div>
-<pre><code>##   id                         from                            to    weight
-## 1  1 s__un_f__Thermomonosporaceae     s__Actinocorallia_herbida 0.6759546
-## 2  2 s__un_f__Thermomonosporaceae       s__Kribbella_catacumbae 0.6742386
-## 3  3 s__un_f__Thermomonosporaceae       s__Kineosporia_rhamnosa 0.7378741
-## 4  4 s__un_f__Thermomonosporaceae   s__un_f__Micromonosporaceae 0.6236449
-## 5  5 s__un_f__Thermomonosporaceae s__Flavobacterium_saliperosum 0.6045747
-##         cor   e_type     width v_group_from v_group_to e_class   color lty
-## 1 0.6759546 positive 0.6759546     v_group1   v_group1   intra #48A4F0   1
-## 2 0.6742386 positive 0.6742386     v_group1   v_group1   intra #48A4F0   1
-## 3 0.7378741 positive 0.7378741     v_group1   v_group1   intra #48A4F0   1
-## 4 0.6236449 positive 0.6236449     v_group1   v_group1   intra #48A4F0   1
-## 5 0.6045747 positive 0.6045747     v_group1   v_group1   intra #48A4F0   1
-##       new_attri
-## 1 new attribute
-## 2 new attribute
-## 3 new attribute
-## 4 new attribute
-## 5 new attribute</code></pre>
+<div id="annotation" class="section level2" number="3.2">
+<h2>
+<span class="header-section-number">3.2</span> Annotation<a class="anchor" aria-label="anchor" href="#annotation"><i class="fas fa-link"></i></a>
+</h2>
+<p>Sometimes we have lots of annotation tables need to add to the network, such as abundance table, taxonomy table and so on,
+we can use <code><a href="https://rdrr.io/pkg/MetaNet/man/anno_vertex.html">anno_vertex()</a></code> and <code><a href="https://rdrr.io/pkg/MetaNet/man/anno_edge.html">anno_edge()</a></code> to do this.
+The annotation dataframe needs have rowname or a “name” column, <code><a href="https://rdrr.io/pkg/MetaNet/man/anno_vertex.html">anno_vertex()</a></code> will automatically match the vertex name and combine the table.</p>
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/MetaNet/man/anno_vertex.html">anno_vertex</a></span><span class="op">(</span><span class="va">co_net</span>, <span class="va">taxonomy</span><span class="op">)</span><span class="op">-&gt;</span><span class="va">co_net1</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/MetaNet/man/get_v.html">get_v</a></span><span class="op">(</span><span class="va">co_net1</span><span class="op">)</span><span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="fl">5</span><span class="op">)</span></span>
+<span><span class="co">#&gt;                           name  v_group  v_class size</span></span>
+<span><span class="co">#&gt; 1 s__un_f__Thermomonosporaceae v_group1 v_class1    4</span></span>
+<span><span class="co">#&gt; 2        s__Pelomonas_puraquae v_group1 v_class1    4</span></span>
+<span><span class="co">#&gt; 3     s__Rhizobacter_bergeniae v_group1 v_class1    4</span></span>
+<span><span class="co">#&gt; 4     s__Flavobacterium_terrae v_group1 v_class1    4</span></span>
+<span><span class="co">#&gt; 5         s__un_g__Rhizobacter v_group1 v_class1    4</span></span>
+<span><span class="co">#&gt;                          label  shape   color     Kingdom</span></span>
+<span><span class="co">#&gt; 1 s__un_f__Thermomonosporaceae circle #a6bce3 k__Bacteria</span></span>
+<span><span class="co">#&gt; 2        s__Pelomonas_puraquae circle #a6bce3 k__Bacteria</span></span>
+<span><span class="co">#&gt; 3     s__Rhizobacter_bergeniae circle #a6bce3 k__Bacteria</span></span>
+<span><span class="co">#&gt; 4     s__Flavobacterium_terrae circle #a6bce3 k__Bacteria</span></span>
+<span><span class="co">#&gt; 5         s__un_g__Rhizobacter circle #a6bce3 k__Bacteria</span></span>
+<span><span class="co">#&gt;              Phylum                  Class</span></span>
+<span><span class="co">#&gt; 1 p__Actinobacteria      c__Actinobacteria</span></span>
+<span><span class="co">#&gt; 2 p__Proteobacteria  c__Betaproteobacteria</span></span>
+<span><span class="co">#&gt; 3 p__Proteobacteria c__Gammaproteobacteria</span></span>
+<span><span class="co">#&gt; 4  p__Bacteroidetes      c__Flavobacteriia</span></span>
+<span><span class="co">#&gt; 5 p__Proteobacteria c__Gammaproteobacteria</span></span>
+<span><span class="co">#&gt;                 Order                 Family</span></span>
+<span><span class="co">#&gt; 1  o__Actinomycetales f__Thermomonosporaceae</span></span>
+<span><span class="co">#&gt; 2  o__Burkholderiales      f__Comamonadaceae</span></span>
+<span><span class="co">#&gt; 3  o__Pseudomonadales    f__Pseudomonadaceae</span></span>
+<span><span class="co">#&gt; 4 o__Flavobacteriales   f__Flavobacteriaceae</span></span>
+<span><span class="co">#&gt; 5  o__Pseudomonadales    f__Pseudomonadaceae</span></span>
+<span><span class="co">#&gt;                          Genus                      Species</span></span>
+<span><span class="co">#&gt; 1 g__un_f__Thermomonosporaceae s__un_f__Thermomonosporaceae</span></span>
+<span><span class="co">#&gt; 2                 g__Pelomonas        s__Pelomonas_puraquae</span></span>
+<span><span class="co">#&gt; 3               g__Rhizobacter     s__Rhizobacter_bergeniae</span></span>
+<span><span class="co">#&gt; 4            g__Flavobacterium     s__Flavobacterium_terrae</span></span>
+<span><span class="co">#&gt; 5               g__Rhizobacter         s__un_g__Rhizobacter</span></span></code></pre></div>
+<p><code><a href="https://rdrr.io/pkg/MetaNet/man/anno_edge.html">anno_edge()</a></code> receives the same format annotation dataframe with <code><a href="https://rdrr.io/pkg/MetaNet/man/anno_vertex.html">anno_vertex()</a></code>, it will automatically match the “from” and “to” columns so that you can summary the links.</p>
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/MetaNet/man/anno_edge.html">anno_edge</a></span><span class="op">(</span><span class="va">co_net</span>, <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">taxonomy</span>,<span class="st">"Phylum"</span><span class="op">)</span><span class="op">)</span><span class="op">-&gt;</span><span class="va">co_net1</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/MetaNet/man/get_e.html">get_e</a></span><span class="op">(</span><span class="va">co_net1</span><span class="op">)</span><span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="fl">5</span><span class="op">)</span></span>
+<span><span class="co">#&gt;   id                         from</span></span>
+<span><span class="co">#&gt; 1  1 s__un_f__Thermomonosporaceae</span></span>
+<span><span class="co">#&gt; 2  2 s__un_f__Thermomonosporaceae</span></span>
+<span><span class="co">#&gt; 3  3 s__un_f__Thermomonosporaceae</span></span>
+<span><span class="co">#&gt; 4  4 s__un_f__Thermomonosporaceae</span></span>
+<span><span class="co">#&gt; 5  5 s__un_f__Thermomonosporaceae</span></span>
+<span><span class="co">#&gt;                              to    weight       cor</span></span>
+<span><span class="co">#&gt; 1     s__Actinocorallia_herbida 0.6759546 0.6759546</span></span>
+<span><span class="co">#&gt; 2       s__Kribbella_catacumbae 0.6742386 0.6742386</span></span>
+<span><span class="co">#&gt; 3       s__Kineosporia_rhamnosa 0.7378741 0.7378741</span></span>
+<span><span class="co">#&gt; 4   s__un_f__Micromonosporaceae 0.6236449 0.6236449</span></span>
+<span><span class="co">#&gt; 5 s__Flavobacterium_saliperosum 0.6045747 0.6045747</span></span>
+<span><span class="co">#&gt;     e_type     width v_group_from v_group_to e_class</span></span>
+<span><span class="co">#&gt; 1 positive 0.6759546     v_group1   v_group1   intra</span></span>
+<span><span class="co">#&gt; 2 positive 0.6742386     v_group1   v_group1   intra</span></span>
+<span><span class="co">#&gt; 3 positive 0.7378741     v_group1   v_group1   intra</span></span>
+<span><span class="co">#&gt; 4 positive 0.6236449     v_group1   v_group1   intra</span></span>
+<span><span class="co">#&gt; 5 positive 0.6045747     v_group1   v_group1   intra</span></span>
+<span><span class="co">#&gt;     color lty       Phylum_from         Phylum_to</span></span>
+<span><span class="co">#&gt; 1 #48A4F0   1 p__Actinobacteria p__Actinobacteria</span></span>
+<span><span class="co">#&gt; 2 #48A4F0   1 p__Actinobacteria p__Actinobacteria</span></span>
+<span><span class="co">#&gt; 3 #48A4F0   1 p__Actinobacteria p__Actinobacteria</span></span>
+<span><span class="co">#&gt; 4 #48A4F0   1 p__Actinobacteria p__Actinobacteria</span></span>
+<span><span class="co">#&gt; 5 #48A4F0   1 p__Actinobacteria  p__Bacteroidetes</span></span></code></pre></div>
+<p><code>MetaNet</code> provides a function <code><a href="https://rdrr.io/pkg/MetaNet/man/c_net_set.html">c_net_set()</a></code> for easily annotation if you have more than one table (it’s normal when you do a multi-omics analysis).</p>
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">Abundance_df</span><span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span><span class="st">"Abundance"</span><span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/colSums.html">colSums</a></span><span class="op">(</span><span class="va">totu</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">co_net1</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/pkg/MetaNet/man/c_net_set.html">c_net_set</a></span><span class="op">(</span><span class="va">co_net</span>,<span class="va">taxonomy</span>,<span class="va">Abundance_df</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/MetaNet/man/get_v.html">get_v</a></span><span class="op">(</span><span class="va">co_net1</span><span class="op">)</span><span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="fl">5</span><span class="op">)</span></span>
+<span><span class="co">#&gt;                           name  v_group  v_class size</span></span>
+<span><span class="co">#&gt; 1 s__un_f__Thermomonosporaceae v_group1 v_class1    4</span></span>
+<span><span class="co">#&gt; 2        s__Pelomonas_puraquae v_group1 v_class1    4</span></span>
+<span><span class="co">#&gt; 3     s__Rhizobacter_bergeniae v_group1 v_class1    4</span></span>
+<span><span class="co">#&gt; 4     s__Flavobacterium_terrae v_group1 v_class1    4</span></span>
+<span><span class="co">#&gt; 5         s__un_g__Rhizobacter v_group1 v_class1    4</span></span>
+<span><span class="co">#&gt;                          label  shape   color     Kingdom</span></span>
+<span><span class="co">#&gt; 1 s__un_f__Thermomonosporaceae circle #a6bce3 k__Bacteria</span></span>
+<span><span class="co">#&gt; 2        s__Pelomonas_puraquae circle #a6bce3 k__Bacteria</span></span>
+<span><span class="co">#&gt; 3     s__Rhizobacter_bergeniae circle #a6bce3 k__Bacteria</span></span>
+<span><span class="co">#&gt; 4     s__Flavobacterium_terrae circle #a6bce3 k__Bacteria</span></span>
+<span><span class="co">#&gt; 5         s__un_g__Rhizobacter circle #a6bce3 k__Bacteria</span></span>
+<span><span class="co">#&gt;              Phylum                  Class</span></span>
+<span><span class="co">#&gt; 1 p__Actinobacteria      c__Actinobacteria</span></span>
+<span><span class="co">#&gt; 2 p__Proteobacteria  c__Betaproteobacteria</span></span>
+<span><span class="co">#&gt; 3 p__Proteobacteria c__Gammaproteobacteria</span></span>
+<span><span class="co">#&gt; 4  p__Bacteroidetes      c__Flavobacteriia</span></span>
+<span><span class="co">#&gt; 5 p__Proteobacteria c__Gammaproteobacteria</span></span>
+<span><span class="co">#&gt;                 Order                 Family</span></span>
+<span><span class="co">#&gt; 1  o__Actinomycetales f__Thermomonosporaceae</span></span>
+<span><span class="co">#&gt; 2  o__Burkholderiales      f__Comamonadaceae</span></span>
+<span><span class="co">#&gt; 3  o__Pseudomonadales    f__Pseudomonadaceae</span></span>
+<span><span class="co">#&gt; 4 o__Flavobacteriales   f__Flavobacteriaceae</span></span>
+<span><span class="co">#&gt; 5  o__Pseudomonadales    f__Pseudomonadaceae</span></span>
+<span><span class="co">#&gt;                          Genus                      Species</span></span>
+<span><span class="co">#&gt; 1 g__un_f__Thermomonosporaceae s__un_f__Thermomonosporaceae</span></span>
+<span><span class="co">#&gt; 2                 g__Pelomonas        s__Pelomonas_puraquae</span></span>
+<span><span class="co">#&gt; 3               g__Rhizobacter     s__Rhizobacter_bergeniae</span></span>
+<span><span class="co">#&gt; 4            g__Flavobacterium     s__Flavobacterium_terrae</span></span>
+<span><span class="co">#&gt; 5               g__Rhizobacter         s__un_g__Rhizobacter</span></span>
+<span><span class="co">#&gt;   Abundance</span></span>
+<span><span class="co">#&gt; 1     26147</span></span>
+<span><span class="co">#&gt; 2     25217</span></span>
+<span><span class="co">#&gt; 3     16592</span></span>
+<span><span class="co">#&gt; 4     16484</span></span>
+<span><span class="co">#&gt; 5     13895</span></span></code></pre></div>
+<p>If you have a vector and you absolutely know it matches the vertex name of network,
+you can use igraph method to annotate (Don’t recommend), same as the edge annotate vector:</p>
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">co_net1</span><span class="op">=</span><span class="va">co_net</span></span>
+<span></span>
+<span><span class="co">#add vertex attribute</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/igraph/man/V.html">V</a></span><span class="op">(</span><span class="va">co_net1</span><span class="op">)</span><span class="op">$</span><span class="va">new_attri</span><span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq_len</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">co_net1</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/MetaNet/man/get_v.html">get_v</a></span><span class="op">(</span><span class="va">co_net1</span><span class="op">)</span><span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="fl">5</span><span class="op">)</span></span>
+<span><span class="co">#&gt;                           name  v_group  v_class size</span></span>
+<span><span class="co">#&gt; 1 s__un_f__Thermomonosporaceae v_group1 v_class1    4</span></span>
+<span><span class="co">#&gt; 2        s__Pelomonas_puraquae v_group1 v_class1    4</span></span>
+<span><span class="co">#&gt; 3     s__Rhizobacter_bergeniae v_group1 v_class1    4</span></span>
+<span><span class="co">#&gt; 4     s__Flavobacterium_terrae v_group1 v_class1    4</span></span>
+<span><span class="co">#&gt; 5         s__un_g__Rhizobacter v_group1 v_class1    4</span></span>
+<span><span class="co">#&gt;                          label  shape   color new_attri</span></span>
+<span><span class="co">#&gt; 1 s__un_f__Thermomonosporaceae circle #a6bce3         1</span></span>
+<span><span class="co">#&gt; 2        s__Pelomonas_puraquae circle #a6bce3         2</span></span>
+<span><span class="co">#&gt; 3     s__Rhizobacter_bergeniae circle #a6bce3         3</span></span>
+<span><span class="co">#&gt; 4     s__Flavobacterium_terrae circle #a6bce3         4</span></span>
+<span><span class="co">#&gt; 5         s__un_g__Rhizobacter circle #a6bce3         5</span></span>
+<span></span>
+<span><span class="co">#add edge attribute</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/igraph/man/E.html">E</a></span><span class="op">(</span><span class="va">co_net1</span><span class="op">)</span><span class="op">$</span><span class="va">new_attri</span><span class="op">=</span><span class="st">"new attribute"</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/MetaNet/man/get_e.html">get_e</a></span><span class="op">(</span><span class="va">co_net1</span><span class="op">)</span><span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="fl">5</span><span class="op">)</span></span>
+<span><span class="co">#&gt;   id                         from</span></span>
+<span><span class="co">#&gt; 1  1 s__un_f__Thermomonosporaceae</span></span>
+<span><span class="co">#&gt; 2  2 s__un_f__Thermomonosporaceae</span></span>
+<span><span class="co">#&gt; 3  3 s__un_f__Thermomonosporaceae</span></span>
+<span><span class="co">#&gt; 4  4 s__un_f__Thermomonosporaceae</span></span>
+<span><span class="co">#&gt; 5  5 s__un_f__Thermomonosporaceae</span></span>
+<span><span class="co">#&gt;                              to    weight       cor</span></span>
+<span><span class="co">#&gt; 1     s__Actinocorallia_herbida 0.6759546 0.6759546</span></span>
+<span><span class="co">#&gt; 2       s__Kribbella_catacumbae 0.6742386 0.6742386</span></span>
+<span><span class="co">#&gt; 3       s__Kineosporia_rhamnosa 0.7378741 0.7378741</span></span>
+<span><span class="co">#&gt; 4   s__un_f__Micromonosporaceae 0.6236449 0.6236449</span></span>
+<span><span class="co">#&gt; 5 s__Flavobacterium_saliperosum 0.6045747 0.6045747</span></span>
+<span><span class="co">#&gt;     e_type     width v_group_from v_group_to e_class</span></span>
+<span><span class="co">#&gt; 1 positive 0.6759546     v_group1   v_group1   intra</span></span>
+<span><span class="co">#&gt; 2 positive 0.6742386     v_group1   v_group1   intra</span></span>
+<span><span class="co">#&gt; 3 positive 0.7378741     v_group1   v_group1   intra</span></span>
+<span><span class="co">#&gt; 4 positive 0.6236449     v_group1   v_group1   intra</span></span>
+<span><span class="co">#&gt; 5 positive 0.6045747     v_group1   v_group1   intra</span></span>
+<span><span class="co">#&gt;     color lty     new_attri</span></span>
+<span><span class="co">#&gt; 1 #48A4F0   1 new attribute</span></span>
+<span><span class="co">#&gt; 2 #48A4F0   1 new attribute</span></span>
+<span><span class="co">#&gt; 3 #48A4F0   1 new attribute</span></span>
+<span><span class="co">#&gt; 4 #48A4F0   1 new attribute</span></span>
+<span><span class="co">#&gt; 5 #48A4F0   1 new attribute</span></span></code></pre></div>
 </div>
-<div id="filter-sub-net" class="section level2 hasAnchor" number="4.3">
-<h2><span class="header-section-number">4.3</span> Filter (Sub-net)<a href="manipulation.html#filter-sub-net" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>After setting your network properly, you may need to analysis part of the whole network (especially in the multi-omics analysis), <code>c_net_filter()</code> can get the sub-net conveniently (Figure <a href="manipulation.html#fig:4-filter">4.1</a>), you can put lots of filter conditions in:</p>
-<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="manipulation.html#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;multi_net&quot;</span>,<span class="at">package =</span> <span class="st">&quot;MetaNet&quot;</span>)</span>
-<span id="cb37-2"><a href="manipulation.html#cb37-2" aria-hidden="true" tabindex="-1"></a>multi2<span class="ot">=</span><span class="fu">c_net_filter</span>(multi1,<span class="at">v_group=</span><span class="fu">c</span>(<span class="st">&quot;omic1&quot;</span>,<span class="st">&quot;omic2&quot;</span>),<span class="at">e_class=</span><span class="st">&quot;intra&quot;</span>)</span>
-<span id="cb37-3"><a href="manipulation.html#cb37-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb37-4"><a href="manipulation.html#cb37-4" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))</span>
-<span id="cb37-5"><a href="manipulation.html#cb37-5" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(multi1,<span class="at">lty_legend=</span>T)<span class="co">#before filter</span></span>
-<span id="cb37-6"><a href="manipulation.html#cb37-6" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(multi2,<span class="at">legend=</span>T,<span class="at">col_legend=</span>F,<span class="at">main=</span><span class="st">&quot;After filter network&quot;</span>) <span class="co">#after filter</span></span></code></pre></div>
-<div class="figure"><span style="display:block;" id="fig:4-filter"></span>
-<img src="MetaNet-Tutorial_files/figure-html/4-filter-1.png" alt="From a whole network filter a sub-net." width="1056" />
-<p class="caption">
-Figure 4.1: From a whole network filter a sub-net.
+<div id="filter-sub-net" class="section level2" number="3.3">
+<h2>
+<span class="header-section-number">3.3</span> Filter (Sub-net)<a class="anchor" aria-label="anchor" href="#filter-sub-net"><i class="fas fa-link"></i></a>
+</h2>
+<p>After setting your network properly, you may need to analysis part of the whole network (especially in the multi-omics analysis),
+<code><a href="https://rdrr.io/pkg/MetaNet/man/c_net_filter.html">c_net_filter()</a></code> can get the sub-net conveniently (Figure <a href="manipulation.html#fig:4-filter">3.1</a>), you can put lots of filter conditions in:</p>
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="st">"multi_net"</span>,package <span class="op">=</span> <span class="st">"MetaNet"</span><span class="op">)</span></span>
+<span><span class="va">multi2</span><span class="op">=</span><span class="fu"><a href="https://rdrr.io/pkg/MetaNet/man/c_net_filter.html">c_net_filter</a></span><span class="op">(</span><span class="va">multi1</span>,<span class="va">v_group</span><span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"omic1"</span>,<span class="st">"omic2"</span><span class="op">)</span><span class="op">)</span><span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span><span class="fu"><a href="https://rdrr.io/pkg/MetaNet/man/c_net_filter.html">c_net_filter</a></span><span class="op">(</span><span class="va">.</span>,<span class="va">e_class</span><span class="op">==</span><span class="st">"intra"</span>,mode <span class="op">=</span> <span class="st">"e"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>mfrow<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2</span>,<span class="fl">1</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">multi1</span>,lty_legend<span class="op">=</span><span class="cn">T</span>,main<span class="op">=</span><span class="st">"Before filtering network"</span><span class="op">)</span><span class="co">#before filter</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">multi2</span>,lty_legend<span class="op">=</span><span class="cn">T</span>,main<span class="op">=</span><span class="st">"After filtering network"</span><span class="op">)</span> <span class="co">#after filter</span></span></code></pre></div>
+<div class="figure">
+<span style="display:block;" id="fig:4-filter"></span>
+<img src="03-manipulation_files/figure-html/4-filter-1.png" alt="From a whole network filter a sub-net." width="100%"><p class="caption">
+Figure 3.1: From a whole network filter a sub-net.
 </p>
 </div>
 </div>
-<div id="skeleton" class="section level2 hasAnchor" number="4.4">
-<h2><span class="header-section-number">4.4</span> Skeleton<a href="manipulation.html#skeleton" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>If you want to summary the edges source and target according to one group, <code>summ_2col</code> is a easy way to get this information. <code>direct = F</code> argument means this is a undirected network, so “a-b” and “b-a” will summary to one type edge.</p>
-<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="manipulation.html#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anno_edge</span>(co_net, <span class="fu">select</span>(taxonomy,<span class="st">&quot;Phylum&quot;</span>))<span class="ot">-&gt;</span>co_net1</span>
-<span id="cb38-2"><a href="manipulation.html#cb38-2" aria-hidden="true" tabindex="-1"></a>df<span class="ot">=</span><span class="fu">get_e</span>(co_net1)[,<span class="fu">c</span>(<span class="st">&quot;Phylum_from&quot;</span>,<span class="st">&quot;Phylum_to&quot;</span>)]</span>
-<span id="cb38-3"><a href="manipulation.html#cb38-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summ_2col</span>(df,<span class="at">direct =</span> F)<span class="sc">%&gt;%</span><span class="fu">arrange</span>(<span class="sc">-</span>count)<span class="ot">-&gt;</span>Phylum_from_to</span>
-<span id="cb38-4"><a href="manipulation.html#cb38-4" aria-hidden="true" tabindex="-1"></a><span class="co">#head(Phylum_from_to)</span></span>
-<span id="cb38-5"><a href="manipulation.html#cb38-5" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(<span class="fu">head</span>(Phylum_from_to,<span class="dv">5</span>),<span class="at">caption =</span> <span class="st">&quot;Summary of edges according to Phylum&quot;</span>)</span></code></pre></div>
-<table>
+<div id="skeleton" class="section level2" number="3.4">
+<h2>
+<span class="header-section-number">3.4</span> Skeleton<a class="anchor" aria-label="anchor" href="#skeleton"><i class="fas fa-link"></i></a>
+</h2>
+<p>If you want to summary the edges source and target according to one group, <code>summ_2col</code> is a easy way to get this information. <code>direct = F</code> argument means this is a undirected relationship, so “a-b” and “b-a” will summary to one type edge.</p>
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/MetaNet/man/anno_edge.html">anno_edge</a></span><span class="op">(</span><span class="va">co_net</span>, <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">taxonomy</span>,<span class="st">"Phylum"</span><span class="op">)</span><span class="op">)</span><span class="op">-&gt;</span><span class="va">co_net1</span></span>
+<span><span class="va">df</span><span class="op">=</span><span class="fu"><a href="https://rdrr.io/pkg/MetaNet/man/get_e.html">get_e</a></span><span class="op">(</span><span class="va">co_net1</span><span class="op">)</span><span class="op">[</span>,<span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Phylum_from"</span>,<span class="st">"Phylum_to"</span><span class="op">)</span><span class="op">]</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/MetaNet/man/summ_2col.html">summ_2col</a></span><span class="op">(</span><span class="va">df</span>,direct <span class="op">=</span> <span class="cn">F</span><span class="op">)</span><span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="op">-</span><span class="va">count</span><span class="op">)</span><span class="op">-&gt;</span><span class="va">Phylum_from_to</span></span></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">kbl</span><span class="op">(</span><span class="va">Phylum_from_to</span>,caption <span class="op">=</span> <span class="st">"Summary of edges according to Phylum"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu">kable_paper</span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu">scroll_box</span><span class="op">(</span>width <span class="op">=</span> <span class="st">"100%"</span>, height <span class="op">=</span> <span class="st">"400px"</span><span class="op">)</span></span></code></pre></div>
+<div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:400px; overflow-x: scroll; width:100%; ">
+<div class="inline-table"><table class=" lightable-paper" style='font-family: "Arial Narrow", arial, helvetica, sans-serif; margin-left: auto; margin-right: auto;'>
 <caption>
-<span id="tab:unnamed-chunk-15">Table 4.2: </span>Summary of edges according to Phylum
+<span id="tab:4-summ-2col">Table 3.2: </span>Summary of edges according to Phylum
 </caption>
-<thead>
-<tr>
-<th style="text-align:left;">
-Phylum_from
-</th>
-<th style="text-align:left;">
-Phylum_to
-</th>
-<th style="text-align:right;">
-count
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left;">
-p__Proteobacteria
-</td>
-<td style="text-align:left;">
-p__Proteobacteria
-</td>
-<td style="text-align:right;">
-401
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-p__Actinobacteria
-</td>
-<td style="text-align:left;">
-p__Proteobacteria
-</td>
-<td style="text-align:right;">
-353
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-p__Firmicutes
-</td>
-<td style="text-align:left;">
-p__Proteobacteria
-</td>
-<td style="text-align:right;">
-143
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-p__Actinobacteria
-</td>
-<td style="text-align:left;">
-p__Actinobacteria
-</td>
-<td style="text-align:right;">
-123
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-p__Bacteroidetes
-</td>
-<td style="text-align:left;">
-p__Proteobacteria
-</td>
-<td style="text-align:right;">
-99
-</td>
-</tr>
-</tbody>
-</table>
-<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="manipulation.html#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">kbl</span>(Phylum_from_to,<span class="at">caption =</span> <span class="st">&quot;Summary of edges according to Phylum&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb39-2"><a href="manipulation.html#cb39-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_paper</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb39-3"><a href="manipulation.html#cb39-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scroll_box</span>(<span class="at">width =</span> <span class="st">&quot;500px&quot;</span>, <span class="at">height =</span> <span class="st">&quot;200px&quot;</span>)</span></code></pre></div>
-<div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:200px; overflow-x: scroll; width:500px; ">
-<table class=" lightable-paper" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; margin-left: auto; margin-right: auto;">
-<caption>
-<span id="tab:4-summ-2col">Table 4.3: </span>Summary of edges according to Phylum
-</caption>
-<thead>
-<tr>
+<thead><tr>
 <th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
 Phylum_from
 </th>
@@ -594,8 +396,7 @@ Phylum_to
 <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
 count
 </th>
-</tr>
-</thead>
+</tr></thead>
 <tbody>
 <tr>
 <td style="text-align:left;">
@@ -709,6 +510,17 @@ p__Firmicutes
 </tr>
 <tr>
 <td style="text-align:left;">
+p__Proteobacteria
+</td>
+<td style="text-align:left;">
+p__Verrucomicrobia
+</td>
+<td style="text-align:right;">
+22
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
 p__Acidobacteria
 </td>
 <td style="text-align:left;">
@@ -731,6 +543,39 @@ p__Firmicutes
 </tr>
 <tr>
 <td style="text-align:left;">
+p__Chlamydiae
+</td>
+<td style="text-align:left;">
+p__Proteobacteria
+</td>
+<td style="text-align:right;">
+14
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+p__Planctomycetes
+</td>
+<td style="text-align:left;">
+p__Proteobacteria
+</td>
+<td style="text-align:right;">
+14
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+p__Actinobacteria
+</td>
+<td style="text-align:left;">
+p__Verrucomicrobia
+</td>
+<td style="text-align:right;">
+11
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
 p__Actinobacteria
 </td>
 <td style="text-align:left;">
@@ -738,6 +583,17 @@ p__Chloroflexi
 </td>
 <td style="text-align:right;">
 10
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+p__Actinobacteria
+</td>
+<td style="text-align:left;">
+p__Planctomycetes
+</td>
+<td style="text-align:right;">
+9
 </td>
 </tr>
 <tr>
@@ -764,6 +620,28 @@ p__Firmicutes
 </tr>
 <tr>
 <td style="text-align:left;">
+p__Bacteroidetes
+</td>
+<td style="text-align:left;">
+p__Chlamydiae
+</td>
+<td style="text-align:right;">
+5
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+p__Proteobacteria
+</td>
+<td style="text-align:left;">
+p__Spirochaetes
+</td>
+<td style="text-align:right;">
+5
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
 p__Acidobacteria
 </td>
 <td style="text-align:left;">
@@ -797,6 +675,17 @@ p__Firmicutes
 </tr>
 <tr>
 <td style="text-align:left;">
+p__Actinobacteria
+</td>
+<td style="text-align:left;">
+p__Chlamydiae
+</td>
+<td style="text-align:right;">
+4
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
 p__Bacteroidetes
 </td>
 <td style="text-align:left;">
@@ -806,113 +695,440 @@ p__Chloroflexi
 4
 </td>
 </tr>
+<tr>
+<td style="text-align:left;">
+p__Bacteroidetes
+</td>
+<td style="text-align:left;">
+p__Verrucomicrobia
+</td>
+<td style="text-align:right;">
+4
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+p__Candidatus_Saccharibacteria
+</td>
+<td style="text-align:left;">
+p__Proteobacteria
+</td>
+<td style="text-align:right;">
+4
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+p__Firmicutes
+</td>
+<td style="text-align:left;">
+p__Verrucomicrobia
+</td>
+<td style="text-align:right;">
+4
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+p__Nitrospirae
+</td>
+<td style="text-align:left;">
+p__Proteobacteria
+</td>
+<td style="text-align:right;">
+4
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+p__Actinobacteria
+</td>
+<td style="text-align:left;">
+p__Spirochaetes
+</td>
+<td style="text-align:right;">
+3
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+p__Armatimonadetes
+</td>
+<td style="text-align:left;">
+p__Proteobacteria
+</td>
+<td style="text-align:right;">
+3
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+p__Bacteroidetes
+</td>
+<td style="text-align:left;">
+p__Spirochaetes
+</td>
+<td style="text-align:right;">
+3
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+p__Chlamydiae
+</td>
+<td style="text-align:left;">
+p__Firmicutes
+</td>
+<td style="text-align:right;">
+3
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+p__Ignavibacteriae
+</td>
+<td style="text-align:left;">
+p__Proteobacteria
+</td>
+<td style="text-align:right;">
+3
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+p__Actinobacteria
+</td>
+<td style="text-align:left;">
+p__Nitrospirae
+</td>
+<td style="text-align:right;">
+2
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+p__Chlamydiae
+</td>
+<td style="text-align:left;">
+p__Spirochaetes
+</td>
+<td style="text-align:right;">
+2
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+p__Chloroflexi
+</td>
+<td style="text-align:left;">
+p__Ignavibacteriae
+</td>
+<td style="text-align:right;">
+2
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+p__Chloroflexi
+</td>
+<td style="text-align:left;">
+p__Verrucomicrobia
+</td>
+<td style="text-align:right;">
+2
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+p__Firmicutes
+</td>
+<td style="text-align:left;">
+p__Planctomycetes
+</td>
+<td style="text-align:right;">
+2
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+p__Firmicutes
+</td>
+<td style="text-align:left;">
+p__Spirochaetes
+</td>
+<td style="text-align:right;">
+2
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+p__Proteobacteria
+</td>
+<td style="text-align:left;">
+p__un_k__Bacteria
+</td>
+<td style="text-align:right;">
+2
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+p__Acidobacteria
+</td>
+<td style="text-align:left;">
+p__Candidatus_Saccharibacteria
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+p__Acidobacteria
+</td>
+<td style="text-align:left;">
+p__Verrucomicrobia
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+p__Actinobacteria
+</td>
+<td style="text-align:left;">
+p__Armatimonadetes
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+p__Actinobacteria
+</td>
+<td style="text-align:left;">
+p__Ignavibacteriae
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+p__Actinobacteria
+</td>
+<td style="text-align:left;">
+p__Thaumarchaeota
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+p__Actinobacteria
+</td>
+<td style="text-align:left;">
+p__un_k__Bacteria
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+p__Armatimonadetes
+</td>
+<td style="text-align:left;">
+p__Bacteroidetes
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+p__Armatimonadetes
+</td>
+<td style="text-align:left;">
+p__Firmicutes
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+p__Armatimonadetes
+</td>
+<td style="text-align:left;">
+p__Planctomycetes
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+p__Bacteroidetes
+</td>
+<td style="text-align:left;">
+p__Planctomycetes
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+p__Bacteroidetes
+</td>
+<td style="text-align:left;">
+p__Thaumarchaeota
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+p__Proteobacteria
+</td>
+<td style="text-align:left;">
+p__Thaumarchaeota
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+p__Spirochaetes
+</td>
+<td style="text-align:left;">
+p__Verrucomicrobia
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+p__Thaumarchaeota
+</td>
+<td style="text-align:left;">
+p__Verrucomicrobia
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+p__un_k__Bacteria
+</td>
+<td style="text-align:left;">
+p__Verrucomicrobia
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
 </tbody>
-</table>
+</table></div>
 </div>
 <p>Then you can use sankey plot to display the links.</p>
-<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="manipulation.html#cb40-1" aria-hidden="true" tabindex="-1"></a>pcutils<span class="sc">::</span><span class="fu">my_sankey</span>(Phylum_from_to,<span class="at">dragY =</span>T,<span class="at">fontSize =</span> <span class="dv">10</span>,<span class="at">width=</span><span class="dv">400</span>)</span></code></pre></div>
-<div class="figure"><span style="display:block;" id="fig:4-sankey"></span>
-<div id="htmlwidget-62172a946530eb57cc9a" style="width:400px;height:480px;" class="sankeyNetwork html-widget "></div>
-<script type="application/json" data-for="htmlwidget-62172a946530eb57cc9a">{"x":{"links":{"source":[0,0,0,0,0,1,1,1,1,1,2,2,2,2,3,3,4,4,5],"target":[6,7,8,9,10,6,7,8,9,10,7,8,9,10,9,10,9,10,10],"value":[18,4,4,4,35,123,48,10,78,353,7,4,18,99,6,23,23,143,401]},"nodes":{"name":["p__Acidobacteria","p__Actinobacteria","p__Bacteroidetes","p__Chloroflexi","p__Firmicutes","p__Proteobacteria","p__Actinobacteria ","p__Bacteroidetes ","p__Chloroflexi ","p__Firmicutes ","p__Proteobacteria "],"group":["p__Acidobacteria","p__Actinobacteria","p__Bacteroidetes","p__Chloroflexi","p__Firmicutes","p__Proteobacteria","p__Actinobacteria ","p__Bacteroidetes ","p__Chloroflexi ","p__Firmicutes ","p__Proteobacteria "]},"options":{"NodeID":"name","NodeGroup":"name","LinkGroup":null,"colourScale":"d3.scaleOrdinal().range(d3.schemeCategory20)","fontSize":10,"fontFamily":null,"fontColor":null,"nodeWidth":10,"nodePadding":10,"nodeStrokeWidth":1,"nodeCornerRadius":0,"dragX":false,"dragY":true,"numberFormat":",.5g","orderByPath":false,"units":"TWh","margin":{"top":null,"right":null,"bottom":null,"left":null},"iterations":32,"zoom":false,"linkType":"bezier","curvature":0.5,"highlightChildLinks":false,"doubleclickTogglesChildren":false,"showNodeValues":true,"align":"justify","xAxisDomain":["Phylum_from","Phylum_to"],"title":null,"nodeLabelMargin":2,"linkColor":"#A0A0A0","linkOpacity":0.5,"linkGradient":false,"nodeShadow":false,"scaleNodeBreadthsByString":false,"xScalingFactor":1,"yOrderComparator":null}},"evals":[],"jsHooks":[]}</script>
-<p class="caption">
-Figure 4.2: Sankey plot display edges according to Phylum
+<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">pcutils</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/pcutils/man/my_sankey.html">my_sankey</a></span><span class="op">(</span><span class="va">Phylum_from_to</span>,dragY <span class="op">=</span><span class="cn">T</span>,fontSize <span class="op">=</span> <span class="fl">10</span>,width<span class="op">=</span><span class="fl">600</span>,numberFormat <span class="op">=</span> <span class="st">",.4"</span><span class="op">)</span></span></code></pre></div>
+<div class="figure">
+<span style="display:block;" id="fig:4-sankey"></span>
+<div id="htmlwidget-62172a946530eb57cc9a" style="width:600px;height:480px;" class="sankeyNetwork html-widget "></div>
+<script type="application/json" data-for="htmlwidget-62172a946530eb57cc9a">{"x":{"links":{"source":[0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,2,2,2,3,3,3,3,3,3,3,3,3,4,5,5,5,6,6,6,6,7,7,7,7,7,8,9,10,11,11,11,11,11,12,13,14],"target":[15,16,17,18,19,20,21,15,22,16,23,18,19,24,25,26,20,27,28,21,29,16,19,26,20,16,23,18,19,26,20,27,28,21,20,19,20,27,19,24,20,21,19,26,20,27,21,20,20,20,20,27,28,21,29,21,21,21],"value":[18,4,1,4,4,35,1,123,1,48,4,10,78,1,2,9,353,3,1,11,1,1,1,1,3,7,5,4,18,1,99,3,1,4,4,3,14,2,6,2,23,2,23,2,143,2,4,3,4,14,401,5,1,22,2,1,1,1]},"nodes":{"name":["p__Acidobacteria","p__Actinobacteria","p__Armatimonadetes","p__Bacteroidetes","p__Candidatus_Saccharibacteria","p__Chlamydiae","p__Chloroflexi","p__Firmicutes","p__Ignavibacteriae","p__Nitrospirae","p__Planctomycetes","p__Proteobacteria","p__Spirochaetes","p__Thaumarchaeota","p__un_k__Bacteria","p__Actinobacteria ","p__Bacteroidetes ","p__Candidatus_Saccharibacteria ","p__Chloroflexi ","p__Firmicutes ","p__Proteobacteria ","p__Verrucomicrobia ","p__Armatimonadetes ","p__Chlamydiae ","p__Ignavibacteriae ","p__Nitrospirae ","p__Planctomycetes ","p__Spirochaetes ","p__Thaumarchaeota ","p__un_k__Bacteria "],"group":["p__Acidobacteria","p__Actinobacteria","p__Armatimonadetes","p__Bacteroidetes","p__Candidatus_Saccharibacteria","p__Chlamydiae","p__Chloroflexi","p__Firmicutes","p__Ignavibacteriae","p__Nitrospirae","p__Planctomycetes","p__Proteobacteria","p__Spirochaetes","p__Thaumarchaeota","p__un_k__Bacteria","p__Actinobacteria ","p__Bacteroidetes ","p__Candidatus_Saccharibacteria ","p__Chloroflexi ","p__Firmicutes ","p__Proteobacteria ","p__Verrucomicrobia ","p__Armatimonadetes ","p__Chlamydiae ","p__Ignavibacteriae ","p__Nitrospirae ","p__Planctomycetes ","p__Spirochaetes ","p__Thaumarchaeota ","p__un_k__Bacteria "]},"options":{"NodeID":"name","NodeGroup":"name","LinkGroup":null,"colourScale":"d3.scaleOrdinal().range(d3.schemeCategory20)","fontSize":10,"fontFamily":null,"fontColor":null,"nodeWidth":10,"nodePadding":10,"nodeStrokeWidth":1,"nodeCornerRadius":0,"dragX":false,"dragY":true,"numberFormat":",.4","orderByPath":false,"units":"TWh","margin":{"top":null,"right":null,"bottom":null,"left":null},"iterations":32,"zoom":false,"linkType":"bezier","curvature":0.5,"highlightChildLinks":false,"doubleclickTogglesChildren":false,"showNodeValues":true,"align":"justify","xAxisDomain":["Phylum_from","Phylum_to"],"title":null,"nodeLabelMargin":2,"linkColor":"#A0A0A0","linkOpacity":0.5,"linkGradient":false,"nodeShadow":false,"scaleNodeBreadthsByString":false,"xScalingFactor":1,"yOrderComparator":null}},"evals":[],"jsHooks":[]}</script><p class="caption">
+Figure 3.2: Sankey plot display edges according to Phylum
 </p>
 </div>
-<p>Or use the circlize plot to display. <code>link_stat()</code> have more arguments than <code>summ_2col()</code> for summary edges.</p>
-<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="manipulation.html#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anno_vertex</span>(co_net, <span class="fu">select</span>(taxonomy,<span class="st">&quot;Phylum&quot;</span>))<span class="ot">-&gt;</span>co_net1</span>
-<span id="cb41-2"><a href="manipulation.html#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="fu">links_stat</span>(co_net1,<span class="at">group =</span> <span class="st">&quot;Phylum&quot;</span>,<span class="at">inter =</span> <span class="st">&quot;all&quot;</span>,<span class="at">direct =</span> F)</span></code></pre></div>
-<div class="figure"><span style="display:block;" id="fig:4-circlize"></span>
-<img src="MetaNet-Tutorial_files/figure-html/4-circlize-1.png" alt="Circlize plot display edges according to Phylum" width="768" />
-<p class="caption">
-Figure 4.3: Circlize plot display edges according to Phylum
+<p>Or use the circlize plot to display. <code>link_stat()</code> have more arguments than <code><a href="https://rdrr.io/pkg/MetaNet/man/summ_2col.html">summ_2col()</a></code> for summary edges.</p>
+<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/MetaNet/man/anno_vertex.html">anno_vertex</a></span><span class="op">(</span><span class="va">co_net</span>, <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">taxonomy</span>,<span class="st">"Phylum"</span><span class="op">)</span><span class="op">)</span><span class="op">-&gt;</span><span class="va">co_net1</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/MetaNet/man/links_stat.html">links_stat</a></span><span class="op">(</span><span class="va">co_net1</span>,topN <span class="op">=</span> <span class="fl">5</span>,group <span class="op">=</span> <span class="st">"Phylum"</span>,inter <span class="op">=</span> <span class="st">"all"</span><span class="op">)</span></span></code></pre></div>
+<div class="figure">
+<span style="display:block;" id="fig:4-circlize"></span>
+<img src="03-manipulation_files/figure-html/4-circlize-1.png" alt="Circlize plot display edges according to Phylum" width="100%"><p class="caption">
+Figure 3.3: Circlize plot display edges according to Phylum
 </p>
 </div>
-<p>Other important action for a network is extracting the skeleton according to one group, which I call get skeleton plot. <code>get_group_skeleton()</code> can annotate all nodes with a group then combine each group nodes as a big node, and calculate new links between all groups. This plot shows the flows between different groups clearly. By the way, the result will display by different edge types, if you just want summary all edges, set the e_type as one same character (use <code>c_net_set()</code> as <a href="visualization.html#set-attri">5.1.1</a>).</p>
-<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="manipulation.html#cb42-1" aria-hidden="true" tabindex="-1"></a>co_net1<span class="ot">&lt;-</span><span class="fu">c_net_set</span>(co_net,taxonomy,Abundance_df)</span>
-<span id="cb42-2"><a href="manipulation.html#cb42-2" aria-hidden="true" tabindex="-1"></a><span class="fu">get_group_skeleton</span>(co_net1,<span class="at">Group =</span> <span class="st">&quot;Phylum&quot;</span>,<span class="at">direct =</span> F)<span class="ot">-&gt;</span>ske_net</span>
-<span id="cb42-3"><a href="manipulation.html#cb42-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(ske_net,<span class="at">vertex.label=</span><span class="cn">NA</span>)</span></code></pre></div>
-<div class="figure"><span style="display:block;" id="fig:4-skeleton-1"></span>
-<img src="MetaNet-Tutorial_files/figure-html/4-skeleton-1.png" alt="Skeleton plot according to the Phylum." width="768" />
-<p class="caption">
-Figure 4.4: Skeleton plot according to the Phylum.
+<p>Other important action for a network is extracting the skeleton according to one group, which I call get skeleton plot.
+<code><a href="https://rdrr.io/pkg/MetaNet/man/get_group_skeleton.html">get_group_skeleton()</a></code> can annotate all nodes with a group then combine each group nodes as a big node,
+and calculate new links between all groups. This plot shows the flows between different groups clearly.
+By the way, the result will display by different edge types, if you just want summary all edges, set the e_type as one same character (use <code><a href="https://rdrr.io/pkg/MetaNet/man/c_net_set.html">c_net_set()</a></code> as <a href="visualization.html#set-attri">4.1.1</a>).</p>
+<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/MetaNet/man/get_group_skeleton.html">get_group_skeleton</a></span><span class="op">(</span><span class="va">co_net1</span>,Group <span class="op">=</span> <span class="st">"Phylum"</span><span class="op">)</span><span class="op">-&gt;</span><span class="va">ske_net</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">ske_net</span>,vertex.label<span class="op">=</span><span class="cn">NA</span>,legend_position<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span>left_leg_x<span class="op">=</span><span class="op">-</span><span class="fl">2.5</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<div class="figure">
+<span style="display:block;" id="fig:4-skeleton-1"></span>
+<img src="03-manipulation_files/figure-html/4-skeleton-1.png" alt="Skeleton plot according to the Phylum." width="100%"><p class="caption">
+Figure 3.4: Skeleton plot according to the Phylum.
 </p>
 </div>
-<div class="figure"><span style="display:block;" id="fig:4-skeleton-2"></span>
-<img src="MetaNet-Tutorial_files/figure-html/4-skeleton-2.png" alt="Skeleton plot according to the Phylum." width="768" />
-<p class="caption">
-Figure 4.5: Skeleton plot according to the Phylum.
+<div class="figure">
+<span style="display:block;" id="fig:4-skeleton-2"></span>
+<img src="03-manipulation_files/figure-html/4-skeleton-2.png" alt="Skeleton plot according to the Phylum." width="100%"><p class="caption">
+Figure 3.5: Skeleton plot according to the Phylum.
 </p>
 </div>
 </div>
-<div id="export" class="section level2 hasAnchor" number="4.5">
-<h2><span class="header-section-number">4.5</span> Export<a href="manipulation.html#export" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>MetaNet also support to export various format network files (dataframe, graphml,…) for following analysis in other softwares.</p>
-<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="manipulation.html#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">c_net_save</span>(co_net,<span class="at">filename =</span> <span class="st">&quot;My_net&quot;</span>,<span class="at">format =</span> <span class="st">&quot;data.frame&quot;</span>)</span></code></pre></div>
+<div id="export" class="section level2" number="3.5">
+<h2>
+<span class="header-section-number">3.5</span> Export<a class="anchor" aria-label="anchor" href="#export"><i class="fas fa-link"></i></a>
+</h2>
+<p>MetaNet also support to export various format network files (dataframe, graphml,…) for following analysis in other softwares (Cytoscape, Gephi…).</p>
+<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/MetaNet/man/c_net_save.html">c_net_save</a></span><span class="op">(</span><span class="va">co_net</span>,filename <span class="op">=</span> <span class="st">"My_net"</span>,format <span class="op">=</span> <span class="st">"data.frame"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/MetaNet/man/c_net_save.html">c_net_save</a></span><span class="op">(</span><span class="va">co_net</span>,filename <span class="op">=</span> <span class="st">"My_net"</span>,format <span class="op">=</span> <span class="st">"graphml"</span><span class="op">)</span></span></code></pre></div>
 
 </div>
 </div>
-            </section>
+  <div class="chapter-nav">
+<div class="prev"><a href="construction.html"><span class="header-section-number">2</span> Construction</a></div>
+<div class="next"><a href="visualization.html"><span class="header-section-number">4</span> Visualization</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#manipulation"><span class="header-section-number">3</span> Manipulation</a></li>
+<li><a class="nav-link" href="#attributes"><span class="header-section-number">3.1</span> Attributes</a></li>
+<li><a class="nav-link" href="#annotation"><span class="header-section-number">3.2</span> Annotation</a></li>
+<li><a class="nav-link" href="#filter-sub-net"><span class="header-section-number">3.3</span> Filter (Sub-net)</a></li>
+<li><a class="nav-link" href="#skeleton"><span class="header-section-number">3.4</span> Skeleton</a></li>
+<li><a class="nav-link" href="#export"><span class="header-section-number">3.5</span> Export</a></li>
+</ul>
 
-          </div>
-        </div>
-      </div>
-<a href="construction.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="visualization.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
-    </div>
+      <div class="book-extra">
+        <ul class="list-unstyled">
+<li><a id="book-source" href="https://github.com/Asa12138/MetaNet_tutorial/blob/master/03-manipulation.Rmd">View source <i class="fab fa-github"></i></a></li>
+          <li><a id="book-edit" href="https://github.com/Asa12138/MetaNet_tutorial/edit/master/03-manipulation.Rmd">Edit this page <i class="fab fa-github"></i></a></li>
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>MetaNet Tutorial</strong>" was written by Peng Chen. It was last built on 2023-06-25.</p>
   </div>
-<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
-<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
-<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
-<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
-<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
-<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
-<script>
-gitbook.require(["gitbook"], function(gitbook) {
-gitbook.start({
-"sharing": {
-"github": false,
-"facebook": true,
-"twitter": true,
-"linkedin": false,
-"weibo": false,
-"instapaper": false,
-"vk": false,
-"whatsapp": false,
-"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
-},
-"fontsettings": {
-"theme": "white",
-"family": "sans",
-"size": 2
-},
-"edit": {
-"link": "https://github.com/USERNAME/REPO/edit/BRANCH/03-manipulation.Rmd",
-"text": "Edit"
-},
-"history": {
-"link": null,
-"text": null
-},
-"view": {
-"link": null,
-"text": null
-},
-"download": null,
-"search": {
-"engine": "fuse",
-"options": null
-},
-"toc": {
-"collapse": "subsection"
-}
-});
-});
-</script>
 
-<!-- dynamically load mathjax for compatibility with self-contained -->
-<script>
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
@@ -924,7 +1140,22 @@ gitbook.start({
     script.src = src;
     document.getElementsByTagName("head")[0].appendChild(script);
   })();
+</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
+for (let popover of popovers) {
+  const div = document.createElement('div');
+  div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
+  div.innerHTML = popover.getAttribute('data-content');
+
+  var has_math = div.querySelector("span.math");
+  if (has_math) {
+    document.body.appendChild(div);
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, div]);
+    MathJax.Hub.Queue(function() {
+      popover.setAttribute('data-content', div.innerHTML);
+      document.body.removeChild(div);
+    })
+  }
+}
 </script>
 </body>
-
 </html>

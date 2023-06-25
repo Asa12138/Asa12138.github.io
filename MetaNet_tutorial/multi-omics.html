@@ -1,378 +1,201 @@
 <!DOCTYPE html>
-<html lang="" xml:lang="">
+<html lang="en">
 <head>
-
-  <meta charset="utf-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 8 multi-omics | MetaNet Tutorial</title>
-  <meta name="description" content="This is a tutorial for the network analysis R package MetaNet." />
-  <meta name="generator" content="bookdown 0.32 and GitBook 2.6.7" />
-
-  <meta property="og:title" content="Chapter 8 multi-omics | MetaNet Tutorial" />
-  <meta property="og:type" content="book" />
-  
-  <meta property="og:description" content="This is a tutorial for the network analysis R package MetaNet." />
-  <meta name="github-repo" content="rstudio/bookdown-demo" />
-
-  <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 8 multi-omics | MetaNet Tutorial" />
-  
-  <meta name="twitter:description" content="This is a tutorial for the network analysis R package MetaNet." />
-  
-
-<meta name="author" content="Peng Chen" />
-
-
-<meta name="date" content="2023-03-27" />
-
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="apple-mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
-  
-  
-<link rel="prev" href="stability.html"/>
-<link rel="next" href="references.html"/>
-<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
-<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
-
-
-
-
-
-
-
-
-<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
-<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
-
-
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Chapter 7 Multi-omics | MetaNet Tutorial</title>
+<meta name="author" content="Peng Chen">
+<meta name="description" content="7.1 Case study In-depth multi-omic profiling was performed on each sample including plasma proteomics (targeted and untargeted), metabolomics (untargeted), lipidomics (semi-targeted), and gene...">
+<meta name="generator" content="bookdown 0.32 with bs4_book()">
+<meta property="og:title" content="Chapter 7 Multi-omics | MetaNet Tutorial">
+<meta property="og:type" content="book">
+<meta property="og:description" content="7.1 Case study In-depth multi-omic profiling was performed on each sample including plasma proteomics (targeted and untargeted), metabolomics (untargeted), lipidomics (semi-targeted), and gene...">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Chapter 7 Multi-omics | MetaNet Tutorial">
+<meta name="twitter:description" content="7.1 Case study In-depth multi-omic profiling was performed on each sample including plasma proteomics (targeted and untargeted), metabolomics (untargeted), lipidomics (semi-targeted), and gene...">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.4.2/transition.js"></script><script src="libs/bs3compat-0.4.2/tabs.js"></script><script src="libs/bs3compat-0.4.2/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/kePrint-0.0.1/kePrint.js"></script><link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+<script src="libs/htmlwidgets-1.6.1/htmlwidgets.js"></script><script src="libs/sankeyNetwork-binding-0.3.2/sankeyNetwork.js"></script><script src="libs/d3-4.13.0/d3.min.js"></script><script src="libs/sankey-0.1/sankey.js"></script><script src="libs/forceNetwork-binding-0.4/forceNetwork.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
+    
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  </style>
 <style type="text/css">
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-    color: #aaaaaa;
-  }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { color: #008000; } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { color: #008000; font-weight: bold; } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-</style>
-
-<style type="text/css">
-/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
-div.csl-bib-body { }
-div.csl-entry {
-  clear: both;
-}
-.hanging div.csl-entry {
-  margin-left:2em;
-  text-indent:-2em;
-}
-div.csl-left-margin {
-  min-width:2em;
-  float:left;
-}
-div.csl-right-inline {
-  margin-left:2em;
-  padding-left:1em;
-}
-div.csl-indent {
-  margin-left: 2em;
-}
-</style>
-
-<link rel="stylesheet" href="style.css" type="text/css" />
+    /* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+    div.csl-bib-body { }
+    div.csl-entry {
+      clear: both;
+        }
+    .hanging div.csl-entry {
+      margin-left:2em;
+      text-indent:-2em;
+    }
+    div.csl-left-margin {
+      min-width:2em;
+      float:left;
+    }
+    div.csl-right-inline {
+      margin-left:2em;
+      padding-left:1em;
+    }
+    div.csl-indent {
+      margin-left: 2em;
+    }
+  </style>
+<link rel="stylesheet" href="style.css">
 </head>
+<body data-spy="scroll" data-target="#toc">
 
-<body>
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
 
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="">MetaNet Tutorial</a>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
 
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
 
-  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
-
-    <div class="book-summary">
-      <nav role="navigation">
-
-<ul class="summary">
-<li><a href="./">MetaNet tutorial</a></li>
-
-<li class="divider"></li>
-<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> About</a>
-<ul>
-<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#install"><i class="fa fa-check"></i><b>1.1</b> Install</a></li>
-</ul></li>
-<li class="chapter" data-level="2" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>2</b> Introduction</a>
-<ul>
-<li class="chapter" data-level="2.1" data-path="introduction.html"><a href="introduction.html#network"><i class="fa fa-check"></i><b>2.1</b> Network</a></li>
-<li class="chapter" data-level="2.2" data-path="introduction.html"><a href="introduction.html#network-in-omics"><i class="fa fa-check"></i><b>2.2</b> Network in omics</a></li>
-<li class="chapter" data-level="2.3" data-path="introduction.html"><a href="introduction.html#software"><i class="fa fa-check"></i><b>2.3</b> Software</a></li>
-<li class="chapter" data-level="2.4" data-path="introduction.html"><a href="introduction.html#metanet"><i class="fa fa-check"></i><b>2.4</b> MetaNet</a></li>
-</ul></li>
-<li class="chapter" data-level="3" data-path="construction.html"><a href="construction.html"><i class="fa fa-check"></i><b>3</b> Construction</a>
-<ul>
-<li class="chapter" data-level="3.1" data-path="construction.html"><a href="construction.html#normalization"><i class="fa fa-check"></i><b>3.1</b> Pre-processing</a></li>
-<li class="chapter" data-level="3.2" data-path="construction.html"><a href="construction.html#pairwise-relationship"><i class="fa fa-check"></i><b>3.2</b> Pairwise relationship</a>
-<ul>
-<li class="chapter" data-level="3.2.1" data-path="construction.html"><a href="construction.html#correlation"><i class="fa fa-check"></i><b>3.2.1</b> Correlation</a></li>
-<li class="chapter" data-level="3.2.2" data-path="construction.html"><a href="construction.html#distance"><i class="fa fa-check"></i><b>3.2.2</b> Distance</a></li>
-<li class="chapter" data-level="3.2.3" data-path="construction.html"><a href="construction.html#sparcc"><i class="fa fa-check"></i><b>3.2.3</b> SparCC</a></li>
-<li class="chapter" data-level="3.2.4" data-path="construction.html"><a href="construction.html#others"><i class="fa fa-check"></i><b>3.2.4</b> Others</a></li>
-</ul></li>
-<li class="chapter" data-level="3.3" data-path="construction.html"><a href="construction.html#build-network"><i class="fa fa-check"></i><b>3.3</b> Build network</a>
-<ul>
-<li class="chapter" data-level="3.3.1" data-path="construction.html"><a href="construction.html#normally-build"><i class="fa fa-check"></i><b>3.3.1</b> Normally build</a></li>
-<li class="chapter" data-level="3.3.2" data-path="construction.html"><a href="construction.html#multi-tables"><i class="fa fa-check"></i><b>3.3.2</b> Multi-tables</a></li>
-<li class="chapter" data-level="3.3.3" data-path="construction.html"><a href="construction.html#edgelist"><i class="fa fa-check"></i><b>3.3.3</b> Edgelist</a></li>
-</ul></li>
-<li class="chapter" data-level="3.4" data-path="construction.html"><a href="construction.html#rmt-optimize"><i class="fa fa-check"></i><b>3.4</b> RMT optimize</a></li>
-</ul></li>
-<li class="chapter" data-level="4" data-path="manipulation.html"><a href="manipulation.html"><i class="fa fa-check"></i><b>4</b> Manipulation</a>
-<ul>
-<li class="chapter" data-level="4.1" data-path="manipulation.html"><a href="manipulation.html#attributes"><i class="fa fa-check"></i><b>4.1</b> Attributes</a></li>
-<li class="chapter" data-level="4.2" data-path="manipulation.html"><a href="manipulation.html#annotation"><i class="fa fa-check"></i><b>4.2</b> Annotation</a></li>
-<li class="chapter" data-level="4.3" data-path="manipulation.html"><a href="manipulation.html#filter-sub-net"><i class="fa fa-check"></i><b>4.3</b> Filter (Sub-net)</a></li>
-<li class="chapter" data-level="4.4" data-path="manipulation.html"><a href="manipulation.html#skeleton"><i class="fa fa-check"></i><b>4.4</b> Skeleton</a></li>
-<li class="chapter" data-level="4.5" data-path="manipulation.html"><a href="manipulation.html#export"><i class="fa fa-check"></i><b>4.5</b> Export</a></li>
-</ul></li>
-<li class="chapter" data-level="5" data-path="visualization.html"><a href="visualization.html"><i class="fa fa-check"></i><b>5</b> Visualization</a>
-<ul>
-<li class="chapter" data-level="5.1" data-path="visualization.html"><a href="visualization.html#basic-plot"><i class="fa fa-check"></i><b>5.1</b> Basic plot</a>
-<ul>
-<li class="chapter" data-level="5.1.1" data-path="visualization.html"><a href="visualization.html#set-attri"><i class="fa fa-check"></i><b>5.1.1</b> Set attributes</a></li>
-<li class="chapter" data-level="5.1.2" data-path="visualization.html"><a href="visualization.html#plot-setting"><i class="fa fa-check"></i><b>5.1.2</b> Plot setting</a></li>
-</ul></li>
-<li class="chapter" data-level="5.2" data-path="visualization.html"><a href="visualization.html#layout"><i class="fa fa-check"></i><b>5.2</b> Layout</a>
-<ul>
-<li class="chapter" data-level="5.2.1" data-path="visualization.html"><a href="visualization.html#basic-layout"><i class="fa fa-check"></i><b>5.2.1</b> Basic layout</a></li>
-<li class="chapter" data-level="5.2.2" data-path="visualization.html"><a href="visualization.html#group-layout"><i class="fa fa-check"></i><b>5.2.2</b> Group layout</a></li>
-</ul></li>
-<li class="chapter" data-level="5.3" data-path="visualization.html"><a href="visualization.html#other-styles"><i class="fa fa-check"></i><b>5.3</b> Other styles</a>
-<ul>
-<li class="chapter" data-level="5.3.1" data-path="visualization.html"><a href="visualization.html#ggplot"><i class="fa fa-check"></i><b>5.3.1</b> ggplot</a></li>
-<li class="chapter" data-level="5.3.2" data-path="visualization.html"><a href="visualization.html#gephi"><i class="fa fa-check"></i><b>5.3.2</b> Gephi</a></li>
-<li class="chapter" data-level="5.3.3" data-path="visualization.html"><a href="visualization.html#cytoscape"><i class="fa fa-check"></i><b>5.3.3</b> Cytoscape</a></li>
-<li class="chapter" data-level="5.3.4" data-path="visualization.html"><a href="visualization.html#networkd3"><i class="fa fa-check"></i><b>5.3.4</b> NetworkD3</a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="6" data-path="topology.html"><a href="topology.html"><i class="fa fa-check"></i><b>6</b> Topology</a>
-<ul>
-<li class="chapter" data-level="6.1" data-path="topology.html"><a href="topology.html#complex-network"><i class="fa fa-check"></i><b>6.1</b> Complex network</a></li>
-<li class="chapter" data-level="6.2" data-path="topology.html"><a href="topology.html#modules"><i class="fa fa-check"></i><b>6.2</b> Modules</a>
-<ul>
-<li class="chapter" data-level="6.2.1" data-path="topology.html"><a href="topology.html#module-detection"><i class="fa fa-check"></i><b>6.2.1</b> Module detection</a></li>
-<li class="chapter" data-level="6.2.2" data-path="topology.html"><a href="topology.html#keystone"><i class="fa fa-check"></i><b>6.2.2</b> Keystone</a></li>
-</ul></li>
-<li class="chapter" data-level="6.3" data-path="topology.html"><a href="topology.html#topology-indexes"><i class="fa fa-check"></i><b>6.3</b> Topology indexes</a></li>
-<li class="chapter" data-level="6.4" data-path="topology.html"><a href="topology.html#random-network"><i class="fa fa-check"></i><b>6.4</b> Random network</a></li>
-</ul></li>
-<li class="chapter" data-level="7" data-path="stability.html"><a href="stability.html"><i class="fa fa-check"></i><b>7</b> Stability</a>
-<ul>
-<li class="chapter" data-level="7.1" data-path="stability.html"><a href="stability.html#robustness-tests"><i class="fa fa-check"></i><b>7.1</b> Robustness tests</a></li>
-<li class="chapter" data-level="7.2" data-path="stability.html"><a href="stability.html#community-stability"><i class="fa fa-check"></i><b>7.2</b> Community stability</a>
-<ul>
-<li class="chapter" data-level="7.2.1" data-path="stability.html"><a href="stability.html#robustness"><i class="fa fa-check"></i><b>7.2.1</b> Robustness</a></li>
-<li class="chapter" data-level="7.2.2" data-path="stability.html"><a href="stability.html#vulnerability"><i class="fa fa-check"></i><b>7.2.2</b> Vulnerability</a></li>
-<li class="chapter" data-level="7.2.3" data-path="stability.html"><a href="stability.html#cohesion"><i class="fa fa-check"></i><b>7.2.3</b> Cohesion</a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="8" data-path="multi-omics.html"><a href="multi-omics.html"><i class="fa fa-check"></i><b>8</b> multi-omics</a>
-<ul>
-<li class="chapter" data-level="8.1" data-path="multi-omics.html"><a href="multi-omics.html#case-study"><i class="fa fa-check"></i><b>8.1</b> Case study</a></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
-<li class="divider"></li>
-<li><a href="./" target="blank">Author: Peng Chen</a></li>
-
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html">Welcome</a></li>
+<li><a class="" href="introduction.html"><span class="header-section-number">1</span> Introduction</a></li>
+<li><a class="" href="construction.html"><span class="header-section-number">2</span> Construction</a></li>
+<li><a class="" href="manipulation.html"><span class="header-section-number">3</span> Manipulation</a></li>
+<li><a class="" href="visualization.html"><span class="header-section-number">4</span> Visualization</a></li>
+<li><a class="" href="topology.html"><span class="header-section-number">5</span> Topology</a></li>
+<li><a class="" href="stability.html"><span class="header-section-number">6</span> Stability</a></li>
+<li><a class="active" href="Multi-omics.html"><span class="header-section-number">7</span> Multi-omics</a></li>
+<li><a class="" href="references.html">References</a></li>
 </ul>
 
-      </nav>
-    </div>
-
-    <div class="book-body">
-      <div class="body-inner">
-        <div class="book-header" role="navigation">
-          <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">MetaNet Tutorial</a>
-          </h1>
+        <div class="book-extra">
+          <p><a id="book-repo" href="https://github.com/Asa12138/MetaNet_tutorial">View book source <i class="fab fa-github"></i></a></p>
         </div>
-
-        <div class="page-wrapper" tabindex="-1" role="main">
-          <div class="page-inner">
-
-            <section class="normal" id="section-">
-<div id="multi-omics" class="section level1 hasAnchor" number="8">
-<h1><span class="header-section-number">Chapter 8</span> multi-omics<a href="multi-omics.html#multi-omics" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<div id="case-study" class="section level2 hasAnchor" number="8.1">
-<h2><span class="header-section-number">8.1</span> Case study<a href="multi-omics.html#case-study" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>In-depth multi-omic profiling was performed on each sample including plasma proteomics (targeted and untargeted), metabolomics (untargeted), lipidomics (semi-targeted), and gene expression (transcriptomics) from peripheral blood mononuclear cells (PBMCs).(<span class="citation">Contrepois et al. (<a href="#ref-contrepoisMolecularChoreographyAcute2020" role="doc-biblioref">2020</a>)</span>)</p>
-<div class="figure"><span style="display:block;" id="fig:cell-study"></span>
-<img src="images/7-1.cell_study.png" alt="Overview of the study design including an acute bout of exercise" width="483" />
-<p class="caption">
-Figure 8.1: Overview of the study design including an acute bout of exercise
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="Multi-omics" class="section level1" number="7">
+<h1>
+<span class="header-section-number">7</span> Multi-omics<a class="anchor" aria-label="anchor" href="#Multi-omics"><i class="fas fa-link"></i></a>
+</h1>
+<div id="case-study" class="section level2" number="7.1">
+<h2>
+<span class="header-section-number">7.1</span> Case study<a class="anchor" aria-label="anchor" href="#case-study"><i class="fas fa-link"></i></a>
+</h2>
+<p>In-depth multi-omic profiling was performed on each sample including plasma proteomics (targeted and untargeted),
+metabolomics (untargeted), lipidomics (semi-targeted), and gene expression (transcriptomics) from peripheral blood mononuclear cells (PBMCs) <span class="citation">(<a href="references.html#ref-contrepoisMolecularChoreographyAcute2020"><em>9</em></a>)</span>.</p>
+<div class="figure">
+<span style="display:block;" id="fig:cell-study"></span>
+<img src="images/7-1.cell_study.png" alt="Overview of the study design including an acute bout of exercise" width="100%"><p class="caption">
+Figure 7.1: Overview of the study design including an acute bout of exercise
 </p>
 </div>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="multi-omics.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">list.files</span>(<span class="st">&quot;../exercise/&quot;</span>,<span class="at">pattern =</span><span class="st">&quot;*.csv&quot;</span> )</span>
-<span id="cb1-2"><a href="multi-omics.html#cb1-2" aria-hidden="true" tabindex="-1"></a>Lipidomics<span class="ot">=</span><span class="fu">read.csv</span>(<span class="st">&quot;../exercise/Lipidomics.csv&quot;</span>,<span class="at">check.names =</span> F,<span class="at">row.names =</span> <span class="dv">1</span>)</span>
-<span id="cb1-3"><a href="multi-omics.html#cb1-3" aria-hidden="true" tabindex="-1"></a>Metabolomics<span class="ot">=</span><span class="fu">read.csv</span>(<span class="st">&quot;../exercise/Metabolomics.csv&quot;</span>,<span class="at">check.names =</span> F,<span class="at">row.names =</span> <span class="dv">1</span>)</span>
-<span id="cb1-4"><a href="multi-omics.html#cb1-4" aria-hidden="true" tabindex="-1"></a>Proteomics<span class="ot">=</span><span class="fu">read.csv</span>(<span class="st">&quot;../exercise/Proteomics.csv&quot;</span>,<span class="at">check.names =</span> F,<span class="at">row.names =</span> <span class="dv">1</span>)</span>
-<span id="cb1-5"><a href="multi-omics.html#cb1-5" aria-hidden="true" tabindex="-1"></a>Targ.proteomics<span class="ot">=</span><span class="fu">read.csv</span>(<span class="st">&quot;../exercise/Targ.proteomics.csv&quot;</span>,<span class="at">check.names =</span> F,<span class="at">row.names =</span> <span class="dv">1</span>)</span>
-<span id="cb1-6"><a href="multi-omics.html#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co">#a little big</span></span>
-<span id="cb1-7"><a href="multi-omics.html#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co">#Transcriptomics=read.csv(&quot;../exercise/Transcriptomics_VST_excl_3participants.csv&quot;,check.names = F,row.names = 1)</span></span>
-<span id="cb1-8"><a href="multi-omics.html#cb1-8" aria-hidden="true" tabindex="-1"></a>all_omics<span class="ot">=</span><span class="fu">list</span>(<span class="at">Lipidomics=</span>Lipidomics,<span class="at">Metabolomics=</span>Metabolomics,<span class="at">Proteomics=</span>Proteomics,<span class="at">Targ.proteomics=</span>Targ.proteomics)</span>
-<span id="cb1-9"><a href="multi-omics.html#cb1-9" aria-hidden="true" tabindex="-1"></a>all_omics<span class="ot">=</span><span class="fu">lapply</span>(all_omics,\(i){i[,<span class="fu">unique</span>(<span class="fu">colnames</span>(i))]})</span>
-<span id="cb1-10"><a href="multi-omics.html#cb1-10" aria-hidden="true" tabindex="-1"></a>all_omics<span class="ot">=</span><span class="fu">lapply</span>(all_omics,\(i){i[<span class="fu">is.na</span>(i)]<span class="ot">=</span><span class="dv">0</span>;i})</span>
-<span id="cb1-11"><a href="multi-omics.html#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="co">#all_omics=lapply(all_omics, trans,method = &quot;hellinger&quot;,margin=1)</span></span>
-<span id="cb1-12"><a href="multi-omics.html#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-13"><a href="multi-omics.html#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="fu">lapply</span>(all_omics,rownames)<span class="sc">%&gt;%</span><span class="fu">venn</span>()</span>
-<span id="cb1-14"><a href="multi-omics.html#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-15"><a href="multi-omics.html#cb1-15" aria-hidden="true" tabindex="-1"></a>multi_net<span class="ot">=</span><span class="fu">multi_net_build</span>(all_omics,<span class="at">method =</span> <span class="st">&quot;spearman&quot;</span>,<span class="at">p.adjust.method=</span><span class="st">&quot;fdr&quot;</span>,</span>
-<span id="cb1-16"><a href="multi-omics.html#cb1-16" aria-hidden="true" tabindex="-1"></a>                          <span class="at">r_thres =</span> <span class="fl">0.7</span>, <span class="at">p_thres =</span> <span class="fl">0.05</span>)</span>
-<span id="cb1-17"><a href="multi-omics.html#cb1-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-18"><a href="multi-omics.html#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="fu">c_net_lay</span>(multi_net)<span class="ot">-&gt;</span>coors</span>
-<span id="cb1-19"><a href="multi-omics.html#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(multi_net,coors,<span class="at">legend_number=</span>T)</span>
-<span id="cb1-20"><a href="multi-omics.html#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="fu">fit_power</span>(multi_net)</span>
-<span id="cb1-21"><a href="multi-omics.html#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="fu">net_par</span>(multi_net,<span class="st">&quot;n&quot;</span>)</span>
-<span id="cb1-22"><a href="multi-omics.html#cb1-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-23"><a href="multi-omics.html#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="fu">g_lay_polygon</span>(multi_net)<span class="ot">-&gt;</span>g_coors</span>
-<span id="cb1-24"><a href="multi-omics.html#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(multi_net,g_coors,<span class="at">legend_number=</span>T,<span class="at">vertex.size=</span><span class="dv">2</span>)</span>
-<span id="cb1-25"><a href="multi-omics.html#cb1-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-26"><a href="multi-omics.html#cb1-26" aria-hidden="true" tabindex="-1"></a><span class="fu">c_net_save</span>(multi_net,<span class="st">&quot;multi_net&quot;</span>,<span class="at">format =</span> <span class="st">&quot;graphml&quot;</span>)</span>
-<span id="cb1-27"><a href="multi-omics.html#cb1-27" aria-hidden="true" tabindex="-1"></a><span class="co">#use gephi to adjust</span></span>
-<span id="cb1-28"><a href="multi-omics.html#cb1-28" aria-hidden="true" tabindex="-1"></a>gephi<span class="ot">=</span><span class="fu">input_gephi</span>(<span class="st">&quot;multi_net_gephi.graphml&quot;</span>)</span>
-<span id="cb1-29"><a href="multi-omics.html#cb1-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-30"><a href="multi-omics.html#cb1-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-31"><a href="multi-omics.html#cb1-31" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(multi_net,gephi<span class="sc">$</span>coors,<span class="at">vertex.size=</span><span class="dv">2</span>,<span class="at">legend_number=</span>T)</span></code></pre></div>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="multi-omics.html#cb2-1" aria-hidden="true" tabindex="-1"></a>metatbl<span class="ot">=</span>readxl<span class="sc">::</span><span class="fu">read_xlsx</span>(<span class="st">&quot;../exercise/1-s2.0-S0092867420305080-mmc1.xlsx&quot;</span>,<span class="at">sheet =</span> <span class="st">&quot;meta&quot;</span>)</span>
-<span id="cb2-2"><a href="multi-omics.html#cb2-2" aria-hidden="true" tabindex="-1"></a>anno<span class="ot">=</span>readxl<span class="sc">::</span><span class="fu">read_xlsx</span>(<span class="st">&quot;../exercise/1-s2.0-S0092867420305080-mmc1.xlsx&quot;</span>,<span class="at">sheet =</span> <span class="st">&quot;anno&quot;</span>)</span></code></pre></div>
-</div>
-</div>
-<h3>References<a href="references.html#references" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div id="refs" class="references csl-bib-body hanging-indent">
-<div id="ref-contrepoisMolecularChoreographyAcute2020" class="csl-entry">
-Contrepois, Kévin, Si Wu, Kegan J. Moneghetti, Daniel Hornburg, Sara Ahadi, Ming-Shian Tsai, Ahmed A. Metwally, et al. 2020. <span>“Molecular <span>Choreography</span> of <span>Acute Exercise</span>.”</span> <em>Cell</em> 181 (5): 1112–1130.e16. <a href="https://doi.org/10.1016/j.cell.2020.04.043">https://doi.org/10.1016/j.cell.2020.04.043</a>.
-</div>
-</div>
-            </section>
+<div class="sourceCode" id="cb57"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/list.files.html">list.files</a></span><span class="op">(</span><span class="st">"../exercise/"</span>,pattern <span class="op">=</span><span class="st">"*.csv"</span> <span class="op">)</span></span>
+<span><span class="va">Lipidomics</span><span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.csv</a></span><span class="op">(</span><span class="st">"../exercise/Lipidomics.csv"</span>,check.names <span class="op">=</span> <span class="cn">F</span>,row.names <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span>
+<span><span class="va">Metabolomics</span><span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.csv</a></span><span class="op">(</span><span class="st">"../exercise/Metabolomics.csv"</span>,check.names <span class="op">=</span> <span class="cn">F</span>,row.names <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span>
+<span><span class="va">Proteomics</span><span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.csv</a></span><span class="op">(</span><span class="st">"../exercise/Proteomics.csv"</span>,check.names <span class="op">=</span> <span class="cn">F</span>,row.names <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span>
+<span><span class="va">Targ.proteomics</span><span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.csv</a></span><span class="op">(</span><span class="st">"../exercise/Targ.proteomics.csv"</span>,check.names <span class="op">=</span> <span class="cn">F</span>,row.names <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span>
+<span><span class="co">#a little big</span></span>
+<span><span class="co">#Transcriptomics=read.csv("../exercise/Transcriptomics_VST_excl_3participants.csv",check.names = F,row.names = 1)</span></span>
+<span><span class="va">all_omics</span><span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>Lipidomics<span class="op">=</span><span class="va">Lipidomics</span>,Metabolomics<span class="op">=</span><span class="va">Metabolomics</span>,Proteomics<span class="op">=</span><span class="va">Proteomics</span>,Targ.proteomics<span class="op">=</span><span class="va">Targ.proteomics</span><span class="op">)</span></span>
+<span><span class="va">all_omics</span><span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/lapply.html">lapply</a></span><span class="op">(</span><span class="va">all_omics</span>,\<span class="op">(</span><span class="va">i</span><span class="op">)</span><span class="op">{</span><span class="va">i</span><span class="op">[</span>,<span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span><span class="op">(</span><span class="va">i</span><span class="op">)</span><span class="op">)</span><span class="op">]</span><span class="op">}</span><span class="op">)</span></span>
+<span><span class="va">all_omics</span><span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/lapply.html">lapply</a></span><span class="op">(</span><span class="va">all_omics</span>,\<span class="op">(</span><span class="va">i</span><span class="op">)</span><span class="op">{</span><span class="va">i</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">i</span><span class="op">)</span><span class="op">]</span><span class="op">=</span><span class="fl">0</span>;<span class="va">i</span><span class="op">}</span><span class="op">)</span></span>
+<span><span class="co">#all_omics=lapply(all_omics, trans,method = "hellinger",margin=1)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/lapply.html">lapply</a></span><span class="op">(</span><span class="va">all_omics</span>,<span class="va">rownames</span><span class="op">)</span><span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span><span class="fu"><a href="https://rdrr.io/pkg/pcutils/man/venn.html">venn</a></span><span class="op">(</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">multi_net</span><span class="op">=</span><span class="fu"><a href="https://rdrr.io/pkg/MetaNet/man/multi_net_build.html">multi_net_build</a></span><span class="op">(</span><span class="va">all_omics</span>,method <span class="op">=</span> <span class="st">"spearman"</span>,p.adjust.method<span class="op">=</span><span class="st">"fdr"</span>,</span>
+<span>                          r_thres <span class="op">=</span> <span class="fl">0.7</span>, p_thres <span class="op">=</span> <span class="fl">0.05</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/MetaNet/man/c_net_lay.html">c_net_lay</a></span><span class="op">(</span><span class="va">multi_net</span><span class="op">)</span><span class="op">-&gt;</span><span class="va">coors</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">multi_net</span>,<span class="va">coors</span>,legend_number<span class="op">=</span><span class="cn">T</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/MetaNet/man/fit_power.html">fit_power</a></span><span class="op">(</span><span class="va">multi_net</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/MetaNet/man/net_par.html">net_par</a></span><span class="op">(</span><span class="va">multi_net</span>,<span class="st">"n"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/MetaNet/man/g_lay_polygon.html">g_lay_polygon</a></span><span class="op">(</span><span class="va">multi_net</span><span class="op">)</span><span class="op">-&gt;</span><span class="va">g_coors</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">multi_net</span>,<span class="va">g_coors</span>,legend_number<span class="op">=</span><span class="cn">T</span>,vertex.size<span class="op">=</span><span class="fl">2</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/MetaNet/man/c_net_save.html">c_net_save</a></span><span class="op">(</span><span class="va">multi_net</span>,<span class="st">"multi_net"</span>,format <span class="op">=</span> <span class="st">"graphml"</span><span class="op">)</span></span>
+<span><span class="co">#use gephi to adjust</span></span>
+<span><span class="va">gephi</span><span class="op">=</span><span class="fu"><a href="https://rdrr.io/pkg/MetaNet/man/input_gephi.html">input_gephi</a></span><span class="op">(</span><span class="st">"multi_net_gephi.graphml"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">multi_net</span>,<span class="va">gephi</span><span class="op">$</span><span class="va">coors</span>,vertex.size<span class="op">=</span><span class="fl">2</span>,legend_number<span class="op">=</span><span class="cn">T</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb58"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">metatbl</span><span class="op">=</span><span class="fu">readxl</span><span class="fu">::</span><span class="fu"><a href="https://readxl.tidyverse.org/reference/read_excel.html">read_xlsx</a></span><span class="op">(</span><span class="st">"../exercise/1-s2.0-S0092867420305080-mmc1.xlsx"</span>,sheet <span class="op">=</span> <span class="st">"meta"</span><span class="op">)</span></span>
+<span><span class="va">anno</span><span class="op">=</span><span class="fu">readxl</span><span class="fu">::</span><span class="fu"><a href="https://readxl.tidyverse.org/reference/read_excel.html">read_xlsx</a></span><span class="op">(</span><span class="st">"../exercise/1-s2.0-S0092867420305080-mmc1.xlsx"</span>,sheet <span class="op">=</span> <span class="st">"anno"</span><span class="op">)</span></span></code></pre></div>
 
-          </div>
-        </div>
-      </div>
-<a href="stability.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="references.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
-    </div>
+</div>
+</div>
+  <div class="chapter-nav">
+<div class="prev"><a href="stability.html"><span class="header-section-number">6</span> Stability</a></div>
+<div class="next"><a href="references.html">References</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#Multi-omics"><span class="header-section-number">7</span> Multi-omics</a></li>
+<li><a class="nav-link" href="#case-study"><span class="header-section-number">7.1</span> Case study</a></li>
+</ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+<li><a id="book-source" href="https://github.com/Asa12138/MetaNet_tutorial/blob/master/07-multi-omics.Rmd">View source <i class="fab fa-github"></i></a></li>
+          <li><a id="book-edit" href="https://github.com/Asa12138/MetaNet_tutorial/edit/master/07-multi-omics.Rmd">Edit this page <i class="fab fa-github"></i></a></li>
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>MetaNet Tutorial</strong>" was written by Peng Chen. It was last built on 2023-06-25.</p>
   </div>
-<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
-<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
-<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
-<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
-<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
-<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
-<script>
-gitbook.require(["gitbook"], function(gitbook) {
-gitbook.start({
-"sharing": {
-"github": false,
-"facebook": true,
-"twitter": true,
-"linkedin": false,
-"weibo": false,
-"instapaper": false,
-"vk": false,
-"whatsapp": false,
-"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
-},
-"fontsettings": {
-"theme": "white",
-"family": "sans",
-"size": 2
-},
-"edit": {
-"link": "https://github.com/USERNAME/REPO/edit/BRANCH/07-multi-omics.Rmd",
-"text": "Edit"
-},
-"history": {
-"link": null,
-"text": null
-},
-"view": {
-"link": null,
-"text": null
-},
-"download": null,
-"search": {
-"engine": "fuse",
-"options": null
-},
-"toc": {
-"collapse": "subsection"
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
+for (let popover of popovers) {
+  const div = document.createElement('div');
+  div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
+  div.innerHTML = popover.getAttribute('data-content');
+
+  var has_math = div.querySelector("span.math");
+  if (has_math) {
+    document.body.appendChild(div);
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, div]);
+    MathJax.Hub.Queue(function() {
+      popover.setAttribute('data-content', div.innerHTML);
+      document.body.removeChild(div);
+    })
+  }
 }
-});
-});
 </script>
-
 </body>
-
 </html>

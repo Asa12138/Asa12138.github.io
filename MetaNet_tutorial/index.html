@@ -1,400 +1,187 @@
 <!DOCTYPE html>
-<html lang="" xml:lang="">
+<html lang="en">
 <head>
-
-  <meta charset="utf-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>MetaNet Tutorial</title>
-  <meta name="description" content="This is a tutorial for the network analysis R package MetaNet." />
-  <meta name="generator" content="bookdown 0.32 and GitBook 2.6.7" />
-
-  <meta property="og:title" content="MetaNet Tutorial" />
-  <meta property="og:type" content="book" />
-  
-  <meta property="og:description" content="This is a tutorial for the network analysis R package MetaNet." />
-  <meta name="github-repo" content="rstudio/bookdown-demo" />
-
-  <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="MetaNet Tutorial" />
-  
-  <meta name="twitter:description" content="This is a tutorial for the network analysis R package MetaNet." />
-  
-
-<meta name="author" content="Peng Chen" />
-
-
-<meta name="date" content="2023-03-27" />
-
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="apple-mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
-  
-  
-
-<link rel="next" href="introduction.html"/>
-<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
-<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
-
-
-
-
-
-
-
-
-<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
-<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
-<script src="libs/kePrint-0.0.1/kePrint.js"></script>
-<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
-<script src="libs/htmlwidgets-1.6.1/htmlwidgets.js"></script>
-<script src="libs/sankeyNetwork-binding-0.3.2/sankeyNetwork.js"></script>
-<script src="libs/d3-4.13.0/d3.min.js"></script>
-<script src="libs/sankey-0.1/sankey.js"></script>
-<script src="libs/forceNetwork-binding-0.4/forceNetwork.js"></script>
-
-
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Welcome | MetaNet Tutorial</title>
+<meta name="author" content="Peng Chen">
+<meta name="description" content="This is a tutorial for the network analysis R package MetaNet.">
+<meta name="generator" content="bookdown 0.32 with bs4_book()">
+<meta property="og:title" content="Welcome | MetaNet Tutorial">
+<meta property="og:type" content="book">
+<meta property="og:description" content="This is a tutorial for the network analysis R package MetaNet.">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Welcome | MetaNet Tutorial">
+<meta name="twitter:description" content="This is a tutorial for the network analysis R package MetaNet.">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.4.2/transition.js"></script><script src="libs/bs3compat-0.4.2/tabs.js"></script><script src="libs/bs3compat-0.4.2/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/kePrint-0.0.1/kePrint.js"></script><link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+<script src="libs/htmlwidgets-1.6.1/htmlwidgets.js"></script><script src="libs/sankeyNetwork-binding-0.3.2/sankeyNetwork.js"></script><script src="libs/d3-4.13.0/d3.min.js"></script><script src="libs/sankey-0.1/sankey.js"></script><script src="libs/forceNetwork-binding-0.4/forceNetwork.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
+    
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  </style>
 <style type="text/css">
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-    color: #aaaaaa;
-  }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { color: #008000; } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { color: #008000; font-weight: bold; } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-</style>
-
-<style type="text/css">
-/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
-div.csl-bib-body { }
-div.csl-entry {
-  clear: both;
-}
-.hanging div.csl-entry {
-  margin-left:2em;
-  text-indent:-2em;
-}
-div.csl-left-margin {
-  min-width:2em;
-  float:left;
-}
-div.csl-right-inline {
-  margin-left:2em;
-  padding-left:1em;
-}
-div.csl-indent {
-  margin-left: 2em;
-}
-</style>
-
-<link rel="stylesheet" href="style.css" type="text/css" />
+    /* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+    div.csl-bib-body { }
+    div.csl-entry {
+      clear: both;
+        }
+    .hanging div.csl-entry {
+      margin-left:2em;
+      text-indent:-2em;
+    }
+    div.csl-left-margin {
+      min-width:2em;
+      float:left;
+    }
+    div.csl-right-inline {
+      margin-left:2em;
+      padding-left:1em;
+    }
+    div.csl-indent {
+      margin-left: 2em;
+    }
+  </style>
+<link rel="stylesheet" href="style.css">
 </head>
+<body data-spy="scroll" data-target="#toc">
 
-<body>
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
 
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="">MetaNet Tutorial</a>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
 
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
 
-  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
-
-    <div class="book-summary">
-      <nav role="navigation">
-
-<ul class="summary">
-<li><a href="./">MetaNet tutorial</a></li>
-
-<li class="divider"></li>
-<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> About</a>
-<ul>
-<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#install"><i class="fa fa-check"></i><b>1.1</b> Install</a></li>
-</ul></li>
-<li class="chapter" data-level="2" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>2</b> Introduction</a>
-<ul>
-<li class="chapter" data-level="2.1" data-path="introduction.html"><a href="introduction.html#network"><i class="fa fa-check"></i><b>2.1</b> Network</a></li>
-<li class="chapter" data-level="2.2" data-path="introduction.html"><a href="introduction.html#network-in-omics"><i class="fa fa-check"></i><b>2.2</b> Network in omics</a></li>
-<li class="chapter" data-level="2.3" data-path="introduction.html"><a href="introduction.html#software"><i class="fa fa-check"></i><b>2.3</b> Software</a></li>
-<li class="chapter" data-level="2.4" data-path="introduction.html"><a href="introduction.html#metanet"><i class="fa fa-check"></i><b>2.4</b> MetaNet</a></li>
-</ul></li>
-<li class="chapter" data-level="3" data-path="construction.html"><a href="construction.html"><i class="fa fa-check"></i><b>3</b> Construction</a>
-<ul>
-<li class="chapter" data-level="3.1" data-path="construction.html"><a href="construction.html#normalization"><i class="fa fa-check"></i><b>3.1</b> Pre-processing</a></li>
-<li class="chapter" data-level="3.2" data-path="construction.html"><a href="construction.html#pairwise-relationship"><i class="fa fa-check"></i><b>3.2</b> Pairwise relationship</a>
-<ul>
-<li class="chapter" data-level="3.2.1" data-path="construction.html"><a href="construction.html#correlation"><i class="fa fa-check"></i><b>3.2.1</b> Correlation</a></li>
-<li class="chapter" data-level="3.2.2" data-path="construction.html"><a href="construction.html#distance"><i class="fa fa-check"></i><b>3.2.2</b> Distance</a></li>
-<li class="chapter" data-level="3.2.3" data-path="construction.html"><a href="construction.html#sparcc"><i class="fa fa-check"></i><b>3.2.3</b> SparCC</a></li>
-<li class="chapter" data-level="3.2.4" data-path="construction.html"><a href="construction.html#others"><i class="fa fa-check"></i><b>3.2.4</b> Others</a></li>
-</ul></li>
-<li class="chapter" data-level="3.3" data-path="construction.html"><a href="construction.html#build-network"><i class="fa fa-check"></i><b>3.3</b> Build network</a>
-<ul>
-<li class="chapter" data-level="3.3.1" data-path="construction.html"><a href="construction.html#normally-build"><i class="fa fa-check"></i><b>3.3.1</b> Normally build</a></li>
-<li class="chapter" data-level="3.3.2" data-path="construction.html"><a href="construction.html#multi-tables"><i class="fa fa-check"></i><b>3.3.2</b> Multi-tables</a></li>
-<li class="chapter" data-level="3.3.3" data-path="construction.html"><a href="construction.html#edgelist"><i class="fa fa-check"></i><b>3.3.3</b> Edgelist</a></li>
-</ul></li>
-<li class="chapter" data-level="3.4" data-path="construction.html"><a href="construction.html#rmt-optimize"><i class="fa fa-check"></i><b>3.4</b> RMT optimize</a></li>
-</ul></li>
-<li class="chapter" data-level="4" data-path="manipulation.html"><a href="manipulation.html"><i class="fa fa-check"></i><b>4</b> Manipulation</a>
-<ul>
-<li class="chapter" data-level="4.1" data-path="manipulation.html"><a href="manipulation.html#attributes"><i class="fa fa-check"></i><b>4.1</b> Attributes</a></li>
-<li class="chapter" data-level="4.2" data-path="manipulation.html"><a href="manipulation.html#annotation"><i class="fa fa-check"></i><b>4.2</b> Annotation</a></li>
-<li class="chapter" data-level="4.3" data-path="manipulation.html"><a href="manipulation.html#filter-sub-net"><i class="fa fa-check"></i><b>4.3</b> Filter (Sub-net)</a></li>
-<li class="chapter" data-level="4.4" data-path="manipulation.html"><a href="manipulation.html#skeleton"><i class="fa fa-check"></i><b>4.4</b> Skeleton</a></li>
-<li class="chapter" data-level="4.5" data-path="manipulation.html"><a href="manipulation.html#export"><i class="fa fa-check"></i><b>4.5</b> Export</a></li>
-</ul></li>
-<li class="chapter" data-level="5" data-path="visualization.html"><a href="visualization.html"><i class="fa fa-check"></i><b>5</b> Visualization</a>
-<ul>
-<li class="chapter" data-level="5.1" data-path="visualization.html"><a href="visualization.html#basic-plot"><i class="fa fa-check"></i><b>5.1</b> Basic plot</a>
-<ul>
-<li class="chapter" data-level="5.1.1" data-path="visualization.html"><a href="visualization.html#set-attri"><i class="fa fa-check"></i><b>5.1.1</b> Set attributes</a></li>
-<li class="chapter" data-level="5.1.2" data-path="visualization.html"><a href="visualization.html#plot-setting"><i class="fa fa-check"></i><b>5.1.2</b> Plot setting</a></li>
-</ul></li>
-<li class="chapter" data-level="5.2" data-path="visualization.html"><a href="visualization.html#layout"><i class="fa fa-check"></i><b>5.2</b> Layout</a>
-<ul>
-<li class="chapter" data-level="5.2.1" data-path="visualization.html"><a href="visualization.html#basic-layout"><i class="fa fa-check"></i><b>5.2.1</b> Basic layout</a></li>
-<li class="chapter" data-level="5.2.2" data-path="visualization.html"><a href="visualization.html#group-layout"><i class="fa fa-check"></i><b>5.2.2</b> Group layout</a></li>
-</ul></li>
-<li class="chapter" data-level="5.3" data-path="visualization.html"><a href="visualization.html#other-styles"><i class="fa fa-check"></i><b>5.3</b> Other styles</a>
-<ul>
-<li class="chapter" data-level="5.3.1" data-path="visualization.html"><a href="visualization.html#ggplot"><i class="fa fa-check"></i><b>5.3.1</b> ggplot</a></li>
-<li class="chapter" data-level="5.3.2" data-path="visualization.html"><a href="visualization.html#gephi"><i class="fa fa-check"></i><b>5.3.2</b> Gephi</a></li>
-<li class="chapter" data-level="5.3.3" data-path="visualization.html"><a href="visualization.html#cytoscape"><i class="fa fa-check"></i><b>5.3.3</b> Cytoscape</a></li>
-<li class="chapter" data-level="5.3.4" data-path="visualization.html"><a href="visualization.html#networkd3"><i class="fa fa-check"></i><b>5.3.4</b> NetworkD3</a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="6" data-path="topology.html"><a href="topology.html"><i class="fa fa-check"></i><b>6</b> Topology</a>
-<ul>
-<li class="chapter" data-level="6.1" data-path="topology.html"><a href="topology.html#complex-network"><i class="fa fa-check"></i><b>6.1</b> Complex network</a></li>
-<li class="chapter" data-level="6.2" data-path="topology.html"><a href="topology.html#modules"><i class="fa fa-check"></i><b>6.2</b> Modules</a>
-<ul>
-<li class="chapter" data-level="6.2.1" data-path="topology.html"><a href="topology.html#module-detection"><i class="fa fa-check"></i><b>6.2.1</b> Module detection</a></li>
-<li class="chapter" data-level="6.2.2" data-path="topology.html"><a href="topology.html#keystone"><i class="fa fa-check"></i><b>6.2.2</b> Keystone</a></li>
-</ul></li>
-<li class="chapter" data-level="6.3" data-path="topology.html"><a href="topology.html#topology-indexes"><i class="fa fa-check"></i><b>6.3</b> Topology indexes</a></li>
-<li class="chapter" data-level="6.4" data-path="topology.html"><a href="topology.html#random-network"><i class="fa fa-check"></i><b>6.4</b> Random network</a></li>
-</ul></li>
-<li class="chapter" data-level="7" data-path="stability.html"><a href="stability.html"><i class="fa fa-check"></i><b>7</b> Stability</a>
-<ul>
-<li class="chapter" data-level="7.1" data-path="stability.html"><a href="stability.html#robustness-tests"><i class="fa fa-check"></i><b>7.1</b> Robustness tests</a></li>
-<li class="chapter" data-level="7.2" data-path="stability.html"><a href="stability.html#community-stability"><i class="fa fa-check"></i><b>7.2</b> Community stability</a>
-<ul>
-<li class="chapter" data-level="7.2.1" data-path="stability.html"><a href="stability.html#robustness"><i class="fa fa-check"></i><b>7.2.1</b> Robustness</a></li>
-<li class="chapter" data-level="7.2.2" data-path="stability.html"><a href="stability.html#vulnerability"><i class="fa fa-check"></i><b>7.2.2</b> Vulnerability</a></li>
-<li class="chapter" data-level="7.2.3" data-path="stability.html"><a href="stability.html#cohesion"><i class="fa fa-check"></i><b>7.2.3</b> Cohesion</a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="8" data-path="multi-omics.html"><a href="multi-omics.html"><i class="fa fa-check"></i><b>8</b> multi-omics</a>
-<ul>
-<li class="chapter" data-level="8.1" data-path="multi-omics.html"><a href="multi-omics.html#case-study"><i class="fa fa-check"></i><b>8.1</b> Case study</a></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
-<li class="divider"></li>
-<li><a href="./" target="blank">Author: Peng Chen</a></li>
-
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="active" href="index.html">Welcome</a></li>
+<li><a class="" href="introduction.html"><span class="header-section-number">1</span> Introduction</a></li>
+<li><a class="" href="construction.html"><span class="header-section-number">2</span> Construction</a></li>
+<li><a class="" href="manipulation.html"><span class="header-section-number">3</span> Manipulation</a></li>
+<li><a class="" href="visualization.html"><span class="header-section-number">4</span> Visualization</a></li>
+<li><a class="" href="topology.html"><span class="header-section-number">5</span> Topology</a></li>
+<li><a class="" href="stability.html"><span class="header-section-number">6</span> Stability</a></li>
+<li><a class="" href="Multi-omics.html"><span class="header-section-number">7</span> Multi-omics</a></li>
+<li><a class="" href="references.html">References</a></li>
 </ul>
 
+        <div class="book-extra">
+          <p><a id="book-repo" href="https://github.com/Asa12138/MetaNet_tutorial">View book source <i class="fab fa-github"></i></a></p>
+        </div>
       </nav>
-    </div>
-
-    <div class="book-body">
-      <div class="body-inner">
-        <div class="book-header" role="navigation">
-          <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">MetaNet Tutorial</a>
-          </h1>
-        </div>
-
-        <div class="page-wrapper" tabindex="-1" role="main">
-          <div class="page-inner">
-
-            <section class="normal" id="section-">
-<div id="header">
-<h1 class="title">MetaNet Tutorial</h1>
-<p class="author"><em>Peng Chen</em></p>
-<p class="date"><em>2023-03-27</em></p>
 </div>
-<div id="about" class="section level1 hasAnchor" number="1">
-<h1><span class="header-section-number">Chapter 1</span> About<a href="index.html#about" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<div id="install" class="section level2 hasAnchor" number="1.1">
-<h2><span class="header-section-number">1.1</span> Install<a href="index.html#install" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><!--bookdown:title:end--><!--bookdown:title:start--><div id="welcome" class="section level1 unnumbered">
+<h1>Welcome<a class="anchor" aria-label="anchor" href="#welcome"><i class="fas fa-link"></i></a>
+</h1>
+<div id="install" class="section level2 unnumbered">
+<h2>Install<a class="anchor" aria-label="anchor" href="#install"><i class="fas fa-link"></i></a>
+</h2>
 <p>MetaNet is a comprehensive network analysis package, especially in various biological omics.</p>
-<p>The latest version can be found in <a href="https://github.com/Asa12138/MetaNet" class="uri">https://github.com/Asa12138/MetaNet</a>.</p>
+<p>The latest development version can be found in <a href="https://github.com/Asa12138/MetaNet" class="uri">https://github.com/Asa12138/MetaNet</a>.</p>
 <p>For data manipulation, we recommend to use <code>dplyr</code>. Some functions of <code>MetaNet</code> are dependent with <code>pcutils</code>, so you also need to install.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="index.html#cb1-1" aria-hidden="true" tabindex="-1"></a>remotes<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">&#39;Asa12138/pcutils&#39;</span>)</span>
-<span id="cb1-2"><a href="index.html#cb1-2" aria-hidden="true" tabindex="-1"></a>remotes<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">&#39;Asa12138/MetaNet&#39;</span>,<span class="at">dependencies=</span>T)</span></code></pre></div>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="index.html#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(MetaNet)</span>
-<span id="cb2-2"><a href="index.html#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(igraph)</span>
-<span id="cb2-3"><a href="index.html#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-4"><a href="index.html#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co">#data manipulation</span></span>
-<span id="cb2-5"><a href="index.html#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb2-6"><a href="index.html#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(pcutils)</span></code></pre></div>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="index.html#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span></code></pre></div>
-<pre><code>## R version 4.2.2 (2022-10-31)
-## Platform: aarch64-apple-darwin20 (64-bit)
-## Running under: macOS Ventura 13.0.1
-## 
-## Matrix products: default
-## BLAS:   /Library/Frameworks/R.framework/Versions/4.2-arm64/Resources/lib/libRblas.0.dylib
-## LAPACK: /Library/Frameworks/R.framework/Versions/4.2-arm64/Resources/lib/libRlapack.dylib
-## 
-## locale:
-## [1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8
-## 
-## attached base packages:
-## [1] stats     graphics  grDevices utils     datasets  methods   base     
-## 
-## other attached packages:
-## [1] pcutils_0.1.0 dplyr_1.1.1   igraph_1.3.5  MetaNet_0.1.0
-## 
-## loaded via a namespace (and not attached):
-##  [1] nlme_3.1-160       tools_4.2.2        backports_1.4.1    bslib_0.4.2       
-##  [5] utf8_1.2.2         R6_2.5.1           vegan_2.6-4        AlgDesign_1.2.1   
-##  [9] mgcv_1.8-41        questionr_0.7.7    colorspace_2.0-3   permute_0.9-7     
-## [13] tidyselect_1.2.0   klaR_1.7-1         compiler_4.2.2     cli_3.6.0         
-## [17] quantreg_5.94      SparseM_1.81       bookdown_0.32      sass_0.4.4        
-## [21] scales_1.2.1       stringr_1.5.0      digest_0.6.31      rmarkdown_2.19    
-## [25] pkgconfig_2.0.3    htmltools_0.5.4    labelled_2.10.0    fastmap_1.1.0     
-## [29] highr_0.10         rlang_1.1.0        rstudioapi_0.14    NST_3.1.10        
-## [33] shiny_1.7.4.9002   jquerylib_0.1.4    generics_0.1.3     combinat_0.0-8    
-## [37] jsonlite_1.8.4     car_3.1-1          magrittr_2.0.3     Matrix_1.5-1      
-## [41] Rcpp_1.0.9         munsell_0.5.0      fansi_1.0.3        ape_5.7           
-## [45] abind_1.4-5        lifecycle_1.0.3    stringi_1.7.8      yaml_2.3.6        
-## [49] ggpmisc_0.5.2      carData_3.0-5      MASS_7.3-58.1      plyr_1.8.8        
-## [53] grid_4.2.2         parallel_4.2.2     promises_1.2.0.1   ggrepel_0.9.3     
-## [57] forcats_0.5.2      miniUI_0.1.1.1     lattice_0.20-45    haven_2.5.1       
-## [61] splines_4.2.2      hms_1.1.2          knitr_1.42.3       pillar_1.8.1      
-## [65] ggpubr_0.5.0       ggsignif_0.6.4     reshape2_1.4.4     glue_1.6.2        
-## [69] evaluate_0.19      agricolae_1.3-5    vctrs_0.6.1        httpuv_1.6.7      
-## [73] MatrixModels_0.5-1 gtable_0.3.1       purrr_1.0.1        tidyr_1.2.1       
-## [77] ggpp_0.5.0         cachem_1.0.6       ggplot2_3.4.1      xfun_0.36         
-## [81] mime_0.12          xtable_1.8-4       broom_1.0.2        rstatix_0.7.1     
-## [85] later_1.3.0        survival_3.4-0     tibble_3.2.1       cluster_2.1.4     
-## [89] ellipsis_0.3.2</code></pre>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span><span class="op">(</span><span class="st">'Asa12138/pcutils'</span><span class="op">)</span></span>
+<span><span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span><span class="op">(</span><span class="st">'Asa12138/MetaNet'</span>,dependencies<span class="op">=</span><span class="cn">T</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/Asa12138/MetaNet">MetaNet</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://igraph.org">igraph</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">#========data manipulation</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/Asa12138/pcutils">pcutils</a></span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/sessionInfo.html">sessionInfo</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">#&gt; R version 4.2.2 (2022-10-31)</span></span>
+<span><span class="co">#&gt; Platform: aarch64-apple-darwin20 (64-bit)</span></span>
+<span><span class="co">#&gt; Running under: macOS Ventura 13.0.1</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Matrix products: default</span></span>
+<span><span class="co">#&gt; BLAS:   /Library/Frameworks/R.framework/Versions/4.2-arm64/Resources/lib/libRblas.0.dylib</span></span>
+<span><span class="co">#&gt; LAPACK: /Library/Frameworks/R.framework/Versions/4.2-arm64/Resources/lib/libRlapack.dylib</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; locale:</span></span>
+<span><span class="co">#&gt; [1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; attached base packages:</span></span>
+<span><span class="co">#&gt; [1] stats     graphics  grDevices utils     datasets </span></span>
+<span><span class="co">#&gt; [6] methods   base     </span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; other attached packages:</span></span>
+<span><span class="co">#&gt; [1] pcutils_0.1.1 dplyr_1.1.2   igraph_1.3.5  MetaNet_0.1.0</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; loaded via a namespace (and not attached):</span></span>
+<span><span class="co">#&gt;  [1] Rcpp_1.0.10      plyr_1.8.8       bslib_0.4.2     </span></span>
+<span><span class="co">#&gt;  [4] compiler_4.2.2   pillar_1.9.0     jquerylib_0.1.4 </span></span>
+<span><span class="co">#&gt;  [7] tools_4.2.2      digest_0.6.31    downlit_0.4.2   </span></span>
+<span><span class="co">#&gt; [10] jsonlite_1.8.4   evaluate_0.19    memoise_2.0.1   </span></span>
+<span><span class="co">#&gt; [13] lifecycle_1.0.3  tibble_3.2.1     gtable_0.3.3    </span></span>
+<span><span class="co">#&gt; [16] pkgconfig_2.0.3  rlang_1.1.1      cli_3.6.1       </span></span>
+<span><span class="co">#&gt; [19] rstudioapi_0.14  yaml_2.3.6       xfun_0.36       </span></span>
+<span><span class="co">#&gt; [22] fastmap_1.1.0    stringr_1.5.0    withr_2.5.0     </span></span>
+<span><span class="co">#&gt; [25] xml2_1.3.3       knitr_1.42.3     generics_0.1.3  </span></span>
+<span><span class="co">#&gt; [28] fs_1.5.2         sass_0.4.4       vctrs_0.6.2     </span></span>
+<span><span class="co">#&gt; [31] tidyselect_1.2.0 grid_4.2.2       glue_1.6.2      </span></span>
+<span><span class="co">#&gt; [34] R6_2.5.1         fansi_1.0.4      rmarkdown_2.19  </span></span>
+<span><span class="co">#&gt; [37] bookdown_0.32    reshape2_1.4.4   ggplot2_3.4.2   </span></span>
+<span><span class="co">#&gt; [40] magrittr_2.0.3   scales_1.2.1     htmltools_0.5.4 </span></span>
+<span><span class="co">#&gt; [43] colorspace_2.1-0 utf8_1.2.3       stringi_1.7.8   </span></span>
+<span><span class="co">#&gt; [46] munsell_0.5.0    cachem_1.0.6</span></span></code></pre></div>
+</div>
+<div id="citation" class="section level2 unnumbered">
+<h2>Citation<a class="anchor" aria-label="anchor" href="#citation"><i class="fas fa-link"></i></a>
+</h2>
+<p>Please cite:</p>
+<p>Chen P (2023). <em>MetaNet: Network analysis for multi-omics</em>. R package, <a href="https://github.com/Asa12138/MetaNet" class="uri">https://github.com/Asa12138/MetaNet</a>.</p>
 
 </div>
 </div>
-            </section>
+  <div class="chapter-nav">
+<div class="empty"></div>
+<div class="next"><a href="introduction.html"><span class="header-section-number">1</span> Introduction</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#welcome">Welcome</a></li>
+<li><a class="nav-link" href="#install">Install</a></li>
+<li><a class="nav-link" href="#citation">Citation</a></li>
+</ul>
 
-          </div>
-        </div>
-      </div>
+      <div class="book-extra">
+        <ul class="list-unstyled">
+<li><a id="book-source" href="https://github.com/Asa12138/MetaNet_tutorial/blob/master/index.Rmd">View source <i class="fab fa-github"></i></a></li>
+          <li><a id="book-edit" href="https://github.com/Asa12138/MetaNet_tutorial/edit/master/index.Rmd">Edit this page <i class="fab fa-github"></i></a></li>
+        </ul>
+</div>
+    </nav>
+</div>
 
-<a href="introduction.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
-    </div>
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>MetaNet Tutorial</strong>" was written by Peng Chen. It was last built on 2023-06-25.</p>
   </div>
-<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
-<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
-<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
-<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
-<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
-<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
-<script>
-gitbook.require(["gitbook"], function(gitbook) {
-gitbook.start({
-"sharing": {
-"github": false,
-"facebook": true,
-"twitter": true,
-"linkedin": false,
-"weibo": false,
-"instapaper": false,
-"vk": false,
-"whatsapp": false,
-"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
-},
-"fontsettings": {
-"theme": "white",
-"family": "sans",
-"size": 2
-},
-"edit": {
-"link": "https://github.com/USERNAME/REPO/edit/BRANCH/index.Rmd",
-"text": "Edit"
-},
-"history": {
-"link": null,
-"text": null
-},
-"view": {
-"link": null,
-"text": null
-},
-"download": null,
-"search": {
-"engine": "fuse",
-"options": null
-},
-"toc": {
-"collapse": "subsection"
-}
-});
-});
-</script>
 
-<!-- dynamically load mathjax for compatibility with self-contained -->
-<script>
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
@@ -406,7 +193,22 @@ gitbook.start({
     script.src = src;
     document.getElementsByTagName("head")[0].appendChild(script);
   })();
+</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
+for (let popover of popovers) {
+  const div = document.createElement('div');
+  div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
+  div.innerHTML = popover.getAttribute('data-content');
+
+  var has_math = div.querySelector("span.math");
+  if (has_math) {
+    document.body.appendChild(div);
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, div]);
+    MathJax.Hub.Queue(function() {
+      popover.setAttribute('data-content', div.innerHTML);
+      document.body.removeChild(div);
+    })
+  }
+}
 </script>
 </body>
-
 </html>
