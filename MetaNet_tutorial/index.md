@@ -1,12 +1,12 @@
 --- 
 title: "MetaNet Tutorial"
 author: "Peng Chen"
-date: "2023-06-25"
+date: "2023-06-27"
 site: bookdown::bookdown_site
 documentclass: book
 bibliography: [network.bib, packages.bib]
 # url: https://github.com/Asa12138/MetaNet_tutorial
-# cover-image: path to the social sharing image like images/cover.jpg
+cover-image: images/hexSticker1.png
 description: |
   This is a tutorial for the network analysis R package `MetaNet`.
 biblio-style: apalike
@@ -17,6 +17,8 @@ graphics: yes
 ---
 
 # Welcome {-}
+
+<a href="http://amzn.to/2tZkmxG"><img src="images/hexSticker1.png" width="200" alt="MetaNet" class="cover" /></a>
 
 ## Install {-}
 
