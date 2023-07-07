@@ -26,6 +26,12 @@ View(mtcars[1:5,1:5])
 View(as.list(mtcars))
 ```
 
+```{python}
+import os
+print(1+1)
+```
+
+
 ## 学习资料
 
 tidyverse全家桶，其中包含ggplot2，tibble，dplyr，readr，stringr等常用的全面的数据处理包，能够很好的满足我们下游数据处理需求：
@@ -58,6 +64,22 @@ pp
 
 ## 基本使用
 
+普通有names属性的列表可以用`$`访问元素，S4对象可以用`@`访问元素。
+```{r eval=FALSE}
+rec <- list(name="李明", "age 2"=30,scores=c(85, 76, 90))
+rec$`age 2`
+rec[3]
+
+library(ReporterScore)
+data("reporter_score_res")
+ko_pvalue=reporter_score_res$ko_pvalue
+gsea_res=KO_gsea(ko_pvalue)
+class(gsea_res)
+isS4(gsea_res)
+gsea_res@result
+```
+
+
 数据框类似于一个矩阵，有个横行、个纵列，但各列允许有不同类型：数值型、因子、字符、日期时间，但同一列的数据类型相同。取子集应注意`drop` 。
 
 ```{r}
@@ -65,6 +87,8 @@ d <- data.frame(name=c("李明", "张聪", "王建"),age=c(30, 35, 28), height=c
 str(d)
 d[1:2, "age"]
 d[1:2, "age",drop=FALSE]
+
+?pcutils::gghuan()
 ```
 
 ### 包
@@ -88,7 +112,7 @@ devtools::install_github("Asa12138/pcutils")
 [test.txt](test.txt)
 
 ```{r eval=FALSE}
-read.table("test.txt",header = T) #无法读取
+read.table("test.txt",header = T,sep = "\t",comment.char = "",quote = "",check.names = F) #无法读取
 ```
 
 当我们的表格含有 `", ', #` 或者列名中含有任何非变量名字符时都要小心
@@ -108,6 +132,30 @@ readr::read_delim("test.txt",delim = "\t")
 剪切板可用`datapasta`包 [test](test.xlsx)
 
 ```{r}
+tibble::tribble(
+                  ~name, ~mpg, ~cyl, ~disp,  ~hp, ~drat,   ~wt, ~qsec, ~vs, ~am, ~gear, ~carb,
+            "Mazda RX4",   21,   6L,  160L, 110L,   3.9,  2.62, 16.46,  0L,  1L,    4L,    4L,
+        "Mazda RX4 Wag",   21,   6L,  160L, 110L,   3.9, 2.875, 17.02,  0L,  1L,    4L,    4L,
+           "Datsun 710", 22.8,   4L,  108L,  93L,  3.85,  2.32, 18.61,  1L,  1L,    4L,    1L,
+       "Hornet 4 Drive", 21.4,   6L,  258L, 110L,  3.08, 3.215, 19.44,  1L,  0L,    3L,    1L,
+    "Hornet Sportabout", 18.7,   8L,  360L, 175L,  3.15,  3.44, 17.02,  0L,  0L,    3L,    2L
+    )->df1
+data.frame(
+  stringsAsFactors = FALSE,
+              name = c("Mazda RX4","Mazda RX4 Wag",
+                       "Datsun 710","Hornet 4 Drive","Hornet Sportabout"),
+               mpg = c(21, 21, 22.8, 21.4, 18.7),
+               cyl = c(6L, 6L, 4L, 6L, 8L),
+              disp = c(160L, 160L, 108L, 258L, 360L),
+                hp = c(110L, 110L, 93L, 110L, 175L),
+              drat = c(3.9, 3.9, 3.85, 3.08, 3.15),
+                wt = c(2.62, 2.875, 2.32, 3.215, 3.44),
+              qsec = c(16.46, 17.02, 18.61, 19.44, 17.02),
+                vs = c(0L, 0L, 1L, 1L, 0L),
+                am = c(1L, 1L, 1L, 0L, 0L),
+              gear = c(4L, 4L, 4L, 3L, 3L),
+              carb = c(4L, 4L, 1L, 1L, 2L)
+)
 
 ```
 
@@ -118,7 +166,7 @@ f=file("output.txt",open = "w")
 writeLines("some output",f)
 close(f)
 
-cat("something else",file = "output.txt")
+cat("something \n else",file = "output.txt")
 
 clipr::write_clip(mtcars)
 ```
@@ -155,7 +203,7 @@ new_a=readRDS("tmp.RDS")
 
 ```{r}
 mtcars
-apply(mtcars, 2, max)
+apply(mtcars,MARGIN =  2, FUN = max)
 ```
 
 ### 管道
@@ -167,7 +215,10 @@ library(magrittr)
 "hhh"%>%paste0("prefix_",.)
 
 #比如我想看看mpg大于15的样本中，不同cyl的disp的平均数和方差
-mtcars%>%filter(mpg>15)%>%group_by(cyl)%>%summarise(mean=mean(disp),sd=sd(disp))
+mtcars%>%
+    filter(mpg>15)%>%
+    group_by(cyl)%>%
+    summarise(mean=mean(disp),sd=sd(disp))
 ```
 
 还有`%<>%`等方便的变体:
@@ -184,7 +235,7 @@ a
 
 ```{r}
 my_mean=function(...)sum(...)/length(c(...))
-my_mean(1,2,3,4)
+my_mean(1,2,3,4,34,54)
 ```
 
 **无名函数**: 不定义函数名也可以调用
@@ -204,15 +255,17 @@ func=function(x){
 func(x = 0)
 
 x=100
+
 y=0
-func=function(y){
+func=function(){
     func2=function(y){
-        y=2
         return(y) #x
     }
     return(func2(y))
 }
-func(y = 1)
+
+func()
+
 func2(y = 1)
 ```
 
@@ -255,6 +308,7 @@ gghuan(a)
 debug(gghuan)
 gghuan(a)
 undebug(gghuan)
+gghuan(a)
 ```
 
 ### 泛型函数
@@ -270,7 +324,8 @@ summary(fit)
 ```
 
 ```{r}
-class(women); class(fit)
+class(women)
+class(fit)
 ```
 
 原来他们是不同的类（class），泛型函数会更具对象的类选择运行什么样的代码（即见人说人话，见鬼说鬼话）：
@@ -286,6 +341,7 @@ summary.lm(fit)
 ```{r, eval=FALSE}
 library(reshape2)
 class(mtcars)
+melt(mtcars,id.vars = "cyl")
 #melt是泛型函数，那应该调用melt.data.frame
 melt.data.frame(mtcars,id.vars = "cyl")
 ## Error in melt.data.frame(mtcars, id.vars = "cyl") : 

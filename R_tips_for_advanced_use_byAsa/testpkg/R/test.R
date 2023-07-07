@@ -102,3 +102,5 @@ gghuan <- function(tab, reorder = TRUE, mode = "1", topN = 5, name = TRUE, perce
     theme(panel.border = element_blank(), legend.position = "none")
   return(plt)
 }
+
+a=function(){}
