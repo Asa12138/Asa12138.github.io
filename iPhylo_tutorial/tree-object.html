@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>11 Basic feature | iPhylo Tutorial</title>
+  <title>3 Tree Object | iPhylo Tutorial</title>
   <meta name="description" content="This is a tutorial for the iPhylo website." />
   <meta name="generator" content="bookdown 0.32 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="11 Basic feature | iPhylo Tutorial" />
+  <meta property="og:title" content="3 Tree Object | iPhylo Tutorial" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="This is a tutorial for the iPhylo website." />
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="11 Basic feature | iPhylo Tutorial" />
+  <meta name="twitter:title" content="3 Tree Object | iPhylo Tutorial" />
   
   <meta name="twitter:description" content="This is a tutorial for the iPhylo website." />
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="data.html"/>
-<link rel="next" href="leaf-annotation-1.html"/>
+<link rel="prev" href="iphylo-tree.html"/>
+<link rel="next" href="input-output.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -252,43 +252,316 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="basic-feature" class="section level1 hasAnchor" number="11">
-<h1><span class="header-section-number">11</span> Basic feature<a href="basic-feature.html#basic-feature" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p><img src="images/basic.png" style="width:50.0%" /></p>
-<div id="tree-layout" class="section level2 hasAnchor" number="11.1">
-<h2><span class="header-section-number">11.1</span> Tree layout<a href="basic-feature.html#tree-layout" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>iPhylo Visual provides various layout options to display the tree in different styles. The available layout options include:</p>
-<ol style="list-style-type: lower-alpha">
-<li>circular (by default)</li>
-<li>inward circular</li>
-<li>daylight</li>
-<li>rectangular</li>
-<li>slanted</li>
-<li>ellipse</li>
-<li>roundrect</li>
-</ol>
-<p><img src="images/layout-2.png" /></p>
-<p><strong>Rotation and Opening:</strong> For circular layouts, users can further customize the circular ring opening angle and rotation angle to achieve the desired circular representation.</p>
+<div id="tree-object" class="section level1 hasAnchor" number="3">
+<h1><span class="header-section-number">3</span> Tree Object<a href="tree-object.html#tree-object" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="taxonomic-level" class="section level2 hasAnchor" number="3.1">
+<h2><span class="header-section-number">3.1</span> Taxonomic level<a href="tree-object.html#taxonomic-level" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><strong>Biological:</strong> iPhylo trees show the taxonomic structure in 8 main taxonomic ranks: <strong>Domain, Kingdom, Phylum, Class, Order, Family, Genus, Species</strong> level of NCBI taxonomy database.<br />
+</p>
+<p>If the node entered is outside of these ranks, e.g. subfamily, iPhylo will keep your node and provide the parent main rank above this rank.</p>
+<p><strong>Chemical:</strong> iPhylo creates chemical taxonomic trees according to the classification methodology <a href="https://jcheminf.biomedcentral.com/articles/10.1186/s13321-016-0174-y">ChemOnt</a>.<br />
+</p>
+<p>The resulting chemical classification tree is organized around chemical taxonomy, starting from the highest level and descending to the lowest level: <strong>Kingdom, SuperClass, Class, SubClass, Parent Level 1, and Parent Level 2</strong>. The last two categories represent two taxonomic levels directly below SubClass.<br />
+</p>
 </div>
-<div id="branch-color" class="section level2 hasAnchor" number="11.2">
-<h2><span class="header-section-number">11.2</span> Branch color<a href="basic-feature.html#branch-color" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Use the color picker widget to define the color of all tree branches.</p>
-<p><img src="images/line_color.png" /></p>
+<div id="branch_length" class="section level2 hasAnchor" number="3.2">
+<h2><span class="header-section-number">3.2</span> Branch length<a href="tree-object.html#branch_length" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>iPhylo tree don’t contain branch length information or support value, however you can set all branch length to 1.00000 for visual clarity and subsequent analysis in external software.</p>
 </div>
-<div id="line-type" class="section level2 hasAnchor" number="11.3">
-<h2><span class="header-section-number">11.3</span> Line type<a href="basic-feature.html#line-type" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Change the branch line type and width. Line type options are shown below:</p>
-<p><img src="images/linetype.png" style="width:70.0%" /></p>
+<div id="nodes" class="section level2 hasAnchor" number="3.3">
+<h2><span class="header-section-number">3.3</span> Nodes<a href="tree-object.html#nodes" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>All nodes in the biological tree are labeled with scientific names.</p>
+<p><img src="img/nodes1.png" /></p>
+<p>The leaf nodes (the last node of each branch) of the chemical tree are labeled with ids, and the other internal nodes are labeled with compound category names, like “Glycerolipids”. Don’t worry about figuring out which compounds the ids correspond to, we’ll provide a table of correspondences.</p>
+<p><img src="img/nodes2.png" /></p>
+<div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:800px; overflow-x: scroll; width:100%; ">
+<table class="table" style="font-size: 13px; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+id
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+name
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+inchi
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+inchikey
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+inchikey_Planar
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+SMILES
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+kingdom
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+superclass
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+class
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+subclass
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+parent_level_1
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+parent_level_2
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right;">
+2055
+</td>
+<td style="text-align:left;">
+9-SAHHDA
+</td>
+<td style="text-align:left;">
+InChI=1S/C35H68O4/c1-3-5-7-9-11-12-13-14-15-16-17-18-19-24-28-32-35(38)39-33(29-25-21-10-8-6-4-2)30-26-22-20-23-27-31-34(36)37/h33H,3-32H2,1-2H3,(H,36,37)
+</td>
+<td style="text-align:left;">
+RNTVFRIIJJCYMG-UHFFFAOYSA-N
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+O=C(O)CCCCCCCC(OC(=O)CCCCCCCCCCCCCCCCC)CCCCCCCC
+</td>
+<td style="text-align:left;">
+Organic_compounds
+</td>
+<td style="text-align:left;">
+Lipids_and_lipid_like_molecules
+</td>
+<td style="text-align:left;">
+Fatty_Acyls
+</td>
+<td style="text-align:left;">
+Fatty_acids_and_conjugates
+</td>
+<td style="text-align:left;">
+Long_chain_fatty_acids
+</td>
+<td style="text-align:left;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+460647
+</td>
+<td style="text-align:left;">
+BMP 40:2
+</td>
+<td style="text-align:left;">
+InChI=1S/C46H87O10P/c1-3-5-7-9-11-13-15-17-18-19-20-21-22-23-24-26-28-30-32-34-36-38-46(50)56-44(40-48)42-54-57(51,52)53-41-43(39-47)55-45(49)37-35-33-31-29-27-25-16-14-12-10-8-6-4-2/h15,17,19-20,43-44,47-48H,3-14,16,18,21-42H2,1-2H3,(H,51,52)/b17-15-,20-19-
+</td>
+<td style="text-align:left;">
+AAABPESZRWCLEX-YVCOGYDTSA-N
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+O=C(OC(CO)COP(=O)(O)OCC(OC(=O)CCCCCCCCCCCCCCC)CO)CCCCCCCCCCCC=CCC=CCCCCCCC
+</td>
+<td style="text-align:left;">
+Organic_compounds
+</td>
+<td style="text-align:left;">
+Lipids_and_lipid_like_molecules
+</td>
+<td style="text-align:left;">
+Glycerophospholipids
+</td>
+<td style="text-align:left;">
+Lysobisphosphatidic_acids
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+979858
+</td>
+<td style="text-align:left;">
+Cer 9:0;2O/32:8
+</td>
+<td style="text-align:left;">
+InChI=1S/C41H67NO3/c1-3-5-7-9-10-11-12-13-14-15-16-17-18-19-20-21-22-23-24-25-26-27-28-29-30-31-32-33-35-37-41(45)42-39(38-43)40(44)36-34-8-6-4-2/h5,7,10-11,13-14,16-17,19-20,22-23,25-26,28-29,39-40,43-44H,3-4,6,8-9,12,15,18,21,24,27,30-38H2,1-2H3,(H,42,45)/b7-5-,11-10-,14-13-,17-16-,20-19-,23-22-,26-25-,29-28-
+</td>
+<td style="text-align:left;">
+AAAAJZXUELYQDP-KRXQTBQASA-N
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+O=C(NC(CO)C(O)CCCCCC)CCCCCCC=CCC=CCC=CCC=CCC=CCC=CCC=CCC=CCC
+</td>
+<td style="text-align:left;">
+Organic_compounds
+</td>
+<td style="text-align:left;">
+Organic_oxygen_compounds
+</td>
+<td style="text-align:left;">
+Organooxygen_compounds
+</td>
+<td style="text-align:left;">
+Alcohols_and_polyols
+</td>
+<td style="text-align:left;">
+Secondary_alcohols
+</td>
+<td style="text-align:left;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1013
+</td>
+<td style="text-align:left;">
+Cer 8:1;2O/26:5
+</td>
+<td style="text-align:left;">
+InChI=1S/C34H57NO3/c1-3-5-7-8-9-10-11-12-13-14-15-16-17-18-19-20-21-22-23-24-25-26-28-30-34(38)35-32(31-36)33(37)29-27-6-4-2/h5,7,9-10,12-13,15-16,18-19,27,29,32-33,36-37H,3-4,6,8,11,14,17,20-26,28,30-31H2,1-2H3,(H,35,38)/b7-5-,10-9-,13-12-,16-15-,19-18-,29-27+
+</td>
+<td style="text-align:left;">
+QABMGQOLCJWSNA-GVWODYQASA-N
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+O=C(NC(CO)C(O)C=CCCC)CCCCCCCCCC=CCC=CCC=CCC=CCC=CCC
+</td>
+<td style="text-align:left;">
+Organic_compounds
+</td>
+<td style="text-align:left;">
+Organic_oxygen_compounds
+</td>
+<td style="text-align:left;">
+Organooxygen_compounds
+</td>
+<td style="text-align:left;">
+Alcohols_and_polyols
+</td>
+<td style="text-align:left;">
+Secondary_alcohols
+</td>
+<td style="text-align:left;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+712566
+</td>
+<td style="text-align:left;">
+mycalamide E
+</td>
+<td style="text-align:left;">
+InChI=1S/C25H43NO10/c1-13-10-25(32-8,36-15(3)14(13)2)20(28)22(29)26-23-19-18(33-12-34-23)21(31-7)24(4,5)17(35-19)9-16(11-27)30-6/h14-21,23,27-28H,1,9-12H2,2-8H3,(H,26,29)/t14-,15-,16+,17-,18+,19+,20-,21-,23+,25-/m1/s1
+</td>
+<td style="text-align:left;">
+AAABMNXUOFPYQK-GRMLSQNXSA-N
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+C[<a href="mailto:C@H" class="email">C@H</a>]1<a href="O%5BC@%5D(CC1=C)(%5BC@@H%5D(C(=O)N%5BC@@H%5D2%5BC@@H%5D3%5BC@@H%5D(%5BC@H%5D(C(%5BC@H%5D(O3)C%5BC@@H%5D(CO)OC)(C)C)OC)OCO2)O)OC">C@H</a>C
+</td>
+<td style="text-align:left;">
+Organic_compounds
+</td>
+<td style="text-align:left;">
+Organoheterocyclic_compounds
+</td>
+<td style="text-align:left;">
+Pyranodioxins
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+2141
+</td>
+<td style="text-align:left;">
+1-Cinnamoylpyrrolidine
+</td>
+<td style="text-align:left;">
+InChI=1S/C13H15NO/c15-13(14-10-4-5-11-14)9-8-12-6-2-1-3-7-12/h1-3,6-9H,4-5,10-11H2
+</td>
+<td style="text-align:left;">
+JSIGICUAXLIURX-UHFFFAOYSA-N
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+O=C(C=CC=1C=CC=CC1)N2CCCC2
+</td>
+<td style="text-align:left;">
+Organic_compounds
+</td>
+<td style="text-align:left;">
+Phenylpropanoids_and_polyketides
+</td>
+<td style="text-align:left;">
+Cinnamic_acids_and_derivatives
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+NA
+</td>
+</tr>
+</tbody>
+</table>
 </div>
-<div id="branch-length" class="section level2 hasAnchor" number="11.4">
-<h2><span class="header-section-number">11.4</span> Branch length<a href="basic-feature.html#branch-length" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Without branch length will draw the cladogram of tree:</p>
-<p><img src="images/branch_length.png" /></p>
 </div>
-<div id="branch-range" class="section level2 hasAnchor" number="11.5">
-<h2><span class="header-section-number">11.5</span> Branch range<a href="basic-feature.html#branch-range" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Use branch range to set where the branch start and end relative to the canvas:</p>
-<p><img src="images/branch_range.png" /></p>
+<div id="manipulate-your-tree" class="section level2 hasAnchor" number="3.4">
+<h2><span class="header-section-number">3.4</span> Manipulate your tree<a href="tree-object.html#manipulate-your-tree" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="interrupt" class="section level3 hasAnchor" number="3.4.1">
+<h3><span class="header-section-number">3.4.1</span> Interrupt<a href="tree-object.html#interrupt" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Use the <code>Interrupt at</code> check box to interrupt the extension of a tree branch at any specific taxonomy level. This function will significantly avoid the formation of excessively large trees with an overwhelming number of nodes.</p>
+</div>
+<div id="subtree" class="section level3 hasAnchor" number="3.4.2">
+<h3><span class="header-section-number">3.4.2</span> Sub-tree<a href="tree-object.html#subtree" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>You can quickly obtain a full-clade tree for any taxonomic level using the operator |subtree. The resulting sub-tree comprises the common ancestor and all its descendants in the specified clade.</p>
+<p>For example:</p>
+<pre><code>Primates|subtree
+Liliaceae|subtree</code></pre>
+<p>This feature in chemical classification tree needs to input the chemical category names as the prefixes.</p>
+<p>For example:</p>
+<pre><code>Hydroxyindoles|subtree
+Pentalenes|subtree
+Organophosphorus compounds|subtree</code></pre>
+</div>
 </div>
 </div>
             </section>
@@ -296,8 +569,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="data.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="leaf-annotation-1.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="iphylo-tree.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="input-output.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

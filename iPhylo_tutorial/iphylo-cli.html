@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>11 Basic feature | iPhylo Tutorial</title>
+  <title>6 iPhylo CLI | iPhylo Tutorial</title>
   <meta name="description" content="This is a tutorial for the iPhylo website." />
   <meta name="generator" content="bookdown 0.32 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="11 Basic feature | iPhylo Tutorial" />
+  <meta property="og:title" content="6 iPhylo CLI | iPhylo Tutorial" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="This is a tutorial for the iPhylo website." />
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="11 Basic feature | iPhylo Tutorial" />
+  <meta name="twitter:title" content="6 iPhylo CLI | iPhylo Tutorial" />
   
   <meta name="twitter:description" content="This is a tutorial for the iPhylo website." />
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="data.html"/>
-<link rel="next" href="leaf-annotation-1.html"/>
+<link rel="prev" href="integrates-with-iphylo-visual.html"/>
+<link rel="next" href="modules.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -252,43 +252,27 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="basic-feature" class="section level1 hasAnchor" number="11">
-<h1><span class="header-section-number">11</span> Basic feature<a href="basic-feature.html#basic-feature" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p><img src="images/basic.png" style="width:50.0%" /></p>
-<div id="tree-layout" class="section level2 hasAnchor" number="11.1">
-<h2><span class="header-section-number">11.1</span> Tree layout<a href="basic-feature.html#tree-layout" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>iPhylo Visual provides various layout options to display the tree in different styles. The available layout options include:</p>
-<ol style="list-style-type: lower-alpha">
-<li>circular (by default)</li>
-<li>inward circular</li>
-<li>daylight</li>
-<li>rectangular</li>
-<li>slanted</li>
-<li>ellipse</li>
-<li>roundrect</li>
+<div id="iphylo-cli" class="section level1 hasAnchor" number="6">
+<h1><span class="header-section-number">6</span> iPhylo CLI<a href="iphylo-cli.html#iphylo-cli" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>The iPhylo Command-Line Interface (CLI) is an extension of the web-based iPhylo Tree. It operates offline and comes with integrated databases, which can be deployed either locally or on high-performance computing clusters for enhanced performance.</p>
+<p><img src="img/help.png" /></p>
+<p>Importantly, the iPhylo CLI can also construct customized taxonomic trees based on a user-defined hierarchical database so the applications of the iPhylo suite can be extended beyond biological and chemical classifications.</p>
+<p>The GitHub repository for iPhylo CLI can be accessed via <a href="https://github.com/ARise-fox/iPhylo-CLI/" class="uri">https://github.com/ARise-fox/iPhylo-CLI/</a></p>
+<p>The iPhylo CLI includes four modules:</p>
+<ol style="list-style-type: decimal">
+<li><a href="modules.html#phylotree">Phylotree</a></li>
+<li><a href="modules.html#chemtree">Chemtree</a></li>
+<li><a href="modules.html#chemonline">Chem Online</a></li>
+<li><a href="modules.html#csv2tree">CSV2Tree</a></li>
 </ol>
-<p><img src="images/layout-2.png" /></p>
-<p><strong>Rotation and Opening:</strong> For circular layouts, users can further customize the circular ring opening angle and rotation angle to achieve the desired circular representation.</p>
+<div id="set-up" class="section level2 hasAnchor" number="6.1">
+<h2><span class="header-section-number">6.1</span> Set up<a href="iphylo-cli.html#set-up" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Please use the <strong>Python 3</strong> environment. The develope and test environment is Python 38.</p>
+<p><strong>Please keep your network available for the first load, as well as enough space on your disk (about 2G),</strong> as the initial run needs to fetch the online database resources.</p>
 </div>
-<div id="branch-color" class="section level2 hasAnchor" number="11.2">
-<h2><span class="header-section-number">11.2</span> Branch color<a href="basic-feature.html#branch-color" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Use the color picker widget to define the color of all tree branches.</p>
-<p><img src="images/line_color.png" /></p>
-</div>
-<div id="line-type" class="section level2 hasAnchor" number="11.3">
-<h2><span class="header-section-number">11.3</span> Line type<a href="basic-feature.html#line-type" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Change the branch line type and width. Line type options are shown below:</p>
-<p><img src="images/linetype.png" style="width:70.0%" /></p>
-</div>
-<div id="branch-length" class="section level2 hasAnchor" number="11.4">
-<h2><span class="header-section-number">11.4</span> Branch length<a href="basic-feature.html#branch-length" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Without branch length will draw the cladogram of tree:</p>
-<p><img src="images/branch_length.png" /></p>
-</div>
-<div id="branch-range" class="section level2 hasAnchor" number="11.5">
-<h2><span class="header-section-number">11.5</span> Branch range<a href="basic-feature.html#branch-range" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Use branch range to set where the branch start and end relative to the canvas:</p>
-<p><img src="images/branch_range.png" /></p>
+<div id="packages-environment" class="section level2 hasAnchor" number="6.2">
+<h2><span class="header-section-number">6.2</span> Packages environment<a href="iphylo-cli.html#packages-environment" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><code>git clone https://github.com/ARise-fox/iPhylo-CLI.git</code> to clone this project to your local directory. Use <code>pip install -r requirements.txt</code> to preload the required packages.</p>
 </div>
 </div>
             </section>
@@ -296,8 +280,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="data.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="leaf-annotation-1.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="integrates-with-iphylo-visual.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="modules.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

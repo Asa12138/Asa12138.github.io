@@ -1,6 +1,6 @@
 --- 
 title: "iPhylo Tutorial"
-author: "Peng Chen, Li Yueer"
+author: "Chen Peng and Yueer Li"
 date: "2023-12-19"
 site: bookdown::bookdown_site
 documentclass: book

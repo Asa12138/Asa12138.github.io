@@ -1,6 +1,6 @@
 # (PART) iPhylo Visual {-}
 
-# Overview
+# iPhylo Visual {#iPhylo_v}
 
 ![](images/iphylo_visual.png)
 
