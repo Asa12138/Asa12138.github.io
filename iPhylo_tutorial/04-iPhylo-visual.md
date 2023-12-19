@@ -69,7 +69,7 @@ You can directly click ['Try'](https://iphylo.net/visual/) to draw and further a
 
 # Data
 
-## Data preparation
+## Import
 
 This guide will walk you through the process of preparing your data for annotation. To make the most of our tool, follow these steps:
 
@@ -93,7 +93,7 @@ If you want to add annotations to your tree, you can upload optional Leaf Annota
 
 ### Tree file
 
-![](images/tree_format.png){width=40%}
+![](images/up_tree.png){width=80%}
 
 Click the `Browse` button to upload a tree file in the Newick, Nexus, PhyloXML, or Phylip tree formats:
 
@@ -157,7 +157,7 @@ These formats cater to different needs, from simple tree representations to more
 
 ### Leaf annotation
 
-![](images/leaf_anno.png){width=40%}
+![](images/leaf_anno.png){width=80%}
 
 Click the `Browse` button to upload a leaf annotation file with the `,`, `\t`, or `;` separators:
 
@@ -195,7 +195,7 @@ In this example, "id" corresponds to the leaf IDs in your tree, and you can add 
 
 ### Node annotation
 
-![](images/node_anno.png){width=40%}
+![](images/node_anno.png){width=80%}
 
 Click the `Browse` button to upload a node annotation file with the `,`, `\t`, or `;` separators:
 
@@ -235,13 +235,18 @@ Remember, the correct file format and adherence to the mentioned guidelines will
 
 ### Session
 
+![](images/up_session.png){width=40%}
+
 To restore your work and retrieve your saved data, you can use the `Upload Session` component to upload the session file with the ".iphylo" extension.
 
 The iPhylo Visual emphasizes the ease of exporting and replicating tree displays using the work session files. The unique exported “.iphylo” files pack all essential data for generating trees with iPhylo. These files are extremely compact, with a size of 30kB for a well-annotated tree of 1000 species. All tree-annotation sessions can be saved to and uploaded from the local computer, enabling the users to fine-tune complex trees while maintaining control over the original data. Moreover, the session files can facilitate cooperative annotation projects.
 
 ## Export
 
+![](images/download.png)
+
 ### Export image
+
 iPhylo Visual provides different image export formats for trees, namely, PNG, PDF, and JPEG. 
 
 ### Save session

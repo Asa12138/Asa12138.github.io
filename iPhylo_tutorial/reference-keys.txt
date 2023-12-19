@@ -8,7 +8,7 @@ inspection
 help
 gallery-and-demo
 data
-data-preparation
+import
 tree-file
 leaf-annotation
 node-annotation
