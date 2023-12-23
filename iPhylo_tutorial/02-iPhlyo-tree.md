@@ -342,7 +342,7 @@ This file is used to alert you when you have input taxIDs and names that are not
 
 In the case of chemical trees, this file is used to indicate which compounds are not in the iPhylo database or are missing classification information. Our database mainly contains functional compounds, if you want more more compounds information, try our iPhylo CLI chemoline module.
 
-# Integrates with iPhylo Visual
+# Integration with iPhylo Visual
 
 After generating the tree, clicking the `VISUALIZE` button opens a new [iPhylo Visual](#iPhylo_v) page, automatically importing the generated **tree** and **leaf annotation** file.
 

@@ -17,7 +17,7 @@ output
 tree-file
 tree-structure-visualizations
 additional-files
-integrates-with-iphylo-visual
+integration-with-iphylo-visual
 iphylo-cli
 set-up
 packages-environment
