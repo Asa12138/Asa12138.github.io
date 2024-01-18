@@ -23,7 +23,7 @@
 <meta name="author" content="Chen Peng and Yueer Li" />
 
 
-<meta name="date" content="2023-12-23" />
+<meta name="date" content="2024-01-18" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -256,32 +256,35 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1><span class="header-section-number">9</span> User interface<a href="user-interface.html#user-interface" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <div id="dashboard" class="section level2 hasAnchor" number="9.1">
 <h2><span class="header-section-number">9.1</span> Dashboard<a href="user-interface.html#dashboard" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p><img src="images/dashboard2.jpeg" /></p>
+<p><img src="images/interface-1.png" /> <img src="images/interface-2.png" /></p>
 <p>The dashboard page hosts the main annotation and display functions of iPhylo Visual. The user interface consists of several main components:</p>
 <ol>
 <li>
 <b>Tree Display:</b> The tree will be displayed in the main panel of the webpage in the form of a vector image. Click the <span class="badge-light">plus (+)</span> and <span class="badge-light">minus (-)</span> buttons on the display panel to zoom in and out of the tree visualization. Move and scroll the mouse cursor to move the visualization within the display panel.
 </li>
 <li>
-<b>Refresh Diagram:</b> Once the user uploads a tree file, the <span class="badge-light">GO</span> button, which is used to refresh the graphical representation of the tree file, will become enabled. To ensure optimal performance, adjustments made to the display or annotation parameters will not immediately update the tree image. Instead, you need to click the “GO” button to refresh the image after modifying any settings.
+<b>Refresh Plot:</b> Once the user uploads a tree file, the <span class="badge-light">GO</span> button, which is used to refresh the graphical representation of the tree file, will become enabled. To ensure optimal performance, adjustments made to the display or annotation parameters will not immediately update the tree image. Instead, you need to click the “GO” button to refresh the image after modifying any settings.
 </li>
 <li>
-<b>Download:</b> Click the <span class="badge-light"><i class="fas fa-download" role="presentation" aria-label="download icon"></i>PNG</span> or <span class="badge-light"><i class="fas fa-download" role="presentation" aria-label="download icon"></i>PDF</span> download button to get the visualization in preferred formats. Click the <span class="badge-light"><i class="fas fa-download" role="presentation" aria-label="download icon"></i>Save Session</span> button to download the .iphylo project file, as detailed in the Session section.
+<b>Download Plot:</b> Click the <span class="badge-light">JPEG</span>, <span class="badge-light">PNG</span> or <span class="badge-light">PDF</span> download button to get the visualization in preferred formats.
 </li>
 <li>
-<b>Session Upload: </b>The session upload widget allows users to upload previously saved project files. Click the reload button<span class="badge-light"><i class="fas fa-rotate" role="presentation" aria-label="rotate icon"></i></span>to confirm the project and restore session data.
+<b>Download Session:</b>Click the <span class="badge-light">Session</span> button to download the “.iphylo” project file, as detailed in the <a href="www/static/img/dashboard.png">Session</a> section.
 </li>
 <li>
-<b>Control Panel: </b>The majority of iPhylo Visual controls and functions are available here, split over 3 sections: <b>Basic</b>, <b>Leaf Annotation</b> and <b>Node Annotation</b>.
+<b>Upload Session: </b> The session upload widget allows users to upload previously saved project files. Click the reload button to restore session data. <b>You need to click the <span class="badge-light">GO</span> button to get the session visualization.</b>
 </li>
 <li>
-<b>Basic Controls: </b>iPhylo Visual’s basic controls allow users to adjust the fundamental attributes of the tree display. Click the toggle button to collapse or expand the basic control section.
+<b>Basic Controls: </b>This is the basic control panel. iPhylo Visual’s basic controls allow users to adjust the fundamental attributes of the tree display. Click the toggle button to collapse or expand the basic control section.
 </li>
 <li>
-<b>Leaf Annotation: </b>Use these controls to assign annotation to the external tree nodes. Click the toggle button to collapse or expand the Leaf Annotation section. Click the <span class="badge-light">plus (<i class="fas fa-plus" style="color:#ffc952;" role="presentation" aria-label="plus icon"></i>)</span> and <span class="badge-light">minus (<i class="fas fa-minus" style="color:#ffc952;" role="presentation" aria-label="minus icon"></i>)</span> buttons of Leaf Annotation to add or remove annotation tracks.
+<b>Leaf Annotation: </b>Use these controls to assign annotation to the external tree nodes. Click the toggle button to collapse or expand the Leaf Annotation section. Click the <span class="badge-light">plus (+)</span> and <span class="badge-light">minus (-)</span> buttons of Leaf Annotation to add or remove annotation tracks.
 </li>
 <li>
-<b>Node Annotation: </b>Use these controls to assign annotation to the internal tree nodes. Click the toggle button to collapse or expand the Node Annotation section. Click the <span class="badge-light">plus (<i class="fas fa-plus" style="color:#ff7473;" role="presentation" aria-label="plus icon"></i>)</span> and <span class="badge-light">minus (<i class="fas fa-minus" style="color:#ff7473;" role="presentation" aria-label="minus icon"></i>)</span> buttons of Node Annotation to add or remove annotation tracks.
+<b>Node Annotation: </b>Use these controls to assign annotation to the internal tree nodes. Click the toggle button to collapse or expand the Node Annotation section. Click the <span class="badge-light">plus (+)</span> and <span class="badge-light">minus (-)</span> buttons of Node Annotation to add or remove annotation tracks.
+</li>
+<li>
+<b>Legend Control: </b>This control panel allows you to adjust the canvas size and legends for each annotation layer.
 </li>
 </ol>
 </div>

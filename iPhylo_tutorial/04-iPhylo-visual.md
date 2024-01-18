@@ -1,37 +1,51 @@
-# (PART) iPhylo Visual {-}
+# (PART) iPhylo Visual {.unnumbered}
 
 # iPhylo Visual {#iPhylo_v}
 
 ![](images/iphylo_visual.png)
 
-The iPhylo Visual was developed based on the R framework for visualizing and extensively annotating taxonomic trees (https://www.iphylo.net/visual/). The iPhylo Visual also offers the convenience of saving and uploading work sessions locally, as well as access to source codes for plotting and annotating. The iPhylo Visual leverages the full graphical capabilities of ggtree^[Guangchuang Yu. Using ggtree to visualize data on tree-like structures. Current Protocols in Bioinformatics, 2020, 69:e96. doi:10.1002/cpbi.96] and ggtreeExtra^[S Xu, Z Dai, P Guo, X Fu, S Liu, L Zhou, W Tang, T Feng, M Chen, L Zhan, T Wu, E Hu, Y Jiang, X Bo, G Yu. ggtreeExtra: Compact visualization of richly annotated phylogenetic data. Molecular Biology and Evolution 2021, 38(9):4039-4042. doi:10.1093/molbev/msab166] for visualizing, manipulating, and annotating tree-structured data. 
+The iPhylo Visual was developed based on the R framework for visualizing and extensively annotating taxonomic trees (<https://www.iphylo.net/visual/>). The iPhylo Visual also offers the convenience of saving and uploading work sessions locally, as well as access to source codes for plotting and annotating. The iPhylo Visual leverages the full graphical capabilities of ggtree[^04-iphylo-visual-1] and ggtreeExtra[^04-iphylo-visual-2] for visualizing, manipulating, and annotating tree-structured data.
+
+[^04-iphylo-visual-1]: Guangchuang Yu. Using ggtree to visualize data on tree-like structures. Current Protocols in Bioinformatics, 2020, 69:e96. <doi:10.1002/cpbi.96>
+
+[^04-iphylo-visual-2]: S Xu, Z Dai, P Guo, X Fu, S Liu, L Zhou, W Tang, T Feng, M Chen, L Zhan, T Wu, E Hu, Y Jiang, X Bo, G Yu. ggtreeExtra: Compact visualization of richly annotated phylogenetic data. Molecular Biology and Evolution 2021, 38(9):4039-4042. <doi:10.1093/molbev/msab166>
 
 ![](images/dashboard.png)
 
-The iPhylo Visual is an interactive online tool designed to facilitate the display, annotation, and inspection of tree-based structures, including but not limited to phylogenetic and chemical taxonomic trees generated from iPhylo modules. 
+The iPhylo Visual is an interactive online tool designed to facilitate the display, annotation, and inspection of tree-based structures, including but not limited to phylogenetic and chemical taxonomic trees generated from iPhylo modules.
 
-The iPhylo Visual simplifies the process of annotating taxonomic trees by adopting a data frame-compatible format, enabling users to encapsulate all required information within one data frame for leaf annotation and one data frame for node annotation, respectively. Within the data frame, rows correspond to tree nodes, and columns represent specific features. Users can efficiently navigate and manage these uploaded data frames through the provided online table viewer, with sorting and retrieval capabilities. This design avoids uploading multiple annotation files and is directly compatible with R. 
-
+The iPhylo Visual simplifies the process of annotating taxonomic trees by adopting a data frame-compatible format, enabling users to encapsulate all required information within one data frame for leaf annotation and one data frame for node annotation, respectively. Within the data frame, rows correspond to tree nodes, and columns represent specific features. Users can efficiently navigate and manage these uploaded data frames through the provided online table viewer, with sorting and retrieval capabilities. This design avoids uploading multiple annotation files and is directly compatible with R.
 
 # User interface
 
 ## Dashboard
 
-![](images/dashboard2.jpeg)
+![](images/interface-1.png) ![](images/interface-2.png)
 
 The dashboard page hosts the main annotation and display functions of iPhylo Visual. The user interface consists of several main components:
 
 <ol>
-    <li><b>Tree Display:</b> The tree will be displayed in the main panel of the webpage in the form of a vector image. Click the <span class="badge-light">plus (+)</span> and <span class="badge-light">minus (-)</span> buttons on the display panel to zoom in and out of the tree visualization. Move and scroll the mouse cursor to move the visualization within the display panel.</li>
-    <li><b>Refresh Diagram:</b> Once the user uploads a tree file, the <span class="badge-light">GO</span> button, which is used to refresh the graphical representation of the tree file, will become enabled. To ensure optimal performance, adjustments made to the display or annotation parameters will not immediately update the tree image. Instead, you need to click the "GO" button to refresh the image after modifying any settings. </li>
-    <li><b>Download:</b>  Click the <span class="badge-light"><i class="fas fa-download" role="presentation" aria-label="download icon"></i>PNG</span> or <span class="badge-light"><i class="fas fa-download" role="presentation" aria-label="download icon"></i>PDF</span> download button to get the visualization in preferred formats. Click the <span class="badge-light"><i class="fas fa-download" role="presentation" aria-label="download icon"></i>Save Session</span> button to download the .iphylo project file, as detailed in the Session section. </li>
-    <li><b>Session Upload: </b>The session upload widget allows users to upload previously saved project files. Click the reload button<span class="badge-light"><i class="fas fa-rotate" role="presentation" aria-label="rotate icon"></i></span>to confirm the project and restore session data.</li>
-    <li><b>Control Panel: </b>The majority of iPhylo Visual controls and functions are available here, split over 3 sections: <b>Basic</b>, <b>Leaf Annotation</b> and <b>Node Annotation</b>.</li>
-    <li><b>Basic Controls: </b>iPhylo Visual's basic controls allow users to adjust the fundamental attributes of the tree display. Click the toggle button to collapse or expand the basic control section.</li>
-    <li><b>Leaf Annotation: </b>Use these controls to assign annotation to the external tree nodes. Click the toggle button to collapse or expand the Leaf Annotation section. Click the <span class="badge-light">plus (<i class="fas fa-plus" style="color:#ffc952;" role="presentation" aria-label="plus icon"></i>)</span> and <span class="badge-light" >minus (<i class="fas fa-minus" style="color:#ffc952;" role="presentation" aria-label="minus icon"></i>)</span> buttons of Leaf Annotation to add or remove annotation tracks.</li>
-     <li><b>Node Annotation: </b>Use these controls to assign annotation to the internal tree nodes.  Click the toggle button to collapse or expand the Node Annotation section. Click the <span class="badge-light">plus (<i class="fas fa-plus" style="color:#ff7473;" role="presentation" aria-label="plus icon"></i>)</span> and <span class="badge-light" >minus (<i class="fas fa-minus" style="color:#ff7473;" role="presentation" aria-label="minus icon"></i>)</span> buttons of Node Annotation to add or remove annotation tracks.</li>
-  </ol>
-  
+
+<li><b>Tree Display:</b> The tree will be displayed in the main panel of the webpage in the form of a vector image. Click the [plus (+)]{.badge-light} and [minus (-)]{.badge-light} buttons on the display panel to zoom in and out of the tree visualization. Move and scroll the mouse cursor to move the visualization within the display panel.</li>
+
+<li><b>Refresh Plot:</b> Once the user uploads a tree file, the [GO]{.badge-light} button, which is used to refresh the graphical representation of the tree file, will become enabled. To ensure optimal performance, adjustments made to the display or annotation parameters will not immediately update the tree image. Instead, you need to click the "GO" button to refresh the image after modifying any settings.</li>
+
+<li><b>Download Plot:</b> Click the [JPEG]{.badge-light}, [PNG]{.badge-light} or [PDF]{.badge-light} download button to get the visualization in preferred formats.</li>
+
+<li><b>Download Session:</b>Click the [Session]{.badge-light} button to download the ".iphylo" project file, as detailed in the <a href="www/static/img/dashboard.png">Session</a> section.</li>
+
+<li><b>Upload Session: </b> The session upload widget allows users to upload previously saved project files. Click the reload button to restore session data. <b>You need to click the [GO]{.badge-light} button to get the session visualization.</b></li>
+
+<li><b>Basic Controls: </b>This is the basic control panel. iPhylo Visual's basic controls allow users to adjust the fundamental attributes of the tree display. Click the toggle button to collapse or expand the basic control section.</li>
+
+<li><b>Leaf Annotation: </b>Use these controls to assign annotation to the external tree nodes. Click the toggle button to collapse or expand the Leaf Annotation section. Click the [plus (+)]{.badge-light} and [minus (-)]{.badge-light} buttons of Leaf Annotation to add or remove annotation tracks.</li>
+
+<li><b>Node Annotation: </b>Use these controls to assign annotation to the internal tree nodes. Click the toggle button to collapse or expand the Node Annotation section. Click the [plus (+)]{.badge-light} and [minus (-)]{.badge-light} buttons of Node Annotation to add or remove annotation tracks.</li>
+
+<li><b>Legend Control: </b>This control panel allows you to adjust the canvas size and legends for each annotation layer.</li>
+
+</ol>
+
 ## Inspection
 
 ![](images/inspection.jpeg)
@@ -39,11 +53,16 @@ The dashboard page hosts the main annotation and display functions of iPhylo Vis
 The Inspection page allows users to explore the details of the tree structure and topology, as well as view the uploaded annotation files using an interactive online table.
 
 <ol>
-    <li><b>Content Box: </b>The Content Box displays the uploaded tree file in its original format. This component provides a convenient way to examine the raw tree data.</li>
-    <li><b>Plot Box: </b>The Plot Box visually represents the rectangular topology of the tree.</li>
-    <li><b>Annotation Box: </b>The Annotation Box presents user-uploaded annotation files in a tabular format. The Annotation Box supports pagination and search functionality, enabling users to navigate through large datasets and easily locate specific annotations of interest.</li>
-    <li><b>Info Box: </b>The Info Box displays information about the nodes. When users perform a selection by dragging the mouse cursor on the Plot Box, the Info Box updates to show details such as node labels, branch lengths, parent's ID and other additional information associated with the selected nodes.</li>
-  </ol>
+
+<li><b>Content Box: </b>The Content Box displays the uploaded tree file in its original format. This component provides a convenient way to examine the raw tree data.</li>
+
+<li><b>Plot Box: </b>The Plot Box visually represents the rectangular topology of the tree.</li>
+
+<li><b>Annotation Box: </b>The Annotation Box presents user-uploaded annotation files in a tabular format. The Annotation Box supports pagination and search functionality, enabling users to navigate through large datasets and easily locate specific annotations of interest.</li>
+
+<li><b>Info Box: </b>The Info Box displays information about the nodes. When users perform a selection by dragging the mouse cursor on the Plot Box, the Info Box updates to show details such as node labels, branch lengths, parent's ID and other additional information associated with the selected nodes.</li>
+
+</ol>
 
 ## Help
 
@@ -55,15 +74,15 @@ The help page aims to provide a comprehensive introduction to the key features a
 
 Gallery provides 5 beautiful trees drawn using iPhylo Visual, including:
 
-1. Visualization of metabolic profiles for individual bacterial strains in the gut microbiome
+1.  Visualization of metabolic profiles for individual bacterial strains in the gut microbiome
 
-2. Visualization of the genome catalog of diverse bacterial strains from a glacial microbiome dataset
+2.  Visualization of the genome catalog of diverse bacterial strains from a glacial microbiome dataset
 
-3. Heatmap showing the taxonomy of microbes and their metabolite accumulation/consumption abundance
+3.  Heatmap showing the taxonomy of microbes and their metabolite accumulation/consumption abundance
 
-4. A representative chemical taxonomy tree generated based on chemical InChIKeys and annotated at the superclass, class, and subclass levels
+4.  A representative chemical taxonomy tree generated based on chemical InChIKeys and annotated at the superclass, class, and subclass levels
 
-5. A tree of common statistical methods was visualized as an example.
+5.  A tree of common statistical methods was visualized as an example.
 
 You can directly click ['Try'](https://iphylo.net/visual/) to draw and further adjust.
 
@@ -75,114 +94,120 @@ This guide will walk you through the process of preparing your data for annotati
 
 Step 1: Upload Tree File
 
-1. **Select and Upload Tree File**
-   - Click the `Browse` button on the page.
-   - Choose your tree file (typically in Newick, Nexus, PhyloXML, etc., formats).
+1.  **Select and Upload Tree File**
+    -   Click the `Browse` button on the page.
+    -   Choose your tree file (typically in Newick, Nexus, PhyloXML, etc., formats).
 
 Step 2: Annotation Files (Optional)
 
 If you want to add annotations to your tree, you can upload optional Leaf Annotation and Node Annotation files.
 
-1. **Leaf Annotation File**
-   - Prepare a file containing annotations for each leaf of the tree.
-   - This file may include information like labels, colors, or other details for individual leaves.
-
-2. **Node Annotation File**
-   - Prepare a file containing annotations for nodes in the tree.
-   - This file might include data for internal nodes, helping you provide additional context to your tree.
+1.  **Leaf Annotation File**
+    -   Prepare a file containing annotations for each leaf of the tree.
+    -   This file may include information like labels, colors, or other details for individual leaves.
+2.  **Node Annotation File**
+    -   Prepare a file containing annotations for nodes in the tree.
+    -   This file might include data for internal nodes, helping you provide additional context to your tree.
 
 ### Tree file
 
-![](images/up_tree.png){width=80%}
+![](images/up_tree.png){width="80%"}
 
 Click the `Browse` button to upload a tree file in the Newick, Nexus, PhyloXML, or Phylip tree formats:
 
-1. **Newick Format:**
-   - **Description:** Newick, also known as New Hampshire or New Hampshire Extended format, is a simple and widely used text-based format for representing phylogenetic trees. It expresses tree structures using nested parentheses and commas.
-   - **Example:**
-     ```
-     (A:0.1,B:0.2,(C:0.3,D:0.4):0.5);
-     ```
-   - **Usage:** It's commonly used for representing hierarchical relationships in evolutionary biology and bioinformatics.
+1.  **Newick Format:**
+    -   **Description:** Newick, also known as New Hampshire or New Hampshire Extended format, is a simple and widely used text-based format for representing phylogenetic trees. It expresses tree structures using nested parentheses and commas.
 
-2. **Nexus Format:**
-   - **Description:** Nexus is a versatile file format that can store various types of biological data, including phylogenetic trees. It allows the inclusion of metadata, DNA/protein sequences, and more. It is both human-readable and writable.
-   - **Example:**
-     ```
-     #NEXUS
-     Begin trees;
-        Tree myTree = (A,B,(C,D));
-     End;
-     ```
-   - **Usage:** Nexus is often used in phylogenetics, systematics, and evolutionary biology due to its flexibility.
+    -   **Example:**
 
-3. **PhyloXML:**
-   - **Description:** PhyloXML is an XML-based format designed to store and exchange phylogenetic trees and associated data. It supports a variety of information, including node labels, branch lengths, and annotations.
-   - **Example:**
-     ```xml
-     <phylogeny>
-        <clade>
-            <name>A</name>
-            <branch_length>0.1</branch_length>
-        </clade>
-        <clade>
-            <name>B</name>
-            <branch_length>0.2</branch_length>
-        </clade>
-        <clade>
-            <name>C</name>
-            <branch_length>0.3</branch_length>
-        </clade>
-        <clade>
-            <name>D</name>
-            <branch_length>0.4</branch_length>
-        </clade>
-     </phylogeny>
-     ```
-   - **Usage:** PhyloXML is suitable for storing and sharing complex phylogenetic data, often used in bioinformatics.
+        ```         
+        (A:0.1,B:0.2,(C:0.3,D:0.4):0.5);
+        ```
 
-4. **Phylip Format:**
-   - **Description:** The Phylip (PHYLogeny Inference Package) format is a simple, line-based format developed for use with the Phylip software package. It is used to represent both sequence data and phylogenetic trees.
-   - **Example:**
-     ```
-     4
-     A 0.0 0.1 0.2
-     B 0.1 0.0 0.3
-     C 0.2 0.3 0.0
-     D 0.3 0.2 0.1
-     ```
-   - **Usage:** Phylip format is commonly used for input and output in phylogenetic analysis software and tools.
+    -   **Usage:** It's commonly used for representing hierarchical relationships in evolutionary biology and bioinformatics.
+2.  **Nexus Format:**
+    -   **Description:** Nexus is a versatile file format that can store various types of biological data, including phylogenetic trees. It allows the inclusion of metadata, DNA/protein sequences, and more. It is both human-readable and writable.
+
+    -   **Example:**
+
+        ```         
+        #NEXUS
+        Begin trees;
+           Tree myTree = (A,B,(C,D));
+        End;
+        ```
+
+    -   **Usage:** Nexus is often used in phylogenetics, systematics, and evolutionary biology due to its flexibility.
+3.  **PhyloXML:**
+    -   **Description:** PhyloXML is an XML-based format designed to store and exchange phylogenetic trees and associated data. It supports a variety of information, including node labels, branch lengths, and annotations.
+
+    -   **Example:**
+
+        ``` xml
+        <phylogeny>
+           <clade>
+               <name>A</name>
+               <branch_length>0.1</branch_length>
+           </clade>
+           <clade>
+               <name>B</name>
+               <branch_length>0.2</branch_length>
+           </clade>
+           <clade>
+               <name>C</name>
+               <branch_length>0.3</branch_length>
+           </clade>
+           <clade>
+               <name>D</name>
+               <branch_length>0.4</branch_length>
+           </clade>
+        </phylogeny>
+        ```
+
+    -   **Usage:** PhyloXML is suitable for storing and sharing complex phylogenetic data, often used in bioinformatics.
+4.  **Phylip Format:**
+    -   **Description:** The Phylip (PHYLogeny Inference Package) format is a simple, line-based format developed for use with the Phylip software package. It is used to represent both sequence data and phylogenetic trees.
+
+    -   **Example:**
+
+        ```         
+        4
+        A 0.0 0.1 0.2
+        B 0.1 0.0 0.3
+        C 0.2 0.3 0.0
+        D 0.3 0.2 0.1
+        ```
+
+    -   **Usage:** Phylip format is commonly used for input and output in phylogenetic analysis software and tools.
 
 These formats cater to different needs, from simple tree representations to more complex structures with additional metadata. The choice of format often depends on the specific requirements of the analysis or tool being used.
 
 ### Leaf annotation
 
-![](images/leaf_anno.png){width=80%}
+![](images/leaf_anno.png){width="80%"}
 
 Click the `Browse` button to upload a leaf annotation file with the `,`, `\t`, or `;` separators:
 
 When preparing your leaf annotation file, follow these guidelines for proper formatting:
 
-1. **Column Names:**
-   - The first column must be named "id" and corresponds to the identifiers of the leaves in your tree.
-   
-2. **ID Repetition:**
-   - IDs can be repeated for multiple annotations. Any ID not matching a leaf in the tree will be ignored.
+1.  **Column Names:**
+    -   The first column must be named "id" and corresponds to the identifiers of the leaves in your tree.
+2.  **ID Repetition:**
+    -   IDs can be repeated for multiple annotations. Any ID not matching a leaf in the tree will be ignored.
+3.  **Avoid Reserved Columns:**
+    -   Do not include built-in column names such as "parent," "node," "branch.length," "label," "isTip," "x," "y," "branch," and "angle."
 
-3. **Avoid Reserved Columns:**
-   - Do not include built-in column names such as "parent," "node," "branch.length," "label," "isTip," "x," "y," "branch," and "angle."
-
-- **Example:**
+-   **Example:**
 
 Suppose you have a tree with the following leaf IDs:
 
-- Leaf 1: "A"
-- Leaf 2: "B"
-- Leaf 3: "C"
+-   Leaf 1: "A"
+-   Leaf 2: "B"
+-   Leaf 3: "C"
 
 Your leaf annotation file should look like this:
 
-```plaintext
+``` plaintext
 id,annotation1,annotation2
 A,value1,infoA
 B,value2,infoB
@@ -195,32 +220,30 @@ In this example, "id" corresponds to the leaf IDs in your tree, and you can add 
 
 ### Node annotation
 
-![](images/node_anno.png){width=80%}
+![](images/node_anno.png){width="80%"}
 
 Click the `Browse` button to upload a node annotation file with the `,`, `\t`, or `;` separators:
 
 When preparing your node annotation file, follow these guidelines for proper formatting:
 
-1. **Column Names:**
-   - The first column must be named "id" and corresponds to the identifiers of the leaves in your tree.
-   
-2. **ID Repetition:**
-   - IDs can be repeated for multiple annotations. Any ID not matching a node in the tree will be ignored.
+1.  **Column Names:**
+    -   The first column must be named "id" and corresponds to the identifiers of the leaves in your tree.
+2.  **ID Repetition:**
+    -   IDs can be repeated for multiple annotations. Any ID not matching a node in the tree will be ignored.
+3.  **Avoid Reserved Columns:**
+    -   Do not include built-in column names such as "parent," "node," "branch.length," "label," "isTip," "x," "y," "branch," and "angle."
 
-3. **Avoid Reserved Columns:**
-   - Do not include built-in column names such as "parent," "node," "branch.length," "label," "isTip," "x," "y," "branch," and "angle."
-
-- **Example:**
+-   **Example:**
 
 Suppose you have a tree with the following internal node IDs:
 
-- Internal Node 1: "N1"
-- Internal Node 2: "N2"
-- Internal Node 3: "N3"
+-   Internal Node 1: "N1"
+-   Internal Node 2: "N2"
+-   Internal Node 3: "N3"
 
 Your leaf annotation file should look like this:
 
-```plaintext
+``` plaintext
 id,annotationX,annotationY
 N1,valueX1,valueY1
 N2,valueX2,valueY2
@@ -235,11 +258,11 @@ Remember, the correct file format and adherence to the mentioned guidelines will
 
 ### Session
 
-![](images/up_session.png){width=40%}
+![](images/up_session.png){width="40%"}
 
 To restore your work and retrieve your saved data, you can use the `Upload Session` component to upload the session file with the ".iphylo" extension.
 
-The iPhylo Visual emphasizes the ease of exporting and replicating tree displays using the work session files. The unique exported “.iphylo” files pack all essential data for generating trees with iPhylo. These files are extremely compact, with a size of 30kB for a well-annotated tree of 1000 species. All tree-annotation sessions can be saved to and uploaded from the local computer, enabling the users to fine-tune complex trees while maintaining control over the original data. Moreover, the session files can facilitate cooperative annotation projects.
+The iPhylo Visual emphasizes the ease of exporting and replicating tree displays using the work session files. The unique exported ".iphylo" files pack all essential data for generating trees with iPhylo. These files are extremely compact, with a size of 30kB for a well-annotated tree of 1000 species. All tree-annotation sessions can be saved to and uploaded from the local computer, enabling the users to fine-tune complex trees while maintaining control over the original data. Moreover, the session files can facilitate cooperative annotation projects.
 
 ## Export
 
@@ -247,15 +270,15 @@ The iPhylo Visual emphasizes the ease of exporting and replicating tree displays
 
 ### Export image
 
-iPhylo Visual provides different image export formats for trees, namely, PNG, PDF, and JPEG. 
+iPhylo Visual provides different image export formats for trees, namely, PNG, PDF, and JPEG.
 
 ### Save session
 
-iPhylo Visual offers a session saving feature that allows you to save your work at any point during the annotation process. Simply click the <span class="badge-light"><i class="fas fa-download" role="presentation" aria-label="download icon"></i>Save Session</span> button to save your data and selected options for the current page.
+iPhylo Visual offers a session saving feature that allows you to save your work at any point during the annotation process. Simply click the [Save Session]{.badge-light} button to save your data and selected options for the current page.
 
 ### Download R scripts
 
-Importantly, iPhylo Visual's Export Code feature exports all the raw data and plotting code for the visualized and annotated tree in one click. 
+Importantly, iPhylo Visual's Export Code feature exports all the raw data and plotting code for the visualized and annotated tree in one click.
 
 The package includes the tree file, the annotation table, detailed annotation parameters recorded in a JSON file, and an R script for visualizing the data:
 
@@ -265,20 +288,20 @@ By running this script locally (`source main.R`), users can replicate the tree v
 
 # Basic feature
 
-![](images/basic.png){width=50%}
+![](images/basic.png){width="50%"}
 
 ## Tree layout
 
 iPhylo Visual provides various layout options to display the tree in different styles. The available layout options include:
 
-a. circular (by default)
-b. inward circular
-c. daylight
-d. rectangular
-e. slanted
-f. ellipse
-g. roundrect
-    
+a.  circular (by default)
+b.  inward circular
+c.  daylight
+d.  rectangular
+e.  slanted
+f.  ellipse
+g.  roundrect
+
 ![](images/layout-2.png)
 
 **Rotation and Opening:** For circular layouts, users can further customize the circular ring opening angle and rotation angle to achieve the desired circular representation.
@@ -293,7 +316,7 @@ Use the color picker widget to define the color of all tree branches.
 
 Change the branch line type and width. Line type options are shown below:
 
-![](images/linetype.png){width=70%}
+![](images/linetype.png){width="70%"}
 
 ## Branch length
 
@@ -307,7 +330,6 @@ Use branch range to set where the branch start and end relative to the canvas:
 
 ![](images/branch_range.png)
 
-    
 # Leaf annotation
 
 The "Leaf Annotation" tab manages the annotation tracks for tree leaves, encompassing bars, tiles, boxes, violins, tip points, and tip labels.
@@ -320,18 +342,18 @@ The "Leaf Annotation" tab manages the annotation tracks for tree leaves, encompa
 
 ![](images/tip_label.png)
 
-
 **We can also modify the styles of tip labels:**
 
 Prepare the leaf annotation file:
 
-Choose 'label' as the column name containing the labels we want to map. 
+Choose 'label' as the column name containing the labels we want to map.
 
-Choose 'color' as the column name containing the labels we want to map. If the values are continuous, it will draw a gradient of colors. 
+Choose 'color' as the column name containing the labels we want to map. If the values are continuous, it will draw a gradient of colors.
 
 Choose 'size' as the continuous variable for the label size.
 
 **Example data:**
+
 <div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:300px; overflow-x: scroll; width:100%; "><table class="table" style="font-size: 13px; margin-left: auto; margin-right: auto;">
  <thead>
   <tr>
@@ -429,20 +451,19 @@ Choose 'size' as the continuous variable for the label size.
 
 Other parameters:
 
-- **Manual color:** Allows users to manually specify colors for different categories or values.
+-   **Manual color:** Allows users to manually specify colors for different categories or values.
 
-- **Manual size:** Allows users to manually specify size of points for different values.
+-   **Manual size:** Allows users to manually specify size of points for different values.
 
-- **Offset:** Specifies the offset for the plot.
+-   **Offset:** Specifies the offset for the plot.
 
-- **Legend:** Controls the display of the legend for the plot.
+-   **Legend:** Controls the display of the legend for the plot.
 
-- **Line type:** Sets the line type if align is TRUE.
+-   **Line type:** Sets the line type if align is TRUE.
 
-- **Line size:** Adjusts the width of the line if align is TRUE.
+-   **Line size:** Adjusts the width of the line if align is TRUE.
 
-- **Align:** Specifies whether to align all labels.
-
+-   **Align:** Specifies whether to align all labels.
 
 ## Tip point
 
@@ -450,13 +471,14 @@ Other parameters:
 
 Prepare the leaf annotation file:
 
-Choose 'color' as the column name containing the values we want to map. If the values are continuous, it will draw a gradient of colors. 
+Choose 'color' as the column name containing the values we want to map. If the values are continuous, it will draw a gradient of colors.
 
 Choose 'shape' as the categorical variable (group) for the points.
 
 Choose 'size' as the continuous variable for the points.
 
 **Example data:**
+
 <div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:300px; overflow-x: scroll; width:100%; "><table class="table" style="font-size: 13px; margin-left: auto; margin-right: auto;">
  <thead>
   <tr>
@@ -575,42 +597,41 @@ Choose 'size' as the continuous variable for the points.
 
 Other parameters:
 
-- **Manual color:** Allows users to manually specify colors for different categories or values.
+-   **Manual color:** Allows users to manually specify colors for different categories or values.
 
-- **Column order:** Determines the order in which columns are displayed in the plot.
+-   **Column order:** Determines the order in which columns are displayed in the plot.
 
-- **Manual size:** Allows users to manually specify size of points for different values.
+-   **Manual size:** Allows users to manually specify size of points for different values.
 
-- **Offset:** Specifies the offset for the plot.
+-   **Offset:** Specifies the offset for the plot.
 
-- **Legend:** Controls the display of the legend for the plot.
+-   **Legend:** Controls the display of the legend for the plot.
 
-- **Border color:** Sets the color of the borders around plot tiles.
+-   **Border color:** Sets the color of the borders around plot tiles.
 
-- **Border width:** Adjusts the width of the borders around plot tiles.
+-   **Border width:** Adjusts the width of the borders around plot tiles.
 
-- **Manual shape:** Allows users to manually specify shape of points for different categories.
+-   **Manual shape:** Allows users to manually specify shape of points for different categories.
 
-![](images/starshape.png){width=60%}
+![](images/starshape.png){width="60%"}
 
-- **Track height:** Defines the height of the entire track.
+-   **Track height:** Defines the height of the entire track.
 
-- **Alpha:** Sets the transparency level for the plot.
+-   **Alpha:** Sets the transparency level for the plot.
 
-- **Grid:** Enables or disables the grid lines in the plot.
+-   **Grid:** Enables or disables the grid lines in the plot.
 
-- **Axis:** Specifies whether to display axes for the plot.
+-   **Axis:** Specifies whether to display axes for the plot.
 
-- **Font size:** Adjusts the size of the font used for labels.
+-   **Font size:** Adjusts the size of the font used for labels.
 
-- **Label angle:** Sets the angle of the labels in the plot.
+-   **Label angle:** Sets the angle of the labels in the plot.
 
-- **Label align:** Controls the alignment of labels in the plot (e.g., top, bottom, center).
+-   **Label align:** Controls the alignment of labels in the plot (e.g., top, bottom, center).
 
-- **Align:** Specifies whether to align all points.
+-   **Align:** Specifies whether to align all points.
 
 ## Heatmap
-
 
 
 
@@ -618,11 +639,12 @@ Other parameters:
 
 Prepare the leaf annotation file:
 
-Choose 'color' as the column name containing the values we want to map. 
+Choose 'color' as the column name containing the values we want to map.
 
-If the values are categorical, it will draw grouped color blocks. 
+If the values are categorical, it will draw grouped color blocks.
 
 **Example data:**
+
 <div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:300px; overflow-x: scroll; width:100%; "><table class="table" style="font-size: 13px; margin-left: auto; margin-right: auto;">
  <thead>
   <tr>
@@ -718,11 +740,12 @@ If the values are categorical, it will draw grouped color blocks.
 
 ![](images/heatmap1.png)
 
-If the values are continuous, it will draw a gradient of colors. 
+If the values are continuous, it will draw a gradient of colors.
 
 Choose 'column' as the categorical variable (layer) for the heatmap, making it easy to draw multiple columns of heatmaps.
 
 **Example data:**
+
 <div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:300px; overflow-x: scroll; width:100%; "><table class="table" style="font-size: 13px; margin-left: auto; margin-right: auto;">
  <thead>
   <tr>
@@ -1041,31 +1064,31 @@ Choose 'column' as the categorical variable (layer) for the heatmap, making it e
 
 Other parameters:
 
-- **Manual color:** Allows users to manually specify colors for different categories or values.
+-   **Manual color:** Allows users to manually specify colors for different categories or values.
 
-- **Column order:** Determines the order in which columns are displayed in the heatmap.
+-   **Column order:** Determines the order in which columns are displayed in the heatmap.
 
-- **Offset:** Specifies the offset for the heatmap.
+-   **Offset:** Specifies the offset for the heatmap.
 
-- **Legend:** Controls the display of the legend for the heatmap.
+-   **Legend:** Controls the display of the legend for the heatmap.
 
-- **Border color:** Sets the color of the borders around heatmap tiles.
+-   **Border color:** Sets the color of the borders around heatmap tiles.
 
-- **Border width:** Adjusts the width of the borders around heatmap tiles.
+-   **Border width:** Adjusts the width of the borders around heatmap tiles.
 
-- **Track height:** Defines the height of the entire track.
+-   **Track height:** Defines the height of the entire track.
 
-- **Alpha:** Sets the transparency level for the heatmap tiles.
+-   **Alpha:** Sets the transparency level for the heatmap tiles.
 
-- **Grid:** Enables or disables the grid lines in the heatmap.
+-   **Grid:** Enables or disables the grid lines in the heatmap.
 
-- **Axis:** Specifies whether to display axes for the heatmap.
+-   **Axis:** Specifies whether to display axes for the heatmap.
 
-- **Font size:** Adjusts the size of the font used for labels.
+-   **Font size:** Adjusts the size of the font used for labels.
 
-- **Label angle:** Sets the angle of the labels in the heatmap.
+-   **Label angle:** Sets the angle of the labels in the heatmap.
 
-- **Label align:** Controls the alignment of labels in the heatmap (e.g., top, bottom, center).
+-   **Label align:** Controls the alignment of labels in the heatmap (e.g., top, bottom, center).
 
 ## Bar plot
 
@@ -1073,11 +1096,12 @@ Other parameters:
 
 Prepare the leaf annotation file:
 
-Choose 'color' as the column name containing the values we want to map. If the values are categorical, it will draw grouped color blocks. If the values are continuous, it will draw a gradient of colors. 
+Choose 'color' as the column name containing the values we want to map. If the values are categorical, it will draw grouped color blocks. If the values are continuous, it will draw a gradient of colors.
 
 Choose 'column' as the continuous variable (value) for the bar plot, it will be the y-axis value of each leaf.
 
 **Example data:**
+
 <div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:300px; overflow-x: scroll; width:100%; "><table class="table" style="font-size: 13px; margin-left: auto; margin-right: auto;">
  <thead>
   <tr>
@@ -1196,31 +1220,31 @@ Choose 'column' as the continuous variable (value) for the bar plot, it will be 
 
 Other parameters:
 
-- **Manual color:** Allows users to manually specify colors for different categories or values.
+-   **Manual color:** Allows users to manually specify colors for different categories or values.
 
-- **Column order:** Determines the order in which columns are displayed in the plot.
+-   **Column order:** Determines the order in which columns are displayed in the plot.
 
-- **Offset:** Specifies the offset for the plot.
+-   **Offset:** Specifies the offset for the plot.
 
-- **Legend:** Controls the display of the legend for the plot.
+-   **Legend:** Controls the display of the legend for the plot.
 
-- **Border color:** Sets the color of the borders around plot tiles.
+-   **Border color:** Sets the color of the borders around plot tiles.
 
-- **Border width:** Adjusts the width of the borders around plot tiles.
+-   **Border width:** Adjusts the width of the borders around plot tiles.
 
-- **Track height:** Defines the height of the entire track.
+-   **Track height:** Defines the height of the entire track.
 
-- **Alpha:** Sets the transparency level for the plot.
+-   **Alpha:** Sets the transparency level for the plot.
 
-- **Grid:** Enables or disables the grid lines in the plot.
+-   **Grid:** Enables or disables the grid lines in the plot.
 
-- **Axis:** Specifies whether to display axes for the plot.
+-   **Axis:** Specifies whether to display axes for the plot.
 
-- **Font size:** Adjusts the size of the font used for labels.
+-   **Font size:** Adjusts the size of the font used for labels.
 
-- **Label angle:** Sets the angle of the labels in the plot.
+-   **Label angle:** Sets the angle of the labels in the plot.
 
-- **Label align:** Controls the alignment of labels in the plot (e.g., top, bottom, center).
+-   **Label align:** Controls the alignment of labels in the plot (e.g., top, bottom, center).
 
 ## Bubble plot
 
@@ -1228,7 +1252,7 @@ Other parameters:
 
 Prepare the leaf annotation file:
 
-Choose 'color' as the column name containing the values we want to map. If the values are continuous, it will draw a gradient of colors. 
+Choose 'color' as the column name containing the values we want to map. If the values are continuous, it will draw a gradient of colors.
 
 Choose 'column' as the categorical variable (layer) for the bubble plot, making it easy to draw multiple columns of bubble plot.
 
@@ -1237,6 +1261,7 @@ Choose 'column' as the categorical variable (layer) for the bubble plot, making 
 Choose 'size' as the continuous variable for the bubble plot.
 
 **Example data:**
+
 <div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:300px; overflow-x: scroll; width:100%; "><table class="table" style="font-size: 13px; margin-left: auto; margin-right: auto;">
  <thead>
   <tr>
@@ -1555,41 +1580,41 @@ Choose 'size' as the continuous variable for the bubble plot.
 
 Other parameters:
 
-- **Manual color:** Allows users to manually specify colors for different categories or values.
+-   **Manual color:** Allows users to manually specify colors for different categories or values.
 
-- **Column order:** Determines the order in which columns are displayed in the plot.
+-   **Column order:** Determines the order in which columns are displayed in the plot.
 
-- **Manual size:** Allows users to manually specify size of points for different values.
+-   **Manual size:** Allows users to manually specify size of points for different values.
 
-- **Offset:** Specifies the offset for the plot.
+-   **Offset:** Specifies the offset for the plot.
 
-- **Legend:** Controls the display of the legend for the plot.
+-   **Legend:** Controls the display of the legend for the plot.
 
-- **Border color:** Sets the color of the borders around plot tiles.
+-   **Border color:** Sets the color of the borders around plot tiles.
 
-- **Border width:** Adjusts the width of the borders around plot tiles.
+-   **Border width:** Adjusts the width of the borders around plot tiles.
 
-- **Shape:** Allows users to mapping shape of points.
+-   **Shape:** Allows users to mapping shape of points.
 
-- **Manual shape:** Allows users to manually specify shape of points for different categories.
+-   **Manual shape:** Allows users to manually specify shape of points for different categories.
 
-![](images/starshape.png){width=60%}
+![](images/starshape.png){width="60%"}
 
-- **Track height:** Defines the height of the entire track.
+-   **Track height:** Defines the height of the entire track.
 
-- **Alpha:** Sets the transparency level for the plot.
+-   **Alpha:** Sets the transparency level for the plot.
 
-- **Grid:** Enables or disables the grid lines in the plot.
+-   **Grid:** Enables or disables the grid lines in the plot.
 
-- **Axis:** Specifies whether to display axes for the plot.
+-   **Axis:** Specifies whether to display axes for the plot.
 
-- **Font size:** Adjusts the size of the font used for labels.
+-   **Font size:** Adjusts the size of the font used for labels.
 
-- **Label angle:** Sets the angle of the labels in the plot.
+-   **Label angle:** Sets the angle of the labels in the plot.
 
-- **Label align:** Controls the alignment of labels in the plot (e.g., top, bottom, center).
+-   **Label align:** Controls the alignment of labels in the plot (e.g., top, bottom, center).
 
-- **Align:** Specifies whether to align all points.
+-   **Align:** Specifies whether to align all points.
 
 ## Box plot
 
@@ -1600,6 +1625,7 @@ Prepare the leaf annotation file:
 Choose 'column' as the continuous variable (value) for the box plot, it will be the y-axis value of each leaf.
 
 **Example data:**
+
 <div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:300px; overflow-x: scroll; width:100%; "><table class="table" style="font-size: 13px; margin-left: auto; margin-right: auto;">
  <thead>
   <tr>
@@ -2417,32 +2443,31 @@ Choose 'column' as the continuous variable (value) for the box plot, it will be 
 
 Other parameters:
 
-- **Manual color:** Allows users to manually specify colors for different categories or values.
+-   **Manual color:** Allows users to manually specify colors for different categories or values.
 
-- **Column order:** Determines the order in which columns are displayed in the plot.
+-   **Column order:** Determines the order in which columns are displayed in the plot.
 
-- **Offset:** Specifies the offset for the plot.
+-   **Offset:** Specifies the offset for the plot.
 
-- **Legend:** Controls the display of the legend for the plot.
+-   **Legend:** Controls the display of the legend for the plot.
 
-- **Border color:** Sets the color of the borders around plot tiles.
+-   **Border color:** Sets the color of the borders around plot tiles.
 
-- **Border width:** Adjusts the width of the borders around plot tiles.
+-   **Border width:** Adjusts the width of the borders around plot tiles.
 
-- **Track height:** Defines the height of the entire track.
+-   **Track height:** Defines the height of the entire track.
 
-- **Alpha:** Sets the transparency level for the plot.
+-   **Alpha:** Sets the transparency level for the plot.
 
-- **Grid:** Enables or disables the grid lines in the plot.
+-   **Grid:** Enables or disables the grid lines in the plot.
 
-- **Axis:** Specifies whether to display axes for the plot.
+-   **Axis:** Specifies whether to display axes for the plot.
 
-- **Font size:** Adjusts the size of the font used for labels.
+-   **Font size:** Adjusts the size of the font used for labels.
 
-- **Label angle:** Sets the angle of the labels in the plot.
+-   **Label angle:** Sets the angle of the labels in the plot.
 
-- **Label align:** Controls the alignment of labels in the plot (e.g., top, bottom, center).
-
+-   **Label align:** Controls the alignment of labels in the plot (e.g., top, bottom, center).
 
 ## Violin plot
 
@@ -2453,6 +2478,7 @@ Prepare the leaf annotation file:
 Choose 'column' as the continuous variable (value) for the violin plot, it will be the y-axis value of each leaf.
 
 **Example data:**
+
 <div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:300px; overflow-x: scroll; width:100%; "><table class="table" style="font-size: 13px; margin-left: auto; margin-right: auto;">
  <thead>
   <tr>
@@ -3270,31 +3296,31 @@ Choose 'column' as the continuous variable (value) for the violin plot, it will 
 
 Other parameters:
 
-- **Manual color:** Allows users to manually specify colors for different categories or values.
+-   **Manual color:** Allows users to manually specify colors for different categories or values.
 
-- **Column order:** Determines the order in which columns are displayed in the plot.
+-   **Column order:** Determines the order in which columns are displayed in the plot.
 
-- **Offset:** Specifies the offset for the plot.
+-   **Offset:** Specifies the offset for the plot.
 
-- **Legend:** Controls the display of the legend for the plot.
+-   **Legend:** Controls the display of the legend for the plot.
 
-- **Border color:** Sets the color of the borders around plot tiles.
+-   **Border color:** Sets the color of the borders around plot tiles.
 
-- **Border width:** Adjusts the width of the borders around plot tiles.
+-   **Border width:** Adjusts the width of the borders around plot tiles.
 
-- **Track height:** Defines the height of the entire track.
+-   **Track height:** Defines the height of the entire track.
 
-- **Alpha:** Sets the transparency level for the plot.
+-   **Alpha:** Sets the transparency level for the plot.
 
-- **Grid:** Enables or disables the grid lines in the plot.
+-   **Grid:** Enables or disables the grid lines in the plot.
 
-- **Axis:** Specifies whether to display axes for the plot.
+-   **Axis:** Specifies whether to display axes for the plot.
 
-- **Font size:** Adjusts the size of the font used for labels.
+-   **Font size:** Adjusts the size of the font used for labels.
 
-- **Label angle:** Sets the angle of the labels in the plot.
+-   **Label angle:** Sets the angle of the labels in the plot.
 
-- **Label align:** Controls the alignment of labels in the plot (e.g., top, bottom, center).
+-   **Label align:** Controls the alignment of labels in the plot (e.g., top, bottom, center).
 
 # Node annotation
 
@@ -3308,15 +3334,16 @@ The "Node Annotation" tab handles annotation tracks related to internal nodes an
 
 Prepare the node annotation file:
 
-Choose 'label' as the column name containing the labels we want to map. 
+Choose 'label' as the column name containing the labels we want to map.
 
-Choose 'color' as the column name containing the values we want to map. If the values are continuous, it will draw a gradient of colors. 
+Choose 'color' as the column name containing the values we want to map. If the values are continuous, it will draw a gradient of colors.
 
 Choose 'size' as the continuous variable for the label size.
 
-Choose 'background' as the column name containing the values we want to map. If the values are continuous, it will draw a gradient of colors. 
+Choose 'background' as the column name containing the values we want to map. If the values are continuous, it will draw a gradient of colors.
 
 **Example data:**
+
 
 
  id  clade  
@@ -3330,22 +3357,21 @@ Choose 'background' as the column name containing the values we want to map. If 
 
 Other parameters:
 
+-   **Manual color:** Allows users to manually specify colors for different categories or values.
 
-- **Manual color:** Allows users to manually specify colors for different categories or values.
+-   **Manual size:** Allows users to manually specify size of points for different values.
 
-- **Manual size:** Allows users to manually specify size of points for different values.
+-   **Offset x:** Specifies the offset for the labels at x-axis.
 
-- **Offset x:** Specifies the offset for the labels at x-axis.
+-   **Offset y:** Specifies the offset for the labels at y-axis.
 
-- **Offset y:** Specifies the offset for the labels at y-axis.
+-   **Alpha:** Sets the transparency level for the plot.
 
-- **Alpha:** Sets the transparency level for the plot.
+-   **Label display:** Sets the direction of node labels (rotating or horizontal?).
 
-- **Label display:** Sets the direction of node labels (rotating or horizontal?).
+-   **Border:** Specifies whether to plot the border.
 
-- **Border:** Specifies whether to plot the border.
-
-- **Legend:** Controls the display of the legend for the plot.
+-   **Legend:** Controls the display of the legend for the plot.
 
 ## Color branch
 
@@ -3356,6 +3382,7 @@ Prepare the node annotation file:
 Choose 'color' as the variable (clade) for coloring branch.
 
 **Example data:**
+
 
 
  id  clade  
@@ -3369,9 +3396,9 @@ Choose 'color' as the variable (clade) for coloring branch.
 
 Other parameters:
 
-- **Manual color:** Allows users to manually specify colors for different categories or values.
+-   **Manual color:** Allows users to manually specify colors for different categories or values.
 
-- **Legend:** Controls the display of the legend for the plot.
+-   **Legend:** Controls the display of the legend for the plot.
 
 ## Highlight
 
@@ -3382,6 +3409,7 @@ Prepare the node annotation file:
 Choose 'color' as the variable (clade) for highlighting branch.
 
 **Example data:**
+
 
 
  id  clade  
@@ -3395,17 +3423,17 @@ Choose 'color' as the variable (clade) for highlighting branch.
 
 Other parameters:
 
-- **Manual color:** Allows users to manually specify colors for different categories or values.
+-   **Manual color:** Allows users to manually specify colors for different categories or values.
 
-- **Legend:** Controls the display of the legend for the plot.
+-   **Legend:** Controls the display of the legend for the plot.
 
-- **Border color:** Sets the color of the borders around plot tiles.
+-   **Border color:** Sets the color of the borders around plot tiles.
 
-- **Border width:** Adjusts the width of the borders around plot tiles.
+-   **Border width:** Adjusts the width of the borders around plot tiles.
 
-- **Alpha:** Sets the transparency level for the plot.
+-   **Alpha:** Sets the transparency level for the plot.
 
-- **To bottom:** Control the highlighting to the bottom of the plot.
+-   **To bottom:** Control the highlighting to the bottom of the plot.
 
 ## Strip
 
@@ -3416,6 +3444,7 @@ Prepare the node annotation file:
 Choose 'color' as the variable (clade) for drawing strips.
 
 **Example data:**
+
 
 
  id  clade  
@@ -3429,45 +3458,39 @@ Choose 'color' as the variable (clade) for drawing strips.
 
 Other parameters:
 
-- **Manual color:** Allows users to manually specify colors for different categories or values.
+-   **Manual color:** Allows users to manually specify colors for different categories or values.
 
-- **Offset:** Specifies the offset for the plot.
+-   **Offset:** Specifies the offset for the plot.
 
-- **Legend:** Controls the display of the legend for the plot.
+-   **Legend:** Controls the display of the legend for the plot.
 
-- **Alpha:** Sets the transparency level for the plot.
+-   **Alpha:** Sets the transparency level for the plot.
 
-- **Font size:** Adjusts the size of the font used for labels.
+-   **Font size:** Adjusts the size of the font used for labels.
 
-- **Label offset:** Sets the offset of the labels in the plot.
+-   **Label offset:** Sets the offset of the labels in the plot.
 
 # Canvas and Legend
 
 ![](images/legend.png)
 
-1. **Canvas Width:**
-   - *Description:* Determines the width of the entire canvas or plotting area where the visualization will be displayed.
-   - *Usage:* Adjust this parameter to control the horizontal size of the entire visualization canvas.
-
-2. **Canvas Height:**
-   - *Description:* Specifies the height of the canvas or plotting area.
-   - *Usage:* Use this parameter to control the vertical size of the entire visualization canvas.
-
-3. **Legend X Position:**
-   - *Description:* Sets the horizontal position of the legend within the canvas.
-   - *Usage:* Adjust this parameter to move the legend horizontally, helping to optimize its placement.
-
-4. **Legend Y Position:**
-   - *Description:* Determines the vertical position of the legend within the canvas.
-   - *Usage:* Use this parameter to control the vertical placement of the legend in relation to the canvas.
-
-5. **Legend Scale:**
-   - *Description:* Defines the scale or size of the legend.
-   - *Usage:* Adjust this parameter to control the overall size of the legend, making it more prominent or compact.
-
-6. **Legend Direction:**
-   - *Description:* Specifies the orientation or direction of the legend, whether it is horizontal or vertical.
-   - *Usage:* Use this parameter to choose the orientation that best fits your visualization layout.
+1.  **Canvas Width:**
+    -   *Description:* Determines the width of the entire canvas or plotting area where the visualization will be displayed.
+    -   *Usage:* Adjust this parameter to control the horizontal size of the entire visualization canvas.
+2.  **Canvas Height:**
+    -   *Description:* Specifies the height of the canvas or plotting area.
+    -   *Usage:* Use this parameter to control the vertical size of the entire visualization canvas.
+3.  **Legend X Position:**
+    -   *Description:* Sets the horizontal position of the legend within the canvas.
+    -   *Usage:* Adjust this parameter to move the legend horizontally, helping to optimize its placement.
+4.  **Legend Y Position:**
+    -   *Description:* Determines the vertical position of the legend within the canvas.
+    -   *Usage:* Use this parameter to control the vertical placement of the legend in relation to the canvas.
+5.  **Legend Scale:**
+    -   *Description:* Defines the scale or size of the legend.
+    -   *Usage:* Adjust this parameter to control the overall size of the legend, making it more prominent or compact.
+6.  **Legend Direction:**
+    -   *Description:* Specifies the orientation or direction of the legend, whether it is horizontal or vertical.
+    -   *Usage:* Use this parameter to choose the orientation that best fits your visualization layout.
 
 These parameters provide control over the overall canvas dimensions, legend placement, size, and orientation, allowing users to customize the appearance of their visualizations to suit their needs.
-
