@@ -1,0 +1,30 @@
+[
+  {
+    "objectID": "qunqing.html",
+    "href": "qunqing.html",
+    "title": "🚅 🛩 🛳 🚌 🚕 🚲 Go with 群青 🏔 🏛️ ⛩️ 🕌 🏕️",
+    "section": "",
+    "text": "This is a collection of photos of me and my girlfriend:\n\nTemple and history in Nanjing (2024.1.21)\n\n\nVictoria Harbour in Hongkong (2023.9.29)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nBilibili World in Shanghai (2023.7.21)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nZoo and pandas in Beijing (2023.5.20)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nSea and birds in Qingdao (2023.5.1)"
+  },
+  {
+    "objectID": "works.html",
+    "href": "works.html",
+    "title": "Publications 📄",
+    "section": "",
+    "text": "Publications 📄\n\nC. Peng, Q. Chen, S. Tan, X. Shen, C. Jiang, Generalized Reporter Score-based Enrichment Analysis for Omics Data. bioRxiv [Preprint] (2023). https://doi.org/10.1101/2023.10.13.562235.\nQ. Chen, M. Yuan, L. Jiang, X. Wei, Z. Liu, C. Peng, Z. Huang, D. Tang, X. Wu, J. Sun, C. Ye, Q. Liu, X. Zhu, P. Gao, L. Huang, M. Wang, M. Jiang, C. Jiang, Progressive community, biogeochemical and evolutionary remodeling of the soil microbiome underpins long-term desert ecosystem restoration. bioRxiv [Preprint] (2023). https://doi.org/10.1101/2023.09.26.559499.\nX. Zhu, T. Xu, C. Peng, S. Wu, Advances in MALDI Mass Spectrometry Imaging Single Cell and Tissues. Front. Chem. 9, 782432 (2022). https://doi.org/10.3389/fchem.2021.782432.\nH. Wu, C. Peng, M. Chen, Rethinking the complexity and uncertainty of spatial networks applied to forest ecology. Sci Rep 12, 15917 (2022). https://doi.org/10.1038/s41598-022-16485-9.\nL. Fan, C. Peng, X. Zhu, Y. Liang, T. Xu, P. Xu, S. Wu, Dihydrotanshinone I Enhances Cell Adhesion and Inhibits Cell Migration in Osteosarcoma U−2 OS Cells through CD44 and Chemokine Signaling. Molecules 27, 3714 (2022). https://doi.org/10.3390/molecules27123714.\nM. Xia, Y. Liu, J. Liu, D. Chen, Y. Shi, Z. Bai, Y. Xiao, C. Peng, J. Si, P. Li, Y. Qiu, A new synonym of Polygonatum in China, based on morphological and molecular evidence. PK 175, 137–149 (2021). https://doi.org/10.3897/phytokeys.175.63383.\n\n\n\nR packages 📦\n\npcutils\n\nIt contains many useful tools or functions for statistics or visualization.\nCRAN-site\n\nMetaNet\n\nIt is a comprehensive network analysis package, especially in various biological omics.\nSee the MetaNet Tutorial\n\npctax\n\nIt contains some helpful functions for microbiome analysis.\nSee the pctax Tutorial\n\nReporterScore\n\nGeneralized Reporter Score-based Enrichment Analysis for Omics Data.\n\n\n\n\nWeb servers 🕸\n\niPhylo\n\nIt is a comprehensive, automated, and interactive platform for biological and chemical taxonomic analysis, developed in cooperation with Li Yueer.\nSee the iPhylo Tutorial"
+  },
+  {
+    "objectID": "others.html",
+    "href": "others.html",
+    "title": "Other things",
+    "section": "",
+    "text": "Download files\n\nGOlist.rda for ReporterScore::update_GOlist()\nSanJiChunLianZiTiJian.ttf for pcutils::chunlian()\nchina.json for pcutils::china_map()"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Asa’s website",
+    "section": "",
+    "text": "Introduction\nHere is a little test for building my website (2024/01/01).\nAbout myself:\n\nEducation\nUndergraduate (2018~2022):\nBiological Science, Zhejiang University, Colleage of Life Sciences\nPhD student (2022~ ):\nBioinformatics, Zhejiang University, Life Sciences Institute\nFocus on Metagenomics and microbial ecology: mechanisms shaping microbial diversity patterns, distribution and dynamics. Bioinformatics and systems biology: developing ecological network or other mathematical modeling approaches for microbial ecology.\n\n\nHobbies\n\nAnimation\nSuch as Attack on Titan, CLANNAD, and Rick and Morty.\nBird watching\nPlant cognition\n\n\n\n\nBlog\nI built my blog website, where I share something about biology and bioinformatics learning.\n\n\n\nOffcial account\n\n\n\nContact information\nAny question? Please contact pengchen2001@zju.edu.cn or bfzede@gmail.com."
+  }
+]
