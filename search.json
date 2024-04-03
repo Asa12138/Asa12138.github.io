@@ -7,11 +7,32 @@
     "text": "R packages 📦\n\n\npcutils\n\nIt contains many useful tools or functions for statistics or visualization.\nSee the Github page for the HTML documentation.\n\nMetaNet\n\nIt is a comprehensive network analysis package, especially in various biological omics.\nSee the MetaNet Tutorial\n\npctax\n\nIt contains some helpful functions for microbiome analysis.\nSee the pctax Tutorial\n\nReporterScore\n\nGeneralized Reporter Score-based Enrichment Analysis for Omics Data.\nSee the Github page for the HTML documentation.\n\nplot4fun\n\nplot4fun provides many interesting functions for plotting.\nSee the Github page for the HTML documentation.\n\n\n\n\nWeb servers 🕸\n\niPhylo\n\nIt is a comprehensive, automated, and interactive platform for biological and chemical taxonomic analysis, developed in cooperation with Li Yueer.\nSee the iPhylo Tutorial for more details."
   },
   {
-    "objectID": "index.html",
-    "href": "index.html",
+    "objectID": "index.html#about-myself",
+    "href": "index.html#about-myself",
     "title": "Asa’s website",
-    "section": "",
-    "text": "Introduction\n            \nHere is a little test for building my website (2024/01/01).\nAbout myself:\n\n🏫 Education\nUndergraduate (2018~2022):\nBiological Science, Zhejiang University, Colleage of Life Sciences\nPhD student (2022~ ):\nBioinformatics, Zhejiang University, Life Sciences Institute\n🎯 Focus on\n\n🧬 Metagenomics and microbial ecology: mechanisms shaping microbial diversity patterns, distribution and dynamics.\n💻 Bioinformatics and systems biology: developing ecological network or other mathematical modeling approaches for microbial ecology.\n\n\n\n🤩 Hobbies\n\n\n📺 Animation Such as Attack on Titan, CLANNAD, and Rick and Morty.\n🦉 Bird watching\n🌼 Plant cognition\n\n\n\n\nBlog\nI built my blog website, where I share something about biology and bioinformatics learning.\n\n\n\nOffcial account\n\n\n\n📥 Contact information\nAny question?\n\n📩 Please contact pengchen2001@zju.edu.cn or bfzede@gmail.com."
+    "section": "🤺 About myself:",
+    "text": "🤺 About myself:\n\n            \n\n🏫 Education\nUndergraduate (2018~2022):\nBiological Science, Zhejiang University, Colleage of Life Sciences\nPhD student (2022~ ):\nBioinformatics, Zhejiang University, Life Sciences Institute\n🎯 Focus on\n\n🧬 Metagenomics and microbial ecology: mechanisms shaping microbial diversity patterns, distribution and dynamics.\n💻 Bioinformatics and systems biology: developing ecological network or other mathematical modeling approaches for microbial ecology.\n\n\n\n🤩 Hobbies\n\n\n📺 Animation Such as Attack on Titan, CLANNAD, and Rick and Morty.\n🦉 Bird watching\n🌼 Plant cognition"
+  },
+  {
+    "objectID": "index.html#my-blog",
+    "href": "index.html#my-blog",
+    "title": "Asa’s website",
+    "section": "My blog",
+    "text": "My blog\nI built my blog website, where I share something about biology and bioinformatics learning."
+  },
+  {
+    "objectID": "index.html#offcial-account",
+    "href": "index.html#offcial-account",
+    "title": "Asa’s website",
+    "section": "Offcial account",
+    "text": "Offcial account"
+  },
+  {
+    "objectID": "index.html#contact-information",
+    "href": "index.html#contact-information",
+    "title": "Asa’s website",
+    "section": "📥 Contact information",
+    "text": "📥 Contact information\nAny question?\n\n📩 Please contact pengchen2001@zju.edu.cn or bfzede@gmail.com."
   },
   {
     "objectID": "others.html",
