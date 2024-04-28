@@ -36,6 +36,29 @@ You can easily build your tree on through the form on the tree page.\
 
 5.  **Generate Tree:** Click this button to submit this form.
 
+## Classification Systems
+
+### Phylo Tree
+
+**Phylo Tree** module builds biological taxonomic trees utilizing the **NCBI Taxonomy**. This system enables rapid retrieval of lineage information across all domains of life. The **Phylo Tree** classification uses data recorded in the NCBI Taxonomy database, including `TaxID`, `scientific name`, `common name`, and `synonyms`. It currently encompasses a total of 2,388,300 TaxIDs.
+
+For more information, please refer to the official link:\
+[NCBI taxonomy database](https://www.ncbi.nlm.nih.gov/Taxonomy/taxonomyhome.html/index.cgi?chapter=howcite)
+
+### Chemical Tree
+
+To meet diverse classification needs, we utilize two compound classification systems, **ChemOnt** and **NPClassifier**, for chemical taxonomies. Our database includes approximately 800,000 chemical compounds with information on IUPC names, InChiKey, InChI, isomeric SMILES, and taxonomy details.
+
+**ChemOnt** classifies a large number of chemicals based on their structural features. It uses chemical structures and structural features to automatically assign all known chemical compounds into a taxonomy comprising more than 4,800 different categories.
+
+**NPClassifier** uses machine learning models to classify natural products beyond simple chemical substructures. This system incorporates factors such as the producing organism, biosynthetic pathways, and their biological properties.
+
+For more information, please consult the official publications:
+
+[ChemOnt](https://jcheminf.biomedcentral.com/articles/10.1186/s13321-016-0174-y#citeas)
+
+[NPClassifier](https://pubs.acs.org/doi/10.1021/acs.jnatprod.1c00399)
+
 # Tree Object
 
 ## Taxonomic level
@@ -175,6 +198,34 @@ The leaf nodes (the last node of each branch) of the chemical tree are labeled w
 
 Use the `Interrupt at` check box to interrupt the extension of a tree branch at any specific taxonomy level. This function will significantly avoid the formation of excessively large trees with an overwhelming number of nodes.
 
+Example 4 from Phylo Tree is used as an example:
+
+Before interrupt:
+
+```         
+
+                  _____ ____ _____ ____ _____ _____ s__Drosophila_melanogaster
+                 |
+       _____ ____|           _____ ____ _____ _____ s__Mus_musculus
+      |          |      ____|
+      |          |_____|    |_____ ____ _____ _____ s__Homo_sapiens
+______|                |
+      |                |____ _____ ____ _____ _____ s__Gallus_gallus
+      |
+      |_____ ____ _____ ____ _____ ____ _____ _____ s__Escherichia_coli
+```
+
+After interrupt (at Phylum level):
+
+```         
+
+                                               ______________ p__Chordata
+                 ______________ ______________|
+________________|                             |______________ p__Arthropoda
+                |
+                |______________ ______________ ______________ p__Proteobacteria
+```
+
 ### Sub-tree {#subtree}
 
 You can quickly obtain a full-clade tree for any taxonomic level using the operator \|subtree. The resulting sub-tree comprises the common ancestor and all its descendants in the specified clade.
@@ -220,13 +271,38 @@ human -> Homo sapiens
 
 ### Chemical
 
--   **InChIKey:** We strongly recommend using InChIKey to represent chemicals due to its uniqueness and conciseness. Other formats may lack complete information in the database.
+-   **InChIKey:** The InChIKey is a fixed length (27 character) condensed digital representation of the InChI that is not designed to be human-understandable.
 
--   **isomeric SMILES**
+We strongly recommend using the InChIKey to represent chemicals in the chemical tree online module, which utilizes the chemonline.py from the ClassyFire API in iPhylo CLI, due to its unique and concise nature.
 
--   **InChI**
+For example:
+
+```         
+VXRWAWLEFDIKKA-NGVUZZMQSA-N
+JWUMPSYUUYOAEP-GLYJLXGFSA-N
+PLYVHUNKJZPXRH-RCNNPCQASA-N
+```
+
+-   **isomeric SMILES** The simplified molecular-input line-entry system (SMILES) is a specification in the form of a line notation for describing the structure of chemical species using short ASCII strings.
+
+This format is highly recommended for use in the chemical tree online module, which employs the NPonline.py from the NPClassifier API in iPhylo CLI.
+
+For example:
+
+```         
+O=C(NC(COC1OC(CO)C(OC2OC(CO)C(O)C(O)C2O)C(O)C1O)C(O)C=CCCC=CCCC=CCCCCCC)CCCCCCCCC=CCC=CCC=CCC=CCC
+```
+
+-   **InChI** The International Chemical Identifier (InChI) is a textual identifier for chemical substances, designed to be structure-based, strictly unique, and non-proprietary.
+
+For example:
+
+```         
+InChI=1S/C23H25N5O5/c1-30-18-11-14-15(12-19(18)31-2)25-23(26-21(14)24)28-9-7-27(8-10-28)22(29)20-13-32-16-5-3-4-6-17(16)33-20/h3-6,11-12,20H,7-10,13H2,1-2H3,(H2,24,25,26)/t20-/m1/s1
+```
 
 -   **Subtree:** Follows the format "xxx\|subtree", see details in [Sub-tree](#subtree).
+
 
 ## Output {#output}
 

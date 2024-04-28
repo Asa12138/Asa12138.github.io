@@ -23,13 +23,13 @@
 <meta name="author" content="Chen Peng and Yueer Li" />
 
 
-<meta name="date" content="2024-02-22" />
+<meta name="date" content="2024-04-28" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
-  
+  <link rel="shortcut icon" href="img/iphylo.png" type="image/x-icon" />
 <link rel="prev" href="iphylo-cli.html"/>
 <link rel="next" href="iPhylo_v.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
@@ -143,6 +143,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2" data-path="iphylo-tree.html"><a href="iphylo-tree.html"><i class="fa fa-check"></i><b>2</b> iPhylo Tree</a>
 <ul>
 <li class="chapter" data-level="2.1" data-path="iphylo-tree.html"><a href="iphylo-tree.html#working-on-the-tree-page"><i class="fa fa-check"></i><b>2.1</b> Working on the Tree page</a></li>
+<li class="chapter" data-level="2.2" data-path="iphylo-tree.html"><a href="iphylo-tree.html#classification-systems"><i class="fa fa-check"></i><b>2.2</b> Classification Systems</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="iphylo-tree.html"><a href="iphylo-tree.html#phylo-tree"><i class="fa fa-check"></i><b>2.2.1</b> Phylo Tree</a></li>
+<li class="chapter" data-level="2.2.2" data-path="iphylo-tree.html"><a href="iphylo-tree.html#chemical-tree"><i class="fa fa-check"></i><b>2.2.2</b> Chemical Tree</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="tree-object.html"><a href="tree-object.html"><i class="fa fa-check"></i><b>3</b> Tree Object</a>
 <ul>
@@ -261,32 +266,32 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">7.1</span> Phylotree<a href="modules.html#phylotree" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>The phylo tree module offers the same functionality as the iPhylo Tree online web application, but run locally.</p>
 <p>Run the following command to see a description of the module and help about the parameters.</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb9-1"><a href="modules.html#cb9-1" tabindex="-1"></a>python iphylo.py phylotree <span class="op">-</span>h</span></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb14-1"><a href="modules.html#cb14-1" tabindex="-1"></a>python iphylo.py phylotree <span class="op">-</span>h</span></code></pre></div>
 <p>Use the following commands to start your try:</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb10-1"><a href="modules.html#cb10-1" tabindex="-1"></a>python iphylo.py phylotree <span class="op">-</span>i <span class="st">&quot;Homo sapiens,Mus musculus,Gallus gallus,Drosophila melanogaster,Escherichia coli&quot;</span></span>
-<span id="cb10-2"><a href="modules.html#cb10-2" tabindex="-1"></a>                                </span>
-<span id="cb10-3"><a href="modules.html#cb10-3" tabindex="-1"></a>python iphylo.py phylotree <span class="op">-</span>i <span class="dv">9606</span>,<span class="dv">10090</span>,<span class="dv">9031</span>,<span class="dv">7227</span>,<span class="dv">562</span> </span></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb15-1"><a href="modules.html#cb15-1" tabindex="-1"></a>python iphylo.py phylotree <span class="op">-</span>i <span class="st">&quot;Homo sapiens,Mus musculus,Gallus gallus,Drosophila melanogaster,Escherichia coli&quot;</span></span>
+<span id="cb15-2"><a href="modules.html#cb15-2" tabindex="-1"></a>                                </span>
+<span id="cb15-3"><a href="modules.html#cb15-3" tabindex="-1"></a>python iphylo.py phylotree <span class="op">-</span>i <span class="dv">9606</span>,<span class="dv">10090</span>,<span class="dv">9031</span>,<span class="dv">7227</span>,<span class="dv">562</span> </span></code></pre></div>
 </div>
 <div id="chemtree" class="section level2 hasAnchor" number="7.2">
 <h2><span class="header-section-number">7.2</span> Chemtree<a href="modules.html#chemtree" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>This module is used to generate a taxonomic tree of chemicals, run the following command for help</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb11-1"><a href="modules.html#cb11-1" tabindex="-1"></a>python iphylo.py chemtree <span class="op">-</span>h </span></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb16-1"><a href="modules.html#cb16-1" tabindex="-1"></a>python iphylo.py chemtree <span class="op">-</span>h </span></code></pre></div>
 <p>Use the following commands to start your try:</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb12-1"><a href="modules.html#cb12-1" tabindex="-1"></a>python iphylo.py chemtree <span class="op">-</span>f <span class="st">&#39;example/inchikeys.txt&#39;</span> <span class="op">-</span>fn <span class="st">&#39;chem\_01&#39;</span></span></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb17-1"><a href="modules.html#cb17-1" tabindex="-1"></a>python iphylo.py chemtree <span class="op">-</span>f <span class="st">&#39;example/inchikeys.txt&#39;</span> <span class="op">-</span>fn <span class="st">&#39;chem\_01&#39;</span></span></code></pre></div>
 </div>
 <div id="chemonline" class="section level2 hasAnchor" number="7.3">
 <h2><span class="header-section-number">7.3</span> Chem Online<a href="modules.html#chemonline" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>The exclusive online chemical module enables chemical information retrieval from <a href="https://jcheminf.biomedcentral.com/articles/10.1186/s13321-016-0174-y">ClassyFire</a> API, including the chemicals processed with corresponding taxonomy data stored in ClassyFire’s database. Over 70 million chemicals can be queried through this online module, which is continually growing. This feature significantly augments the capabilities of chemical taxonomy analysis.</p>
 <p>Run the following command for help:</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb13-1"><a href="modules.html#cb13-1" tabindex="-1"></a>python iphylo.py chemonline <span class="op">-</span>h </span></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb18-1"><a href="modules.html#cb18-1" tabindex="-1"></a>python iphylo.py chemonline <span class="op">-</span>h </span></code></pre></div>
 <p>Use the following commands to have some try:</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb14-1"><a href="modules.html#cb14-1" tabindex="-1"></a>python iphylo.py chemonline <span class="op">-</span>f <span class="st">&#39;example/inchikeys\_for\_online.txt&#39;</span> <span class="op">-</span>fn <span class="st">&#39;chem\_02&#39;</span></span></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb19-1"><a href="modules.html#cb19-1" tabindex="-1"></a>python iphylo.py chemonline <span class="op">-</span>f <span class="st">&#39;example/inchikeys\_for\_online.txt&#39;</span> <span class="op">-</span>fn <span class="st">&#39;chem\_02&#39;</span></span></code></pre></div>
 </div>
 <div id="csv2tree" class="section level2 hasAnchor" number="7.4">
 <h2><span class="header-section-number">7.4</span> CSV2Tree<a href="modules.html#csv2tree" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>You can use this module to build a tree for any data with a hierarchy.</p>
 <p>Use the following command for more help information:</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb15-1"><a href="modules.html#cb15-1" tabindex="-1"></a>python iphylo.py csv2tree <span class="op">--</span><span class="bu">help</span></span></code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb20-1"><a href="modules.html#cb20-1" tabindex="-1"></a>python iphylo.py csv2tree <span class="op">--</span><span class="bu">help</span></span></code></pre></div>
 <p>The data should be presented in a csv table, with each row representing a categorized piece of information and each column representing a categorization level.</p>
 <p>Here is an example of statistical analysis methods:</p>
 <p><strong>Input table</strong></p>

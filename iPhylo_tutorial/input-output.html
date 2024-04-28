@@ -23,13 +23,13 @@
 <meta name="author" content="Chen Peng and Yueer Li" />
 
 
-<meta name="date" content="2024-02-22" />
+<meta name="date" content="2024-04-28" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
-  
+  <link rel="shortcut icon" href="img/iphylo.png" type="image/x-icon" />
 <link rel="prev" href="tree-object.html"/>
 <link rel="next" href="integration-with-iphylo-visual.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
@@ -143,6 +143,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2" data-path="iphylo-tree.html"><a href="iphylo-tree.html"><i class="fa fa-check"></i><b>2</b> iPhylo Tree</a>
 <ul>
 <li class="chapter" data-level="2.1" data-path="iphylo-tree.html"><a href="iphylo-tree.html#working-on-the-tree-page"><i class="fa fa-check"></i><b>2.1</b> Working on the Tree page</a></li>
+<li class="chapter" data-level="2.2" data-path="iphylo-tree.html"><a href="iphylo-tree.html#classification-systems"><i class="fa fa-check"></i><b>2.2</b> Classification Systems</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="iphylo-tree.html"><a href="iphylo-tree.html#phylo-tree"><i class="fa fa-check"></i><b>2.2.1</b> Phylo Tree</a></li>
+<li class="chapter" data-level="2.2.2" data-path="iphylo-tree.html"><a href="iphylo-tree.html#chemical-tree"><i class="fa fa-check"></i><b>2.2.2</b> Chemical Tree</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="tree-object.html"><a href="tree-object.html"><i class="fa fa-check"></i><b>3</b> Tree Object</a>
 <ul>
@@ -276,10 +281,26 @@ human -&gt; Homo sapiens</code></pre>
 <div id="chemical" class="section level3 hasAnchor" number="4.1.3">
 <h3><span class="header-section-number">4.1.3</span> Chemical<a href="input-output.html#chemical" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <ul>
-<li><p><strong>InChIKey:</strong> We strongly recommend using InChIKey to represent chemicals due to its uniqueness and conciseness. Other formats may lack complete information in the database.</p></li>
-<li><p><strong>isomeric SMILES</strong></p></li>
-<li><p><strong>InChI</strong></p></li>
-<li><p><strong>Subtree:</strong> Follows the format “xxx|subtree”, see details in <a href="tree-object.html#subtree">Sub-tree</a>.</p></li>
+<li><strong>InChIKey:</strong> The InChIKey is a fixed length (27 character) condensed digital representation of the InChI that is not designed to be human-understandable.</li>
+</ul>
+<p>We strongly recommend using the InChIKey to represent chemicals in the chemical tree online module, which utilizes the chemonline.py from the ClassyFire API in iPhylo CLI, due to its unique and concise nature.</p>
+<p>For example:</p>
+<pre><code>VXRWAWLEFDIKKA-NGVUZZMQSA-N
+JWUMPSYUUYOAEP-GLYJLXGFSA-N
+PLYVHUNKJZPXRH-RCNNPCQASA-N</code></pre>
+<ul>
+<li><strong>isomeric SMILES</strong> The simplified molecular-input line-entry system (SMILES) is a specification in the form of a line notation for describing the structure of chemical species using short ASCII strings.</li>
+</ul>
+<p>This format is highly recommended for use in the chemical tree online module, which employs the NPonline.py from the NPClassifier API in iPhylo CLI.</p>
+<p>For example:</p>
+<pre><code>O=C(NC(COC1OC(CO)C(OC2OC(CO)C(O)C(O)C2O)C(O)C1O)C(O)C=CCCC=CCCC=CCCCCCC)CCCCCCCCC=CCC=CCC=CCC=CCC</code></pre>
+<ul>
+<li><strong>InChI</strong> The International Chemical Identifier (InChI) is a textual identifier for chemical substances, designed to be structure-based, strictly unique, and non-proprietary.</li>
+</ul>
+<p>For example:</p>
+<pre><code>InChI=1S/C23H25N5O5/c1-30-18-11-14-15(12-19(18)31-2)25-23(26-21(14)24)28-9-7-27(8-10-28)22(29)20-13-32-16-5-3-4-6-17(16)33-20/h3-6,11-12,20H,7-10,13H2,1-2H3,(H2,24,25,26)/t20-/m1/s1</code></pre>
+<ul>
+<li><strong>Subtree:</strong> Follows the format “xxx|subtree”, see details in <a href="tree-object.html#subtree">Sub-tree</a>.</li>
 </ul>
 </div>
 </div>
@@ -310,24 +331,24 @@ End;</code></pre></li>
 <ul>
 <li><p><strong>Description:</strong> PhyloXML is an XML-based format designed to store and exchange phylogenetic trees and associated data. It supports a variety of information, including node labels, branch lengths, and annotations.</p></li>
 <li><p><strong>Example:</strong></p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode xml"><code class="sourceCode xml"><span id="cb6-1"><a href="input-output.html#cb6-1" tabindex="-1"></a>&lt;<span class="kw">phylogeny</span>&gt;</span>
-<span id="cb6-2"><a href="input-output.html#cb6-2" tabindex="-1"></a>   &lt;<span class="kw">clade</span>&gt;</span>
-<span id="cb6-3"><a href="input-output.html#cb6-3" tabindex="-1"></a>       &lt;<span class="kw">name</span>&gt;A&lt;/<span class="kw">name</span>&gt;</span>
-<span id="cb6-4"><a href="input-output.html#cb6-4" tabindex="-1"></a>       &lt;<span class="kw">branch_length</span>&gt;0.1&lt;/<span class="kw">branch_length</span>&gt;</span>
-<span id="cb6-5"><a href="input-output.html#cb6-5" tabindex="-1"></a>   &lt;/<span class="kw">clade</span>&gt;</span>
-<span id="cb6-6"><a href="input-output.html#cb6-6" tabindex="-1"></a>   &lt;<span class="kw">clade</span>&gt;</span>
-<span id="cb6-7"><a href="input-output.html#cb6-7" tabindex="-1"></a>       &lt;<span class="kw">name</span>&gt;B&lt;/<span class="kw">name</span>&gt;</span>
-<span id="cb6-8"><a href="input-output.html#cb6-8" tabindex="-1"></a>       &lt;<span class="kw">branch_length</span>&gt;0.2&lt;/<span class="kw">branch_length</span>&gt;</span>
-<span id="cb6-9"><a href="input-output.html#cb6-9" tabindex="-1"></a>   &lt;/<span class="kw">clade</span>&gt;</span>
-<span id="cb6-10"><a href="input-output.html#cb6-10" tabindex="-1"></a>   &lt;<span class="kw">clade</span>&gt;</span>
-<span id="cb6-11"><a href="input-output.html#cb6-11" tabindex="-1"></a>       &lt;<span class="kw">name</span>&gt;C&lt;/<span class="kw">name</span>&gt;</span>
-<span id="cb6-12"><a href="input-output.html#cb6-12" tabindex="-1"></a>       &lt;<span class="kw">branch_length</span>&gt;0.3&lt;/<span class="kw">branch_length</span>&gt;</span>
-<span id="cb6-13"><a href="input-output.html#cb6-13" tabindex="-1"></a>   &lt;/<span class="kw">clade</span>&gt;</span>
-<span id="cb6-14"><a href="input-output.html#cb6-14" tabindex="-1"></a>   &lt;<span class="kw">clade</span>&gt;</span>
-<span id="cb6-15"><a href="input-output.html#cb6-15" tabindex="-1"></a>       &lt;<span class="kw">name</span>&gt;D&lt;/<span class="kw">name</span>&gt;</span>
-<span id="cb6-16"><a href="input-output.html#cb6-16" tabindex="-1"></a>       &lt;<span class="kw">branch_length</span>&gt;0.4&lt;/<span class="kw">branch_length</span>&gt;</span>
-<span id="cb6-17"><a href="input-output.html#cb6-17" tabindex="-1"></a>   &lt;/<span class="kw">clade</span>&gt;</span>
-<span id="cb6-18"><a href="input-output.html#cb6-18" tabindex="-1"></a>&lt;/<span class="kw">phylogeny</span>&gt;</span></code></pre></div></li>
+<div class="sourceCode" id="cb11"><pre class="sourceCode xml"><code class="sourceCode xml"><span id="cb11-1"><a href="input-output.html#cb11-1" tabindex="-1"></a>&lt;<span class="kw">phylogeny</span>&gt;</span>
+<span id="cb11-2"><a href="input-output.html#cb11-2" tabindex="-1"></a>   &lt;<span class="kw">clade</span>&gt;</span>
+<span id="cb11-3"><a href="input-output.html#cb11-3" tabindex="-1"></a>       &lt;<span class="kw">name</span>&gt;A&lt;/<span class="kw">name</span>&gt;</span>
+<span id="cb11-4"><a href="input-output.html#cb11-4" tabindex="-1"></a>       &lt;<span class="kw">branch_length</span>&gt;0.1&lt;/<span class="kw">branch_length</span>&gt;</span>
+<span id="cb11-5"><a href="input-output.html#cb11-5" tabindex="-1"></a>   &lt;/<span class="kw">clade</span>&gt;</span>
+<span id="cb11-6"><a href="input-output.html#cb11-6" tabindex="-1"></a>   &lt;<span class="kw">clade</span>&gt;</span>
+<span id="cb11-7"><a href="input-output.html#cb11-7" tabindex="-1"></a>       &lt;<span class="kw">name</span>&gt;B&lt;/<span class="kw">name</span>&gt;</span>
+<span id="cb11-8"><a href="input-output.html#cb11-8" tabindex="-1"></a>       &lt;<span class="kw">branch_length</span>&gt;0.2&lt;/<span class="kw">branch_length</span>&gt;</span>
+<span id="cb11-9"><a href="input-output.html#cb11-9" tabindex="-1"></a>   &lt;/<span class="kw">clade</span>&gt;</span>
+<span id="cb11-10"><a href="input-output.html#cb11-10" tabindex="-1"></a>   &lt;<span class="kw">clade</span>&gt;</span>
+<span id="cb11-11"><a href="input-output.html#cb11-11" tabindex="-1"></a>       &lt;<span class="kw">name</span>&gt;C&lt;/<span class="kw">name</span>&gt;</span>
+<span id="cb11-12"><a href="input-output.html#cb11-12" tabindex="-1"></a>       &lt;<span class="kw">branch_length</span>&gt;0.3&lt;/<span class="kw">branch_length</span>&gt;</span>
+<span id="cb11-13"><a href="input-output.html#cb11-13" tabindex="-1"></a>   &lt;/<span class="kw">clade</span>&gt;</span>
+<span id="cb11-14"><a href="input-output.html#cb11-14" tabindex="-1"></a>   &lt;<span class="kw">clade</span>&gt;</span>
+<span id="cb11-15"><a href="input-output.html#cb11-15" tabindex="-1"></a>       &lt;<span class="kw">name</span>&gt;D&lt;/<span class="kw">name</span>&gt;</span>
+<span id="cb11-16"><a href="input-output.html#cb11-16" tabindex="-1"></a>       &lt;<span class="kw">branch_length</span>&gt;0.4&lt;/<span class="kw">branch_length</span>&gt;</span>
+<span id="cb11-17"><a href="input-output.html#cb11-17" tabindex="-1"></a>   &lt;/<span class="kw">clade</span>&gt;</span>
+<span id="cb11-18"><a href="input-output.html#cb11-18" tabindex="-1"></a>&lt;/<span class="kw">phylogeny</span>&gt;</span></code></pre></div></li>
 <li><p><strong>Usage:</strong> PhyloXML is suitable for storing and sharing complex phylogenetic data, often used in bioinformatics.</p></li>
 </ul></li>
 <li><strong>Phylip Format:</strong>

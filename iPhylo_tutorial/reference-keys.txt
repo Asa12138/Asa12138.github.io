@@ -1,6 +1,9 @@
 introduction
 iphylo-tree
 working-on-the-tree-page
+classification-systems
+phylo-tree
+chemical-tree
 tree-object
 taxonomic-level
 branch_length

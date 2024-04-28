@@ -1,7 +1,7 @@
 --- 
 title: "iPhylo Tutorial"
 author: "Chen Peng and Yueer Li"
-date: "2024-02-22"
+date: "2024-04-28"
 site: bookdown::bookdown_site
 documentclass: book
 bibliography: []
@@ -13,6 +13,7 @@ csl: science.csl
 link-citations: yes
 colorlinks: yes
 graphics: yes
+favicon: 'img/iphylo.png'
 ---
 
 # Welcome {-}

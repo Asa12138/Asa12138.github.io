@@ -23,13 +23,13 @@
 <meta name="author" content="Chen Peng and Yueer Li" />
 
 
-<meta name="date" content="2024-02-22" />
+<meta name="date" content="2024-04-28" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
-  
+  <link rel="shortcut icon" href="img/iphylo.png" type="image/x-icon" />
 <link rel="prev" href="introduction.html"/>
 <link rel="next" href="tree-object.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
@@ -143,6 +143,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2" data-path="iphylo-tree.html"><a href="iphylo-tree.html"><i class="fa fa-check"></i><b>2</b> iPhylo Tree</a>
 <ul>
 <li class="chapter" data-level="2.1" data-path="iphylo-tree.html"><a href="iphylo-tree.html#working-on-the-tree-page"><i class="fa fa-check"></i><b>2.1</b> Working on the Tree page</a></li>
+<li class="chapter" data-level="2.2" data-path="iphylo-tree.html"><a href="iphylo-tree.html#classification-systems"><i class="fa fa-check"></i><b>2.2</b> Classification Systems</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="iphylo-tree.html"><a href="iphylo-tree.html#phylo-tree"><i class="fa fa-check"></i><b>2.2.1</b> Phylo Tree</a></li>
+<li class="chapter" data-level="2.2.2" data-path="iphylo-tree.html"><a href="iphylo-tree.html#chemical-tree"><i class="fa fa-check"></i><b>2.2.2</b> Chemical Tree</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="tree-object.html"><a href="tree-object.html"><i class="fa fa-check"></i><b>3</b> Tree Object</a>
 <ul>
@@ -284,6 +289,24 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p><strong>Examples:</strong> We have provided 6 examples for biological and chemical trees respectively, which are just a click away to try. Corresponding descriptions are provided below each example input.</p></li>
 <li><p><strong>Generate Tree:</strong> Click this button to submit this form.</p></li>
 </ol>
+</div>
+<div id="classification-systems" class="section level2 hasAnchor" number="2.2">
+<h2><span class="header-section-number">2.2</span> Classification Systems<a href="iphylo-tree.html#classification-systems" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="phylo-tree" class="section level3 hasAnchor" number="2.2.1">
+<h3><span class="header-section-number">2.2.1</span> Phylo Tree<a href="iphylo-tree.html#phylo-tree" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><strong>Phylo Tree</strong> module builds biological taxonomic trees utilizing the <strong>NCBI Taxonomy</strong>. This system enables rapid retrieval of lineage information across all domains of life. The <strong>Phylo Tree</strong> classification uses data recorded in the NCBI Taxonomy database, including <code>TaxID</code>, <code>scientific name</code>, <code>common name</code>, and <code>synonyms</code>. It currently encompasses a total of 2,388,300 TaxIDs.</p>
+<p>For more information, please refer to the official link:<br />
+<a href="https://www.ncbi.nlm.nih.gov/Taxonomy/taxonomyhome.html/index.cgi?chapter=howcite">NCBI taxonomy database</a></p>
+</div>
+<div id="chemical-tree" class="section level3 hasAnchor" number="2.2.2">
+<h3><span class="header-section-number">2.2.2</span> Chemical Tree<a href="iphylo-tree.html#chemical-tree" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>To meet diverse classification needs, we utilize two compound classification systems, <strong>ChemOnt</strong> and <strong>NPClassifier</strong>, for chemical taxonomies. Our database includes approximately 800,000 chemical compounds with information on IUPC names, InChiKey, InChI, isomeric SMILES, and taxonomy details.</p>
+<p><strong>ChemOnt</strong> classifies a large number of chemicals based on their structural features. It uses chemical structures and structural features to automatically assign all known chemical compounds into a taxonomy comprising more than 4,800 different categories.</p>
+<p><strong>NPClassifier</strong> uses machine learning models to classify natural products beyond simple chemical substructures. This system incorporates factors such as the producing organism, biosynthetic pathways, and their biological properties.</p>
+<p>For more information, please consult the official publications:</p>
+<p><a href="https://jcheminf.biomedcentral.com/articles/10.1186/s13321-016-0174-y#citeas">ChemOnt</a></p>
+<p><a href="https://pubs.acs.org/doi/10.1021/acs.jnatprod.1c00399">NPClassifier</a></p>
+</div>
 </div>
 </div>
             </section>
