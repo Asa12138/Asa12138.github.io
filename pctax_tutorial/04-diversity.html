@@ -1,0 +1,1480 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.549">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<title>pctax: Analyzing Omics Data with R - 4&nbsp; Diversity analysis</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./05-differential.html" rel="next">
+<link href="./03-composition.html" rel="prev">
+<link href="./genomics.svg" rel="icon" type="image/svg+xml">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark"><script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script><script>
+  MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']]
+    }
+  };
+</script><script id="MathJax-script" async="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+</script><script src="site_libs/kePrint-0.0.1/kePrint.js"></script><link href="site_libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+<meta property="og:title" content="pctax: Analyzing Omics Data with R - 4&nbsp; Diversity analysis">
+<meta property="og:description" content="">
+<meta property="og:site_name" content="pctax: Analyzing Omics Data with R">
+</head>
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav"><div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./04-diversity.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Diversity analysis</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">pctax: Analyzing Omics Data with R</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/asa12138/pctax_tutorial" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01-intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Example data</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02-metadata.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Display metadata</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./03-composition.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Explore composition</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./04-diversity.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Diversity analysis</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./05-differential.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Differential abundance analysis</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./06-cluster.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Clustering analysis</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./07-community.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Community assembly</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./08-network.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Network analysis</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./09-enrichment.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Enrichment analysis</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./10-element-cycle.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Elemental cycling</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./11-others.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Other features</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">References</span></a>
+  </div>
+</li>
+    </ul>
+</div>
+</nav><div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+<li><a href="#%CE%B1-diversity" id="toc-α-diversity" class="nav-link active" data-scroll-target="#%CE%B1-diversity"><span class="header-section-number">4.1</span> α-diversity</a></li>
+  <li>
+<a href="#%CE%B2-diversity" id="toc-β-diversity" class="nav-link" data-scroll-target="#%CE%B2-diversity"><span class="header-section-number">4.2</span> β-diversity</a>
+  <ul class="collapse">
+<li><a href="#distance" id="toc-distance" class="nav-link" data-scroll-target="#distance">Distance</a></li>
+  <li><a href="#ordination-analysis" id="toc-ordination-analysis" class="nav-link" data-scroll-target="#ordination-analysis">Ordination analysis</a></li>
+  </ul>
+</li>
+  <li><a href="#%CE%B6-diversity" id="toc-ζ-diversity" class="nav-link" data-scroll-target="#%CE%B6-diversity"><span class="header-section-number">4.3</span> ζ-diversity</a></li>
+  </ul><div class="toc-actions"><ul><li><a href="https://github.com/asa12138/pctax_tutorial/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li><li><a href="https://github.com/asa12138/pctax_tutorial/blob/main/04-diversity.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
+<h1 class="title">
+<span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Diversity analysis</span>
+</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header><p>For more details on diversity analysis, you can refer to <a href="https://asa-blog.netlify.app/p/biodiversity/">Theories and methods of species diversity research</a></p>
+<div id="tbl-three-scale" class="quarto-float anchored">
+<figure class="quarto-float quarto-float-tbl figure"><figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-three-scale-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;4.1: Three scale of biodiversity
+</figcaption><div aria-describedby="tbl-three-scale-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/three_scale.png" class="img-fluid figure-img">
+</div>
+</figure>
+</div>
+<section id="α-diversity" class="level2" data-number="4.1"><h2 data-number="4.1" class="anchored" data-anchor-id="α-diversity">
+<span class="header-section-number">4.1</span> α-diversity</h2>
+<div class="cell">
+<div id="tbl-a-diveristy" class="cell quarto-float anchored">
+<figure class="quarto-float quarto-float-tbl figure"><figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-a-diveristy-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;4.2: Some α-diversity metrics
+</figcaption><div aria-describedby="tbl-a-diveristy-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output-display">
+<table class="do-not-create-environment cell table table-sm table-striped small" data-quarto-postprocess="true">
+<thead><tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Metric</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Description</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Richness</td>
+<td style="text-align: left;">The total number of different species observed in a sample.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Chao1</td>
+<td style="text-align: left;">An estimator of species richness that takes into account the number of rare species observed and extrapolates the total species richness of the community.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ACE</td>
+<td style="text-align: left;">Abundance-based Coverage Estimator (ACE) estimates species richness by accounting for the abundance distribution of species in a sample.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">GC</td>
+<td style="text-align: left;">The Gini coefficient measures the evenness of species abundance distribution in a community.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Shannon</td>
+<td style="text-align: left;">Shannon diversity index considers both species richness and evenness of species abundance in a community. Higher values indicate greater diversity.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Simpson</td>
+<td style="text-align: left;">Simpson diversity index measures the probability that two randomly selected individuals in a community belong to the same species. Lower values indicate greater diversity.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">PD</td>
+<td style="text-align: left;">Phylogenetic Diversity (PD) measures the amount of evolutionary history represented by species in a community.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Pielou</td>
+<td style="text-align: left;">Pielou's evenness index assesses how evenly the individuals in a community are distributed among the species present. Higher values indicate greater evenness.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</figure>
+</div>
+</div>
+<p>Calculate a_diversity of otutab then link to experiment group or environment variable:</p>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">a_diversity</span><span class="op">(</span><span class="va">otutab</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="va">a_res</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">a_res</span>, <span class="st">"Group"</span>, <span class="va">metadata</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">a_res</span>, <span class="st">"env1"</span>, <span class="va">metadata</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell quarto-layout-panel" data-layout-ncol="2">
+<div class="quarto-layout-row">
+<div class="cell-output-display quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-a-diversity-1" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-a-diversity-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="04-diversity_files/figure-html/fig-a-diversity-1.png" class="img-fluid figure-img" style="width:100.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-a-diversity-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4.1: α-diversity between groups
+</figcaption></figure>
+</div>
+</div>
+<div class="cell-output-display quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-a-diversity-2" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-a-diversity-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="04-diversity_files/figure-html/fig-a-diversity-2.png" class="img-fluid figure-img" style="width:100.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-a-diversity-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4.2: lm of α-diversity and env1
+</figcaption></figure>
+</div>
+</div>
+</div>
+</div>
+</section><section id="β-diversity" class="level2" data-number="4.2"><h2 data-number="4.2" class="anchored" data-anchor-id="β-diversity">
+<span class="header-section-number">4.2</span> β-diversity</h2>
+<section id="distance" class="level3"><h3 class="anchored" data-anchor-id="distance">Distance</h3>
+<p>Firstly, we should understand the dissimilarity indices for community. The <code><a href="https://rdrr.io/pkg/vegan/man/vegdist.html">vegan::vegdist()</a></code> function provides a wide range of distance metrics based on abundance calculations. Additionally, there are distance metrics that incorporate phylogenetic data such as “unifrac,” “beta_mpd,” “beta_mntd,” and “phylosor,” all integrated into the <code>mat_dist</code> function.</p>
+<div class="cell">
+<div id="tbl-dissimilarity" class="cell quarto-float anchored">
+<figure class="quarto-float quarto-float-tbl figure"><figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-dissimilarity-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;4.3: Some dissimilarity indices for community
+</figcaption><div aria-describedby="tbl-dissimilarity-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output-display">
+<table class="do-not-create-environment cell table table-sm table-striped small" data-quarto-postprocess="true">
+<thead><tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Distance.Coefficient</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Description</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Manhattan</td>
+<td style="text-align: left;">Manhattan distance calculates the sum of absolute differences between coordinates in each dimension. It is suitable for data with categorical variables or attributes.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Euclidean</td>
+<td style="text-align: left;">Euclidean distance calculates the straight-line distance between two points in a multidimensional space. It is commonly used when data are continuous and have no categorical attributes.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Canberra</td>
+<td style="text-align: left;">Canberra distance is a weighted version of Manhattan distance that emphasizes the importance of small differences between coordinates. It is often used for ecological data analysis.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Clark</td>
+<td style="text-align: left;">Clark distance measures the proportion of non-zero attributes that are different between two samples.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Bray</td>
+<td style="text-align: left;">Bray distance calculates the dissimilarity between two samples based on the sum of absolute differences in abundances.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Kulczynski</td>
+<td style="text-align: left;">Kulczynski distance measures the similarity between two samples based on the arithmetic mean of proportions of common attributes.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Jaccard</td>
+<td style="text-align: left;">Jaccard distance measures dissimilarity between two samples based on the proportion of unique attributes. It is commonly used in ecology for binary data.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Gower</td>
+<td style="text-align: left;">Gower distance is a generalization of Manhattan distance for mixed data types, including categorical and continuous variables.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">AltGower</td>
+<td style="text-align: left;">AltGower distance is an alternative form of Gower distance that uses an alternative method to standardize continuous variables.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Morisita</td>
+<td style="text-align: left;">Morisita distance measures dissimilarity between two samples based on the frequency of shared attributes, with emphasis on rare attributes.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Horn</td>
+<td style="text-align: left;">Horn distance measures dissimilarity between two samples based on the geometric mean of proportions of shared attributes.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Mountford</td>
+<td style="text-align: left;">Mountford distance measures dissimilarity between two samples based on the reciprocal of the arithmetic mean of proportions of shared attributes.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Raup</td>
+<td style="text-align: left;">Raup distance measures dissimilarity between two samples based on the probability of shared attributes.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Binomial</td>
+<td style="text-align: left;">Binomial distance measures dissimilarity between two samples based on the probability of observing shared attributes.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Chao</td>
+<td style="text-align: left;">Chao distance is a modification of Jaccard distance that adjusts for undersampling of rare species.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Cao</td>
+<td style="text-align: left;">Cao distance is a modification of Chao distance that incorporates species abundance information.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Mahalanobis</td>
+<td style="text-align: left;">Mahalanobis distance measures the distance between two samples in multidimensional space, accounting for correlation between variables.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Chisq</td>
+<td style="text-align: left;">Chisq distance calculates the dissimilarity between two samples based on the chi-squared distance between categorical variables.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Chord</td>
+<td style="text-align: left;">Chord distance calculates dissimilarity between two samples based on the angles between points in multidimensional space.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Hellinger</td>
+<td style="text-align: left;">Hellinger distance measures dissimilarity between two samples based on the square root of the sum of squared differences in square root-transformed abundances.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Aitchison</td>
+<td style="text-align: left;">Aitchison distance is a transformation of compositional data that allows for Euclidean distance calculation in log-ratio space.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Robust Aitchison</td>
+<td style="text-align: left;">Robust Aitchison distance is a robust version of Aitchison distance that reduces the influence of outliers in the data.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Unifrac</td>
+<td style="text-align: left;">Unifrac distance measures dissimilarity between microbial communities based on evolutionary distances in a phylogenetic tree.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Beta MPD</td>
+<td style="text-align: left;">Beta MPD (Mean Phylogenetic Distance) measures the phylogenetic diversity between two communities based on the mean phylogenetic distance of species pairs.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Beta MNTD</td>
+<td style="text-align: left;">Beta MNTD (Mean Nearest Taxon Distance) measures the phylogenetic turnover between two communities based on the mean nearest taxon distance.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Phylosor</td>
+<td style="text-align: left;">Phylosor distance measures the dissimilarity between communities based on the proportion of shared branches in a phylogenetic tree.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</figure>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">dist1</span> <span class="op">&lt;-</span> <span class="fu">mat_dist</span><span class="op">(</span><span class="va">otutab</span>, method <span class="op">=</span> <span class="st">"bray"</span><span class="op">)</span></span>
+<span><span class="va">dist1</span></span>
+<span><span class="co">##           NS1       NS2       NS3       NS4       NS5       NS6       WS1</span></span>
+<span><span class="co">## NS2 0.2965660                                                            </span></span>
+<span><span class="co">## NS3 0.3323402 0.3751370                                                  </span></span>
+<span><span class="co">## NS4 0.2855628 0.3480858 0.3022878                                        </span></span>
+<span><span class="co">## NS5 0.3165963 0.4463875 0.2980537 0.2942927                              </span></span>
+<span><span class="co">## NS6 0.2434597 0.3109617 0.2983203 0.2508816 0.2999133                    </span></span>
+<span><span class="co">##           WS2       WS3       WS4       WS5       WS6       CS1       CS2</span></span>
+<span><span class="co">## NS2                                                                      </span></span>
+<span><span class="co">## NS3                                                                      </span></span>
+<span><span class="co">## NS4                                                                      </span></span>
+<span><span class="co">## NS5                                                                      </span></span>
+<span><span class="co">## NS6                                                                      </span></span>
+<span><span class="co">##           CS3       CS4       CS5</span></span>
+<span><span class="co">## NS2                              </span></span>
+<span><span class="co">## NS3                              </span></span>
+<span><span class="co">## NS4                              </span></span>
+<span><span class="co">## NS5                              </span></span>
+<span><span class="co">## NS6                              </span></span>
+<span><span class="co">##  [ reached getOption("max.print") -- omitted 12 rows ]</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/stats/hclust.html">hclust</a></span><span class="op">(</span><span class="va">dist1</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-dist" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-dist-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="04-diversity_files/figure-html/fig-dist-1.png" class="img-fluid figure-img" style="width:80.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-dist-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4.3: Cluster dendrogram of samples
+</figcaption></figure>
+</div>
+</div>
+</div>
+<p>Transform the <code>dist</code> object to <code>b_dist</code> object, which is more readable and easy to plot.</p>
+<div class="cell">
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">as.b_dist</span><span class="op">(</span><span class="va">dist1</span>, group_df <span class="op">=</span> <span class="va">metadata</span><span class="op">[</span><span class="st">"Group"</span><span class="op">]</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="va">b_dist1</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">b_dist1</span>, n <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span>
+<span><span class="co">##    name1 name2       dis group1 group2 variable group</span></span>
+<span><span class="co">## 1    NS2   NS1 0.2965660     NS     NS       NS intra</span></span>
+<span><span class="co">## 2    NS3   NS1 0.3323402     NS     NS       NS intra</span></span>
+<span><span class="co">## 3    NS4   NS1 0.2855628     NS     NS       NS intra</span></span>
+<span><span class="co">## 4    NS5   NS1 0.3165963     NS     NS       NS intra</span></span>
+<span><span class="co">## 5    NS6   NS1 0.2434597     NS     NS       NS intra</span></span>
+<span><span class="co">## 6    WS1   NS1 0.3201161     WS     NS    NS_WS inter</span></span>
+<span><span class="co">## 7    WS2   NS1 0.3646047     WS     NS    NS_WS inter</span></span>
+<span><span class="co">## 8    WS3   NS1 0.3480162     WS     NS    NS_WS inter</span></span>
+<span><span class="co">## 9    WS4   NS1 0.2967074     WS     NS    NS_WS inter</span></span>
+<span><span class="co">## 10   WS5   NS1 0.2889362     WS     NS    NS_WS inter</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">b_dist1</span>, c_group <span class="op">=</span> <span class="st">"intra"</span>, alpha <span class="op">=</span> <span class="cn">T</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">b_dist1</span>, mode <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell quarto-layout-panel" data-layout-ncol="2">
+<div class="quarto-layout-row">
+<div class="cell-output-display quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-b-dist-1" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-b-dist-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="04-diversity_files/figure-html/fig-b-dist-1.png" class="img-fluid figure-img" style="width:100.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-b-dist-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4.4: Boxplot shows the distance of samples within each group
+</figcaption></figure>
+</div>
+</div>
+<div class="cell-output-display quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-b-dist-2" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-b-dist-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="04-diversity_files/figure-html/fig-b-dist-2.png" class="img-fluid figure-img" style="width:100.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-b-dist-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4.5: Density plot shows there is significant different between inter- and intra- group.
+</figcaption></figure>
+</div>
+</div>
+</div>
+</div>
+<p>We can also relate the distances between samples in the abundance table to other distances, such as the actual geographical distances of sampling, to observe if there is a pattern of decreasing similarity with geographical distance:</p>
+<div class="cell">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">metadata</span><span class="op">[</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"lat"</span>, <span class="st">"long"</span><span class="op">)</span><span class="op">]</span> <span class="op">-&gt;</span> <span class="va">geo</span></span>
+<span><span class="fu">geo_sim</span><span class="op">(</span><span class="va">otutab</span>, <span class="va">geo</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="va">geo_res</span></span>
+<span><span class="fu">my_lm</span><span class="op">(</span><span class="va">geo_res</span><span class="op">[</span><span class="fl">4</span><span class="op">]</span>, <span class="st">"dis.geo"</span>, <span class="va">geo_res</span><span class="op">)</span> <span class="op">+</span> <span class="fu">labs</span><span class="op">(</span>x <span class="op">=</span> <span class="st">"Distance(km)"</span>, y <span class="op">=</span> <span class="st">"1-bray"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-geo-sim" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-geo-sim-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="04-diversity_files/figure-html/fig-geo-sim-1.png" class="img-fluid figure-img" style="width:80.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-geo-sim-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4.6: lm between similarity (1-bray) and geographical distance
+</figcaption></figure>
+</div>
+</div>
+</div>
+</section><section id="ordination-analysis" class="level3"><h3 class="anchored" data-anchor-id="ordination-analysis">Ordination analysis</h3>
+<p>There are a range of dimensionality reduction methods available for analysis, including Constrained and non-Constrained. For more details, you can refer to <a href="https://asa-blog.netlify.app/p/ordination-analysis/">Dimension reduction/ordination analysis</a></p>
+<div class="cell">
+<div id="tbl-b-diveristy" class="cell quarto-float anchored">
+<figure class="quarto-float quarto-float-tbl figure"><figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-b-diveristy-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;4.4: Various dimensionality reduction methods for β-diversity
+</figcaption><div aria-describedby="tbl-b-diveristy-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output-display">
+<table class="do-not-create-environment cell table table-sm table-striped small" data-quarto-postprocess="true">
+<thead><tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Short</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Name</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Description</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">PCA</td>
+<td style="text-align: left;">Principal Component Analysis (PCA)</td>
+<td style="text-align: left;">PCA is a linear technique used to reduce the dimensionality of the data by transforming it into a new coordinate system aligned with the directions of maximum variance. It captures the most significant patterns in the data.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">PCoA</td>
+<td style="text-align: left;">Principal Coordinates Analysis (PCoA)</td>
+<td style="text-align: left;">PCoA is a method similar to PCA, but it operates on distance or dissimilarity matrices, making it suitable for analyzing ecological or genetic data. It visualizes relationships between samples based on their pairwise dissimilarities.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">CA</td>
+<td style="text-align: left;">Correspondence Analysis (CA)</td>
+<td style="text-align: left;">CA is used to explore relationships between categorical variables in a dataset. It reduces the dimensionality of the data and projects variables onto a lower-dimensional space while preserving the relationships between them.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">DCA</td>
+<td style="text-align: left;">Detrended Correspondence Analysis (DCA)</td>
+<td style="text-align: left;">DCA is a variation of CA designed for ecological data. It is particularly useful for exploring species-environment relationships in community ecology and visualizing gradients in species composition.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">NMDS</td>
+<td style="text-align: left;">Non-metric Multidimensional Scaling (NMDS)</td>
+<td style="text-align: left;">NMDS is a nonlinear method for dimensionality reduction that preserves the rank order of distances between samples. It is commonly used in ecology to visualize dissimilarities or distances between samples.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">PLS-DA</td>
+<td style="text-align: left;">Partial Least Squares Discriminant Analysis (PLS-DA)</td>
+<td style="text-align: left;">PLS-DA is a supervised dimensionality reduction technique used in classification problems. It identifies latent variables that maximize the separation between predefined classes in the data.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">t-SNE</td>
+<td style="text-align: left;">t-distributed Stochastic Neighbor Embedding (t-SNE)</td>
+<td style="text-align: left;">t-SNE is a nonlinear dimensionality reduction technique that focuses on preserving local structure in the data. It is commonly used for visualizing high-dimensional data in a lower-dimensional space.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">UMAP</td>
+<td style="text-align: left;">Uniform Manifold Approximation and Projection (UMAP)</td>
+<td style="text-align: left;">UMAP is a state-of-the-art nonlinear dimensionality reduction method known for its ability to preserve both local and global structure in high-dimensional data. It is effective for visualizing complex datasets.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">LDA</td>
+<td style="text-align: left;">Linear Discriminant Analysis (LDA)</td>
+<td style="text-align: left;">LDA is a supervised dimensionality reduction technique used for classification tasks. It finds the linear combinations of features that best separate different classes in the data.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</figure>
+</div>
+</div>
+<p>Like PCA, PCoA, NMDS, RDA, CCA… For example:</p>
+<p>PCA:</p>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">b_analyse</span><span class="op">(</span><span class="va">otutab</span>, method <span class="op">=</span> <span class="st">"pca"</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="va">b_res</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">b_res</span>, <span class="st">"Group"</span>, <span class="va">metadata</span>, bi <span class="op">=</span> <span class="cn">T</span>, rate <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">b_res</span>, <span class="st">"Group"</span>, <span class="va">metadata</span>, mode <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell quarto-layout-panel" data-layout-ncol="2">
+<div class="quarto-layout-row">
+<div class="cell-output-display quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-b-diversity-1" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-b-diversity-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="04-diversity_files/figure-html/fig-b-diversity-1.png" class="img-fluid figure-img" style="width:100.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-b-diversity-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4.7: PCA for β-diversity
+</figcaption></figure>
+</div>
+</div>
+<div class="cell-output-display quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-b-diversity-2" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-b-diversity-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="04-diversity_files/figure-html/fig-b-diversity-2.png" class="img-fluid figure-img" style="width:100.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-b-diversity-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4.8: PCA for β-diversity in other style
+</figcaption></figure>
+</div>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">b_analyse</span><span class="op">(</span><span class="va">otutab</span>, method <span class="op">=</span> <span class="st">"pca"</span>, ndim <span class="op">=</span> <span class="fl">3</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="va">b_res</span></span>
+<span><span class="fu">b_res_3d</span><span class="op">(</span><span class="va">b_res</span>, <span class="st">"Group"</span>, <span class="va">metadata</span><span class="op">)</span></span>
+<span><span class="co">## $PCA</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>RDA:</p>
+<div class="cell">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">env</span> <span class="op">&lt;-</span> <span class="va">metadata</span><span class="op">[</span>, <span class="fl">6</span><span class="op">:</span><span class="fl">10</span><span class="op">]</span></span>
+<span><span class="co"># RDA</span></span>
+<span><span class="fu">myRDA</span><span class="op">(</span><span class="va">otutab</span>, <span class="va">env</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="va">phy.rda</span></span>
+<span><span class="co">## </span></span>
+<span><span class="co">## Call:</span></span>
+<span><span class="co">## vegan::decorana(veg = dat.h) </span></span>
+<span><span class="co">## </span></span>
+<span><span class="co">## Detrended correspondence analysis with 26 segments.</span></span>
+<span><span class="co">## Rescaling of axes with 4 iterations.</span></span>
+<span><span class="co">## Total inertia (scaled Chi-square): 0.3192 </span></span>
+<span><span class="co">## </span></span>
+<span><span class="co">##                         DCA1    DCA2    DCA3     DCA4</span></span>
+<span><span class="co">## Eigenvalues          0.03142 0.02276 0.01927 0.017818</span></span>
+<span><span class="co">## Additive Eigenvalues 0.03142 0.02276 0.01927 0.017881</span></span>
+<span><span class="co">## Decorana values      0.03169 0.02142 0.01511 0.009314</span></span>
+<span><span class="co">## Axis lengths         0.73929 0.72605 0.52357 0.666913</span></span>
+<span><span class="co">## </span></span>
+<span><span class="co">## DCA analysis, select the sorting analysis model according to the first value of the Axis lengths row</span></span>
+<span><span class="co">##    Axis Lengths &gt;4.0-CCA (based on unimodal model, canonical correspondence analysis);</span></span>
+<span><span class="co">##    If it is between 3.0-4.0 - both RDA/CCA;</span></span>
+<span><span class="co">##    If less than 3.0-RDA (based on linear model, redundancy analysis)</span></span>
+<span><span class="co">## [1] "===============Initial Model================"</span></span>
+<span><span class="co">## [1] "Initial cca, vif&gt;20 indicates serious collinearity:"</span></span>
+<span><span class="co">##     env4     env5     env6      lat     long </span></span>
+<span><span class="co">## 2.574997 2.674671 1.252002 1.381839 1.211392 </span></span>
+<span><span class="co">## Initial Model R-square: 0.04828743 </span></span>
+<span><span class="co">## [1] "=============Statistics==========="</span></span>
+<span><span class="co">## 0.3282029 Constrained indicates the degree to which environmental factors explain differences in community structure</span></span>
+<span><span class="co">## 0.6717971 unconstrained means that the environmental factors cannot explain the part of the community structure</span></span>
+<span><span class="fu">RDA_plot</span><span class="op">(</span><span class="va">phy.rda</span>, <span class="st">"Group"</span>, <span class="va">metadata</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-rda" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-rda-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="04-diversity_files/figure-html/fig-rda-1.png" class="img-fluid figure-img" style="width:80.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-rda-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4.9: RDA for β-diversity associated environmental variables
+</figcaption></figure>
+</div>
+</div>
+</div>
+<p>To assess the impact and significance of environmental factors on the abundance table, you can utilize statistical tests such as PERMANOVA (Permutational Multivariate Analysis of Variance) with methods like “adonis,” “anosim,” “mrpp,” or “mantel”. Alternatively, you can employ the “envfit” function for testing.</p>
+<div class="cell">
+<div id="tbl-PERMANOVA" class="cell quarto-float anchored">
+<figure class="quarto-float quarto-float-tbl figure"><figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-PERMANOVA-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;4.5: Statistical tests for PERMANOVA
+</figcaption><div aria-describedby="tbl-PERMANOVA-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output-display">
+<table class="do-not-create-environment cell table table-sm table-striped small" data-quarto-postprocess="true">
+<thead><tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Method</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Description</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Adonis</td>
+<td style="text-align: left;">A permutation-based multivariate analysis of variance (PERMANOVA) method used to test for significant differences in multivariate data sets across different groups or treatments.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Anosim</td>
+<td style="text-align: left;">Analysis of Similarities is a non-parametric method for testing the significance of differences between groups of samples based on dissimilarity matrices.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">MRPP</td>
+<td style="text-align: left;">Multi-response Permutation Procedure is a permutation-based method for testing significant differences in multivariate data sets, similar to Anosim but utilizing a different test statistic.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Mantel</td>
+<td style="text-align: left;">A statistical method used to assess the correlation between two distance or dissimilarity matrices, often used to examine the relationship between community dissimilarities and environmental distances.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Envfit</td>
+<td style="text-align: left;">A function used to fit environmental variables onto ordination plots, assessing the significance and strength of the relationship between environmental variables and sample ordinations using permutation tests.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</figure>
+</div>
+</div>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">permanova</span><span class="op">(</span><span class="va">otutab</span>, <span class="va">env</span>, method <span class="op">=</span> <span class="st">"adonis"</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="va">adonis_res</span></span>
+<span><span class="fu">sanxian</span><span class="op">(</span><span class="va">adonis_res</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">envfitt</span><span class="op">(</span><span class="va">phy.rda</span>, <span class="va">env</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="va">envfit_res</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">envfit_res</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell quarto-layout-panel" data-layout-ncol="2">
+<div class="quarto-layout-row quarto-layout-valign-bottom">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-adonis-1" class="cell-output-display quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-adonis-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class=" lightable-classic" style="font-family: Cambria; width: auto !important; margin-left: auto; margin-right: auto;">
+<thead><tr>
+<th style="text-align:left;">
+group
+</th>
+<th style="text-align:right;">
+r2
+</th>
+<th style="text-align:right;">
+p_value
+</th>
+<th style="text-align:left;">
+sig
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+env4
+</td>
+<td style="text-align:right;">
+0.116
+</td>
+<td style="text-align:right;">
+0.001
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+env5
+</td>
+<td style="text-align:right;">
+0.097
+</td>
+<td style="text-align:right;">
+0.002
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+env6
+</td>
+<td style="text-align:right;">
+0.060
+</td>
+<td style="text-align:right;">
+0.406
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+lat
+</td>
+<td style="text-align:right;">
+0.058
+</td>
+<td style="text-align:right;">
+0.463
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+long
+</td>
+<td style="text-align:right;">
+0.053
+</td>
+<td style="text-align:right;">
+0.756
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-adonis-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4.10: Adonis result for environmental factors
+</figcaption></figure>
+</div>
+</div>
+<div class="cell-output-display quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-adonis-2" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-adonis-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="04-diversity_files/figure-html/fig-adonis-1.png" class="img-fluid figure-img" style="width:100.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-adonis-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4.11: Adonis result for environmental factors
+</figcaption></figure>
+</div>
+</div>
+</div>
+</div>
+<p>We can also utilize Mantel tests to assess the correlation between abundance tables and environmental factors, and create this elegant visualization (integrating correlation heatmaps and network plots):</p>
+<div class="cell">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># construct a simulated multi-group abundance table</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span><span class="op">(</span>group <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"a"</span>, <span class="st">"b"</span>, <span class="st">"c"</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">200</span>, <span class="fl">100</span>, <span class="fl">185</span><span class="op">)</span><span class="op">)</span>, <span class="va">otutab</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="va">g_otutab</span></span>
+<span></span>
+<span><span class="va">metadata</span><span class="op">[</span>, <span class="fl">3</span><span class="op">:</span><span class="fl">8</span>, drop <span class="op">=</span> <span class="cn">FALSE</span><span class="op">]</span> <span class="op">-&gt;</span> <span class="va">env</span></span>
+<span><span class="fu">m_group_env</span><span class="op">(</span><span class="va">g_otutab</span>, <span class="va">env</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="va">mant_g</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">mant_g</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-mantel" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-mantel-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="04-diversity_files/figure-html/fig-mantel-1.png" class="img-fluid figure-img" style="width:100.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-mantel-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4.12: Multi-group mantel-test result
+</figcaption></figure>
+</div>
+</div>
+</div>
+</section></section><section id="ζ-diversity" class="level2" data-number="4.3"><h2 data-number="4.3" class="anchored" data-anchor-id="ζ-diversity">
+<span class="header-section-number">4.3</span> ζ-diversity</h2>
+<p>Learn the concept of zeta diversity from <span class="citation" data-cites="huiZetaDiversityConcept2014">(<a href="references.html#ref-huiZetaDiversityConcept2014" role="doc-biblioref"><em>1</em></a>)</span>. The study introduces zeta (ζ) diversity as a novel concept and metric for measuring, characterizing, and relating diversity patterns. It is defined as the number of species shared by multiple combinations. Unlike other measures of species turnover, zeta diversity divides and quantifies the complete diversity components of multiple combinations, thereby comprehensively characterizing the spatial structure of multi-species distributions.</p>
+<div class="cell">
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">zeta_result</span> <span class="op">&lt;-</span> <span class="fu">z_diversity</span><span class="op">(</span><span class="va">otutab</span>, <span class="va">metadata</span><span class="op">[</span><span class="st">"Group"</span><span class="op">]</span>, zetadiv_params <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>sam <span class="op">=</span> <span class="fl">200</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">zeta_result</span>, lm_model <span class="op">=</span> <span class="st">"exp"</span>, text <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-z-diversity" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-z-diversity-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="04-diversity_files/figure-html/fig-z-diversity-1.png" class="img-fluid figure-img" style="width:80.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-z-diversity-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4.13: RDA for β-diversity associated environmental variables
+</figcaption></figure>
+</div>
+</div>
+</div>
+
+
+<div id="refs" class="references csl-bib-body" role="list" style="display: none">
+<div id="ref-huiZetaDiversityConcept2014" class="csl-entry" role="listitem">
+<div class="csl-left-margin">1. </div>
+<div class="csl-right-inline">C. Hui, M. A. McGeoch, <a href="https://doi.org/10.1086/678125">Zeta <span>Diversity</span> as a <span>Concept</span> and <span>Metric That Unifies Incidence-Based Biodiversity Patterns</span>.</a> <em>The American Naturalist</em>. <strong>184</strong>, 684–694 (2014).</div>
+</div>
+</div>
+</section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+    const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+    const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+    let newTheme = '';
+    if(darkModeDefault) {
+      newTheme = isAlternate ? baseTheme : alternateTheme;
+    } else {
+      newTheme = isAlternate ? alternateTheme : baseTheme;
+    }
+    const changeGiscusTheme = () => {
+      // From: https://github.com/giscus/giscus/issues/336
+      const sendMessage = (message) => {
+        const iframe = document.querySelector('iframe.giscus-frame');
+        if (!iframe) return;
+        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+      }
+      sendMessage({
+        setConfig: {
+          theme: newTheme
+        }
+      });
+    }
+    const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+    if (isGiscussLoaded) {
+      changeGiscusTheme();
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  const darkModeDefault = false;
+  let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+    toggleGiscusIfUsed(toAlternate, darkModeDefault);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script><nav class="page-navigation"><div class="nav-page nav-page-previous">
+      <a href="./03-composition.html" class="pagination-link  aria-label=" composition="">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Explore composition</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./05-differential.html" class="pagination-link" aria-label="<span class='chapter-number'>5</span>&nbsp; <span class='chapter-title'>Differential abundance analysis</span>">
+        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Differential abundance analysis</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/asa12138/pctax_tutorial/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li><li><a href="https://github.com/asa12138/pctax_tutorial/blob/main/04-diversity.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></div></div></footer></body></html>
