@@ -2,16 +2,30 @@
   {
     "objectID": "development.html",
     "href": "development.html",
-    "title": "R packages 📦",
+    "title": "Asa_web",
     "section": "",
-    "text": "R packages 📦\n\n\npcutils\n\nIt contains many useful functions for statistics and visualization.\nSee the Github page for the HTML documentation.\n\nMetaNet\n\nIt is a comprehensive network analysis package, especially in various biological omics.\nSee the MetaNet Tutorial\n\npctax\n\nIt contains basic pipelines for omics analysis, especially for microbiome analysis.\nSee the pctax Tutorial\n\nReporterScore\n\nGeneralized reporter score-based enrichment analysis for omics data.\nSee the Github page for the HTML documentation.\n\nplot4fun\n\nplot4fun provides many interesting functions for plotting.\nSee the Github page for the HTML documentation.\n\n\n\n\nWeb servers 🕸\n\niPhylo\n\nIt is a comprehensive, automated, and interactive platform for biological and chemical taxonomic analysis, developed in cooperation with Li Yueer.\nSee the iPhylo Tutorial for more details."
+    "text": "pcutils\n\nIt contains many useful functions for statistics and visualization.\nSee the Github page for the HTML documentation.\n\nMetaNet\n\nIt is a comprehensive network analysis package, especially in various biological omics.\nSee the MetaNet Tutorial\n\npctax\n\nIt contains basic pipelines for omics analysis, especially for microbiome analysis.\nSee the pctax Tutorial\n\nReporterScore\n\nGeneralized reporter score-based enrichment analysis for omics data.\nSee the Github page for the HTML documentation.\n\nplot4fun\n\nplot4fun provides many interesting functions for plotting.\nSee the Github page for the HTML documentation."
+  },
+  {
+    "objectID": "development.html#r-packages",
+    "href": "development.html#r-packages",
+    "title": "Asa_web",
+    "section": "",
+    "text": "pcutils\n\nIt contains many useful functions for statistics and visualization.\nSee the Github page for the HTML documentation.\n\nMetaNet\n\nIt is a comprehensive network analysis package, especially in various biological omics.\nSee the MetaNet Tutorial\n\npctax\n\nIt contains basic pipelines for omics analysis, especially for microbiome analysis.\nSee the pctax Tutorial\n\nReporterScore\n\nGeneralized reporter score-based enrichment analysis for omics data.\nSee the Github page for the HTML documentation.\n\nplot4fun\n\nplot4fun provides many interesting functions for plotting.\nSee the Github page for the HTML documentation."
+  },
+  {
+    "objectID": "development.html#web-servers",
+    "href": "development.html#web-servers",
+    "title": "Asa_web",
+    "section": "Web servers 🕸",
+    "text": "Web servers 🕸\n\niPhylo\n\nIt is a comprehensive, automated, and interactive platform for biological and chemical taxonomic analysis, developed in cooperation with Li Yueer.\nSee the iPhylo Tutorial for more details."
   },
   {
     "objectID": "index.html#about-myself",
     "href": "index.html#about-myself",
     "title": "Asa’s website",
     "section": "🤺 About myself:",
-    "text": "🤺 About myself:\n\n            \n\n🏫 Education\nUndergraduate (2018~2022):\nBiological Science, Zhejiang University, Colleage of Life Sciences\nPhD student (2022~ ):\nBioinformatics, Zhejiang University, Life Sciences Institute\n🎯 Focus on\n\n🧬 Metagenomics and microbial ecology: mechanisms shaping microbial diversity patterns, distribution and dynamics.\n💻 Bioinformatics and systems biology: developing ecological network or other mathematical modeling approaches for microbial ecology.\n\n\n\n🤩 Hobbies\n\n\n📺 Animation Such as Attack on Titan, CLANNAD, and Rick and Morty.\n🦉 Bird watching\n🌼 Plant cognition"
+    "text": "🤺 About myself:\n\n              \n\n🏫 Education\nUndergraduate (2018~2022):\nBiological Science, Zhejiang University, Colleage of Life Sciences\nPhD student (2022~ ):\nBioinformatics, Zhejiang University, Life Sciences Institute\n🎯 Focus on\n\n🧬 Metagenomics and microbial ecology: mechanisms shaping microbial diversity patterns, distribution and dynamics.\n💻 Bioinformatics and systems biology: developing ecological network or other mathematical modeling approaches for microbial ecology.\n\n\n\n🤩 Hobbies\n\n\n📺 Animation Such as Attack on Titan, CLANNAD, and Rick and Morty.\n🦉 Bird watching\n🌼 Plant cognition"
   },
   {
     "objectID": "index.html#my-blog",
@@ -39,7 +53,7 @@
     "href": "others.html",
     "title": "Other things",
     "section": "",
-    "text": "R tips for advanced use\nAsa’s R package\n\n\n\n\n\nGOlist.rda for ReporterScore::update_GOlist()\nSanJiChunLianZiTiJian.ttf for pcutils::chunlian()\nchina.json for pcutils::china_map()"
+    "text": "R tips for advanced use\nAsa’s R package\n\n\n\n\n\nGOlist.rda for ReporterScore::update_GOlist()\nSanJiChunLianZiTiJian.ttf for pcutils::chunlian()\nchina.json for pcutils::china_map()\nJCR_IF_2024_bigger_than_2.4.csv for searching papers with IF &gt; 2.4 in JCR."
   },
   {
     "objectID": "others.html#presentation",
@@ -49,32 +63,25 @@
     "text": "R tips for advanced use\nAsa’s R package"
   },
   {
-    "objectID": "others.html#extra-files-for-r-package",
-    "href": "others.html#extra-files-for-r-package",
+    "objectID": "others.html#extra-files",
+    "href": "others.html#extra-files",
     "title": "Other things",
     "section": "",
-    "text": "GOlist.rda for ReporterScore::update_GOlist()\nSanJiChunLianZiTiJian.ttf for pcutils::chunlian()\nchina.json for pcutils::china_map()"
+    "text": "GOlist.rda for ReporterScore::update_GOlist()\nSanJiChunLianZiTiJian.ttf for pcutils::chunlian()\nchina.json for pcutils::china_map()\nJCR_IF_2024_bigger_than_2.4.csv for searching papers with IF &gt; 2.4 in JCR."
   },
   {
     "objectID": "works.html",
     "href": "works.html",
-    "title": "Publications 📄",
+    "title": "Asa_web",
     "section": "",
     "text": "Yueer Li#, Chen Peng#, Fei Chi, Zinuo Huang, Mengyi Yuan, Chao Jiang.The iPhylo suite: an interactive platform for building and annotating biological and chemical taxonomic trees. In submission\nQiong Chen, Chen Peng, Haoteng Xu, Zhuojie Su, Gulimire Yilihan, Xin Wei, Yueran Shen, Chao Jiang. Microplastics released from disposable paper cups are enriched in the placenta and fetus, leading to metabolic and reproductive toxicity in mice. In submission\n\n\n\n\n\nC. Peng, Q. Chen, S. Tan, X. Shen, C. Jiang, Generalized reporter score-based enrichment analysis for omics data. Briefings in Bioinformatics (2024). https://doi.org/10.1093/bib/bbae116.\nZ. Huang#, C. Peng#, Z. Rong, L. Jiang, Y. Li, Y. Feng, S. Chen, C. Xie, C. Jiang, Longitudinal mapping of personal biotic and abiotic exposomes and transcriptome in underwater confined space using wearable passive samplers. Environmental Science & Technology (2024). https://doi.org/10.1021/acs.est.3c09379.\nC. Peng, Q. Chen, S. Tan, X. Shen, C. Jiang, Generalized Reporter Score-based Enrichment Analysis for Omics Data. bioRxiv [Preprint] (2023). https://doi.org/10.1101/2023.10.13.562235.\nQ. Chen, M. Yuan, L. Jiang, X. Wei, Z. Liu, C. Peng, Z. Huang, D. Tang, X. Wu, J. Sun, C. Ye, Q. Liu, X. Zhu, P. Gao, L. Huang, M. Wang, M. Jiang, C. Jiang, Progressive community, biogeochemical and evolutionary remodeling of the soil microbiome underpins long-term desert ecosystem restoration. bioRxiv [Preprint] (2023). https://doi.org/10.1101/2023.09.26.559499.\nH. Wu, C. Peng, M. Chen, Rethinking the complexity and uncertainty of spatial networks applied to forest ecology. Scientific Reports (2022). https://doi.org/10.1038/s41598-022-16485-9.\nL. Fan, C. Peng, X. Zhu, Y. Liang, T. Xu, P. Xu, S. Wu, Dihydrotanshinone I Enhances Cell Adhesion and Inhibits Cell Migration in Osteosarcoma U−2 OS Cells through CD44 and Chemokine Signaling. Molecules (2022). https://doi.org/10.3390/molecules27123714.\nX. Zhu, T. Xu, C. Peng, S. Wu, Advances in MALDI Mass Spectrometry Imaging Single Cell and Tissues. Frontiers in Chemistry (2022). https://doi.org/10.3389/fchem.2021.782432.\nM. Xia, Y. Liu, J. Liu, D. Chen, Y. Shi, Z. Bai, Y. Xiao, C. Peng, J. Si, P. Li, Y. Qiu, A new synonym of Polygonatum in China, based on morphological and molecular evidence. PhytoKeys (2021). https://doi.org/10.3897/phytokeys.175.63383."
   },
   {
-    "objectID": "works.html#in-submission",
-    "href": "works.html#in-submission",
-    "title": "Publications 📄",
+    "objectID": "works.html#publications",
+    "href": "works.html#publications",
+    "title": "Asa_web",
     "section": "",
-    "text": "Yueer Li#, Chen Peng#, Fei Chi, Zinuo Huang, Mengyi Yuan, Chao Jiang.The iPhylo suite: an interactive platform for building and annotating biological and chemical taxonomic trees. In submission\nQiong Chen, Chen Peng, Haoteng Xu, Zhuojie Su, Gulimire Yilihan, Xin Wei, Yueran Shen, Chao Jiang. Microplastics released from disposable paper cups are enriched in the placenta and fetus, leading to metabolic and reproductive toxicity in mice. In submission"
-  },
-  {
-    "objectID": "works.html#published",
-    "href": "works.html#published",
-    "title": "Publications 📄",
-    "section": "",
-    "text": "C. Peng, Q. Chen, S. Tan, X. Shen, C. Jiang, Generalized reporter score-based enrichment analysis for omics data. Briefings in Bioinformatics (2024). https://doi.org/10.1093/bib/bbae116.\nZ. Huang#, C. Peng#, Z. Rong, L. Jiang, Y. Li, Y. Feng, S. Chen, C. Xie, C. Jiang, Longitudinal mapping of personal biotic and abiotic exposomes and transcriptome in underwater confined space using wearable passive samplers. Environmental Science & Technology (2024). https://doi.org/10.1021/acs.est.3c09379.\nC. Peng, Q. Chen, S. Tan, X. Shen, C. Jiang, Generalized Reporter Score-based Enrichment Analysis for Omics Data. bioRxiv [Preprint] (2023). https://doi.org/10.1101/2023.10.13.562235.\nQ. Chen, M. Yuan, L. Jiang, X. Wei, Z. Liu, C. Peng, Z. Huang, D. Tang, X. Wu, J. Sun, C. Ye, Q. Liu, X. Zhu, P. Gao, L. Huang, M. Wang, M. Jiang, C. Jiang, Progressive community, biogeochemical and evolutionary remodeling of the soil microbiome underpins long-term desert ecosystem restoration. bioRxiv [Preprint] (2023). https://doi.org/10.1101/2023.09.26.559499.\nH. Wu, C. Peng, M. Chen, Rethinking the complexity and uncertainty of spatial networks applied to forest ecology. Scientific Reports (2022). https://doi.org/10.1038/s41598-022-16485-9.\nL. Fan, C. Peng, X. Zhu, Y. Liang, T. Xu, P. Xu, S. Wu, Dihydrotanshinone I Enhances Cell Adhesion and Inhibits Cell Migration in Osteosarcoma U−2 OS Cells through CD44 and Chemokine Signaling. Molecules (2022). https://doi.org/10.3390/molecules27123714.\nX. Zhu, T. Xu, C. Peng, S. Wu, Advances in MALDI Mass Spectrometry Imaging Single Cell and Tissues. Frontiers in Chemistry (2022). https://doi.org/10.3389/fchem.2021.782432.\nM. Xia, Y. Liu, J. Liu, D. Chen, Y. Shi, Z. Bai, Y. Xiao, C. Peng, J. Si, P. Li, Y. Qiu, A new synonym of Polygonatum in China, based on morphological and molecular evidence. PhytoKeys (2021). https://doi.org/10.3897/phytokeys.175.63383."
+    "text": "Yueer Li#, Chen Peng#, Fei Chi, Zinuo Huang, Mengyi Yuan, Chao Jiang.The iPhylo suite: an interactive platform for building and annotating biological and chemical taxonomic trees. In submission\nQiong Chen, Chen Peng, Haoteng Xu, Zhuojie Su, Gulimire Yilihan, Xin Wei, Yueran Shen, Chao Jiang. Microplastics released from disposable paper cups are enriched in the placenta and fetus, leading to metabolic and reproductive toxicity in mice. In submission\n\n\n\n\n\nC. Peng, Q. Chen, S. Tan, X. Shen, C. Jiang, Generalized reporter score-based enrichment analysis for omics data. Briefings in Bioinformatics (2024). https://doi.org/10.1093/bib/bbae116.\nZ. Huang#, C. Peng#, Z. Rong, L. Jiang, Y. Li, Y. Feng, S. Chen, C. Xie, C. Jiang, Longitudinal mapping of personal biotic and abiotic exposomes and transcriptome in underwater confined space using wearable passive samplers. Environmental Science & Technology (2024). https://doi.org/10.1021/acs.est.3c09379.\nC. Peng, Q. Chen, S. Tan, X. Shen, C. Jiang, Generalized Reporter Score-based Enrichment Analysis for Omics Data. bioRxiv [Preprint] (2023). https://doi.org/10.1101/2023.10.13.562235.\nQ. Chen, M. Yuan, L. Jiang, X. Wei, Z. Liu, C. Peng, Z. Huang, D. Tang, X. Wu, J. Sun, C. Ye, Q. Liu, X. Zhu, P. Gao, L. Huang, M. Wang, M. Jiang, C. Jiang, Progressive community, biogeochemical and evolutionary remodeling of the soil microbiome underpins long-term desert ecosystem restoration. bioRxiv [Preprint] (2023). https://doi.org/10.1101/2023.09.26.559499.\nH. Wu, C. Peng, M. Chen, Rethinking the complexity and uncertainty of spatial networks applied to forest ecology. Scientific Reports (2022). https://doi.org/10.1038/s41598-022-16485-9.\nL. Fan, C. Peng, X. Zhu, Y. Liang, T. Xu, P. Xu, S. Wu, Dihydrotanshinone I Enhances Cell Adhesion and Inhibits Cell Migration in Osteosarcoma U−2 OS Cells through CD44 and Chemokine Signaling. Molecules (2022). https://doi.org/10.3390/molecules27123714.\nX. Zhu, T. Xu, C. Peng, S. Wu, Advances in MALDI Mass Spectrometry Imaging Single Cell and Tissues. Frontiers in Chemistry (2022). https://doi.org/10.3389/fchem.2021.782432.\nM. Xia, Y. Liu, J. Liu, D. Chen, Y. Shi, Z. Bai, Y. Xiao, C. Peng, J. Si, P. Li, Y. Qiu, A new synonym of Polygonatum in China, based on morphological and molecular evidence. PhytoKeys (2021). https://doi.org/10.3897/phytokeys.175.63383."
   },
   {
     "objectID": "qunqing.html",
