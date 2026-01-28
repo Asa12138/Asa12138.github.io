@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>CRISPRome</title>
+		<link rel="stylesheet" href="styles.css">
+		<link rel="icon" href="favicon_io/favicon.ico" type="image/x-icon">
+	</head>
+	<body>
+		<header>
+			<h1>Welcome to CRISPRome</h1>
+			<img src="images/crispr.png" alt="CRISPRome Logo" class="logo">
+		</header>
+		<nav>
+			<a href="index.html" class="active">Home</a>
+			<a href="help.html">Help</a>
+			<a href="comments.html">Comments</a>
+			<a href="citation.html">Citation/Policy</a>
+		</nav>
+		<div class="content">
+			<h2>CRISPRome</h2>
+			<p>CRISPRome is a large publicly available CRISPR-Cas system database, systematically characterizing CRISPR-Cas elements across bacterial and archaeal genomes.</p>
+			<h3>Database Access</h3>
+			<p>Download & Access ⬇️: <a href="https://zenodo.org/records/14975125">Download CRISPRome</a>
+			</p>
+			<h3>Data Collection</h3>
+			<p>We compiled data from multiple sources, including:</p>
+			<ul>
+				<li>1,414,360 bacterial genomes</li>
+				<li>13,258 archaeal genomes</li>
+				<li>26,565 metagenome-assembled genomes (MAGs) from human and natural environments</li>
+			</ul>
+			<h3>CRISPR-Cas System Identification</h3>
+			<p>Using CRISPRCasFinder v2.0.355, we identified and extracted spacers and CRISPR arrays:</p>
+			<ul>
+				<li>21,282,263 spacers (14,968,498 linked to Cas proteins)</li>
+				<li>3,937,928 CRISPR arrays (1,429,909 linked to Cas proteins)</li>
+			</ul>
+			<h3>Spacer-Target Identification Process</h3>
+			<ol style="list-style-type: decimal">
+				<li>
+					<strong>Spacer Deduplication &amp; Alignment</strong>
+					<ul>
+						<li>Spacers were deduplicated and aligned using
+							<code>Blastn-short</code> to a database of 7,042,467 genomes from
+							RefSeq, GenBank, ICEberg, IMG/VR, and PLSDB.
+							<br />
+						</li>
+						<li>
+							<code>makeblastdb</code> was used to convert genome sequences into
+							searchable databases.
+						</li>
+					</ul>
+				</li>
+				<li>
+					<strong>Blastn Alignment &amp; Optimization</strong>
+					<ul>
+						<li>
+							<code>Blastn</code> was run with optimized parameters
+							(<code>word_size 11</code>, <code>qcov_hsp_perc 95</code>,
+							<code>perc_identity 95</code>, <code>max_hsps 3</code>) to balance speed
+							and accuracy.
+							<br />
+						</li>
+						<li>High-performance computing clusters managed by Slurm were used for
+							large-scale processing.</li>
+					</ul>
+				</li>
+				<li>
+					<strong>Filtering &amp; Prioritization</strong>
+					<ul>
+						<li>Hits were sorted by bitscore, keeping the <strong>top 10%</strong>
+							for accuracy.
+							<br />
+						</li>
+						<li>Prioritization order: <strong>viruses &gt; plasmids = ICE &gt; other
+								sources</strong>, reflecting CRISPR-Cas immunity targets.</li>
+					</ul>
+				</li>
+				<li>
+					<strong>Removing CRISPR Array Artifacts</strong>
+					<ul>
+						<li>Alignments overlapping known CRISPR array regions were removed to
+							avoid false positives.
+							<br />
+						</li>
+						<li>Additional CRISPR arrays were identified from NCBI genome
+							annotations to refine filtering.</li>
+					</ul>
+				</li>
+				<li>
+					<strong>Detecting Potential CRISPR Arrays</strong>
+					<ul>
+						<li>Arrays were defined by detecting regularly interspaced
+							protospacers.
+							<br />
+						</li>
+						<li>A threshold of <strong>≥4 protospacers</strong> was used to minimize
+							false positives, leading to the exclusion of 16,777 targets.</li>
+					</ul>
+				</li>
+				<li>
+					<strong>LCA-Based One-to-One Spacer-Target Assignment</strong>
+					<ul>
+						<li>
+							<code>TaxonKit lca</code> was used to determine the <strong>Lowest
+								Common Ancestor (LCA)</strong> of multiple target matches.
+							<br />
+						</li>
+						<li>This ensured each spacer was assigned to a single, biologically
+							relevant target.</li>
+					</ul>
+				</li>
+			</ol>
+		</div>
+		<footer>
+			&copy; 2025 CRISPRome Project | Contact: 📧 [lz19@zju.edu.cn]
+		</footer>
+	</body>
+</html>

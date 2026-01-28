@@ -1,0 +1,261 @@
+[
+  {
+    "objectID": "development.html",
+    "href": "development.html",
+    "title": "Asa_web",
+    "section": "",
+    "text": "pcutils\n\nIt contains many useful functions for statistics and visualization.\nSee the Github page for the HTML documentation.\n\nMetaNet\n\nIt is a comprehensive network analysis package, especially in various biological omics.\nSee the MetaNet Tutorial\n\npctax\n\nIt contains basic pipelines for omics analysis, especially for microbiome analysis.\nSee the pctax Tutorial\n\nReporterScore\n\nGeneralized reporter score-based enrichment analysis for omics data.\nSee the Github page for the HTML documentation.\n\nplot4fun\n\nplot4fun provides many interesting functions for plotting.\nSee the Github page for the HTML documentation."
+  },
+  {
+    "objectID": "development.html#r-packages",
+    "href": "development.html#r-packages",
+    "title": "Asa_web",
+    "section": "",
+    "text": "pcutils\n\nIt contains many useful functions for statistics and visualization.\nSee the Github page for the HTML documentation.\n\nMetaNet\n\nIt is a comprehensive network analysis package, especially in various biological omics.\nSee the MetaNet Tutorial\n\npctax\n\nIt contains basic pipelines for omics analysis, especially for microbiome analysis.\nSee the pctax Tutorial\n\nReporterScore\n\nGeneralized reporter score-based enrichment analysis for omics data.\nSee the Github page for the HTML documentation.\n\nplot4fun\n\nplot4fun provides many interesting functions for plotting.\nSee the Github page for the HTML documentation."
+  },
+  {
+    "objectID": "development.html#webs",
+    "href": "development.html#webs",
+    "title": "Asa_web",
+    "section": "Webs 🕸",
+    "text": "Webs 🕸\n\niPhylo\n\nIt is a comprehensive, automated, and interactive platform for biological and chemical taxonomic analysis, developed in cooperation with Li Yueer.\nSee the iPhylo Tutorial for more details."
+  },
+  {
+    "objectID": "index.html#about-myself",
+    "href": "index.html#about-myself",
+    "title": "Asa’s website",
+    "section": "🤺 About myself:",
+    "text": "🤺 About myself:\n\n              \n\n🏫 Education\nUndergraduate (2018~2022):\nBiological Science, Zhejiang University, Colleage of Life Sciences\nPhD student (2022~ ):\nBioinformatics, Zhejiang University, Life Sciences Institute\n🎯 Focus on\n\n🧬 Metagenomics and microbial ecology: mechanisms shaping microbial diversity patterns, distribution and dynamics.\n💻 Bioinformatics and systems biology: developing ecological network or other mathematical modeling approaches for microbial ecology.\n\n\n\n🤩 Hobbies\n\n\n📺 Animation Such as Attack on Titan, CLANNAD, and Rick and Morty.\n🦉 Bird watching\n🌼 Plant cognition"
+  },
+  {
+    "objectID": "index.html#my-blog",
+    "href": "index.html#my-blog",
+    "title": "Asa’s website",
+    "section": "My blog",
+    "text": "My blog\nI built my blog website, where I share something about biology and bioinformatics learning."
+  },
+  {
+    "objectID": "index.html#offcial-account",
+    "href": "index.html#offcial-account",
+    "title": "Asa’s website",
+    "section": "Offcial account",
+    "text": "Offcial account"
+  },
+  {
+    "objectID": "index.html#contact-information",
+    "href": "index.html#contact-information",
+    "title": "Asa’s website",
+    "section": "📥 Contact information",
+    "text": "📥 Contact information\nAny question?\n\n📩 Please contact pengchen2001@zju.edu.cn or bfzede@gmail.com."
+  },
+  {
+    "objectID": "others.html",
+    "href": "others.html",
+    "title": "Other things",
+    "section": "",
+    "text": "R tips for advanced use\nAsa’s R package\n\n\n\n\n\nGOlist.rda for ReporterScore::update_GOlist()\nSanJiChunLianZiTiJian.ttf for pcutils::chunlian()\nchina.json for pcutils::china_map()\nJCR_IF_2024_bigger_than_2.4.csv for searching papers with IF &gt; 2.4 in JCR."
+  },
+  {
+    "objectID": "others.html#presentation",
+    "href": "others.html#presentation",
+    "title": "Other things",
+    "section": "",
+    "text": "R tips for advanced use\nAsa’s R package"
+  },
+  {
+    "objectID": "others.html#extra-files",
+    "href": "others.html#extra-files",
+    "title": "Other things",
+    "section": "",
+    "text": "GOlist.rda for ReporterScore::update_GOlist()\nSanJiChunLianZiTiJian.ttf for pcutils::chunlian()\nchina.json for pcutils::china_map()\nJCR_IF_2024_bigger_than_2.4.csv for searching papers with IF &gt; 2.4 in JCR."
+  },
+  {
+    "objectID": "works.html",
+    "href": "works.html",
+    "title": "Asa_web",
+    "section": "",
+    "text": "#: co-first\n\n\n\nChen, Q., Yuan, M., Jiang, L., Wei, X., Liu, Z., Peng, C., Huang, Z., Tang, D., Wu, X., and Sun, J. (2023). Progressive community, biogeochemical and evolutionary remodeling of the soil microbiome underpins long-term desert ecosystem restoration. Biorxiv, 2023–2029.\nChen, Q., Zhang, B., Peng, C., Huang, J., Shen, X., and Jiang, C. (2024). Kun-peng: an ultra-memory-efficient, fast, and accurate pan-domain taxonomic classifier for all. Biorxiv, 2024–12.\nPeng, C., Huang, Z., Wei, X., Jiang, L., Zhu, X., Liu, Z., Chen, Q., Shen, X., Gao, P., and Jiang, C. (2025). MetaNet: a scalable and integrated tool for reproducible omics network analysis. Preprint at bioRxiv, https://doi.org/10.1101/2025.06.26.661636 https://doi.org/10.1101/2025.06.26.661636.\nPeng, C.#, Tan, S.#, Rouillard, A.#, Zhou, L., Li, Q.-Y., Wei, X., Xiang, X., Chen, Q., Yang, C., Jiang, L., et al. (2025). Microbial diversity and functional potential in greenlandic soils under rapid arctic warming. Preprint at Social Science Research Network, https://doi.org/10.2139/ssrn.5254634 https://doi.org/10.2139/ssrn.5254634.\nZhang, W., Peng, C.#, Gu, S., Su, X., He, G., Han, Y., He, C., Zhang, L., Wang, M., Zhong, L., et al. (2025). Mapping longitudinal lung mycobiome characteristics of severe COVID-19 patients, a prospective, multicenter cohort study. Preprint at Research Square, https://doi.org/10.21203/rs.3.rs-6189458/v1 https://doi.org/10.21203/rs.3.rs-6189458/v1.\n\n\n\n\n\nLi, Y.#, Peng, C.#, Chi, F., Huang, Z., Yuan, M., Zhou, X., and Jiang, C. (2025). The iPhylo suite: an interactive platform for building and annotating biological and chemical taxonomic trees. Briefings Bioinf. 26, bbae679. https://doi.org/10.1093/bib/bbae679.\nLi, Y.#, Jiang, C.#, Yu, W.#, Peng, C.#, Gu, S.#, Ren, X., Ding, P., Qi, Z., Huang, S., Chen, Q., et al. (2025). Antiviral treatment and longitudinal viral mutation dynamics of the first documented human case of H10N5. J. Infect. 91. https://doi.org/10.1016/j.jinf.2025.106580.\nHuang, Y.#, Wei, X.#, Huang, X.#, Peng, C.#, Lin, B., Ren, X., He, G., Zhang, X., Jiang, C., Huang, L., et al. (2025). Pneumocystis jirovecii associated with lung virome in patients with severe pneumonia. Iscience 28. https://doi.org/10.1016/j.isci.2025.113710.\nHuang, L.#, Li, K.#, Peng, C.#, Gu, S., Huang, X., Gao, C., Ren, X., Cheng, M., He, G., Xu, Y., et al. (2025). Elevated antibiotic resistance gene abundance of ICU healthcare workers, a multicentre, cross-sectional study. Crit. Care 29, 170. https://doi.org/10.1186/s13054-025-05408-5.\nPeng, C., Chen, Q., Tan, S., Shen, X., and Jiang, C. (2024). Generalized reporter score-based enrichment analysis for omics data. Briefings Bioinf. 25, bbae116. https://doi.org/10.1093/bib/bbae116.\nHuang, Z.#, Peng, C.#, Rong, Z., Jiang, L., Li, Y., Feng, Y., Chen, S., Xie, C., and Jiang, C. (2024). Longitudinal mapping of personal biotic and abiotic exposomes and transcriptome in underwater confined space using wearable passive samplers. Environ. Sci. Technol. 58, 5229–5243. https://doi.org/10.1021/acs.est.3c09379.\nChen, Q., Peng, C., Xie, R., Xu, H., Su, Z., Yilihan, G., Wei, X., Yang, S., Shen, Y., Ye, C., et al. (2024). Placental and fetal enrichment of microplastics from disposable paper cups: implications for metabolic and reproductive health during pregnancy. J. Hazard. Mater. 478, 135527. https://doi.org/10.1016/j.jhazmat.2024.135527.\nZhu, X., Xu, T., and Peng, C. (2022). Advances in MALDI mass spectrometry imaging single cell and tissues. Front. Chem. 9. https://doi.org/10.3389/fchem.2021.782432.\nWu, H.-R., Peng, C., and Chen, M. (2022). Rethinking the complexity and uncertainty of spatial networks applied to forest ecology. Sci. Rep. 12, 15917. https://doi.org/10.1038/s41598-022-16485-9.\nFan, L., Peng, C., Zhu, X., Liang, Y., Xu, T., Xu, P., and Wu, S. (2022). Dihydrotanshinone I enhances cell adhesion and inhibits cell migration in osteosarcoma U−2 OS cells through CD44 and chemokine signaling. Molecules 27, 3714. https://doi.org/10.3390/molecules27123714.\nXia, M., Liu, Y., Liu, J., Chen, D., Shi, Y., Bai, Z., Xiao, Y., Peng, C., Si, J., Li, P., et al. (2021). A new synonym of polygonatum in China, based on morphological and molecular evidence. PhytoKeys 175, 137–149. https://doi.org/10.3897/phytokeys.175.63383."
+  },
+  {
+    "objectID": "works.html#publications",
+    "href": "works.html#publications",
+    "title": "Asa_web",
+    "section": "",
+    "text": "#: co-first\n\n\n\nChen, Q., Yuan, M., Jiang, L., Wei, X., Liu, Z., Peng, C., Huang, Z., Tang, D., Wu, X., and Sun, J. (2023). Progressive community, biogeochemical and evolutionary remodeling of the soil microbiome underpins long-term desert ecosystem restoration. Biorxiv, 2023–2029.\nChen, Q., Zhang, B., Peng, C., Huang, J., Shen, X., and Jiang, C. (2024). Kun-peng: an ultra-memory-efficient, fast, and accurate pan-domain taxonomic classifier for all. Biorxiv, 2024–12.\nPeng, C., Huang, Z., Wei, X., Jiang, L., Zhu, X., Liu, Z., Chen, Q., Shen, X., Gao, P., and Jiang, C. (2025). MetaNet: a scalable and integrated tool for reproducible omics network analysis. Preprint at bioRxiv, https://doi.org/10.1101/2025.06.26.661636 https://doi.org/10.1101/2025.06.26.661636.\nPeng, C.#, Tan, S.#, Rouillard, A.#, Zhou, L., Li, Q.-Y., Wei, X., Xiang, X., Chen, Q., Yang, C., Jiang, L., et al. (2025). Microbial diversity and functional potential in greenlandic soils under rapid arctic warming. Preprint at Social Science Research Network, https://doi.org/10.2139/ssrn.5254634 https://doi.org/10.2139/ssrn.5254634.\nZhang, W., Peng, C.#, Gu, S., Su, X., He, G., Han, Y., He, C., Zhang, L., Wang, M., Zhong, L., et al. (2025). Mapping longitudinal lung mycobiome characteristics of severe COVID-19 patients, a prospective, multicenter cohort study. Preprint at Research Square, https://doi.org/10.21203/rs.3.rs-6189458/v1 https://doi.org/10.21203/rs.3.rs-6189458/v1.\n\n\n\n\n\nLi, Y.#, Peng, C.#, Chi, F., Huang, Z., Yuan, M., Zhou, X., and Jiang, C. (2025). The iPhylo suite: an interactive platform for building and annotating biological and chemical taxonomic trees. Briefings Bioinf. 26, bbae679. https://doi.org/10.1093/bib/bbae679.\nLi, Y.#, Jiang, C.#, Yu, W.#, Peng, C.#, Gu, S.#, Ren, X., Ding, P., Qi, Z., Huang, S., Chen, Q., et al. (2025). Antiviral treatment and longitudinal viral mutation dynamics of the first documented human case of H10N5. J. Infect. 91. https://doi.org/10.1016/j.jinf.2025.106580.\nHuang, Y.#, Wei, X.#, Huang, X.#, Peng, C.#, Lin, B., Ren, X., He, G., Zhang, X., Jiang, C., Huang, L., et al. (2025). Pneumocystis jirovecii associated with lung virome in patients with severe pneumonia. Iscience 28. https://doi.org/10.1016/j.isci.2025.113710.\nHuang, L.#, Li, K.#, Peng, C.#, Gu, S., Huang, X., Gao, C., Ren, X., Cheng, M., He, G., Xu, Y., et al. (2025). Elevated antibiotic resistance gene abundance of ICU healthcare workers, a multicentre, cross-sectional study. Crit. Care 29, 170. https://doi.org/10.1186/s13054-025-05408-5.\nPeng, C., Chen, Q., Tan, S., Shen, X., and Jiang, C. (2024). Generalized reporter score-based enrichment analysis for omics data. Briefings Bioinf. 25, bbae116. https://doi.org/10.1093/bib/bbae116.\nHuang, Z.#, Peng, C.#, Rong, Z., Jiang, L., Li, Y., Feng, Y., Chen, S., Xie, C., and Jiang, C. (2024). Longitudinal mapping of personal biotic and abiotic exposomes and transcriptome in underwater confined space using wearable passive samplers. Environ. Sci. Technol. 58, 5229–5243. https://doi.org/10.1021/acs.est.3c09379.\nChen, Q., Peng, C., Xie, R., Xu, H., Su, Z., Yilihan, G., Wei, X., Yang, S., Shen, Y., Ye, C., et al. (2024). Placental and fetal enrichment of microplastics from disposable paper cups: implications for metabolic and reproductive health during pregnancy. J. Hazard. Mater. 478, 135527. https://doi.org/10.1016/j.jhazmat.2024.135527.\nZhu, X., Xu, T., and Peng, C. (2022). Advances in MALDI mass spectrometry imaging single cell and tissues. Front. Chem. 9. https://doi.org/10.3389/fchem.2021.782432.\nWu, H.-R., Peng, C., and Chen, M. (2022). Rethinking the complexity and uncertainty of spatial networks applied to forest ecology. Sci. Rep. 12, 15917. https://doi.org/10.1038/s41598-022-16485-9.\nFan, L., Peng, C., Zhu, X., Liang, Y., Xu, T., Xu, P., and Wu, S. (2022). Dihydrotanshinone I enhances cell adhesion and inhibits cell migration in osteosarcoma U−2 OS cells through CD44 and chemokine signaling. Molecules 27, 3714. https://doi.org/10.3390/molecules27123714.\nXia, M., Liu, Y., Liu, J., Chen, D., Shi, Y., Bai, Z., Xiao, Y., Peng, C., Si, J., Li, P., et al. (2021). A new synonym of polygonatum in China, based on morphological and molecular evidence. PhytoKeys 175, 137–149. https://doi.org/10.3897/phytokeys.175.63383."
+  },
+  {
+    "objectID": "qunqing.html",
+    "href": "qunqing.html",
+    "title": "🚅 🛩 🛳 🚕 🚲 Go with 群青 🏔 🏛️ ⛩️ 🕌 🏕️",
+    "section": "",
+    "text": "This is a collection of photos of me and my girlfriend:"
+  },
+  {
+    "objectID": "qunqing.html#winter-solstice-and-christmas-2025.12.20",
+    "href": "qunqing.html#winter-solstice-and-christmas-2025.12.20",
+    "title": "🚅 🛩 🛳 🚕 🚲 Go with 群青 🏔 🏛️ ⛩️ 🕌 🏕️",
+    "section": "Winter Solstice and Christmas (2025.12.20)",
+    "text": "Winter Solstice and Christmas (2025.12.20)\n暖房行动，冬至圣诞一起过。美味饭菜，交换礼物，五排上分！"
+  },
+  {
+    "objectID": "qunqing.html#nine-days-qinggan-circle-2025.8.9-8.17",
+    "href": "qunqing.html#nine-days-qinggan-circle-2025.8.9-8.17",
+    "title": "🚅 🛩 🛳 🚕 🚲 Go with 群青 🏔 🏛️ ⛩️ 🕌 🏕️",
+    "section": "Nine-days Qinggan Circle (2025.8.9-8.17)",
+    "text": "Nine-days Qinggan Circle (2025.8.9-8.17)\n开启人生第一次多人自驾游，青甘大环线！（ZJU版花儿与少年）\n我们有勤劳司机，金牌摄影，全能导游，动作指导，美食猎手… 我们还有Sony α6700, DJI Pocket 3, DJI Action 5, DJI Flip… 出发！这算是我人生中目前为止最长的一次旅行了，同样也是作为大家准时的/迟来的/未来的毕业旅行了。\n\n第一天：西宁聚首｜ 8月9日下午三点，抵达西宁，当地特色的尕娃子美食让我们对接下来的旅程充满了期待。然而天公不作美，五点左右到达日月山时，景区因下大雨而关闭，有些遗憾。幸运的是，我们在草原上抱小羊、骑牦牛，拍下了许多美丽的照片。晚上八点，金沙湾的云层太厚，没能看到美丽的日落，但一路的猜歌游戏让旅途充满了欢声笑语。晚上十点在二郎剑品尝了当地美食和青稞奶茶，回到民宿结束了充实的第一天。\n第二天：青海湖畔｜ 原计划早晨六点起床看日出，但因为下雨未能如愿。在西宁的天津包子铺享受了早餐😂。然后来到了黑马河，青海湖的美景一览无余。 中午我们抵达了橡皮山，海拔3800米，这是行程中海拔最高的地方。 下午游览了茶卡盐湖，感觉天空之镜不如以往那般洁白。晚上在德令哈品尝了羊肉，虽然有些高反。\n第三天：翡翠湖与沙漠星空｜ 我们在翡翠湖拍摄了五颜六色的美景，下午到达孤独星际沙漠营地，夜空中的星星令人陶醉。\n第四天：水上雅丹-&gt;敦煌｜ 早上去水上雅丹，下午开车直达敦煌。沙漠越野的体验非常刺激，Tank也开进国道旁美美拍照，晚上在敦煌品尝了传奇老马浇给羊头（好吃的勒），住进了三居室，虽然太晚没能打牌，旅途的疲惫让人很快进入了梦乡。\n第五天：莫高窟与鸣沙山｜ 前往莫高窟，虽然排队时间长，但窟内的壁画和雕塑还是让我们震撼。下午在鸣沙山参与了万人合唱，晚上在沙漠露营吃火锅，玩谁是卧底，乐趣无穷。\n第六天：前往张掖｜ 沙漠露营基地体验了骑骆驼，滑沙，越野摩托车等，慢慢开车前往张掖，晚上品尝到各种特色小吃和麻辣烫。\n第七天：张掖自然奇观｜ 抵达张掖，上午游览了平山湖大峡谷，下午到达七彩丹霞，坐热气球的体验让人难忘。晚上品尝了老周炒拔拉，结束了充实的一天。\n第八天：大佛寺&马蹄寺｜ 我们参观了大佛寺，跟着免费导游了解了许多佛教文化知识。下午在马蹄寺的悬崖上感受到了寺庙的宁静与庄严，没想到竟然停留了五个小时。 下午我开车穿越祁连山和岗什卡雪峰，感觉驾驶技术upup。晚上到达夜市，大吃一顿，结束了旅途的最后一天。\n第九天：告别｜ 第九天，大家陆续离开，这九天的旅程转瞬即逝，我感到非常充实和有趣。一路的美景和文化让我流连忘返，朋友们的陪伴能扫除旅途的疲惫，这将是我一生中难忘的经历。\n\n\n\nYaks and sheep in Qinghai Lake (8.9)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nQinghai Lake & Chaka Salt Lake (8.10)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nEmerald Lake & Starry Sky (8.11)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nWusute Yardang Geopark & Tank (8.12)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nMogao Grottoes & Mingsha Mountain (8.13-8.14)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nPingshan Lake Grand Canyon & Colorful Danxia (8.15)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nDafo Temple & Mati Temple (8.16)"
+  },
+  {
+    "objectID": "qunqing.html#bubbling-boiling-in-shenyang-2025.7.19",
+    "href": "qunqing.html#bubbling-boiling-in-shenyang-2025.7.19",
+    "title": "🚅 🛩 🛳 🚕 🚲 Go with 群青 🏔 🏛️ ⛩️ 🕌 🏕️",
+    "section": "BUBBLING BOILING in Shenyang (2025.7.19)",
+    "text": "BUBBLING BOILING in Shenyang (2025.7.19)\n第一次去东北\n音乐节体验感非常好，天气好，歌好听，歌手们都好强呀。\n晚上体验了搓澡和东北烧烤，哈哈哈。第二天吃到了沈阳鸡架，跑了三家终于吃到了王厚元饺子😂可惜还是错过了雪绵豆沙。"
+  },
+  {
+    "objectID": "qunqing.html#sanxingdui-and-hot-pot-in-chengdu-2025.6.21",
+    "href": "qunqing.html#sanxingdui-and-hot-pot-in-chengdu-2025.6.21",
+    "title": "🚅 🛩 🛳 🚕 🚲 Go with 群青 🏔 🏛️ ⛩️ 🕌 🏕️",
+    "section": "Sanxingdui and Hot pot in Chengdu (2025.6.21)",
+    "text": "Sanxingdui and Hot pot in Chengdu (2025.6.21)\n去成都参加会议作报告，顺便参观了三星堆博物馆，感受到了古蜀文明的神秘和辉煌，吃到了牛油火锅。"
+  },
+  {
+    "objectID": "qunqing.html#desert-and-star-in-alxa-2025.5.10",
+    "href": "qunqing.html#desert-and-star-in-alxa-2025.5.10",
+    "title": "🚅 🛩 🛳 🚕 🚲 Go with 群青 🏔 🏛️ ⛩️ 🕌 🏕️",
+    "section": "Desert and Star in Alxa (2025.5.10)",
+    "text": "Desert and Star in Alxa (2025.5.10)\n最近有幸跟着实验室团队去了腾格里沙漠的锁边生态公益基地，开展菌株实地验证实验。\n种🌳植❤️"
+  },
+  {
+    "objectID": "qunqing.html#black-myth-wukong-art-exhibition-2025.4.30",
+    "href": "qunqing.html#black-myth-wukong-art-exhibition-2025.4.30",
+    "title": "🚅 🛩 🛳 🚕 🚲 Go with 群青 🏔 🏛️ ⛩️ 🕌 🏕️",
+    "section": "Black Myth: Wukong Art Exhibition (2025.4.30)",
+    "text": "Black Myth: Wukong Art Exhibition (2025.4.30)\n人生不止游戏，切记保重身体（养好身体去打DLC）"
+  },
+  {
+    "objectID": "qunqing.html#hiking-in-hui-hang-ancient-road-2025.4.13",
+    "href": "qunqing.html#hiking-in-hui-hang-ancient-road-2025.4.13",
+    "title": "🚅 🛩 🛳 🚕 🚲 Go with 群青 🏔 🏛️ ⛩️ 🕌 🏕️",
+    "section": "Hiking in Hui-Hang Ancient Road (2025.4.13)",
+    "text": "Hiking in Hui-Hang Ancient Road (2025.4.13)\n3万步，带爬山，累累累，酸酸酸"
+  },
+  {
+    "objectID": "qunqing.html#riding-in-qiandao-lake-2025.4.5",
+    "href": "qunqing.html#riding-in-qiandao-lake-2025.4.5",
+    "title": "🚅 🛩 🛳 🚕 🚲 Go with 群青 🏔 🏛️ ⛩️ 🕌 🏕️",
+    "section": "Riding in Qiandao Lake (2025.4.5)",
+    "text": "Riding in Qiandao Lake (2025.4.5)\n开车兜风很舒服"
+  },
+  {
+    "objectID": "qunqing.html#snowboarding-in-huzhou-2025.2.23",
+    "href": "qunqing.html#snowboarding-in-huzhou-2025.2.23",
+    "title": "🚅 🛩 🛳 🚕 🚲 Go with 群青 🏔 🏛️ ⛩️ 🕌 🏕️",
+    "section": "Snowboarding in Huzhou (2025.2.23)",
+    "text": "Snowboarding in Huzhou (2025.2.23)\n云上草原，第一次室外滑雪！美景很美，雪道很爽，但自己技术还是不太行，继续练习。"
+  },
+  {
+    "objectID": "qunqing.html#the-lantern-festival-2025.2.12",
+    "href": "qunqing.html#the-lantern-festival-2025.2.12",
+    "title": "🚅 🛩 🛳 🚕 🚲 Go with 群青 🏔 🏛️ ⛩️ 🕌 🏕️",
+    "section": "The Lantern Festival (2025.2.12)",
+    "text": "The Lantern Festival (2025.2.12)"
+  },
+  {
+    "objectID": "qunqing.html#snowboarding-in-shaoxing-2024.11.17",
+    "href": "qunqing.html#snowboarding-in-shaoxing-2024.11.17",
+    "title": "🚅 🛩 🛳 🚕 🚲 Go with 群青 🏔 🏛️ ⛩️ 🕌 🏕️",
+    "section": "Snowboarding in ShaoXing (2024.11.17)",
+    "text": "Snowboarding in ShaoXing (2024.11.17)\n和群青同学第一次滑雪🏂！本以为没有运动细胞的自己这次无法学会，没想到还挺顺利地学会了推坡，哈哈哈。滑雪可真有意思，虽然视频里看起来是慢慢下来的，但自己第一视角还是能够感受到速度带来的刺激的。希望有机会多去，跟着橙色⚡和WX️️提升技术哈哈哈。"
+  },
+  {
+    "objectID": "qunqing.html#history-and-hanfu-in-xian-2024.10.5",
+    "href": "qunqing.html#history-and-hanfu-in-xian-2024.10.5",
+    "title": "🚅 🛩 🛳 🚕 🚲 Go with 群青 🏔 🏛️ ⛩️ 🕌 🏕️",
+    "section": "History and Hanfu in Xi’an (2024.10.5)",
+    "text": "History and Hanfu in Xi’an (2024.10.5)\n和老弟约在十三朝古都西安碰面，国庆感觉这里有一亿人😂，景点要么约不上，要么都是人，哈哈哈。\n不过在能去的地方里，依旧会被这里的历史底蕴给吸引住。我们看了人人人-钟楼鼓楼-人人人，上了保存完整的城墙上散步，晚上看到了震撼的打铁花和火壶表演。第二天群青同学租了一套明制汉服，超美超好看，走在安仁坊和大唐不夜城中，仿佛真的穿越回古代（话说穿古装的人感觉比我这种没穿的还要多😂）。最后一天去到了世界第八大奇迹兵马俑博物馆，被2000多年前的制作工艺深深震撼到了。西安的美食也很丰富，吃到了biangbiang面，水盆羊肉，六小碗，葫芦鸡，泡馍等等，在这又得胖上几斤。"
+  },
+  {
+    "objectID": "qunqing.html#temple-and-river-in-kyoto-2024.9.20",
+    "href": "qunqing.html#temple-and-river-in-kyoto-2024.9.20",
+    "title": "🚅 🛩 🛳 🚕 🚲 Go with 群青 🏔 🏛️ ⛩️ 🕌 🏕️",
+    "section": "Temple and river in Kyoto (2024.9.20)",
+    "text": "Temple and river in Kyoto (2024.9.20)\n🚉日本京都\n我们骑着车进行了四叠半圣地巡礼，去参观了森见登美彦的母校京都大学，去看了男主和明石去过的下鸭神社，还买到了下鸭神社超级好看的四季御守。\n沿着鸭川骑行，一路上能看到鸭子和苍鹭在河里自由自在地生活，有人在练习乐器，有人在踢足球，有人在进行社团排练，有人坐着聊天，有人沿着鸭川跑步，每个人都在享受着生活，充满着自由感和松弛感，既有一份宁静，又有一份生命力。在中国肯定没有这样的鸭川，因为鸭子都被抓去吃掉了（误）。\n那几天的京都实在是太热了，所以早上五六点就起床骑着自行车去了清水寺，清晨的清水寺没那么热，人也比较少，趁机打卡了新兰定情地。回去时从清水寺的坡上骑着车一路滑行下坡，也是特别舒服。\n京都的景点都不算大，伏见稻荷大社和金阁寺最多一个小时就能逛完，伏见稻荷大社有千本鸟居，金阁寺的碎石庭院景观很精致，门票是一张符也很有意思。\n相对于大阪，我们更喜欢京都，想坐在鸭川旁边吹吹风，想集齐清水寺的四季门票和下鸭神社的四季御守，想看五山送火和百鬼夜行，期待下次再来。"
+  },
+  {
+    "objectID": "qunqing.html#tower-and-usj-in-osaka-2024.9.16",
+    "href": "qunqing.html#tower-and-usj-in-osaka-2024.9.16",
+    "title": "🚅 🛩 🛳 🚕 🚲 Go with 群青 🏔 🏛️ ⛩️ 🕌 🏕️",
+    "section": "Tower and USJ in Osaka (2024.9.16)",
+    "text": "Tower and USJ in Osaka (2024.9.16)\n终于来到日本了，在大阪待了三天，先后去了心斋桥、大阪城、太阳之塔和usj。\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n心斋桥和梅田这一块很好逛很好买，很多中古店和免税店。 在大阪城打卡了服部平次同款照片，根本不用担心找不到打卡点，好多中国人都在打卡哈哈哈。 坐一个小时电车去看了太阳之塔，独特的造型很吸引人，里面是一棵巨大的生命之树，从树的底部到顶部展现了从原生类时代到哺乳类时代的进化历程，既有一丝诡异又有着充满生命力的震撼。\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n第三天一大早去了usj，因为是工作日，地铁里全是西装革履的社畜，所有人都行色匆匆，前往乐园的我们显得与他们格格不入。虽说是工作日，但usj的人也是超级多，排队都是一个小时起步。哈利波特的禁忌之旅太绝了，最后一堆人出来祝贺我的时候把我给感动哭了T﹏T。马里奥园区更是绝绝子，戴上马里奥手环后真的可以在园区里顶砖块收集金币、通关打boss，不得不说还是老任会玩"
+  },
+  {
+    "objectID": "qunqing.html#delicacy-and-games-in-home-2024.8.11",
+    "href": "qunqing.html#delicacy-and-games-in-home-2024.8.11",
+    "title": "🚅 🛩 🛳 🚕 🚲 Go with 群青 🏔 🏛️ ⛩️ 🕌 🏕️",
+    "section": "Delicacy and games in Home (2024.8.11)",
+    "text": "Delicacy and games in Home (2024.8.11)\n邀请朋友来家里玩。在群青的帮助下，第一次动手做这么多好吃的。果冻表现的也很好，超级可爱。一起玩了sports，可真有意思。"
+  },
+  {
+    "objectID": "qunqing.html#tianyi-pavilion-in-ningbo-2024.7.13",
+    "href": "qunqing.html#tianyi-pavilion-in-ningbo-2024.7.13",
+    "title": "🚅 🛩 🛳 🚕 🚲 Go with 群青 🏔 🏛️ ⛩️ 🕌 🏕️",
+    "section": "Tianyi Pavilion in Ningbo (2024.7.13)",
+    "text": "Tianyi Pavilion in Ningbo (2024.7.13)\n去宁波开会，顺便逛了逛天一阁，博物馆，还给果冻打猎了🦐。\n🐱跨越城市的鲜虾，是给猫猫的专属宠爱✨"
+  },
+  {
+    "objectID": "qunqing.html#kiloglow-and-yoasobi-in-hangzhou-2024.5.4",
+    "href": "qunqing.html#kiloglow-and-yoasobi-in-hangzhou-2024.5.4",
+    "title": "🚅 🛩 🛳 🚕 🚲 Go with 群青 🏔 🏛️ ⛩️ 🕌 🏕️",
+    "section": "KILOGLOW and YOASOBI in HangZhou (2024.5.4)",
+    "text": "KILOGLOW and YOASOBI in HangZhou (2024.5.4)\n杭州闪千手。见到了iri，YAMA，Queen Bee，YOASOBI，真的太棒了！\nYOASOBI真的太顶了，求求你们来开演唱会吧！\n\n【2024杭州闪千手 YOASOBI 合唱群青】\n【2024杭州闪千手 YOASOBI アイドル】\n【2024杭州闪千手音乐节，YOASOBI全程高能】"
+  },
+  {
+    "objectID": "qunqing.html#radwimps-and-ai-higuchi-in-guangzhou-2024.4.24",
+    "href": "qunqing.html#radwimps-and-ai-higuchi-in-guangzhou-2024.4.24",
+    "title": "🚅 🛩 🛳 🚕 🚲 Go with 群青 🏔 🏛️ ⛩️ 🕌 🏕️",
+    "section": "RADWIMPS and Ai Higuchi in GuangZhou (2024.4.24)",
+    "text": "RADWIMPS and Ai Higuchi in GuangZhou (2024.4.24)\n圆了第一次去演唱会的梦！RADWIMPS真的太棒了，摇滚嗨到不行，抒情又令人感动。\n碰巧还去了Ai Higuchi的live house演出，巨人的几首歌太爱了。"
+  },
+  {
+    "objectID": "qunqing.html#sakura-and-ferry-in-wuhan-2024.3.16",
+    "href": "qunqing.html#sakura-and-ferry-in-wuhan-2024.3.16",
+    "title": "🚅 🛩 🛳 🚕 🚲 Go with 群青 🏔 🏛️ ⛩️ 🕌 🏕️",
+    "section": "Sakura and ferry in Wuhan (2024.3.16)",
+    "text": "Sakura and ferry in Wuhan (2024.3.16)\n恰逢武大樱花季，和几位老朋友约在武汉碰面。"
+  },
+  {
+    "objectID": "qunqing.html#temple-and-wall-in-nanjing-2024.1.21",
+    "href": "qunqing.html#temple-and-wall-in-nanjing-2024.1.21",
+    "title": "🚅 🛩 🛳 🚕 🚲 Go with 群青 🏔 🏛️ ⛩️ 🕌 🏕️",
+    "section": "Temple and wall in Nanjing (2024.1.21)",
+    "text": "Temple and wall in Nanjing (2024.1.21)\n临时起意，南京快闪一日游"
+  },
+  {
+    "objectID": "qunqing.html#victoria-harbour-in-hongkong-2023.9.29",
+    "href": "qunqing.html#victoria-harbour-in-hongkong-2023.9.29",
+    "title": "🚅 🛩 🛳 🚕 🚲 Go with 群青 🏔 🏛️ ⛩️ 🕌 🏕️",
+    "section": "Victoria Harbour in Hongkong (2023.9.29)",
+    "text": "Victoria Harbour in Hongkong (2023.9.29)\n快速的一日游，缆车跟想象中的不太一样😂"
+  },
+  {
+    "objectID": "qunqing.html#bilibili-world-in-shanghai-2023.7.21",
+    "href": "qunqing.html#bilibili-world-in-shanghai-2023.7.21",
+    "title": "🚅 🛩 🛳 🚕 🚲 Go with 群青 🏔 🏛️ ⛩️ 🕌 🏕️",
+    "section": "Bilibili World in Shanghai (2023.7.21)",
+    "text": "Bilibili World in Shanghai (2023.7.21)\n漫展真好玩，见到了好多UP主。小美太强了，第一次体验到了真正的现场氛围。以后一定要去一次演唱会！"
+  },
+  {
+    "objectID": "qunqing.html#zoo-and-pandas-in-beijing-2023.5.20",
+    "href": "qunqing.html#zoo-and-pandas-in-beijing-2023.5.20",
+    "title": "🚅 🛩 🛳 🚕 🚲 Go with 群青 🏔 🏛️ ⛩️ 🕌 🏕️",
+    "section": "Zoo and pandas in Beijing (2023.5.20)",
+    "text": "Zoo and pandas in Beijing (2023.5.20)"
+  },
+  {
+    "objectID": "qunqing.html#sea-and-birds-in-qingdao-2023.5.1",
+    "href": "qunqing.html#sea-and-birds-in-qingdao-2023.5.1",
+    "title": "🚅 🛩 🛳 🚕 🚲 Go with 群青 🏔 🏛️ ⛩️ 🕌 🏕️",
+    "section": "Sea and birds in Qingdao (2023.5.1)",
+    "text": "Sea and birds in Qingdao (2023.5.1)\n恋爱两年，第一次一起走出杭州😂。这是我们第一次旅行的照片，青岛的海和鸟令人难忘。"
+  }
+]

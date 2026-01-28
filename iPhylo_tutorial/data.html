@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>10 Data | iPhylo Tutorial</title>
+  <meta name="description" content="This is a tutorial for the iPhylo website." />
+  <meta name="generator" content="bookdown 0.32 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="10 Data | iPhylo Tutorial" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="This is a tutorial for the iPhylo website." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="10 Data | iPhylo Tutorial" />
+  
+  <meta name="twitter:description" content="This is a tutorial for the iPhylo website." />
+  
+
+<meta name="author" content="Chen Peng and Yueer Li" />
+
+
+<meta name="date" content="2025-01-02" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  <link rel="shortcut icon" href="img/iphylo.png" type="image/x-icon" />
+<link rel="prev" href="user-interface.html"/>
+<link rel="next" href="basic-feature.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Welcome</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#citation"><i class="fa fa-check"></i>Citation</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
+<li class="part"><span><b>I iPhylo Tree</b></span></li>
+<li class="chapter" data-level="2" data-path="iphylo-tree.html"><a href="iphylo-tree.html"><i class="fa fa-check"></i><b>2</b> iPhylo Tree</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="iphylo-tree.html"><a href="iphylo-tree.html#working-on-the-tree-page"><i class="fa fa-check"></i><b>2.1</b> Working on the Tree page</a></li>
+<li class="chapter" data-level="2.2" data-path="iphylo-tree.html"><a href="iphylo-tree.html#classification-systems"><i class="fa fa-check"></i><b>2.2</b> Classification Systems</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="iphylo-tree.html"><a href="iphylo-tree.html#phylo-tree"><i class="fa fa-check"></i><b>2.2.1</b> Phylo Tree</a></li>
+<li class="chapter" data-level="2.2.2" data-path="iphylo-tree.html"><a href="iphylo-tree.html#chemical-tree"><i class="fa fa-check"></i><b>2.2.2</b> Chemical Tree</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="tree-object.html"><a href="tree-object.html"><i class="fa fa-check"></i><b>3</b> Tree Object</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="tree-object.html"><a href="tree-object.html#taxonomic-level"><i class="fa fa-check"></i><b>3.1</b> Taxonomic level</a></li>
+<li class="chapter" data-level="3.2" data-path="tree-object.html"><a href="tree-object.html#branch_length"><i class="fa fa-check"></i><b>3.2</b> Branch length</a></li>
+<li class="chapter" data-level="3.3" data-path="tree-object.html"><a href="tree-object.html#nodes"><i class="fa fa-check"></i><b>3.3</b> Nodes</a></li>
+<li class="chapter" data-level="3.4" data-path="tree-object.html"><a href="tree-object.html#manipulate-your-tree"><i class="fa fa-check"></i><b>3.4</b> Manipulate your tree</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="tree-object.html"><a href="tree-object.html#interrupt"><i class="fa fa-check"></i><b>3.4.1</b> Interrupt</a></li>
+<li class="chapter" data-level="3.4.2" data-path="tree-object.html"><a href="tree-object.html#subtree"><i class="fa fa-check"></i><b>3.4.2</b> Sub-tree</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="input-output.html"><a href="input-output.html"><i class="fa fa-check"></i><b>4</b> Input &amp; Output</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="input-output.html"><a href="input-output.html#input"><i class="fa fa-check"></i><b>4.1</b> Input</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="input-output.html"><a href="input-output.html#input-elements"><i class="fa fa-check"></i><b>4.1.1</b> Input elements</a></li>
+<li class="chapter" data-level="4.1.2" data-path="input-output.html"><a href="input-output.html#biological"><i class="fa fa-check"></i><b>4.1.2</b> Biological</a></li>
+<li class="chapter" data-level="4.1.3" data-path="input-output.html"><a href="input-output.html#chemical"><i class="fa fa-check"></i><b>4.1.3</b> Chemical</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="input-output.html"><a href="input-output.html#output"><i class="fa fa-check"></i><b>4.2</b> Output</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="input-output.html"><a href="input-output.html#tree-file"><i class="fa fa-check"></i><b>4.2.1</b> Tree file</a></li>
+<li class="chapter" data-level="4.2.2" data-path="input-output.html"><a href="input-output.html#tree-structure-visualizations"><i class="fa fa-check"></i><b>4.2.2</b> Tree structure visualizations</a></li>
+<li class="chapter" data-level="4.2.3" data-path="input-output.html"><a href="input-output.html#additional-files"><i class="fa fa-check"></i><b>4.2.3</b> Additional files</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="integration-with-iphylo-visual.html"><a href="integration-with-iphylo-visual.html"><i class="fa fa-check"></i><b>5</b> Integration with iPhylo Visual</a></li>
+<li class="part"><span><b>II iPhylo CLI</b></span></li>
+<li class="chapter" data-level="6" data-path="iphylo-cli.html"><a href="iphylo-cli.html"><i class="fa fa-check"></i><b>6</b> iPhylo CLI</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="iphylo-cli.html"><a href="iphylo-cli.html#set-up"><i class="fa fa-check"></i><b>6.1</b> Set up</a></li>
+<li class="chapter" data-level="6.2" data-path="iphylo-cli.html"><a href="iphylo-cli.html#packages-environment"><i class="fa fa-check"></i><b>6.2</b> Packages environment</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="modules.html"><a href="modules.html"><i class="fa fa-check"></i><b>7</b> Modules</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="modules.html"><a href="modules.html#phylotree"><i class="fa fa-check"></i><b>7.1</b> Phylotree</a></li>
+<li class="chapter" data-level="7.2" data-path="modules.html"><a href="modules.html#chemtree"><i class="fa fa-check"></i><b>7.2</b> Chemtree</a></li>
+<li class="chapter" data-level="7.3" data-path="modules.html"><a href="modules.html#chemonline"><i class="fa fa-check"></i><b>7.3</b> Chem Online</a></li>
+<li class="chapter" data-level="7.4" data-path="modules.html"><a href="modules.html#csv2tree"><i class="fa fa-check"></i><b>7.4</b> CSV2Tree</a></li>
+</ul></li>
+<li class="part"><span><b>III iPhylo Visual</b></span></li>
+<li class="chapter" data-level="8" data-path="iPhylo_v.html"><a href="iPhylo_v.html"><i class="fa fa-check"></i><b>8</b> iPhylo Visual</a></li>
+<li class="chapter" data-level="9" data-path="user-interface.html"><a href="user-interface.html"><i class="fa fa-check"></i><b>9</b> User interface</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="user-interface.html"><a href="user-interface.html#dashboard"><i class="fa fa-check"></i><b>9.1</b> Dashboard</a></li>
+<li class="chapter" data-level="9.2" data-path="user-interface.html"><a href="user-interface.html#inspection"><i class="fa fa-check"></i><b>9.2</b> Inspection</a></li>
+<li class="chapter" data-level="9.3" data-path="user-interface.html"><a href="user-interface.html#help"><i class="fa fa-check"></i><b>9.3</b> Help</a></li>
+<li class="chapter" data-level="9.4" data-path="user-interface.html"><a href="user-interface.html#gallery-and-demo"><i class="fa fa-check"></i><b>9.4</b> Gallery and demo</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="data.html"><a href="data.html"><i class="fa fa-check"></i><b>10</b> Data</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="data.html"><a href="data.html#import"><i class="fa fa-check"></i><b>10.1</b> Import</a>
+<ul>
+<li class="chapter" data-level="10.1.1" data-path="data.html"><a href="data.html#tree-file-1"><i class="fa fa-check"></i><b>10.1.1</b> Tree file</a></li>
+<li class="chapter" data-level="10.1.2" data-path="data.html"><a href="data.html#leaf-annotation"><i class="fa fa-check"></i><b>10.1.2</b> Leaf annotation</a></li>
+<li class="chapter" data-level="10.1.3" data-path="data.html"><a href="data.html#node-annotation"><i class="fa fa-check"></i><b>10.1.3</b> Node annotation</a></li>
+<li class="chapter" data-level="10.1.4" data-path="data.html"><a href="data.html#session"><i class="fa fa-check"></i><b>10.1.4</b> Session</a></li>
+</ul></li>
+<li class="chapter" data-level="10.2" data-path="data.html"><a href="data.html#export"><i class="fa fa-check"></i><b>10.2</b> Export</a>
+<ul>
+<li class="chapter" data-level="10.2.1" data-path="data.html"><a href="data.html#export-image"><i class="fa fa-check"></i><b>10.2.1</b> Export image</a></li>
+<li class="chapter" data-level="10.2.2" data-path="data.html"><a href="data.html#save-session"><i class="fa fa-check"></i><b>10.2.2</b> Save session</a></li>
+<li class="chapter" data-level="10.2.3" data-path="data.html"><a href="data.html#download-r-scripts"><i class="fa fa-check"></i><b>10.2.3</b> Download R scripts</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="basic-feature.html"><a href="basic-feature.html"><i class="fa fa-check"></i><b>11</b> Basic feature</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="basic-feature.html"><a href="basic-feature.html#tree-layout"><i class="fa fa-check"></i><b>11.1</b> Tree layout</a></li>
+<li class="chapter" data-level="11.2" data-path="basic-feature.html"><a href="basic-feature.html#branch-color"><i class="fa fa-check"></i><b>11.2</b> Branch color</a></li>
+<li class="chapter" data-level="11.3" data-path="basic-feature.html"><a href="basic-feature.html#line-type"><i class="fa fa-check"></i><b>11.3</b> Line type</a></li>
+<li class="chapter" data-level="11.4" data-path="basic-feature.html"><a href="basic-feature.html#branch-length"><i class="fa fa-check"></i><b>11.4</b> Branch length</a></li>
+<li class="chapter" data-level="11.5" data-path="basic-feature.html"><a href="basic-feature.html#branch-range"><i class="fa fa-check"></i><b>11.5</b> Branch range</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="leaf-annotation-1.html"><a href="leaf-annotation-1.html"><i class="fa fa-check"></i><b>12</b> Leaf annotation</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="leaf-annotation-1.html"><a href="leaf-annotation-1.html#tip-label"><i class="fa fa-check"></i><b>12.1</b> Tip label</a></li>
+<li class="chapter" data-level="12.2" data-path="leaf-annotation-1.html"><a href="leaf-annotation-1.html#tip-point"><i class="fa fa-check"></i><b>12.2</b> Tip point</a></li>
+<li class="chapter" data-level="12.3" data-path="leaf-annotation-1.html"><a href="leaf-annotation-1.html#heatmap"><i class="fa fa-check"></i><b>12.3</b> Heatmap</a></li>
+<li class="chapter" data-level="12.4" data-path="leaf-annotation-1.html"><a href="leaf-annotation-1.html#bar-plot"><i class="fa fa-check"></i><b>12.4</b> Bar plot</a></li>
+<li class="chapter" data-level="12.5" data-path="leaf-annotation-1.html"><a href="leaf-annotation-1.html#bubble-plot"><i class="fa fa-check"></i><b>12.5</b> Bubble plot</a></li>
+<li class="chapter" data-level="12.6" data-path="leaf-annotation-1.html"><a href="leaf-annotation-1.html#box-plot"><i class="fa fa-check"></i><b>12.6</b> Box plot</a></li>
+<li class="chapter" data-level="12.7" data-path="leaf-annotation-1.html"><a href="leaf-annotation-1.html#violin-plot"><i class="fa fa-check"></i><b>12.7</b> Violin plot</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="node-annotation-1.html"><a href="node-annotation-1.html"><i class="fa fa-check"></i><b>13</b> Node annotation</a>
+<ul>
+<li class="chapter" data-level="13.1" data-path="node-annotation-1.html"><a href="node-annotation-1.html#node-label"><i class="fa fa-check"></i><b>13.1</b> Node label</a></li>
+<li class="chapter" data-level="13.2" data-path="node-annotation-1.html"><a href="node-annotation-1.html#color-branch"><i class="fa fa-check"></i><b>13.2</b> Color branch</a></li>
+<li class="chapter" data-level="13.3" data-path="node-annotation-1.html"><a href="node-annotation-1.html#highlight"><i class="fa fa-check"></i><b>13.3</b> Highlight</a></li>
+<li class="chapter" data-level="13.4" data-path="node-annotation-1.html"><a href="node-annotation-1.html#strip"><i class="fa fa-check"></i><b>13.4</b> Strip</a></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="canvas-and-legend.html"><a href="canvas-and-legend.html"><i class="fa fa-check"></i><b>14</b> Canvas and Legend</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">iPhylo Tutorial</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="data" class="section level1 hasAnchor" number="10">
+<h1><span class="header-section-number">10</span> Data<a href="data.html#data" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="import" class="section level2 hasAnchor" number="10.1">
+<h2><span class="header-section-number">10.1</span> Import<a href="data.html#import" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>This guide will walk you through the process of preparing your data for annotation. To make the most of our tool, follow these steps:</p>
+<p>Step 1: Upload Tree File</p>
+<ol style="list-style-type: decimal">
+<li><strong>Select and Upload Tree File</strong>
+<ul>
+<li>Click the <code>Browse</code> button on the page.</li>
+<li>Choose your tree file (typically in Newick, Nexus, PhyloXML, etc., formats).</li>
+</ul></li>
+</ol>
+<p>Step 2: Annotation Files (Optional)</p>
+<p>If you want to add annotations to your tree, you can upload optional Leaf Annotation and Node Annotation files.</p>
+<ol style="list-style-type: decimal">
+<li><strong>Leaf Annotation File</strong>
+<ul>
+<li>Prepare a file containing annotations for each leaf of the tree.</li>
+<li>This file may include information like labels, colors, or other details for individual leaves.</li>
+</ul></li>
+<li><strong>Node Annotation File</strong>
+<ul>
+<li>Prepare a file containing annotations for nodes in the tree.</li>
+<li>This file might include data for internal nodes, helping you provide additional context to your tree.</li>
+</ul></li>
+</ol>
+<div id="tree-file-1" class="section level3 hasAnchor" number="10.1.1">
+<h3><span class="header-section-number">10.1.1</span> Tree file<a href="data.html#tree-file-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><img src="images/up_tree.png" style="width:80.0%" /></p>
+<p>Click the <code>Browse</code> button to upload a tree file in the Newick, Nexus, PhyloXML, or Phylip tree formats:</p>
+<ol style="list-style-type: decimal">
+<li><strong>Newick Format:</strong>
+<ul>
+<li><p><strong>Description:</strong> Newick, also known as New Hampshire or New Hampshire Extended format, is a simple and widely used text-based format for representing phylogenetic trees. It expresses tree structures using nested parentheses and commas.</p></li>
+<li><p><strong>Example:</strong></p>
+<pre><code>(A:0.1,B:0.2,(C:0.3,D:0.4):0.5);</code></pre></li>
+<li><p><strong>Usage:</strong> It’s commonly used for representing hierarchical relationships in evolutionary biology and bioinformatics.</p></li>
+</ul></li>
+<li><strong>Nexus Format:</strong>
+<ul>
+<li><p><strong>Description:</strong> Nexus is a versatile file format that can store various types of biological data, including phylogenetic trees. It allows the inclusion of metadata, DNA/protein sequences, and more. It is both human-readable and writable.</p></li>
+<li><p><strong>Example:</strong></p>
+<pre><code>#NEXUS
+Begin trees;
+   Tree myTree = (A,B,(C,D));
+End;</code></pre></li>
+<li><p><strong>Usage:</strong> Nexus is often used in phylogenetics, systematics, and evolutionary biology due to its flexibility.</p></li>
+</ul></li>
+<li><strong>PhyloXML:</strong>
+<ul>
+<li><p><strong>Description:</strong> PhyloXML is an XML-based format designed to store and exchange phylogenetic trees and associated data. It supports a variety of information, including node labels, branch lengths, and annotations.</p></li>
+<li><p><strong>Example:</strong></p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode xml"><code class="sourceCode xml"><span id="cb24-1"><a href="data.html#cb24-1" tabindex="-1"></a>&lt;<span class="kw">phylogeny</span>&gt;</span>
+<span id="cb24-2"><a href="data.html#cb24-2" tabindex="-1"></a>   &lt;<span class="kw">clade</span>&gt;</span>
+<span id="cb24-3"><a href="data.html#cb24-3" tabindex="-1"></a>       &lt;<span class="kw">name</span>&gt;A&lt;/<span class="kw">name</span>&gt;</span>
+<span id="cb24-4"><a href="data.html#cb24-4" tabindex="-1"></a>       &lt;<span class="kw">branch_length</span>&gt;0.1&lt;/<span class="kw">branch_length</span>&gt;</span>
+<span id="cb24-5"><a href="data.html#cb24-5" tabindex="-1"></a>   &lt;/<span class="kw">clade</span>&gt;</span>
+<span id="cb24-6"><a href="data.html#cb24-6" tabindex="-1"></a>   &lt;<span class="kw">clade</span>&gt;</span>
+<span id="cb24-7"><a href="data.html#cb24-7" tabindex="-1"></a>       &lt;<span class="kw">name</span>&gt;B&lt;/<span class="kw">name</span>&gt;</span>
+<span id="cb24-8"><a href="data.html#cb24-8" tabindex="-1"></a>       &lt;<span class="kw">branch_length</span>&gt;0.2&lt;/<span class="kw">branch_length</span>&gt;</span>
+<span id="cb24-9"><a href="data.html#cb24-9" tabindex="-1"></a>   &lt;/<span class="kw">clade</span>&gt;</span>
+<span id="cb24-10"><a href="data.html#cb24-10" tabindex="-1"></a>   &lt;<span class="kw">clade</span>&gt;</span>
+<span id="cb24-11"><a href="data.html#cb24-11" tabindex="-1"></a>       &lt;<span class="kw">name</span>&gt;C&lt;/<span class="kw">name</span>&gt;</span>
+<span id="cb24-12"><a href="data.html#cb24-12" tabindex="-1"></a>       &lt;<span class="kw">branch_length</span>&gt;0.3&lt;/<span class="kw">branch_length</span>&gt;</span>
+<span id="cb24-13"><a href="data.html#cb24-13" tabindex="-1"></a>   &lt;/<span class="kw">clade</span>&gt;</span>
+<span id="cb24-14"><a href="data.html#cb24-14" tabindex="-1"></a>   &lt;<span class="kw">clade</span>&gt;</span>
+<span id="cb24-15"><a href="data.html#cb24-15" tabindex="-1"></a>       &lt;<span class="kw">name</span>&gt;D&lt;/<span class="kw">name</span>&gt;</span>
+<span id="cb24-16"><a href="data.html#cb24-16" tabindex="-1"></a>       &lt;<span class="kw">branch_length</span>&gt;0.4&lt;/<span class="kw">branch_length</span>&gt;</span>
+<span id="cb24-17"><a href="data.html#cb24-17" tabindex="-1"></a>   &lt;/<span class="kw">clade</span>&gt;</span>
+<span id="cb24-18"><a href="data.html#cb24-18" tabindex="-1"></a>&lt;/<span class="kw">phylogeny</span>&gt;</span></code></pre></div></li>
+<li><p><strong>Usage:</strong> PhyloXML is suitable for storing and sharing complex phylogenetic data, often used in bioinformatics.</p></li>
+</ul></li>
+<li><strong>Phylip Format:</strong>
+<ul>
+<li><p><strong>Description:</strong> The Phylip (PHYLogeny Inference Package) format is a simple, line-based format developed for use with the Phylip software package. It is used to represent both sequence data and phylogenetic trees.</p></li>
+<li><p><strong>Example:</strong></p>
+<pre><code>4
+A 0.0 0.1 0.2
+B 0.1 0.0 0.3
+C 0.2 0.3 0.0
+D 0.3 0.2 0.1</code></pre></li>
+<li><p><strong>Usage:</strong> Phylip format is commonly used for input and output in phylogenetic analysis software and tools.</p></li>
+</ul></li>
+</ol>
+<p>These formats cater to different needs, from simple tree representations to more complex structures with additional metadata. The choice of format often depends on the specific requirements of the analysis or tool being used.</p>
+</div>
+<div id="leaf-annotation" class="section level3 hasAnchor" number="10.1.2">
+<h3><span class="header-section-number">10.1.2</span> Leaf annotation<a href="data.html#leaf-annotation" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><img src="images/leaf_anno.png" style="width:80.0%" /></p>
+<p>Click the <code>Browse</code> button to upload a leaf annotation file with the <code>,</code>, <code>\t</code>, or <code>;</code> separators:</p>
+<p>When preparing your leaf annotation file, follow these guidelines for proper formatting:</p>
+<ol style="list-style-type: decimal">
+<li><strong>Column Names:</strong>
+<ul>
+<li>The first column must be named “id” and corresponds to the identifiers of the leaves in your tree.</li>
+</ul></li>
+<li><strong>ID Repetition:</strong>
+<ul>
+<li>IDs can be repeated for multiple annotations. Any ID not matching a leaf in the tree will be ignored.</li>
+</ul></li>
+<li><strong>Avoid Reserved Columns:</strong>
+<ul>
+<li>Do not include built-in column names such as “parent,” “node,” “branch.length,” “label,” “isTip,” “x,” “y,” “branch,” and “angle.”</li>
+</ul></li>
+</ol>
+<ul>
+<li><strong>Example:</strong></li>
+</ul>
+<p>Suppose you have a tree with the following leaf IDs:</p>
+<ul>
+<li>Leaf 1: “A”</li>
+<li>Leaf 2: “B”</li>
+<li>Leaf 3: “C”</li>
+</ul>
+<p>Your leaf annotation file should look like this:</p>
+<pre class="plaintext"><code>id,annotation1,annotation2
+A,value1,infoA
+B,value2,infoB
+C,value3,infoC
+A,value4,infoD
+B,value5,infoE</code></pre>
+<p>In this example, “id” corresponds to the leaf IDs in your tree, and you can add multiple annotations for each leaf. Columns beyond “id” can be used to provide additional information for each leaf.</p>
+</div>
+<div id="node-annotation" class="section level3 hasAnchor" number="10.1.3">
+<h3><span class="header-section-number">10.1.3</span> Node annotation<a href="data.html#node-annotation" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><img src="images/node_anno.png" style="width:80.0%" /></p>
+<p>Click the <code>Browse</code> button to upload a node annotation file with the <code>,</code>, <code>\t</code>, or <code>;</code> separators:</p>
+<p>When preparing your node annotation file, follow these guidelines for proper formatting:</p>
+<ol style="list-style-type: decimal">
+<li><strong>Column Names:</strong>
+<ul>
+<li>The first column must be named “id” and corresponds to the identifiers of the leaves in your tree.</li>
+</ul></li>
+<li><strong>ID Repetition:</strong>
+<ul>
+<li>IDs can be repeated for multiple annotations. Any ID not matching a node in the tree will be ignored.</li>
+</ul></li>
+<li><strong>Avoid Reserved Columns:</strong>
+<ul>
+<li>Do not include built-in column names such as “parent,” “node,” “branch.length,” “label,” “isTip,” “x,” “y,” “branch,” and “angle.”</li>
+</ul></li>
+</ol>
+<ul>
+<li><strong>Example:</strong></li>
+</ul>
+<p>Suppose you have a tree with the following internal node IDs:</p>
+<ul>
+<li>Internal Node 1: “N1”</li>
+<li>Internal Node 2: “N2”</li>
+<li>Internal Node 3: “N3”</li>
+</ul>
+<p>Your leaf annotation file should look like this:</p>
+<pre class="plaintext"><code>id,annotationX,annotationY
+N1,valueX1,valueY1
+N2,valueX2,valueY2
+N3,valueX3,valueY3
+N1,valueX4,valueY4
+N2,valueX5,valueY5</code></pre>
+<p>In this example, “id” corresponds to the internal node IDs in your tree, and you can add multiple annotations for each node. Columns beyond “id” can be used to provide additional information for each node.</p>
+<p>Remember, the correct file format and adherence to the mentioned guidelines will ensure successful annotation.</p>
+</div>
+<div id="session" class="section level3 hasAnchor" number="10.1.4">
+<h3><span class="header-section-number">10.1.4</span> Session<a href="data.html#session" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><img src="images/up_session.png" style="width:40.0%" /></p>
+<p>To restore your work and retrieve your saved data, you can use the <code>Upload Session</code> component to upload the session file with the “.iphylo” extension.</p>
+<p>The iPhylo Visual emphasizes the ease of exporting and replicating tree displays using the work session files. The unique exported “.iphylo” files pack all essential data for generating trees with iPhylo. These files are extremely compact, with a size of 30kB for a well-annotated tree of 1000 species. All tree-annotation sessions can be saved to and uploaded from the local computer, enabling the users to fine-tune complex trees while maintaining control over the original data. Moreover, the session files can facilitate cooperative annotation projects.</p>
+</div>
+</div>
+<div id="export" class="section level2 hasAnchor" number="10.2">
+<h2><span class="header-section-number">10.2</span> Export<a href="data.html#export" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><img src="images/download.png" /></p>
+<div id="export-image" class="section level3 hasAnchor" number="10.2.1">
+<h3><span class="header-section-number">10.2.1</span> Export image<a href="data.html#export-image" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>iPhylo Visual provides different image export formats for trees, namely, PNG, PDF, and JPEG.</p>
+</div>
+<div id="save-session" class="section level3 hasAnchor" number="10.2.2">
+<h3><span class="header-section-number">10.2.2</span> Save session<a href="data.html#save-session" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>iPhylo Visual offers a session saving feature that allows you to save your work at any point during the annotation process. Simply click the <span class="badge-light">Save Session</span> button to save your data and selected options for the current page.</p>
+</div>
+<div id="download-r-scripts" class="section level3 hasAnchor" number="10.2.3">
+<h3><span class="header-section-number">10.2.3</span> Download R scripts<a href="data.html#download-r-scripts" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Importantly, iPhylo Visual’s Export Code feature exports all the raw data and plotting code for the visualized and annotated tree in one click.</p>
+<p>The package includes the tree file, the annotation table, detailed annotation parameters recorded in a JSON file, and an R script for visualizing the data:</p>
+<p><img src="images/Rcode.png" /></p>
+<p>By running this script locally (<code>source main.R</code>), users can replicate the tree visualization as seen in iPhylo Visual. Advanced users proficient with R programming can further customize the tree by modifying the code.</p>
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="user-interface.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="basic-feature.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>
