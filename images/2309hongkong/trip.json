@@ -1,0 +1,34 @@
+{
+  "id": "victoria-harbour-in-hongkong-2023.9.29",
+  "key": "2309hongkong",
+  "title": "维港，匆匆一面",
+  "originalTitle": "Victoria Harbour in Hongkong (2023.9.29)",
+  "startDate": "2023-09-29",
+  "date": "2023.9.29",
+  "location": "香港",
+  "category": "城市",
+  "cover": "1.webp",
+  "story": "story.md",
+  "photos": [
+    "1.webp",
+    "2.webp",
+    "3.webp",
+    "4.webp"
+  ],
+  "places": [
+    {
+      "id": "hongkong",
+      "name": "香港",
+      "coords": [
+        114.17,
+        22.32
+      ],
+      "star": [
+        60,
+        91
+      ],
+      "en": "HONG KONG",
+      "scope": "china"
+    }
+  ]
+}

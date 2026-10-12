@@ -1,0 +1,34 @@
+{
+  "id": "denmark-2025.9.10-2025.10.22",
+  "key": "2510Denmark",
+  "title": "在丹麦的四十几天",
+  "originalTitle": "Denmark (2025.9.10-2025.10.22)",
+  "startDate": "2025-09-10",
+  "date": "2025.9.10-2025.10.22",
+  "location": "丹麦",
+  "category": "海外",
+  "cover": "1.webp",
+  "story": "story.md",
+  "photos": [
+    "1.webp",
+    "4.webp",
+    "2.webp",
+    "3.webp"
+  ],
+  "places": [
+    {
+      "id": "denmark",
+      "name": "丹麦",
+      "coords": [
+        10,
+        56
+      ],
+      "star": [
+        25,
+        41
+      ],
+      "en": "DENMARK",
+      "scope": "overseas"
+    }
+  ]
+}

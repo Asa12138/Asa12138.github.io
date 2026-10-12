@@ -1,0 +1,40 @@
+{
+  "id": "sea-and-birds-in-qingdao-2023.5.1",
+  "key": "2305qingdao",
+  "title": "青岛的海与鸟",
+  "originalTitle": "Sea and birds in Qingdao (2023.5.1)",
+  "startDate": "2023-05-01",
+  "date": "2023.5.1",
+  "location": "青岛",
+  "category": "海边",
+  "cover": "1.webp",
+  "story": "story.md",
+  "photos": [
+    "1.webp",
+    "9.webp",
+    "2.webp",
+    "3.webp",
+    "4.webp",
+    "5.webp",
+    "6.webp",
+    "7.webp",
+    "8.webp",
+    "10.webp"
+  ],
+  "places": [
+    {
+      "id": "qingdao",
+      "name": "青岛",
+      "coords": [
+        120.38,
+        36.07
+      ],
+      "star": [
+        71,
+        39
+      ],
+      "en": "QINGDAO",
+      "scope": "china"
+    }
+  ]
+}

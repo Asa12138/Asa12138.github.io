@@ -20,3 +20,10 @@ _freeze
 docs/
 # RStudio Connect folder
 rsconnect/
+
+# Travel album manager
+/qunqing/__pycache__/
+
+# Local originals; published albums use WebP
+/images/2607malaysia/*.jpg
+/images/2610wuyishan/*.jpg

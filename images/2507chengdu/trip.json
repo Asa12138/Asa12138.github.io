@@ -1,0 +1,56 @@
+{
+  "id": "sanxingdui-and-hot-pot-in-chengdu-2025.6.21",
+  "key": "2507chengdu",
+  "title": "三星堆与牛油火锅",
+  "originalTitle": "Sanxingdui and Hot pot in Chengdu (2025.6.21)",
+  "startDate": "2025-06-21",
+  "date": "2025.6.21",
+  "location": "成都 · 广汉",
+  "category": "城市",
+  "cover": "1.webp",
+  "story": "story.md",
+  "photos": [
+    "1.webp",
+    "2.webp",
+    "3.webp",
+    "4.webp",
+    "6.webp",
+    "7.webp",
+    "8.webp",
+    "9.webp",
+    "10.webp",
+    "11.webp",
+    "12.webp",
+    "13.webp"
+  ],
+  "places": [
+    {
+      "id": "chengdu",
+      "name": "成都",
+      "coords": [
+        104.07,
+        30.67
+      ],
+      "star": [
+        16,
+        68
+      ],
+      "en": "CHENGDU",
+      "scope": "china"
+    },
+    {
+      "id": "guanghan",
+      "name": "广汉 · 三星堆",
+      "coords": [
+        104.28,
+        30.97
+      ],
+      "star": [
+        25,
+        80
+      ],
+      "en": "GUANGHAN",
+      "scope": "china"
+    }
+  ]
+}

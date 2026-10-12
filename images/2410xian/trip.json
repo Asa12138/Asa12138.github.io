@@ -1,0 +1,38 @@
+{
+  "id": "history-and-hanfu-in-xian-2024.10.5",
+  "key": "2410xian",
+  "title": "古都与汉服",
+  "originalTitle": "History and Hanfu in Xi’an (2024.10.5)",
+  "startDate": "2024-10-05",
+  "date": "2024.10.5",
+  "location": "西安",
+  "category": "城市",
+  "cover": "1.webp",
+  "story": "story.md",
+  "photos": [
+    "1.webp",
+    "2.webp",
+    "3.webp",
+    "4.webp",
+    "5.webp",
+    "6.webp",
+    "7.webp",
+    "8.webp"
+  ],
+  "places": [
+    {
+      "id": "xian",
+      "name": "西安",
+      "coords": [
+        108.94,
+        34.34
+      ],
+      "star": [
+        36,
+        63
+      ],
+      "en": "XI’AN",
+      "scope": "china"
+    }
+  ]
+}

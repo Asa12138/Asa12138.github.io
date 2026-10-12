@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#f2efe7">
+  <meta name="description" content="群青旅行地图册：在照片图钉、旅行护照与随机明信片里，重访一起走过的山海和城市。">
+  <link rel="canonical" href="https://asa12138.github.io/qunqing/">
+  <title>群青旅行地图册 · The Small World of Us</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='24' fill='%231c4ed8'/%3E%3Ctext x='50' y='72' font-size='68' text-anchor='middle' fill='%23f2efe7' font-family='serif'%3E%E9%9D%92%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="qunqing-v3.css">
+  <script src="qunqing-v3-data.js" defer></script>
+  <script src="qunqing-v3-config.js" defer></script>
+  <script src="vendor/d3-array-3.2.4.min.js" defer></script>
+  <script src="vendor/d3-geo-3.1.1.min.js" defer></script>
+  <script src="qunqing-globe.js" defer></script>
+  <script src="qunqing-replay.js" defer></script>
+  <script src="qunqing-game.js" defer></script>
+  <script src="qunqing-v3.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#atlas">跳到旅行地图</a>
+  <header class="site-header">
+    <a class="brand" href="#top"><span class="brand-mark">青</span><span>群青<span class="brand-en">THE SMALL WORLD OF US</span></span></a>
+    <nav aria-label="主导航"><a href="#atlas">旅行地图</a><a href="#playground">记忆游乐场</a><a href="#journal">所有相册</a></nav>
+    <button class="round-button random-trigger" aria-label="随机重访一段旅程" title="随机出发">↗</button>
+  </header>
+  <main id="top">
+    <section class="hero">
+      <div class="hero-copy"><p class="eyebrow"><span class="live-dot"></span> PERSONAL TRAVEL ATLAS / EST. 2023</p>
+        <h1>世界很大，<br>我们的<span class="handwritten">小小足迹。</span></h1>
+        <p class="hero-intro">把地图上的一个点，变成一起记得的某一天。<br>点点图钉，随便走走。今天也可以重新出发。</p>
+        <div class="hero-actions"><a class="pill dark" href="#atlas">展开我们的地图 <span>↓</span></a><button class="text-button random-trigger">✳ 随机掉进一段回忆</button></div>
+      </div>
+      <div class="hero-collage" aria-label="旅行照片拼贴">
+        <div class="collage-orbit" aria-hidden="true"></div>
+        <figure class="mini-print print-lake"><img src="../images/2508qinggan/22.webp" alt="青甘旅行中，在湖畔眺望的背影" fetchpriority="high"><figcaption>好像又回到了那一天。<span>QINGHAI / AUG. 2025</span></figcaption></figure>
+        <figure class="mini-print print-city"><img src="../images/2409japan/1.webp" alt="大阪心斋桥的夜晚"><figcaption>晚一点回去也没关系。</figcaption></figure>
+        <span class="collage-stamp" aria-hidden="true">一起<br>出逃 <span>LET'S GET LOST</span></span>
+        <svg class="paper-plane" viewBox="0 0 130 100" aria-hidden="true"><path d="M5 84Q38 35 66 65T104 55" fill="none" stroke="currentColor" stroke-width="2" stroke-dasharray="3 6"/><path d="m91 24 30-13-8 35-7-17-15-5Zm15 5 15-18" fill="#dfe8ff" stroke="currentColor" stroke-width="2"/></svg>
+      </div>
+    </section>
+
+    <section class="atlas-section" id="atlas" aria-labelledby="atlas-title">
+      <div class="section-heading"><div><p class="eyebrow">01 / PLACES WE KEEP</p><h2 id="atlas-title">一张地图，<em>好多故事。</em></h2></div><p class="section-note">照片是图钉，回忆是坐标。<br>点击一个地方，看看当时的我们。</p></div>
+      <div class="atlas-board">
+        <div class="atlas-toolbar"><div class="scope-tabs" aria-label="地图视野"><button data-scope="china" aria-pressed="true">山海之间</button><button data-scope="overseas" aria-pressed="false">地球 · 全部足迹</button><button data-scope="qinggan" aria-pressed="false">青甘 · 环线特辑</button></div><button id="map-reset" class="text-button">⌖ 回到全景</button></div>
+        <div class="atlas-content">
+          <div class="map-stage">
+            <div id="amap" aria-label="高德旅行地图"></div>
+            <div id="world-globe" class="globe-view" hidden>
+              <canvas id="globe-canvas" role="img" aria-label="可旋转的地球，旅行地点可通过照片图钉与地点索引访问"></canvas>
+              <div id="globe-pins" class="globe-pins" aria-label="地球上的旅行地点"></div>
+              <p id="globe-footprints" class="globe-footprints"></p><div class="globe-caption"><span>THE WORLD OF US</span><h3>转动地球，总会再见。</h3><p>拖动旋转 · 点击照片重访</p></div>
+              <div class="globe-controls"><button id="globe-spin" aria-pressed="false">↻ 让地球转起来</button><button id="globe-zoom-in" aria-label="放大地球">+</button><button id="globe-zoom-out" aria-label="缩小地球">−</button></div>
+              <p id="globe-loading" class="globe-loading" role="status">正在展开这个小小世界…</p><a class="globe-credit" href="https://www.naturalearthdata.com/" target="_blank" rel="noopener">地形 / Natural Earth</a>
+              <div id="globe-popover" class="globe-popover" hidden><button id="globe-popover-close" aria-label="关闭地点合集">×</button><p id="globe-popover-title"></p><div id="globe-popover-list"></div></div>
+            </div>
+            <div id="constellation" class="constellation" aria-label="旅行地点星图">
+              <svg class="star-lines" viewBox="0 0 1000 600" preserveAspectRatio="none" aria-hidden="true"><path d="M170 330Q250 140 390 180T720 160Q890 230 810 380T450 440Q310 510 170 330"/></svg>
+              <span class="region-word region-north">NORTH / 北方</span><span class="region-word region-west">WEST / 西北</span><span class="region-word region-east">EAST / 江南</span><span class="region-word region-south">SOUTH / 岭南</span>
+              <div id="star-pins"></div>
+              <span class="star-watermark" aria-hidden="true">a constellation<br>of our days.</span>
+            </div>
+            <svg id="replay-overlay" class="replay-overlay" aria-hidden="true"><path id="replay-guide"/><path id="replay-trail"/><circle id="replay-arrival" r="14"/><g id="replay-vehicle"></g></svg>
+            <div id="replay-map-caption" class="replay-map-caption" hidden></div>
+            <div id="replay-map-hud" class="replay-map-hud" hidden><button id="replay-hud-prev" aria-label="回放上一站">↤</button><button id="replay-hud-play" aria-label="暂停旅程回放">Ⅱ</button><button id="replay-hud-next" aria-label="回放下一站">↦</button><button id="replay-hud-stop" aria-label="结束回放，自由探索">×</button></div>
+            <div class="map-label"><span class="live-dot"></span><span id="map-mode-label">正在展开地图…</span></div>
+            <div class="map-compass" aria-hidden="true"><span>N</span>✳</div>
+            <div class="map-zoom" id="map-zoom" hidden><button id="zoom-in" aria-label="放大地图">+</button><button id="zoom-out" aria-label="缩小地图">−</button></div>
+            <p class="map-location-note" id="map-location-note">地点为城市 / 景区概略位置</p>
+          </div>
+          <aside class="destination-card" aria-label="当前地点相册">
+            <div class="ticket-top"><span>ONE PLACE, MANY MEMORIES</span><span id="place-number">01</span></div>
+            <button class="destination-photo" id="destination-open" aria-label="翻开当前地点相册"><img id="destination-image" alt=""><span class="destination-photo-count" id="destination-count"></span><span class="photo-open">翻开相册 ↗</span></button>
+            <div class="destination-copy"><p class="eyebrow" id="destination-date"></p><h3 id="destination-title">把一段回忆<br>钉在这里。</h3><p id="destination-note"></p><button id="destination-story" class="text-button story-link" hidden>✎ 读这段旅行手记</button><div id="place-albums" class="place-albums"></div></div>
+            <div class="ticket-bottom"><span id="destination-location">TRAVEL / TOGETHER</span><span class="barcode" aria-hidden="true"></span></div>
+          </aside>
+        </div>
+        <div class="atlas-footer"><div class="year-filters" id="map-years" aria-label="按年份查看地点"></div><span id="map-count">正在整理地点…</span></div><details class="place-index"><summary>展开地点索引 <span>也可以直接按地名探索 ↗</span></summary><div id="place-index-list"></div></details>
+      </div>
+      <div class="map-status-row"><p id="map-status" role="status">正在连接高德地图。</p><button id="map-settings" class="text-button">地图设置 ⚙</button></div>
+      <div class="journey-player" id="journey-player">
+        <div class="replay-heading"><div><p class="eyebrow">PRESS PLAY / TRAVEL BACK IN TIME</p><h3>足迹放映机<span>把走过的路，再走一遍。</span></h3></div><label class="replay-range"><span class="sr-only">回放范围</span><select id="replay-range"><option value="all">完整旅行年表</option><option value="view">当前地图 / 年份</option></select></label></div>
+        <div class="replay-controls"><div class="vehicle-tabs" aria-label="回忆载具"><button data-vehicle="plane" aria-pressed="true">✈ 飞机</button><button data-vehicle="train" aria-pressed="false">▰ 火车</button></div><div class="replay-transport"><button id="replay-prev" class="replay-step" aria-label="上一段回忆">↤</button><button id="replay-play" class="pill dark">▶ 开始回放</button><button id="replay-next" class="replay-step" aria-label="下一段回忆">↦</button></div><label class="replay-speed"><span class="sr-only">回放速度</span><select id="replay-speed"><option value="0.65">慢慢走 · 0.65×</option><option value="1" selected>正常 · 1×</option><option value="1.8">快一点 · 1.8×</option></select></label><button id="replay-loop" class="replay-loop" aria-pressed="false" aria-label="循环回放">↻ 循环</button></div>
+        <div class="replay-progress"><label for="replay-seek" class="sr-only">拖动到一段回忆</label><input id="replay-seek" type="range" min="0" max="1" step="0.01" value="0"><span id="replay-counter">01 / 28</span></div>
+        <div id="replay-film" class="replay-film" aria-label="回放相册时间线"></div><div class="replay-footnote"><p id="replay-status" role="status">从第一张照片出发。</p><span>连线为回忆示意 · 载具由你选择</span></div>
+      </div>
+    </section>
+
+    <section class="playground" id="playground" aria-labelledby="play-title">
+      <div class="section-heading"><div><p class="eyebrow">02 / THE MEMORY PLAYGROUND</p><h2 id="play-title">回忆，也可以<em>很好玩。</em></h2></div><span class="drawn-star" aria-hidden="true">✳</span></div>
+      <div class="play-grid">
+        <article class="passport"><div class="passport-top"><span>OUR TRAVEL PASSPORT</span><span>✳</span></div><div class="passport-heading"><div><h3>每走一步，<br>就盖一个章。</h3><p>点开地点，盖下属于那段旅程的印章。</p></div><label class="stamp-display"><span>展示印章</span><select id="stamp-limit"><option value="all" selected>全部</option><option value="12">每页 12 枚</option><option value="6">每页 6 枚</option></select></label></div><div class="stamp-book" id="stamp-book" data-density="all" aria-label="旅行印章册"></div><div class="passport-footer"><div class="passport-bottom"><span><b id="stamp-count">0</b> / <span id="stamp-total">—</span> 枚回忆印章</span><button id="passport-reset" class="text-button" aria-label="重新收集回忆印章">重新收集 ↺</button></div><div class="passport-pages" id="stamp-pagination" hidden><button id="stamp-prev" aria-label="上一页印章">←</button><span id="stamp-page"></span><button id="stamp-next" aria-label="下一页印章">→</button></div></div></article>
+        <article class="memory-machine"><p class="eyebrow">A LITTLE TIME MACHINE</p><h3>今日份<br><span>记忆盲盒。</span></h3><button class="postcard-stack random-trigger" aria-label="从照片里抽一张明信片"><span class="stack-card stack-back"><img src="../images/atlas-thumbs/2409japan/1.jpg" alt="" loading="lazy"></span><span class="stack-card stack-front"><img src="../images/atlas-thumbs/2508qinggan/22.jpg" alt="" loading="lazy"><span>有一张回忆，正等着寄给你。</span></span><span class="stack-postmark" aria-hidden="true">青<br><small>MEMORY MAIL</small></span></button><p>不选目的地，把出发交给运气。<br>它会从相册里寄来一张明信片。</p><button class="pill dark random-trigger">抽一张明信片 <span>↗</span></button></article>
+
+      </div>
+      <article class="memory-quiz-banner"><span class="quiz-doodle" aria-hidden="true">⌖<small>?</small></span><div><p class="eyebrow">HOW WELL DO YOU REMEMBER?</p><h3>只看照片，还认得那一天吗？</h3><p>五张照片，四个选项。和记忆玩一场捉迷藏。</p></div><div class="quiz-banner-action"><span id="quiz-best">还没挑战过这份回忆</span><button id="quiz-reset-best" class="text-button" hidden>清除最佳记录 ↺</button><button id="quiz-start" class="pill dark">猜猜这是哪里 <span>↗</span></button></div></article>
+    </section>
+
+    <section class="journal" id="journal" aria-labelledby="journal-title">
+      <div class="section-heading"><div><p class="eyebrow">03 / THE CONTACT SHEET</p><h2 id="journal-title">那些日子，<em>逐帧收藏。</em></h2></div><p class="section-note"><b id="stat-albums">—</b> 本相册 / <b id="stat-photos">—</b> 张照片<br>从最近的一天，慢慢往回翻。</p></div>
+      <div class="journal-toolbar"><div id="journal-years" class="year-filters" aria-label="按年份筛选相册"></div><label class="search-box"><span aria-hidden="true">⌕</span><span class="sr-only">搜索城市或回忆</span><input id="trip-search" type="search" placeholder="搜索城市、旅程或回忆…"><kbd>/</kbd></label></div>
+      <p class="archive-count" id="archive-count" aria-live="polite"></p><div class="album-grid" id="album-grid"></div><p class="empty-state" id="empty-state" hidden>还没有这段回忆。换个关键词试试？</p>
+    </section>
+    <section class="closing"><p class="eyebrow">TO BE CONTINUED</p><h2>下一站，<br>还是和<span>你。</span><svg viewBox="0 0 300 65" aria-hidden="true"><path d="M4 51Q148 7 284 43M37 60Q159 27 295 51"/></svg></h2><a href="#top" class="pill light">回到旅程起点 ↑</a><span class="closing-mark" aria-hidden="true">青</span></section>
+  </main>
+  <footer><span>群青 · THE SMALL WORLD OF US</span><span>2023 — <span id="footer-year">2026</span> / STILL WANDERING</span><a href="../qunqing.html">原始相册 ↗</a></footer>
+
+  <dialog id="photo-dialog" class="photo-dialog" aria-labelledby="viewer-title"><div class="viewer-top"><div><p class="eyebrow" id="viewer-date"></p><h2 id="viewer-title"></h2></div><div class="viewer-tools"><button id="viewer-story" aria-label="阅读旅行手记" title="旅行手记">✎</button><button id="viewer-save" aria-pressed="false" aria-label="收藏这张照片">♡</button><button id="viewer-autoplay" aria-pressed="false" aria-label="自动播放照片">▷</button><button id="viewer-close" aria-label="关闭相册">×</button></div></div><div class="viewer-body"><div class="viewer-stage"><button id="viewer-prev" class="viewer-arrow" aria-label="上一张照片">←</button><figure><img id="viewer-image" alt=""><figcaption><span id="viewer-caption"></span><span id="viewer-counter"></span></figcaption></figure><button id="viewer-next" class="viewer-arrow" aria-label="下一张照片">→</button></div><details class="viewer-notes" id="viewer-notes"><summary>翻开旅行手记</summary><div id="viewer-note-text"></div></details><div id="viewer-thumbs" class="viewer-thumbs" aria-label="照片缩略图"></div></div><p class="viewer-hint">← → 换照片 · ESC 返回 · ♡ 收藏在这个浏览器里</p></dialog>
+  <dialog id="postcard-dialog" class="postcard-dialog" aria-labelledby="postcard-title"><button class="dialog-x" id="postcard-close" aria-label="关闭明信片">×</button><div class="postcard-sheet"><div class="postcard-front"><img id="postcard-image" alt=""><span id="postcard-place"></span></div><div class="postcard-back"><div class="postcard-postage" aria-hidden="true">青<br><small>POST</small></div><p class="eyebrow">A POSTCARD FROM OUR PAST</p><h2 id="postcard-title"></h2><p id="postcard-note"></p><p id="postcard-date"></p><div class="postcard-actions"><button id="postcard-another" class="text-button">↺ 再抽一张</button><button id="postcard-album" class="pill dark">回到那一天 ↗</button></div></div></div></dialog>
+  <dialog id="story-dialog" class="story-dialog" aria-labelledby="story-title"><button id="story-close" class="dialog-x" aria-label="关闭旅行手记">×</button><div class="story-body"><header class="story-header"><div><p class="eyebrow">A PAGE FROM OUR JOURNAL</p><p id="story-date"></p><h2 id="story-title"></h2></div><figure><img id="story-cover" alt=""><figcaption>那些日子，还在这里。</figcaption></figure></header><article id="story-text" class="story-text"></article><div class="story-actions"><a id="story-download" class="text-button" download>保存这篇手记 ↓</a><button id="story-photos" class="pill dark">看当时的照片 ↗</button></div></div></dialog>
+  <dialog id="quiz-dialog" class="quiz-dialog" aria-labelledby="quiz-title"><button id="quiz-close" class="dialog-x" aria-label="关闭照片竞猜">×</button><div class="quiz-top"><p class="eyebrow">A LITTLE MEMORY CHALLENGE</p><span id="quiz-round"></span></div><h2 id="quiz-title">猜猜，这是哪里？</h2><div class="quiz-picture"><img id="quiz-image" alt="本轮旅行照片"><span id="quiz-hint" hidden></span></div><div id="quiz-options" class="quiz-options"></div><p id="quiz-feedback" class="quiz-feedback" role="status"></p><div class="quiz-actions"><button id="quiz-hint-button" class="text-button">✳ 给我一点提示</button><button id="quiz-open-album" class="text-button" hidden>回到这本相册 ↗</button><button id="quiz-next" class="pill dark" disabled>下一张 →</button></div><p class="quiz-note">答案取自相册记录的地点，照片有时只是旅程中的一瞬。</p></dialog>
+  <dialog id="settings-dialog" class="settings-dialog" aria-labelledby="settings-title"><button class="dialog-x" id="settings-close" aria-label="关闭地图设置">×</button><p class="eyebrow">MAP SETTINGS</p><h2 id="settings-title">展开真实地图。</h2><p>使用高德 Web 端（JS API）key 与配套安全密钥。这里的设置只用于本次页面，刷新后清除。</p><form id="settings-form"><label>Web 端 key<input id="settings-key" type="password" autocomplete="off" spellcheck="false"></label><label>securityJsCode 安全密钥<input id="settings-code" type="password" autocomplete="off" spellcheck="false" placeholder="对应应用的安全密钥"></label><button type="submit" class="pill dark">连接高德地图 ↗</button></form><p class="settings-note">世界视野使用可旋转地球；若地球组件未载入，则显示地点星图。地图图钉为城市 / 景区概略位置，不代表照片 GPS。</p></dialog>
+  <div class="toast" id="toast" role="status" hidden></div>
+  <noscript><p class="noscript">请启用 JavaScript 来探索地图与相册，或<a href="../qunqing.html">打开原始相册</a>。</p></noscript>
+</body>
+</html>

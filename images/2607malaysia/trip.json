@@ -1,0 +1,224 @@
+{
+  "id": "2607malaysia",
+  "key": "2607malaysia",
+  "title": "马来西亚，海风与雨林",
+  "date": "2026.7.23–7.28",
+  "startDate": "2026-07-23",
+  "location": "马来西亚 · 沙巴",
+  "category": "海外",
+  "cover": "15.webp",
+  "story": "story.md",
+  "summary": "在仙本那水屋吹海风，去跳岛潜水，再到亚庇寻找大王花、长鼻猴和萤火虫。",
+  "photos": [
+    {
+      "file": "1.webp",
+      "date": "2026-07-23",
+      "chapter": "7月23日 · 水屋与浮潜"
+    },
+    {
+      "file": "2.webp",
+      "date": "2026-07-23",
+      "chapter": "7月23日 · 水屋与浮潜"
+    },
+    {
+      "file": "3.webp",
+      "date": "2026-07-23",
+      "chapter": "7月23日 · 水屋与浮潜"
+    },
+    {
+      "file": "4.webp",
+      "date": "2026-07-23",
+      "chapter": "7月23日 · 水屋与浮潜"
+    },
+    {
+      "file": "5.webp",
+      "date": "2026-07-23",
+      "chapter": "7月23日 · 水屋与浮潜"
+    },
+    {
+      "file": "6.webp",
+      "date": "2026-07-23",
+      "chapter": "7月23日 · 水屋与浮潜"
+    },
+    {
+      "file": "7.webp",
+      "date": "2026-07-23",
+      "chapter": "7月23日 · 水屋与浮潜"
+    },
+    {
+      "file": "8.webp",
+      "date": "2026-07-23",
+      "chapter": "7月23日 · 水屋与浮潜"
+    },
+    {
+      "file": "9.webp",
+      "date": "2026-07-23",
+      "chapter": "7月23日 · 水屋与浮潜"
+    },
+    {
+      "file": "10.webp",
+      "date": "2026-07-23",
+      "chapter": "7月23日 · 水屋与浮潜"
+    },
+    {
+      "file": "11.webp",
+      "date": "2026-07-23",
+      "chapter": "7月23日 · 水屋与浮潜"
+    },
+    {
+      "file": "12.webp",
+      "date": "2026-07-24",
+      "chapter": "7月24日 · 仙本那的海鲜市场"
+    },
+    {
+      "file": "13.webp",
+      "date": "2026-07-24",
+      "chapter": "7月24日 · 仙本那的海鲜市场"
+    },
+    {
+      "file": "14.webp",
+      "date": "2026-07-24",
+      "chapter": "7月24日 · 仙本那的海鲜市场"
+    },
+    {
+      "file": "15.webp",
+      "date": "2026-07-25",
+      "chapter": "7月25日 · 跳岛与潜水"
+    },
+    {
+      "file": "16.webp",
+      "date": "2026-07-25",
+      "chapter": "7月25日 · 跳岛与潜水"
+    },
+    {
+      "file": "17.webp",
+      "date": "2026-07-25",
+      "chapter": "7月25日 · 跳岛与潜水"
+    },
+    {
+      "file": "18.webp",
+      "date": "2026-07-25",
+      "chapter": "7月25日 · 跳岛与潜水"
+    },
+    {
+      "file": "19.webp",
+      "date": "2026-07-26",
+      "chapter": "7月26日 · 亚庇的日落与夜市"
+    },
+    {
+      "file": "20.webp",
+      "date": "2026-07-26",
+      "chapter": "7月26日 · 亚庇的日落与夜市"
+    },
+    {
+      "file": "21.webp",
+      "date": "2026-07-26",
+      "chapter": "7月26日 · 亚庇的日落与夜市"
+    },
+    {
+      "file": "22.webp",
+      "date": "2026-07-27",
+      "chapter": "7月27日 · 大王花、红树林与萤火虫"
+    },
+    {
+      "file": "23.webp",
+      "date": "2026-07-27",
+      "chapter": "7月27日 · 大王花、红树林与萤火虫"
+    },
+    {
+      "file": "24.webp",
+      "date": "2026-07-27",
+      "chapter": "7月27日 · 大王花、红树林与萤火虫"
+    },
+    {
+      "file": "25.webp",
+      "date": "2026-07-27",
+      "chapter": "7月27日 · 大王花、红树林与萤火虫"
+    },
+    {
+      "file": "26.webp",
+      "date": "2026-07-27",
+      "chapter": "7月27日 · 大王花、红树林与萤火虫"
+    },
+    {
+      "file": "27.webp",
+      "date": "2026-07-27",
+      "chapter": "7月27日 · 大王花、红树林与萤火虫"
+    },
+    {
+      "file": "28.webp",
+      "date": "2026-07-27",
+      "chapter": "7月27日 · 大王花、红树林与萤火虫"
+    },
+    {
+      "file": "29.webp",
+      "date": "2026-07-27",
+      "chapter": "7月27日 · 大王花、红树林与萤火虫"
+    },
+    {
+      "file": "30.webp",
+      "date": "2026-07-27",
+      "chapter": "7月27日 · 大王花、红树林与萤火虫"
+    },
+    {
+      "file": "31.webp",
+      "date": "2026-07-28",
+      "chapter": "7月28日 · 清真寺与归程"
+    },
+    {
+      "file": "32.webp",
+      "date": "2026-07-28",
+      "chapter": "7月28日 · 清真寺与归程"
+    },
+    {
+      "file": "33.webp",
+      "date": "2026-07-28",
+      "chapter": "7月28日 · 清真寺与归程"
+    },
+    {
+      "file": "34.webp",
+      "date": "2026-07-28",
+      "chapter": "7月28日 · 清真寺与归程"
+    }
+  ],
+  "places": [
+    {
+      "id": "semporna",
+      "name": "仙本那",
+      "coords": [
+        118.61119,
+        4.48178
+      ],
+      "en": "SEMPORNA",
+      "scope": "overseas",
+      "country": "马来西亚",
+      "star": [
+        70,
+        73
+      ],
+      "chapter": "7月23日",
+      "photoIndex": 0,
+      "date": "7.23–25",
+      "coordinateSource": "https://www.geonames.org/1733697/semporna.html"
+    },
+    {
+      "id": "kota-kinabalu",
+      "name": "亚庇",
+      "coords": [
+        116.0724,
+        5.9749
+      ],
+      "en": "KOTA KINABALU",
+      "scope": "overseas",
+      "country": "马来西亚",
+      "star": [
+        49,
+        71
+      ],
+      "chapter": "7月26日",
+      "photoIndex": 18,
+      "date": "7.26–28",
+      "coordinateSource": "https://www.geonames.org/advanced-search.html?q=Sabah%2C+Malaysia&startRow=0"
+    }
+  ]
+}

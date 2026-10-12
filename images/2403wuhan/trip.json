@@ -1,0 +1,46 @@
+{
+  "id": "sakura-and-ferry-in-wuhan-2024.3.16",
+  "key": "2403wuhan",
+  "title": "樱花与轮渡",
+  "originalTitle": "Sakura and ferry in Wuhan (2024.3.16)",
+  "startDate": "2024-03-16",
+  "date": "2024.3.16",
+  "location": "武汉",
+  "category": "城市",
+  "cover": "1.webp",
+  "story": "story.md",
+  "photos": [
+    "1.webp",
+    "2.webp",
+    "3.webp",
+    "4.webp",
+    "5.webp",
+    "6.webp",
+    "7.webp",
+    "8.webp",
+    "9.webp",
+    "10.webp",
+    "11.webp",
+    "12.webp",
+    "13.webp",
+    "14.webp",
+    "15.webp",
+    "16.webp"
+  ],
+  "places": [
+    {
+      "id": "wuhan",
+      "name": "武汉",
+      "coords": [
+        114.3,
+        30.59
+      ],
+      "star": [
+        39,
+        80
+      ],
+      "en": "WUHAN",
+      "scope": "china"
+    }
+  ]
+}

@@ -1,0 +1,474 @@
+{
+  "id": "nine-days-qinggan-circle-2025.8.9-8.17",
+  "key": "2508qinggan",
+  "title": "九天，青甘大环线",
+  "originalTitle": "Nine-days Qinggan Circle (2025.8.9-8.17)",
+  "startDate": "2025-08-09",
+  "date": "2025.8.9-8.17",
+  "location": "青海 · 甘肃",
+  "category": "自驾",
+  "cover": "22.webp",
+  "story": "story.md",
+  "photos": [
+    "qinggan.webp",
+    {
+      "file": "1.webp",
+      "chapter": "Yaks and sheep in Qinghai Lake (8.9)"
+    },
+    {
+      "file": "2.webp",
+      "chapter": "Yaks and sheep in Qinghai Lake (8.9)"
+    },
+    {
+      "file": "3-1.webp",
+      "chapter": "Yaks and sheep in Qinghai Lake (8.9)"
+    },
+    {
+      "file": "3.webp",
+      "chapter": "Yaks and sheep in Qinghai Lake (8.9)"
+    },
+    {
+      "file": "4.webp",
+      "chapter": "Yaks and sheep in Qinghai Lake (8.9)"
+    },
+    {
+      "file": "5.webp",
+      "chapter": "Yaks and sheep in Qinghai Lake (8.9)"
+    },
+    {
+      "file": "6.webp",
+      "chapter": "Yaks and sheep in Qinghai Lake (8.9)"
+    },
+    {
+      "file": "7.webp",
+      "chapter": "Yaks and sheep in Qinghai Lake (8.9)"
+    },
+    {
+      "file": "8.webp",
+      "chapter": "Yaks and sheep in Qinghai Lake (8.9)"
+    },
+    {
+      "file": "9.webp",
+      "chapter": "Yaks and sheep in Qinghai Lake (8.9)"
+    },
+    {
+      "file": "10.webp",
+      "chapter": "Yaks and sheep in Qinghai Lake (8.9)"
+    },
+    {
+      "file": "11.webp",
+      "chapter": "Yaks and sheep in Qinghai Lake (8.9)"
+    },
+    {
+      "file": "12.webp",
+      "chapter": "Yaks and sheep in Qinghai Lake (8.9)"
+    },
+    {
+      "file": "13.webp",
+      "chapter": "Qinghai Lake & Chaka Salt Lake (8.10)"
+    },
+    {
+      "file": "14.webp",
+      "chapter": "Qinghai Lake & Chaka Salt Lake (8.10)"
+    },
+    {
+      "file": "15.webp",
+      "chapter": "Qinghai Lake & Chaka Salt Lake (8.10)"
+    },
+    {
+      "file": "16.webp",
+      "chapter": "Qinghai Lake & Chaka Salt Lake (8.10)"
+    },
+    {
+      "file": "17.webp",
+      "chapter": "Qinghai Lake & Chaka Salt Lake (8.10)"
+    },
+    {
+      "file": "18.webp",
+      "chapter": "Qinghai Lake & Chaka Salt Lake (8.10)"
+    },
+    {
+      "file": "19.webp",
+      "chapter": "Qinghai Lake & Chaka Salt Lake (8.10)"
+    },
+    {
+      "file": "20.webp",
+      "chapter": "Qinghai Lake & Chaka Salt Lake (8.10)"
+    },
+    {
+      "file": "21.webp",
+      "chapter": "Qinghai Lake & Chaka Salt Lake (8.10)"
+    },
+    {
+      "file": "22.webp",
+      "chapter": "Emerald Lake & Starry Sky (8.11)"
+    },
+    {
+      "file": "23.webp",
+      "chapter": "Emerald Lake & Starry Sky (8.11)"
+    },
+    {
+      "file": "24.webp",
+      "chapter": "Emerald Lake & Starry Sky (8.11)"
+    },
+    {
+      "file": "25.webp",
+      "chapter": "Emerald Lake & Starry Sky (8.11)"
+    },
+    {
+      "file": "26.webp",
+      "chapter": "Emerald Lake & Starry Sky (8.11)"
+    },
+    {
+      "file": "27.webp",
+      "chapter": "Emerald Lake & Starry Sky (8.11)"
+    },
+    {
+      "file": "28.webp",
+      "chapter": "Emerald Lake & Starry Sky (8.11)"
+    },
+    {
+      "file": "29.webp",
+      "chapter": "Emerald Lake & Starry Sky (8.11)"
+    },
+    {
+      "file": "30.webp",
+      "chapter": "Emerald Lake & Starry Sky (8.11)"
+    },
+    {
+      "file": "31.webp",
+      "chapter": "Wusute Yardang Geopark & Tank (8.12)"
+    },
+    {
+      "file": "32.webp",
+      "chapter": "Wusute Yardang Geopark & Tank (8.12)"
+    },
+    {
+      "file": "32-2.webp",
+      "chapter": "Wusute Yardang Geopark & Tank (8.12)"
+    },
+    {
+      "file": "33.webp",
+      "chapter": "Wusute Yardang Geopark & Tank (8.12)"
+    },
+    {
+      "file": "34.webp",
+      "chapter": "Wusute Yardang Geopark & Tank (8.12)"
+    },
+    {
+      "file": "35.webp",
+      "chapter": "Wusute Yardang Geopark & Tank (8.12)"
+    },
+    {
+      "file": "36.webp",
+      "chapter": "Wusute Yardang Geopark & Tank (8.12)"
+    },
+    {
+      "file": "37.webp",
+      "chapter": "Wusute Yardang Geopark & Tank (8.12)"
+    },
+    {
+      "file": "38.webp",
+      "chapter": "Wusute Yardang Geopark & Tank (8.12)"
+    },
+    {
+      "file": "39.webp",
+      "chapter": "Wusute Yardang Geopark & Tank (8.12)"
+    },
+    {
+      "file": "40.webp",
+      "chapter": "Wusute Yardang Geopark & Tank (8.12)"
+    },
+    {
+      "file": "41.webp",
+      "chapter": "Wusute Yardang Geopark & Tank (8.12)"
+    },
+    {
+      "file": "41-1.webp",
+      "chapter": "Wusute Yardang Geopark & Tank (8.12)"
+    },
+    {
+      "file": "42.webp",
+      "chapter": "Wusute Yardang Geopark & Tank (8.12)"
+    },
+    {
+      "file": "43.webp",
+      "chapter": "Wusute Yardang Geopark & Tank (8.12)"
+    },
+    {
+      "file": "44.webp",
+      "chapter": "Wusute Yardang Geopark & Tank (8.12)"
+    },
+    {
+      "file": "71.webp",
+      "chapter": "Mogao Grottoes & Mingsha Mountain (8.13-8.14)"
+    },
+    {
+      "file": "73.webp",
+      "chapter": "Mogao Grottoes & Mingsha Mountain (8.13-8.14)"
+    },
+    {
+      "file": "75.webp",
+      "chapter": "Mogao Grottoes & Mingsha Mountain (8.13-8.14)"
+    },
+    {
+      "file": "72.webp",
+      "chapter": "Mogao Grottoes & Mingsha Mountain (8.13-8.14)"
+    },
+    {
+      "file": "76.webp",
+      "chapter": "Mogao Grottoes & Mingsha Mountain (8.13-8.14)"
+    },
+    {
+      "file": "78.webp",
+      "chapter": "Mogao Grottoes & Mingsha Mountain (8.13-8.14)"
+    },
+    {
+      "file": "45.webp",
+      "chapter": "Pingshan Lake Grand Canyon & Colorful Danxia (8.15)"
+    },
+    {
+      "file": "46.webp",
+      "chapter": "Pingshan Lake Grand Canyon & Colorful Danxia (8.15)"
+    },
+    {
+      "file": "47.webp",
+      "chapter": "Pingshan Lake Grand Canyon & Colorful Danxia (8.15)"
+    },
+    {
+      "file": "48.webp",
+      "chapter": "Pingshan Lake Grand Canyon & Colorful Danxia (8.15)"
+    },
+    {
+      "file": "49.webp",
+      "chapter": "Pingshan Lake Grand Canyon & Colorful Danxia (8.15)"
+    },
+    {
+      "file": "50.webp",
+      "chapter": "Pingshan Lake Grand Canyon & Colorful Danxia (8.15)"
+    },
+    {
+      "file": "51.webp",
+      "chapter": "Pingshan Lake Grand Canyon & Colorful Danxia (8.15)"
+    },
+    {
+      "file": "52.webp",
+      "chapter": "Pingshan Lake Grand Canyon & Colorful Danxia (8.15)"
+    },
+    {
+      "file": "53.webp",
+      "chapter": "Pingshan Lake Grand Canyon & Colorful Danxia (8.15)"
+    },
+    {
+      "file": "54.webp",
+      "chapter": "Pingshan Lake Grand Canyon & Colorful Danxia (8.15)"
+    },
+    {
+      "file": "57.webp",
+      "chapter": "Pingshan Lake Grand Canyon & Colorful Danxia (8.15)"
+    },
+    {
+      "file": "58.webp",
+      "chapter": "Pingshan Lake Grand Canyon & Colorful Danxia (8.15)"
+    },
+    {
+      "file": "59.webp",
+      "chapter": "Pingshan Lake Grand Canyon & Colorful Danxia (8.15)"
+    },
+    {
+      "file": "60.webp",
+      "chapter": "Pingshan Lake Grand Canyon & Colorful Danxia (8.15)"
+    },
+    {
+      "file": "61.webp",
+      "chapter": "Pingshan Lake Grand Canyon & Colorful Danxia (8.15)"
+    },
+    {
+      "file": "62.webp",
+      "chapter": "Pingshan Lake Grand Canyon & Colorful Danxia (8.15)"
+    },
+    {
+      "file": "63.webp",
+      "chapter": "Pingshan Lake Grand Canyon & Colorful Danxia (8.15)"
+    },
+    {
+      "file": "63-1.webp",
+      "chapter": "Pingshan Lake Grand Canyon & Colorful Danxia (8.15)"
+    },
+    {
+      "file": "63-2.webp",
+      "chapter": "Pingshan Lake Grand Canyon & Colorful Danxia (8.15)"
+    },
+    {
+      "file": "63-3.webp",
+      "chapter": "Pingshan Lake Grand Canyon & Colorful Danxia (8.15)"
+    },
+    {
+      "file": "64.webp",
+      "chapter": "Dafo Temple & Mati Temple (8.16)"
+    },
+    {
+      "file": "65.webp",
+      "chapter": "Dafo Temple & Mati Temple (8.16)"
+    },
+    {
+      "file": "66.webp",
+      "chapter": "Dafo Temple & Mati Temple (8.16)"
+    },
+    {
+      "file": "67.webp",
+      "chapter": "Dafo Temple & Mati Temple (8.16)"
+    },
+    {
+      "file": "68.webp",
+      "chapter": "Dafo Temple & Mati Temple (8.16)"
+    },
+    {
+      "file": "69.webp",
+      "chapter": "Dafo Temple & Mati Temple (8.16)"
+    },
+    {
+      "file": "70.webp",
+      "chapter": "Dafo Temple & Mati Temple (8.16)"
+    }
+  ],
+  "places": [
+    {
+      "id": "qinghai",
+      "name": "青海湖",
+      "coords": [
+        100.2,
+        36.9
+      ],
+      "star": [
+        26,
+        47
+      ],
+      "en": "QINGHAI",
+      "scope": "china",
+      "stampName": "青甘环线"
+    }
+  ],
+  "route": [
+    {
+      "id": "route-xining",
+      "name": "西宁",
+      "coords": [
+        101.78,
+        36.62
+      ],
+      "star": [
+        16,
+        70
+      ],
+      "date": "8.09",
+      "chapter": "",
+      "note": "游记中的出发地"
+    },
+    {
+      "id": "route-lake",
+      "name": "青海湖",
+      "coords": [
+        100.2,
+        36.9
+      ],
+      "star": [
+        28,
+        56
+      ],
+      "date": "8.09",
+      "chapter": "Yaks",
+      "note": "草原上的小羊与牦牛"
+    },
+    {
+      "id": "route-chaka",
+      "name": "茶卡盐湖",
+      "coords": [
+        99.08,
+        36.7
+      ],
+      "star": [
+        39,
+        73
+      ],
+      "date": "8.10",
+      "chapter": "Chaka",
+      "note": "天空之镜与湖畔的风"
+    },
+    {
+      "id": "route-emerald",
+      "name": "翡翠湖",
+      "coords": [
+        95.09,
+        37.65
+      ],
+      "star": [
+        32,
+        30
+      ],
+      "date": "8.11",
+      "chapter": "Emerald",
+      "note": "五颜六色的湖，与沙漠星空"
+    },
+    {
+      "id": "route-yardang",
+      "name": "水上雅丹",
+      "coords": [
+        93.75,
+        37.85
+      ],
+      "star": [
+        48,
+        20
+      ],
+      "date": "8.12",
+      "chapter": "Wusute",
+      "note": "开着 Tank 去看水上雅丹"
+    },
+    {
+      "id": "route-dunhuang",
+      "name": "敦煌",
+      "coords": [
+        94.66,
+        40.14
+      ],
+      "star": [
+        65,
+        27
+      ],
+      "date": "8.13–14",
+      "chapter": "Mogao",
+      "note": "莫高窟、鸣沙山与沙漠露营"
+    },
+    {
+      "id": "route-danxia",
+      "name": "张掖 · 丹霞",
+      "coords": [
+        100.07,
+        38.97
+      ],
+      "star": [
+        81,
+        42
+      ],
+      "date": "8.15",
+      "chapter": "Colorful",
+      "note": "峡谷、七彩丹霞与热气球"
+    },
+    {
+      "id": "route-mati",
+      "name": "张掖 · 马蹄寺",
+      "coords": [
+        100.42,
+        38.48
+      ],
+      "star": [
+        70,
+        69
+      ],
+      "date": "8.16",
+      "chapter": "Mati",
+      "note": "大佛寺与悬崖上的马蹄寺"
+    }
+  ]
+}

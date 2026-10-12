@@ -1,0 +1,53 @@
+{
+  "id": "temple-and-river-in-kyoto-2024.9.20",
+  "key": "kyoto",
+  "title": "鸭川边的自由日子",
+  "originalTitle": "Temple and river in Kyoto (2024.9.20)",
+  "startDate": "2024-09-20",
+  "date": "2024.9.20",
+  "location": "京都",
+  "category": "海外",
+  "cover": "18.webp",
+  "story": "story-kyoto.md",
+  "photos": [
+    "18.webp",
+    "19.webp",
+    "20.webp",
+    "21.webp",
+    "22.webp",
+    "23.webp",
+    "24.webp",
+    "25.webp",
+    "27.webp",
+    "28.webp",
+    "29.webp",
+    "30.webp",
+    "31.webp",
+    "32.webp",
+    "33.webp",
+    "34.webp",
+    "36.webp",
+    "37.webp",
+    "38.webp",
+    "40.webp",
+    "41.webp",
+    "42.webp",
+    "43.webp"
+  ],
+  "places": [
+    {
+      "id": "kyoto",
+      "name": "京都",
+      "coords": [
+        135.77,
+        35.01
+      ],
+      "star": [
+        78,
+        35
+      ],
+      "en": "KYOTO",
+      "scope": "overseas"
+    }
+  ]
+}

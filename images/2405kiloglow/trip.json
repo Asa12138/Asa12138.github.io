@@ -1,0 +1,46 @@
+{
+  "id": "kiloglow-and-yoasobi-in-hangzhou-2024.5.4",
+  "key": "2405kiloglow",
+  "title": "闪千手与 YOASOBI",
+  "originalTitle": "KILOGLOW and YOASOBI in HangZhou (2024.5.4)",
+  "startDate": "2024-05-04",
+  "date": "2024.5.4",
+  "location": "杭州",
+  "category": "演出",
+  "cover": "1.webp",
+  "story": "story.md",
+  "photos": [
+    "1.webp",
+    "2.webp",
+    "3.webp",
+    "4.webp",
+    "5.webp",
+    "6.webp",
+    "7.webp",
+    "8.webp",
+    "9.webp",
+    "10.webp",
+    "11.webp",
+    "12.webp",
+    "13.webp",
+    "14.webp",
+    "15.webp",
+    "16.webp"
+  ],
+  "places": [
+    {
+      "id": "hangzhou",
+      "name": "杭州",
+      "coords": [
+        120.16,
+        30.25
+      ],
+      "star": [
+        76,
+        63
+      ],
+      "en": "HANGZHOU",
+      "scope": "china"
+    }
+  ]
+}

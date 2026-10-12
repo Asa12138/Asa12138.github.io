@@ -1,0 +1,33 @@
+{
+  "id": "tianyi-pavilion-in-ningbo-2024.7.13",
+  "key": "2407ningbo",
+  "title": "天一阁与猫猫的虾",
+  "originalTitle": "Tianyi Pavilion in Ningbo (2024.7.13)",
+  "startDate": "2024-07-13",
+  "date": "2024.7.13",
+  "location": "宁波",
+  "category": "城市",
+  "cover": "1.webp",
+  "story": "story.md",
+  "photos": [
+    "1.webp",
+    "2.webp",
+    "3.webp"
+  ],
+  "places": [
+    {
+      "id": "ningbo",
+      "name": "宁波",
+      "coords": [
+        121.55,
+        29.87
+      ],
+      "star": [
+        89,
+        72
+      ],
+      "en": "NINGBO",
+      "scope": "china"
+    }
+  ]
+}

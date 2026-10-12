@@ -1,0 +1,32 @@
+{
+  "id": "snowboarding-in-shaoxing-2024.11.17",
+  "key": "2411shaoxing",
+  "title": "第一次滑雪",
+  "originalTitle": "Snowboarding in ShaoXing (2024.11.17)",
+  "startDate": "2024-11-17",
+  "date": "2024.11.17",
+  "location": "绍兴",
+  "category": "滑雪",
+  "cover": "1.webp",
+  "story": "story.md",
+  "photos": [
+    "1.webp",
+    "2.webp"
+  ],
+  "places": [
+    {
+      "id": "shaoxing",
+      "name": "绍兴",
+      "coords": [
+        120.58,
+        30
+      ],
+      "star": [
+        74,
+        82
+      ],
+      "en": "SHAOXING",
+      "scope": "china"
+    }
+  ]
+}

@@ -1,0 +1,47 @@
+{
+  "id": "tower-and-usj-in-osaka-2024.9.16",
+  "key": "osaka",
+  "title": "大阪，玩个尽兴",
+  "originalTitle": "Tower and USJ in Osaka (2024.9.16)",
+  "startDate": "2024-09-16",
+  "date": "2024.9.16",
+  "location": "大阪",
+  "category": "海外",
+  "cover": "1.webp",
+  "story": "story-osaka.md",
+  "photos": [
+    "1.webp",
+    "2.webp",
+    "3.webp",
+    "4.webp",
+    "5.webp",
+    "6.webp",
+    "7.webp",
+    "8.webp",
+    "9.webp",
+    "10.webp",
+    "11.webp",
+    "12.webp",
+    "13.webp",
+    "14.webp",
+    "15.webp",
+    "16.webp",
+    "17.webp"
+  ],
+  "places": [
+    {
+      "id": "osaka",
+      "name": "大阪",
+      "coords": [
+        135.5,
+        34.69
+      ],
+      "star": [
+        61,
+        62
+      ],
+      "en": "OSAKA",
+      "scope": "overseas"
+    }
+  ]
+}

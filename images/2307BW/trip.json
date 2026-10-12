@@ -1,0 +1,44 @@
+{
+  "id": "bilibili-world-in-shanghai-2023.7.21",
+  "key": "2307BW",
+  "title": "第一次 Bilibili World",
+  "originalTitle": "Bilibili World in Shanghai (2023.7.21)",
+  "startDate": "2023-07-21",
+  "date": "2023.7.21",
+  "location": "上海",
+  "category": "演出",
+  "cover": "1.pic.webp",
+  "story": "story.md",
+  "photos": [
+    "1.pic.webp",
+    "2.pic.webp",
+    "3.pic.webp",
+    "4.pic.webp",
+    "5.pic.webp",
+    "6.pic.webp",
+    "7.pic.webp",
+    "8.pic.webp",
+    "9.pic.webp",
+    "10.pic.webp",
+    "13.pic.webp",
+    "14.pic.webp",
+    "11.pic.webp",
+    "12.pic.webp"
+  ],
+  "places": [
+    {
+      "id": "shanghai",
+      "name": "上海",
+      "coords": [
+        121.47,
+        31.23
+      ],
+      "star": [
+        88,
+        50
+      ],
+      "en": "SHANGHAI",
+      "scope": "china"
+    }
+  ]
+}

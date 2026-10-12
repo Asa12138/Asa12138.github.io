@@ -1,0 +1,56 @@
+{
+  "id": "2610wuyishan",
+  "key": "2610wuyishan",
+  "title": "武夷山，与家人同行",
+  "date": "2026.10.1–10.4",
+  "startDate": "2026-10-01",
+  "location": "福建 · 武夷山",
+  "category": "自然",
+  "cover": "1.webp",
+  "story": "story.md",
+  "summary": "和群青的家人一起游武夷山，看山水，也尝当地美食。",
+  "photos": [
+    {
+      "file": "1.webp",
+      "chapter": "武夷山 · 2026.10.1–10.4"
+    },
+    {
+      "file": "2.webp",
+      "chapter": "武夷山 · 2026.10.1–10.4"
+    },
+    {
+      "file": "3.webp",
+      "chapter": "武夷山 · 2026.10.1–10.4"
+    },
+    {
+      "file": "4.webp",
+      "chapter": "武夷山 · 2026.10.1–10.4"
+    },
+    {
+      "file": "5.webp",
+      "chapter": "武夷山 · 2026.10.1–10.4"
+    },
+    {
+      "file": "6.webp",
+      "chapter": "武夷山 · 2026.10.1–10.4"
+    }
+  ],
+  "places": [
+    {
+      "id": "wuyishan",
+      "name": "武夷山",
+      "coords": [
+        117.72528,
+        27.72639
+      ],
+      "en": "WUYI MOUNTAINS",
+      "scope": "china",
+      "country": "中国",
+      "star": [
+        80,
+        64
+      ],
+      "coordinateSource": "https://whc.unesco.org/en/list/911/maps/"
+    }
+  ]
+}

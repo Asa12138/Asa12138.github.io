@@ -1,0 +1,43 @@
+{
+  "id": "temple-and-wall-in-nanjing-2024.1.21",
+  "key": "2401nanjing",
+  "title": "南京快闪一日游",
+  "originalTitle": "Temple and wall in Nanjing (2024.1.21)",
+  "startDate": "2024-01-21",
+  "date": "2024.1.21",
+  "location": "南京",
+  "category": "城市",
+  "cover": "13.webp",
+  "story": "story.md",
+  "photos": [
+    "13.webp",
+    "12.webp",
+    "1.webp",
+    "6.webp",
+    "2.webp",
+    "3.webp",
+    "8.webp",
+    "4.webp",
+    "10.webp",
+    "11.webp",
+    "7.webp",
+    "5.webp",
+    "9.webp"
+  ],
+  "places": [
+    {
+      "id": "nanjing",
+      "name": "南京",
+      "coords": [
+        118.8,
+        32.06
+      ],
+      "star": [
+        62,
+        52
+      ],
+      "en": "NANJING",
+      "scope": "china"
+    }
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "id": "hangzhou-botanical-garden-2026.3.14",
+  "key": "2603zhiwuyuan",
+  "title": "春日杭植",
+  "originalTitle": "Hangzhou Botanical Garden (2026.3.14)",
+  "startDate": "2026-03-14",
+  "date": "2026.3.14",
+  "location": "杭州",
+  "category": "自然",
+  "cover": "1.webp",
+  "story": "story.md",
+  "photos": [
+    "1.webp",
+    "2.webp",
+    "3.webp",
+    "4.webp",
+    "6.webp",
+    "7.webp",
+    "8.webp",
+    "9.webp",
+    "12.webp",
+    "10.webp",
+    "11.webp",
+    "5.webp"
+  ],
+  "places": [
+    {
+      "id": "hangzhou",
+      "name": "杭州",
+      "coords": [
+        120.16,
+        30.25
+      ],
+      "star": [
+        76,
+        63
+      ],
+      "en": "HANGZHOU",
+      "scope": "china"
+    }
+  ]
+}

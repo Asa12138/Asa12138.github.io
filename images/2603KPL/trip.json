@@ -1,0 +1,34 @@
+{
+  "id": "kpl-in-hangzhou-2026.3.22",
+  "key": "2603KPL",
+  "title": "现场看 KPL",
+  "originalTitle": "KPL in Hangzhou (2026.3.22)",
+  "startDate": "2026-03-22",
+  "date": "2026.3.22",
+  "location": "杭州",
+  "category": "演出",
+  "cover": "1.webp",
+  "story": "story.md",
+  "photos": [
+    "1.webp",
+    "2.webp",
+    "3.webp",
+    "4.webp"
+  ],
+  "places": [
+    {
+      "id": "hangzhou",
+      "name": "杭州",
+      "coords": [
+        120.16,
+        30.25
+      ],
+      "star": [
+        76,
+        63
+      ],
+      "en": "HANGZHOU",
+      "scope": "china"
+    }
+  ]
+}

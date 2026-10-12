@@ -1,0 +1,42 @@
+{
+  "id": "radwimps-and-ai-higuchi-in-guangzhou-2024.4.24",
+  "key": "2404RADWIMPS",
+  "title": "RADWIMPS 的现场",
+  "originalTitle": "RADWIMPS and Ai Higuchi in GuangZhou (2024.4.24)",
+  "startDate": "2024-04-24",
+  "date": "2024.4.24",
+  "location": "广州",
+  "category": "演出",
+  "cover": "1.webp",
+  "story": "story.md",
+  "photos": [
+    "1.webp",
+    "2.webp",
+    "3.webp",
+    "4.webp",
+    "5.webp",
+    "6.webp",
+    "7.webp",
+    "8.webp",
+    "9.webp",
+    "10.webp",
+    "11.webp",
+    "12.webp"
+  ],
+  "places": [
+    {
+      "id": "guangzhou",
+      "name": "广州",
+      "coords": [
+        113.26,
+        23.13
+      ],
+      "star": [
+        46,
+        91
+      ],
+      "en": "GUANGZHOU",
+      "scope": "china"
+    }
+  ]
+}

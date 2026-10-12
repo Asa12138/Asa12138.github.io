@@ -1,0 +1,42 @@
+{
+  "id": "bubbling-boiling-in-shenyang-2025.7.19",
+  "key": "2507shenyang",
+  "title": "沈阳，沸腾的夏天",
+  "originalTitle": "BUBBLING BOILING in Shenyang (2025.7.19)",
+  "startDate": "2025-07-19",
+  "date": "2025.7.19",
+  "location": "沈阳",
+  "category": "演出",
+  "cover": "1.webp",
+  "story": "story.md",
+  "photos": [
+    "1.webp",
+    "2.webp",
+    "3.webp",
+    "4.webp",
+    "5.webp",
+    "6.webp",
+    "7.webp",
+    "8.webp",
+    "9.webp",
+    "10.webp",
+    "11.webp",
+    "12.webp"
+  ],
+  "places": [
+    {
+      "id": "shenyang",
+      "name": "沈阳",
+      "coords": [
+        123.43,
+        41.8
+      ],
+      "star": [
+        75,
+        21
+      ],
+      "en": "SHENYANG",
+      "scope": "china"
+    }
+  ]
+}

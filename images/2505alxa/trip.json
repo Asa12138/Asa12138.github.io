@@ -1,0 +1,36 @@
+{
+  "id": "desert-and-star-in-alxa-2025.5.10",
+  "key": "2505alxa",
+  "title": "沙漠与星星",
+  "originalTitle": "Desert and Star in Alxa (2025.5.10)",
+  "startDate": "2025-05-10",
+  "date": "2025.5.10",
+  "location": "阿拉善",
+  "category": "自然",
+  "cover": "1.webp",
+  "story": "story.md",
+  "photos": [
+    "1.webp",
+    "2.webp",
+    "3.webp",
+    "4.webp",
+    "5.webp",
+    "6.webp"
+  ],
+  "places": [
+    {
+      "id": "alxa",
+      "name": "阿拉善",
+      "coords": [
+        105.7,
+        38.83
+      ],
+      "star": [
+        14,
+        30
+      ],
+      "en": "ALXA",
+      "scope": "china"
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "id": "hiking-in-hui-hang-ancient-road-2025.4.13",
+  "key": "2504huihanggudao",
+  "title": "徒步徽杭古道",
+  "originalTitle": "Hiking in Hui-Hang Ancient Road (2025.4.13)",
+  "startDate": "2025-04-13",
+  "date": "2025.4.13",
+  "location": "徽杭古道",
+  "category": "徒步",
+  "cover": "1.webp",
+  "story": "story.md",
+  "photos": [
+    "1.webp",
+    "2.webp",
+    "3.webp"
+  ],
+  "places": [
+    {
+      "id": "huihang",
+      "name": "徽杭古道",
+      "coords": [
+        118.77,
+        30.14
+      ],
+      "star": [
+        49,
+        43
+      ],
+      "en": "HUI–HANG",
+      "scope": "china"
+    }
+  ]
+}
