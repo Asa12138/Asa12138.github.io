@@ -123,6 +123,9 @@ def read_albums():
             if len({p['src'] for p in photos}) != len(photos):
                 raise ValueError(f'{config}: photos 中存在重复照片')
             cover = url_for(safe_file(folder, meta['cover'])) if meta.get('cover') else photos[0]['src']
+            companions = meta.get('companions', 'together')
+            if companions not in ('solo', 'together'):
+                raise ValueError(f'{config}: companions 只能是 solo / together')
             places = meta.get('places', [])
             route = meta.get('route', [])
             for place in places + route:
@@ -139,7 +142,7 @@ def read_albums():
                 'id': album_id, 'key': key, 'folder': folder.name, 'year': start_date[:4],
                 'title': meta.get('originalTitle', title), 'originalTitle': meta.get('originalTitle', title),
                 'name': title, 'date': meta.get('date') or start_date, 'startDate': start_date,
-                'location': meta.get('location', '地点待补充'), 'category': meta.get('category', '旅程'),
+                'location': meta.get('location', '地点待补充'), 'category': meta.get('category', '旅程'), 'companions': companions,
                 'summary': meta.get('summary') or (notes[0] if notes else ''),
                 'notes': notes, 'storyHtml': story_html, 'storySource': url_for(story_path),
                 'photos': photos, 'cover': cover, 'places': places, 'route': route,
@@ -224,7 +227,7 @@ def new_trip(args):
         places = [known]
     meta = {'id': args.folder, 'key': args.folder, 'title': args.title,
             'date': start_date, 'location': args.location, 'category': args.category,
-            'story': 'story.md', 'places': places}
+            'story': 'story.md', 'companions': args.companions, 'places': places}
     (folder / 'trip.json').write_text(json.dumps(meta, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
     story = folder / 'story.md'
     if not story.exists():
@@ -245,6 +248,7 @@ def main(argv=None):
     create.add_argument('--date', required=True, help='真实出发日期 YYYY-MM-DD')
     create.add_argument('--location', default='地点待补充')
     create.add_argument('--category', default='旅程')
+    create.add_argument('--companions', choices=['solo', 'together'], default='together', help='solo 独自出发 / together 与群青同行')
     create.add_argument('--longitude', type=float)
     create.add_argument('--latitude', type=float)
     create.add_argument('--scope', choices=['china', 'overseas'], default='china')

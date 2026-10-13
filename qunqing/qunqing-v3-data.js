@@ -12,6 +12,7 @@ window.TRAVEL_ATLAS_DATA = [
     "startDate": "2026-10-01",
     "location": "福建 · 武夷山",
     "category": "自然",
+    "companions": "together",
     "summary": "和群青的家人一起游武夷山，看山水，也尝当地美食。",
     "notes": [
       "去了福建南平，跟群青的家人一起去参观了武夷山的美丽景点，欣赏了壮丽的自然风光，还品尝了当地的特色美食，真不错，就是开车有点累。"
@@ -84,6 +85,7 @@ window.TRAVEL_ATLAS_DATA = [
     "startDate": "2026-07-23",
     "location": "马来西亚 · 沙巴",
     "category": "海外",
+    "companions": "together",
     "summary": "在仙本那水屋吹海风，去跳岛潜水，再到亚庇寻找大王花、长鼻猴和萤火虫。",
     "notes": [
       "7月23\n凌晨两点到亚庇，然后因为没有零钱买不到水，买不到东西，最后吃到了肯德基\n熬夜熬到六点坐下一班飞机\n吃了詹全记早餐\n吃到了顶级的黑刺榴莲\n出发到水屋\n学会了浮潜，看了很多海鱼海星珊瑚，真是美妙\n但是把身上搞得都是伤口\n在水屋躺椅上看着大海，吹着微风，太惬意了\n晚上买了120皮皮虾，好吃\n早早睡了，带走一天疲惫，\n但是次日早上下着暴雨，没有看到日出，我还做噩梦以为海啸了",
@@ -366,6 +368,7 @@ window.TRAVEL_ATLAS_DATA = [
     "startDate": "2026-06-03",
     "location": "生活角落",
     "category": "日常",
+    "companions": "together",
     "summary": "在一起五年了",
     "notes": [
       "在一起五年了"
@@ -411,6 +414,7 @@ window.TRAVEL_ATLAS_DATA = [
     "startDate": "2026-03-22",
     "location": "杭州",
     "category": "演出",
+    "companions": "together",
     "summary": "第一次线下看KPL(2026.3.22)，“花青菜点火锅”战队第一次线下集合(2026.3.28)",
     "notes": [
       "第一次线下看KPL(2026.3.22)，“花青菜点火锅”战队第一次线下集合(2026.3.28)"
@@ -471,6 +475,7 @@ window.TRAVEL_ATLAS_DATA = [
     "startDate": "2026-03-14",
     "location": "杭州",
     "category": "自然",
+    "companions": "together",
     "summary": "春日杭植，美不胜收",
     "notes": [
       "春日杭植，美不胜收"
@@ -571,6 +576,7 @@ window.TRAVEL_ATLAS_DATA = [
     "startDate": "2025-12-20",
     "location": "生活角落",
     "category": "日常",
+    "companions": "together",
     "summary": "暖房行动，冬至圣诞一起过。美味饭菜，交换礼物，五排上分！",
     "notes": [
       "暖房行动，冬至圣诞一起过。美味饭菜，交换礼物，五排上分！"
@@ -621,6 +627,7 @@ window.TRAVEL_ATLAS_DATA = [
     "startDate": "2025-09-10",
     "location": "丹麦",
     "category": "海外",
+    "companions": "solo",
     "summary": "40几天的丹麦🇩🇰补实验旅程结束了。这次出国整体很顺利，没有遇到很大的意外。在这里过了生日，中秋，国庆（虽然这里不放假），短期体验了一把欧洲留学的感觉。看到了不太一样的世界，不太一样的生活，也是宝贵的经验。",
     "notes": [
       "40几天的丹麦🇩🇰补实验旅程结束了。这次出国整体很顺利，没有遇到很大的意外。在这里过了生日，中秋，国庆（虽然这里不放假），短期体验了一把欧洲留学的感觉。看到了不太一样的世界，不太一样的生活，也是宝贵的经验。"
@@ -681,6 +688,7 @@ window.TRAVEL_ATLAS_DATA = [
     "startDate": "2025-08-09",
     "location": "青海 · 甘肃",
     "category": "自驾",
+    "companions": "together",
     "summary": "开启人生第一次多人自驾游，青甘大环线！（ZJU版花儿与少年）",
     "notes": [
       "开启人生第一次多人自驾游，青甘大环线！（ZJU版花儿与少年）",
@@ -1258,6 +1266,7 @@ window.TRAVEL_ATLAS_DATA = [
     "startDate": "2025-07-19",
     "location": "沈阳",
     "category": "演出",
+    "companions": "together",
     "summary": "第一次去东北",
     "notes": [
       "第一次去东北",
@@ -1360,6 +1369,7 @@ window.TRAVEL_ATLAS_DATA = [
     "startDate": "2025-06-21",
     "location": "成都 · 广汉",
     "category": "城市",
+    "companions": "solo",
     "summary": "去成都参加会议作报告，顺便参观了三星堆博物馆，感受到了古蜀文明的神秘和辉煌，吃到了牛油火锅。",
     "notes": [
       "去成都参加会议作报告，顺便参观了三星堆博物馆，感受到了古蜀文明的神秘和辉煌，吃到了牛油火锅。"
@@ -1474,6 +1484,7 @@ window.TRAVEL_ATLAS_DATA = [
     "startDate": "2025-05-10",
     "location": "阿拉善",
     "category": "自然",
+    "companions": "solo",
     "summary": "最近有幸跟着实验室团队去了腾格里沙漠的锁边生态公益基地，开展菌株实地验证实验。",
     "notes": [
       "最近有幸跟着实验室团队去了腾格里沙漠的锁边生态公益基地，开展菌株实地验证实验。",
@@ -1545,6 +1556,7 @@ window.TRAVEL_ATLAS_DATA = [
     "startDate": "2025-04-30",
     "location": "生活角落",
     "category": "展览",
+    "companions": "together",
     "summary": "人生不止游戏，切记保重身体（养好身体去打DLC）",
     "notes": [
       "人生不止游戏，切记保重身体（养好身体去打DLC）"
@@ -1645,6 +1657,7 @@ window.TRAVEL_ATLAS_DATA = [
     "startDate": "2025-04-13",
     "location": "徽杭古道",
     "category": "徒步",
+    "companions": "together",
     "summary": "3万步，带爬山，累累累，酸酸酸",
     "notes": [
       "3万步，带爬山，累累累，酸酸酸"
@@ -1700,6 +1713,7 @@ window.TRAVEL_ATLAS_DATA = [
     "startDate": "2025-04-05",
     "location": "千岛湖",
     "category": "自然",
+    "companions": "together",
     "summary": "开车兜风很舒服",
     "notes": [
       "开车兜风很舒服"
@@ -1765,6 +1779,7 @@ window.TRAVEL_ATLAS_DATA = [
     "startDate": "2025-02-23",
     "location": "安吉",
     "category": "滑雪",
+    "companions": "together",
     "summary": "云上草原，第一次室外滑雪！美景很美，雪道很爽，但自己技术还是不太行，继续练习。",
     "notes": [
       "云上草原，第一次室外滑雪！美景很美，雪道很爽，但自己技术还是不太行，继续练习。"
@@ -1835,6 +1850,7 @@ window.TRAVEL_ATLAS_DATA = [
     "startDate": "2025-02-12",
     "location": "生活角落",
     "category": "日常",
+    "companions": "together",
     "summary": "",
     "notes": [],
     "storyHtml": "",
@@ -1883,6 +1899,7 @@ window.TRAVEL_ATLAS_DATA = [
     "startDate": "2024-11-17",
     "location": "绍兴",
     "category": "滑雪",
+    "companions": "together",
     "summary": "和群青同学第一次滑雪🏂！本以为没有运动细胞的自己这次无法学会，没想到还挺顺利地学会了推坡，哈哈哈。滑雪可真有意思，虽然视频里看起来是慢慢下来的，但自己第一视角还是能够感受到速度带来的刺激的。希望有机会多去，跟着橙色⚡和WX️️提升技术哈哈哈。",
     "notes": [
       "和群青同学第一次滑雪🏂！本以为没有运动细胞的自己这次无法学会，没想到还挺顺利地学会了推坡，哈哈哈。滑雪可真有意思，虽然视频里看起来是慢慢下来的，但自己第一视角还是能够感受到速度带来的刺激的。希望有机会多去，跟着橙色⚡和WX️️提升技术哈哈哈。"
@@ -1933,6 +1950,7 @@ window.TRAVEL_ATLAS_DATA = [
     "startDate": "2024-10-05",
     "location": "西安",
     "category": "城市",
+    "companions": "together",
     "summary": "和老弟约在十三朝古都西安碰面，国庆感觉这里有一亿人😂，景点要么约不上，要么都是人，哈哈哈。",
     "notes": [
       "和老弟约在十三朝古都西安碰面，国庆感觉这里有一亿人😂，景点要么约不上，要么都是人，哈哈哈。",
@@ -2014,6 +2032,7 @@ window.TRAVEL_ATLAS_DATA = [
     "startDate": "2024-09-20",
     "location": "京都",
     "category": "海外",
+    "companions": "together",
     "summary": "🚉日本京都",
     "notes": [
       "🚉日本京都",
@@ -2174,6 +2193,7 @@ window.TRAVEL_ATLAS_DATA = [
     "startDate": "2024-09-16",
     "location": "大阪",
     "category": "海外",
+    "companions": "together",
     "summary": "终于来到日本了，在大阪待了三天，先后去了心斋桥、大阪城、太阳之塔和usj。",
     "notes": [
       "终于来到日本了，在大阪待了三天，先后去了心斋桥、大阪城、太阳之塔和usj。",
@@ -2301,6 +2321,7 @@ window.TRAVEL_ATLAS_DATA = [
     "startDate": "2024-08-11",
     "location": "生活角落",
     "category": "日常",
+    "companions": "together",
     "summary": "邀请朋友来家里玩。在群青的帮助下，第一次动手做这么多好吃的。果冻表现的也很好，超级可爱。一起玩了sports，可真有意思。",
     "notes": [
       "邀请朋友来家里玩。在群青的帮助下，第一次动手做这么多好吃的。果冻表现的也很好，超级可爱。一起玩了sports，可真有意思。"
@@ -2336,6 +2357,7 @@ window.TRAVEL_ATLAS_DATA = [
     "startDate": "2024-07-13",
     "location": "宁波",
     "category": "城市",
+    "companions": "together",
     "summary": "去宁波开会，顺便逛了逛天一阁，博物馆，还给果冻打猎了🦐。",
     "notes": [
       "去宁波开会，顺便逛了逛天一阁，博物馆，还给果冻打猎了🦐。",
@@ -2392,6 +2414,7 @@ window.TRAVEL_ATLAS_DATA = [
     "startDate": "2024-05-04",
     "location": "杭州",
     "category": "演出",
+    "companions": "together",
     "summary": "杭州闪千手。见到了iri，YAMA，Queen Bee，YOASOBI，真的太棒了！",
     "notes": [
       "杭州闪千手。见到了iri，YAMA，Queen Bee，YOASOBI，真的太棒了！",
@@ -2513,6 +2536,7 @@ window.TRAVEL_ATLAS_DATA = [
     "startDate": "2024-04-24",
     "location": "广州",
     "category": "演出",
+    "companions": "together",
     "summary": "圆了第一次去演唱会的梦！RADWIMPS真的太棒了，摇滚嗨到不行，抒情又令人感动。",
     "notes": [
       "圆了第一次去演唱会的梦！RADWIMPS真的太棒了，摇滚嗨到不行，抒情又令人感动。",
@@ -2614,6 +2638,7 @@ window.TRAVEL_ATLAS_DATA = [
     "startDate": "2024-03-16",
     "location": "武汉",
     "category": "城市",
+    "companions": "together",
     "summary": "恰逢武大樱花季，和几位老朋友约在武汉碰面。",
     "notes": [
       "恰逢武大樱花季，和几位老朋友约在武汉碰面。"
@@ -2734,6 +2759,7 @@ window.TRAVEL_ATLAS_DATA = [
     "startDate": "2024-01-21",
     "location": "南京",
     "category": "城市",
+    "companions": "together",
     "summary": "临时起意，南京快闪一日游",
     "notes": [
       "临时起意，南京快闪一日游"
@@ -2839,6 +2865,7 @@ window.TRAVEL_ATLAS_DATA = [
     "startDate": "2023-09-29",
     "location": "香港",
     "category": "城市",
+    "companions": "together",
     "summary": "快速的一日游，缆车跟想象中的不太一样😂",
     "notes": [
       "快速的一日游，缆车跟想象中的不太一样😂"
@@ -2899,6 +2926,7 @@ window.TRAVEL_ATLAS_DATA = [
     "startDate": "2023-07-21",
     "location": "上海",
     "category": "演出",
+    "companions": "together",
     "summary": "漫展真好玩，见到了好多UP主。小美太强了，第一次体验到了真正的现场氛围。以后一定要去一次演唱会！",
     "notes": [
       "漫展真好玩，见到了好多UP主。小美太强了，第一次体验到了真正的现场氛围。以后一定要去一次演唱会！"
@@ -3009,6 +3037,7 @@ window.TRAVEL_ATLAS_DATA = [
     "startDate": "2023-05-20",
     "location": "北京",
     "category": "城市",
+    "companions": "together",
     "summary": "",
     "notes": [],
     "storyHtml": "",
@@ -3147,6 +3176,7 @@ window.TRAVEL_ATLAS_DATA = [
     "startDate": "2023-05-01",
     "location": "青岛",
     "category": "海边",
+    "companions": "together",
     "summary": "恋爱两年，第一次一起走出杭州😂。这是我们第一次旅行的照片，青岛的海和鸟令人难忘。",
     "notes": [
       "恋爱两年，第一次一起走出杭州😂。这是我们第一次旅行的照片，青岛的海和鸟令人难忘。"

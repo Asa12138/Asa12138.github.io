@@ -1,0 +1,34 @@
+[
+  {
+    "id": "heshan-dahao",
+    "title": "河山大好",
+    "artist": "许嵩",
+    "src": "audio/heshan-dahao.m4a",
+    "duration": 196.08,
+    "bytes": 2434357
+  },
+  {
+    "id": "suzume",
+    "title": "すずめ feat.十明",
+    "artist": "RADWIMPS / 十明",
+    "src": "audio/suzume.m4a",
+    "duration": 236.39,
+    "bytes": 2903224
+  },
+  {
+    "id": "traveling-light",
+    "title": "Traveling Light",
+    "artist": "Joel Hanson",
+    "src": "audio/traveling-light.m4a",
+    "duration": 208.56,
+    "bytes": 2552421
+  },
+  {
+    "id": "ordinary-road",
+    "title": "平凡之路",
+    "artist": "朴树",
+    "src": "audio/ordinary-road.m4a",
+    "duration": 302.12,
+    "bytes": 3726503
+  }
+]

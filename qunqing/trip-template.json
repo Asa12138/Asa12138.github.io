@@ -4,5 +4,6 @@
   "location": "在这里填写城市或景区",
   "category": "旅程",
   "story": "story.md",
-  "places": []
+  "places": [],
+  "companions": "together"
 }
