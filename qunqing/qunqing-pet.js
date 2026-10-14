@@ -86,7 +86,9 @@
     friend.setAttribute('aria-expanded', String(open));
     if (open) {
       const bounds = dock.getBoundingClientRect();
-      dock.dataset.cardSide = bounds.top < 180 ? 'below' : 'above';
+      const spaceAbove = bounds.top;
+      const spaceBelow = window.innerHeight - bounds.bottom;
+      dock.dataset.cardSide = spaceAbove >= card.offsetHeight + 12 || spaceAbove > spaceBelow ? 'above' : 'below';
       dock.dataset.cardAlign = bounds.right > window.innerWidth - 325 ? 'right' : 'left';
     } else {
       delete dock.dataset.cardSide;
@@ -111,6 +113,34 @@
   function clamp(value, min, max) {
     return Math.min(Math.max(value, min), Math.max(min, max));
   }
+
+  const sizeSlider = document.getElementById('jelly-size');
+  const sizeOutput = document.getElementById('jelly-size-value');
+  const defaultSize = window.matchMedia('(max-width: 700px)').matches ? 88 : 112;
+  const sizeStorageKey = 'qunqing-jelly-size-v1';
+
+  function applySize(rawValue, save = false) {
+    if (!sizeSlider || !sizeOutput) return;
+    const value = clamp(Math.round((Number(rawValue) - 64) / 8) * 8 + 64, 64, 176);
+    dock.style.setProperty('--jelly-size', `${value}px`);
+    sizeSlider.value = String(value);
+    sizeOutput.textContent = `${value}px`;
+    if (save) {
+      try { window.localStorage.setItem(sizeStorageKey, String(value)); } catch { /* Storage can be disabled. */ }
+    }
+    if (dock.style.top) {
+      const bounds = dock.getBoundingClientRect();
+      dock.style.left = `${clamp(bounds.left, 5, window.innerWidth - bounds.width - 5)}px`;
+    }
+    if (!card.hidden) setOpen(true);
+  }
+
+  let initialSize = defaultSize;
+  try {
+    const savedSize = Number(window.localStorage.getItem(sizeStorageKey));
+    if (Number.isFinite(savedSize) && savedSize >= 64 && savedSize <= 176) initialSize = savedSize;
+  } catch { /* Use the responsive default when Storage is unavailable. */ }
+  applySize(initialSize);
 
   function stopRoaming() {
     window.clearTimeout(roamEndTimer);
@@ -269,6 +299,11 @@
   document.getElementById('jelly-home')?.addEventListener('click', () => {
     resetHome();
     message.textContent = '回到熟悉的小角落啦。你一动鼠标，我就会看过去。';
+  });
+  sizeSlider?.addEventListener('input', () => applySize(sizeSlider.value, true));
+  document.getElementById('jelly-size-reset')?.addEventListener('click', () => {
+    applySize(defaultSize, true);
+    message.textContent = `果冻已恢复默认大小：${defaultSize}px。`;
   });
   document.getElementById('jelly-map')?.addEventListener('click', () => setOpen(false));
   document.addEventListener('pointermove', (event) => {
