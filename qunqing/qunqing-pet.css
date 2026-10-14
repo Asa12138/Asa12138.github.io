@@ -1,0 +1,33 @@
+/* 果冻：在地图边上的小小网页旅伴。 */
+.jelly-dock{position:fixed;z-index:22;left:max(17px,env(safe-area-inset-left));bottom:max(16px,env(safe-area-inset-bottom));display:flex;align-items:flex-end;pointer-events:none}
+.jelly-friend{position:relative;display:flex;align-items:flex-end;gap:0;min-width:0;padding:0;border:0;background:transparent;cursor:grab;pointer-events:auto;color:var(--blue);text-align:left;isolation:isolate;touch-action:none;user-select:none;-webkit-user-select:none}
+.jelly-dock.is-dragging{z-index:26}
+.jelly-dock.is-dragging .jelly-friend{cursor:grabbing}
+.jelly-dock.is-dragging canvas{transform:scale(1.08) rotate(-4deg)}
+.jelly-dock.is-roaming{transition:left .96s linear}
+.jelly-friend::before{content:"";position:absolute;z-index:-1;left:10px;bottom:7px;width:91px;height:69px;border-radius:50%;background:radial-gradient(ellipse,#a9c6ff80 0,transparent 70%);filter:blur(8px);transition:transform .3s,opacity .3s}
+.jelly-friend:hover::before{transform:scale(1.2);opacity:.85}
+.jelly-friend canvas{display:block;width:112px;height:auto;max-height:125px;object-fit:contain;filter:drop-shadow(0 6px 8px #12367730);transform-origin:50% 100%;transition:transform .22s}
+.jelly-friend:hover canvas{transform:translateY(-4px) rotate(-3deg)}
+.jelly-name{display:flex;align-items:baseline;gap:7px;margin:0 0 9px -9px;padding:8px 12px 7px;border:1px solid #c3d2ef;border-radius:99px;background:#fffdf7ed;box-shadow:0 5px 18px #102b6121;backdrop-filter:blur(12px);font:15px var(--serif);white-space:nowrap}
+.jelly-name small{font:9px var(--sans);color:#8293b2}
+.jelly-friend:focus-visible,.jelly-actions :is(button,a):focus-visible,.jelly-card-heading button:focus-visible{outline:2px solid var(--orange);outline-offset:3px}
+.jelly-card{position:absolute;left:5px;bottom:130px;width:min(315px,calc(100vw - 32px));padding:18px 19px 15px;border:1px solid #bdcfef;border-radius:16px;background:#fffdf7f5;box-shadow:0 12px 42px #0c2b7138;backdrop-filter:blur(18px);pointer-events:auto;animation:jelly-card-arrive .25s ease-out both}
+.jelly-card[hidden]{display:none}
+.jelly-card::after{content:"";position:absolute;left:42px;bottom:-8px;width:14px;height:14px;transform:rotate(45deg);background:#fffdf7;border-right:1px solid #bdcfef;border-bottom:1px solid #bdcfef}
+.jelly-dock[data-card-side="below"] .jelly-card{top:130px;bottom:auto}
+.jelly-dock[data-card-side="below"] .jelly-card::after{top:-8px;bottom:auto;transform:rotate(-135deg);border:0;border-top:1px solid #bdcfef;border-left:1px solid #bdcfef}
+.jelly-dock[data-card-align="right"] .jelly-card{right:5px;left:auto}
+.jelly-dock[data-card-align="right"] .jelly-card::after{right:42px;left:auto}
+.jelly-card-heading{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
+.jelly-card-heading .eyebrow{font-size:7px;letter-spacing:1.25px;color:#8799bc}
+.jelly-card-heading h2{margin-top:5px;color:var(--blue);font:23px var(--serif)}
+.jelly-card-heading button{width:27px;height:27px;border-radius:50%;background:#e9f0ff;color:var(--blue);font-size:20px;line-height:1}
+.jelly-message{min-height:42px;margin:12px 0 13px;color:#687c9f;font-size:11px;line-height:1.8}
+.jelly-actions{display:flex;gap:7px;flex-wrap:wrap;border-top:1px dashed #c4d1e9;padding-top:11px}
+.jelly-actions :is(button,a){display:flex;align-items:center;gap:6px;padding:8px 10px;border:1px solid #c8d5ed;border-radius:99px;background:#f0f5ff;color:var(--blue);font-size:10px;line-height:1.2;white-space:nowrap}
+.jelly-actions :is(button,a):hover{background:var(--blue);border-color:var(--blue);color:#fffdf7}
+.jelly-actions span{font-size:12px}
+@keyframes jelly-card-arrive{from{opacity:0;transform:translateY(8px) scale(.97)}to{opacity:1;transform:translateY(0) scale(1)}}
+@media(max-width:700px){.jelly-dock{left:max(7px,env(safe-area-inset-left));bottom:max(12px,env(safe-area-inset-bottom))}.jelly-friend canvas{width:88px;max-height:99px}.jelly-friend::before{left:5px;width:72px;height:55px}.jelly-name{font-size:13px;margin-left:-7px;margin-bottom:7px;padding:7px 10px 6px}.jelly-name small{font-size:8px}.jelly-card{left:3px;bottom:102px;width:min(300px,calc(100vw - 24px));padding:16px 16px 13px}.jelly-card-heading h2{font-size:21px}.jelly-message{font-size:10px}}
+@media(prefers-reduced-motion:reduce){.jelly-friend canvas,.jelly-friend:hover canvas{transform:none;transition:none}.jelly-card,.jelly-dock.is-roaming{animation:none;transition:none}}

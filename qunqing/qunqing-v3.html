@@ -9,6 +9,7 @@
   <title>群青旅行地图册 · The Small World of Us</title>
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='24' fill='%231c4ed8'/%3E%3Ctext x='50' y='72' font-size='68' text-anchor='middle' fill='%23f2efe7' font-family='serif'%3E%E9%9D%92%3C/text%3E%3C/svg%3E">
   <link rel="stylesheet" href="qunqing-v3.css?v=20261013-playrules2">
+  <link rel="stylesheet" href="qunqing-pet.css?v=20261014-pet2">
   <script src="qunqing-play-config.js" defer></script>
   <script src="qunqing-access.js?v=20261013-playrules2" defer></script>
   <script src="qunqing-v3-data.js" defer></script>
@@ -130,6 +131,17 @@
   <dialog id="ticket-dialog" class="ticket-dialog arcade-dialog" role="alertdialog" aria-labelledby="ticket-title" aria-describedby="ticket-source ticket-prize ticket-caption ticket-wallet"><button id="ticket-close" class="dialog-x" aria-label="关闭获券提示">×</button><div class="ticket-spark" aria-hidden="true">✳</div><p class="eyebrow">A LITTLE LUCK FOUND YOU</p><h2 id="ticket-title">叮！得到一次美食转盘机会。</h2><p id="ticket-source"></p><div class="lucky-ticket"><span>LUCKY DINNER TICKET</span><b id="ticket-prize">1 次美食转盘</b><small id="ticket-caption">幸运券已放进口袋</small></div><p id="ticket-wallet"></p><div class="ticket-popup-actions"><button id="ticket-later" class="text-button">继续玩 →</button><button id="ticket-login" class="pill dark" hidden>登录后重新挑战 ↗</button><button id="ticket-spin" class="pill dark">去美食转盘 ✳</button></div></dialog>
   <dialog id="login-dialog" class="login-dialog arcade-dialog" aria-labelledby="login-title"><button id="login-close" class="dialog-x" aria-label="关闭登录窗口">×</button><p class="eyebrow">OUR LITTLE SECRET</p><h2 id="login-title">知道口令，就一起玩。</h2><p id="login-reason">游客可以浏览相册；登录后解锁幸运券、盖章和兑奖记录。</p><form id="login-form"><label for="login-passcode">我们的口令</label><input id="login-passcode" type="password" autocomplete="off" placeholder="输入口令"><button id="login-submit" class="pill dark" type="submit">登录，开始收集 ↗</button></form><p id="login-feedback" role="status"></p><section id="member-records" hidden><p id="member-records-summary"></p><button id="member-logout" class="pill dark">退出登录</button><details class="member-reset"><summary>管理玩法记录</summary><p>清空奖券、兑奖簿、明信片次数、印章、收藏、竞猜成绩和收行李奖励。照片、手记、BGM 与出发计划保留。</p><button id="member-reset" class="text-button">清空所有玩法记录 ↺</button><button id="member-restore" class="text-button" hidden>恢复上次重置前的记录 ↶</button><p id="records-reset-status" role="status"></p></details></section><p class="arcade-note">登录状态保留在当前标签页；记录属于当前浏览器。此入口是私人玩法口令，不提供后端账号保护。</p></dialog>
   <dialog id="settings-dialog" class="settings-dialog" aria-labelledby="settings-title"><button class="dialog-x" id="settings-close" aria-label="关闭地图设置">×</button><p class="eyebrow">MAP SETTINGS</p><h2 id="settings-title">展开真实地图。</h2><p>使用高德 Web 端（JS API）key 与配套安全密钥。这里的设置只用于本次页面，刷新后清除。</p><form id="settings-form"><label>Web 端 key<input id="settings-key" type="password" autocomplete="off" spellcheck="false"></label><label>securityJsCode 安全密钥<input id="settings-code" type="password" autocomplete="off" spellcheck="false" placeholder="对应应用的安全密钥"></label><button type="submit" class="pill dark">连接高德地图 ↗</button></form><p class="settings-note">世界视野使用可旋转地球；若地球组件未载入，则显示地点星图。地图图钉为城市 / 景区概略位置，不代表照片 GPS。</p></dialog>
+  <aside class="jelly-dock" aria-label="果冻网页旅伴">
+    <section class="jelly-card" id="jelly-card" aria-labelledby="jelly-title" hidden>
+      <div class="jelly-card-heading"><div><p class="eyebrow">YOUR LITTLE TRAVEL BUDDY</p><h2 id="jelly-title">果冻</h2></div><button id="jelly-close" aria-label="收起果冻对话框">×</button></div>
+      <p class="jelly-message" id="jelly-message" role="status" aria-live="polite">我在这里陪你逛相册。也可以拖着我到处跑，眼睛会跟着你看。</p>
+      <div class="jelly-actions"><button id="jelly-wave">摸摸脑袋 <span aria-hidden="true">✳</span></button><button id="jelly-jump">蹦跶一下 <span aria-hidden="true">↑</span></button><a href="#atlas" id="jelly-map">一起去地图 <span aria-hidden="true">↗</span></a><button id="jelly-home">回到角落 <span aria-hidden="true">⌂</span></button></div>
+    </section>
+    <button class="jelly-friend" id="jelly-friend" type="button" aria-label="果冻：拖动让它跑，点击打开互动卡" aria-expanded="false" aria-controls="jelly-card">
+      <canvas id="jelly-sprite" width="192" height="208" aria-hidden="true"></canvas>
+      <span class="jelly-name">果冻 <small>拖我跑跑</small></span>
+    </button>
+  </aside>
   <nav class="floating-nav" aria-label="页面悬浮导航">
     <a href="#atlas" data-float-section="atlas" aria-label="前往旅行地图"><span aria-hidden="true">⌖</span><small>旅行地图</small></a>
     <a href="#playground" data-float-section="playground" aria-label="前往记忆游乐场"><span aria-hidden="true">✳</span><small>记忆游乐场</small></a>
@@ -142,6 +154,7 @@
     <button id="bgm-toggle" class="bgm-record" aria-label="展开 BGM 播放器" aria-expanded="false" aria-controls="bgm-panel"><span class="bgm-vinyl" aria-hidden="true"><b>青</b></span><span class="bgm-mini-label" id="bgm-mini-label">给旅途加点 BGM</span></button>
     <section id="bgm-panel" class="bgm-panel" aria-label="BGM 播放器" hidden><div class="bgm-heading"><p class="eyebrow">SOUNDTRACK OF OUR DAYS</p><button id="bgm-collapse" aria-label="收起 BGM 播放器">−</button></div><div class="bgm-now"><span class="bgm-now-mark" aria-hidden="true">♫</span><div><h3 id="bgm-title">旅途 BGM</h3><p id="bgm-artist">四首歌，陪我们慢慢走。</p></div></div><div class="bgm-progress"><label class="sr-only" for="bgm-seek">音乐播放进度</label><input id="bgm-seek" type="range" min="0" max="1" step="0.1" value="0" disabled><span id="bgm-time">0:00 / 0:00</span></div><div class="bgm-controls"><button id="bgm-prev" aria-label="播放上一首 BGM">↤</button><button id="bgm-play" aria-label="播放 BGM" disabled>▶</button><button id="bgm-next" aria-label="播放下一首 BGM">↦</button><button id="bgm-mode" aria-label="播放模式：列表循环">↻</button></div><div class="bgm-volume"><button id="bgm-mute" aria-label="静音 BGM" aria-pressed="false">♪</button><label class="sr-only" for="bgm-volume">BGM 音量</label><input id="bgm-volume" type="range" min="0" max="100" step="1" value="24"><span id="bgm-volume-value">24%</span></div><div id="bgm-tracks" class="bgm-tracks" aria-label="BGM 歌单"></div><p id="bgm-status" class="bgm-status" role="status">点一次播放，让音乐陪你逛相册。</p><audio id="bgm-audio" preload="none"></audio></section>
   </aside>
+  <script src="qunqing-pet.js?v=20261014-pet2" defer></script>
   <div class="toast" id="toast" role="status" hidden></div>
   <noscript><p class="noscript">请启用 JavaScript 来探索地图与相册，或<a href="../qunqing.html">打开原始相册</a>。</p></noscript>
 </body>
