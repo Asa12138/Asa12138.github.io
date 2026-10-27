@@ -1,0 +1,2036 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.549">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>MetaNet: Network Analysis for Omics Data - 4&nbsp; Visualization</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./05-topology.html" rel="next">
+<link href="./03-manipulation.html" rel="prev">
+<link href="./MetaNet.svg" rel="icon" type="image/svg+xml">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script>
+  MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']]
+    }
+  };
+</script>
+<script id="MathJax-script" async="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+</script>
+<script src="site_libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="site_libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+<script src="site_libs/htmlwidgets-1.6.1/htmlwidgets.js"></script>
+<script src="site_libs/d3-4.5.0/d3.min.js"></script>
+<script src="site_libs/forceNetwork-binding-0.4/forceNetwork.js"></script>
+
+
+<meta property="og:title" content="MetaNet: Network Analysis for Omics Data - 4&nbsp; Visualization">
+<meta property="og:description" content="">
+<meta property="og:site_name" content="MetaNet: Network Analysis for Omics Data">
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./04-visualization.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Visualization</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">MetaNet: Network Analysis for Omics Data</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/Asa12138/MetaNet_q_book" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Welcome</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01-introduction.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02-construction.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Construction</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./03-manipulation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Manipulation</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./04-visualization.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Visualization</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./05-topology.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Topology</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./06-stability.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Stability</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./07-multi-omics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Multi-omics</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">References</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#basic-plot" id="toc-basic-plot" class="nav-link active" data-scroll-target="#basic-plot"><span class="header-section-number">4.1</span> Basic plot</a>
+  <ul class="collapse">
+  <li><a href="#set-attributes" id="toc-set-attributes" class="nav-link" data-scroll-target="#set-attributes">Set attributes</a></li>
+  <li><a href="#plot-setting" id="toc-plot-setting" class="nav-link" data-scroll-target="#plot-setting">Plot setting</a></li>
+  </ul></li>
+  <li><a href="#layout" id="toc-layout" class="nav-link" data-scroll-target="#layout"><span class="header-section-number">4.2</span> Layout</a>
+  <ul class="collapse">
+  <li><a href="#basic-layout" id="toc-basic-layout" class="nav-link" data-scroll-target="#basic-layout">Basic layout</a></li>
+  <li><a href="#transform-layout" id="toc-transform-layout" class="nav-link" data-scroll-target="#transform-layout">Transform layout</a></li>
+  <li><a href="#group-layout" id="toc-group-layout" class="nav-link" data-scroll-target="#group-layout">Group layout</a></li>
+  <li><a href="#spatstat-layout" id="toc-spatstat-layout" class="nav-link" data-scroll-target="#spatstat-layout"><code>spatstat</code> layout</a></li>
+  </ul></li>
+  <li><a href="#other-features" id="toc-other-features" class="nav-link" data-scroll-target="#other-features"><span class="header-section-number">4.3</span> Other features</a>
+  <ul class="collapse">
+  <li><a href="#module-plot" id="toc-module-plot" class="nav-link" data-scroll-target="#module-plot">Module plot</a></li>
+  <li><a href="#pie-node" id="toc-pie-node" class="nav-link" data-scroll-target="#pie-node">Pie node</a></li>
+  <li><a href="#venn-plot" id="toc-venn-plot" class="nav-link" data-scroll-target="#venn-plot">Venn plot</a></li>
+  <li><a href="#network-tree" id="toc-network-tree" class="nav-link" data-scroll-target="#network-tree">Network tree</a></li>
+  </ul></li>
+  <li><a href="#other-styles" id="toc-other-styles" class="nav-link" data-scroll-target="#other-styles"><span class="header-section-number">4.4</span> Other styles</a>
+  <ul class="collapse">
+  <li><a href="#ggplot2" id="toc-ggplot2" class="nav-link" data-scroll-target="#ggplot2">ggplot2</a></li>
+  <li><a href="#gephi" id="toc-gephi" class="nav-link" data-scroll-target="#gephi">Gephi</a></li>
+  <li><a href="#cytoscape" id="toc-cytoscape" class="nav-link" data-scroll-target="#cytoscape">Cytoscape</a></li>
+  <li><a href="#networkd3" id="toc-networkd3" class="nav-link" data-scroll-target="#networkd3">NetworkD3</a></li>
+  </ul></li>
+  <li><a href="#intersting-plot" id="toc-intersting-plot" class="nav-link" data-scroll-target="#intersting-plot"><span class="header-section-number">4.5</span> Intersting plot</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/Asa12138/MetaNet_q_book/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li><li><a href="https://github.com/Asa12138/MetaNet_q_book/blob/main/04-visualization.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span id="sec-visualization" class="quarto-section-identifier"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Visualization</span></span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p><code>MetaNet</code> supports basic R plot and provides some interfaces for other software (<code>Gephi</code>, <code>Cytoscape</code>, <code>ggplot2</code>, <code>networkD3</code>) to visualize, while there are also a lot of layout methods for better display.</p>
+<section id="basic-plot" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="basic-plot"><span class="header-section-number">4.1</span> Basic plot</h2>
+<section id="set-attributes" class="level3">
+<h3 class="anchored" data-anchor-id="set-attributes">Set attributes</h3>
+<p>As we mentioned before, there are some internal attributes have been set when building network, which are related to the network visualization (<a href="03-manipulation.html#tbl-3-attribute" class="quarto-xref">Table&nbsp;<span>3.1</span></a>). So we can use <code>c_net_set()</code> to custom these attributes fitting to our research needs.</p>
+<p>Give the network various annotate tables and determine which columns use to set, we can give the columns name (one or more) to <code>vertex_group</code>, <code>vertex_class</code>, <code>vertex_size</code>, <code>edge_type</code>, <code>edge_class</code>, <code>edge_width</code>.</p>
+<p>And the colors, linetypes, shapes and legends will be assigned automatically, just use <code>plot()</code> to get the basic metanet figure. For more details to customize the plot, refer to <a href="#tbl-arugments" class="quarto-xref">Table&nbsp;<span>4.1</span></a>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">"multi_test"</span>, <span class="at">package =</span> <span class="st">"MetaNet"</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">"c_net"</span>, <span class="at">package =</span> <span class="st">"MetaNet"</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># build a multi-network</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>multi1 <span class="ot">&lt;-</span> <span class="fu">multi_net_build</span>(<span class="fu">list</span>(<span class="at">Microbiome =</span> micro, <span class="at">Metabolome =</span> metab, <span class="at">Transcriptome =</span> transc))</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co"># v_group is default, three different table</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(multi1)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co"># set vertex_class</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>multi1_with_anno <span class="ot">&lt;-</span> <span class="fu">c_net_set</span>(multi1, micro_g, metab_g, transc_g, <span class="at">vertex_class =</span> <span class="fu">c</span>(<span class="st">"Phylum"</span>, <span class="st">"kingdom"</span>, <span class="st">"type"</span>))</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="co"># set vertex_size</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>multi1_with_anno <span class="ot">&lt;-</span> <span class="fu">c_net_set</span>(multi1_with_anno,</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">data.frame</span>(<span class="st">"Abundance1"</span> <span class="ot">=</span> <span class="fu">colSums</span>(micro)),</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">data.frame</span>(<span class="st">"Abundance2"</span> <span class="ot">=</span> <span class="fu">colSums</span>(metab)),</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">data.frame</span>(<span class="st">"Abundance3"</span> <span class="ot">=</span> <span class="fu">colSums</span>(transc)),</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>  <span class="at">vertex_size =</span> <span class="fu">paste0</span>(<span class="st">"Abundance"</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>)</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(multi1_with_anno)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-4-basic-1" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-4-basic-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="04-visualization_files/figure-html/fig-4-basic-1.png" class="img-fluid figure-img" style="width:100.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-4-basic-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4.1: Basic network plot
+</figcaption>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div id="fig-4-basic-2" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-4-basic-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="04-visualization_files/figure-html/fig-4-basic-2.png" class="img-fluid figure-img" style="width:100.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-4-basic-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4.2: Basic network plot
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="plot-setting" class="level3">
+<h3 class="anchored" data-anchor-id="plot-setting">Plot setting</h3>
+<p>If you want to custom the network plot flexibility, use the <code>c_net_plot()</code> which contains many flexible arguments. The arguments of <code>c_net_plot()</code> are listed below:</p>
+<div class="cell">
+<div id="tbl-arugments" class="cell quarto-float anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-arugments-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;4.1: Description of <code>c_net_plot()</code> arguments.
+</figcaption>
+<div aria-describedby="tbl-arugments-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output-display">
+<div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:600px; overflow-x: scroll; width:100%; ">
+<table class="table do-not-create-environment cell table-sm table-striped small" data-quarto-postprocess="true">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th" style="text-align: left; position: sticky; top: 0; background-color: #FFFFFF;">Arguments</th>
+<th data-quarto-table-cell-role="th" style="text-align: left; position: sticky; top: 0; background-color: #FFFFFF;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left; width: 5em; font-weight: bold; border-right: 1px solid;">coors</td>
+<td style="text-align: left;">1. cooridnates dataframe, 2. layout function (e.g. as_star(), as_tree(), in_circle(), nicely()... see help(c_net_lay))</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; width: 5em; font-weight: bold; border-right: 1px solid; background-color: rgba(141, 211, 199, 0.5) !important;">vertex.color</td>
+<td style="text-align: left; background-color: rgba(141, 211, 199, 0.5) !important;">color of nodes, receive vector (1. length same to number of nodes; 2. length same to numbers of v_class; 3. named verctor like c(A="red",B="blue"))</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; width: 5em; font-weight: bold; border-right: 1px solid; background-color: rgba(141, 211, 199, 0.5) !important;">vertex. shape</td>
+<td style="text-align: left; background-color: rgba(141, 211, 199, 0.5) !important;">shape of nodes, receive vector (1. length same to number of nodes; 2. length same to numbers of v_group; 3. named verctor like c(v_group1="circle",B="square"))shape list: none, circle, square, csquare, rectangle, crectangle, vrectangle, pie, raster, or sphere</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; width: 5em; font-weight: bold; border-right: 1px solid; background-color: rgba(141, 211, 199, 0.5) !important;">vertex.size</td>
+<td style="text-align: left; background-color: rgba(141, 211, 199, 0.5) !important;">size of nodes, receive numerical vector (length same to number of nodes)please use mmscale to control vertex.size, don't be too large.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; width: 5em; font-weight: bold; border-right: 1px solid; background-color: rgba(141, 211, 199, 0.5) !important;">vertex_size_range</td>
+<td style="text-align: left; background-color: rgba(141, 211, 199, 0.5) !important;">the vertex size range, e.g. c(1,10)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; width: 5em; font-weight: bold; border-right: 1px solid; background-color: rgba(141, 211, 199, 0.5) !important;">labels_num</td>
+<td style="text-align: left; background-color: rgba(141, 211, 199, 0.5) !important;">show how many labels,&gt;1 indicates number,</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; width: 5em; font-weight: bold; border-right: 1px solid; background-color: rgba(141, 211, 199, 0.5) !important;">vertex.label</td>
+<td style="text-align: left; background-color: rgba(141, 211, 199, 0.5) !important;">the label of nodes, NA indicates no label</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; width: 5em; font-weight: bold; border-right: 1px solid; background-color: rgba(141, 211, 199, 0.5) !important;">vertex.label.family</td>
+<td style="text-align: left; background-color: rgba(141, 211, 199, 0.5) !important;">label font family</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; width: 5em; font-weight: bold; border-right: 1px solid; background-color: rgba(141, 211, 199, 0.5) !important;">vertex.label.font</td>
+<td style="text-align: left; background-color: rgba(141, 211, 199, 0.5) !important;">label font, 1 plain, 2 bold, 3 italic, 4 bold italic, 5 symbol</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; width: 5em; font-weight: bold; border-right: 1px solid; background-color: rgba(141, 211, 199, 0.5) !important;">vertex.label.cex</td>
+<td style="text-align: left; background-color: rgba(141, 211, 199, 0.5) !important;">label size</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; width: 5em; font-weight: bold; border-right: 1px solid; background-color: rgba(141, 211, 199, 0.5) !important;">vertex.label.dist</td>
+<td style="text-align: left; background-color: rgba(141, 211, 199, 0.5) !important;">distance from label to nodes</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; width: 5em; font-weight: bold; border-right: 1px solid; background-color: rgba(141, 211, 199, 0.5) !important;">vertex.label.color</td>
+<td style="text-align: left; background-color: rgba(141, 211, 199, 0.5) !important;">The color of the labels, The default value is black.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; width: 5em; font-weight: bold; border-right: 1px solid; background-color: rgba(141, 211, 199, 0.5) !important;">vertex.label.degree</td>
+<td style="text-align: left; background-color: rgba(141, 211, 199, 0.5) !important;">0:right, pi: left, pi/2:below, -pi/2:above</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; width: 5em; font-weight: bold; border-right: 1px solid; background-color: rgba(141, 211, 199, 0.5) !important;">vertex.frame.color</td>
+<td style="text-align: left; background-color: rgba(141, 211, 199, 0.5) !important;">color of nodes frame</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; width: 5em; font-weight: bold; border-right: 1px solid; background-color: rgba(248, 204, 0, 0.5) !important;">plot_module</td>
+<td style="text-align: left; background-color: rgba(248, 204, 0, 0.5) !important;">use module as the v_class</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; width: 5em; font-weight: bold; border-right: 1px solid; background-color: rgba(248, 204, 0, 0.5) !important;">mark_module</td>
+<td style="text-align: left; background-color: rgba(248, 204, 0, 0.5) !important;">logical, mark the modules?</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; width: 5em; font-weight: bold; border-right: 1px solid; background-color: rgba(248, 204, 0, 0.5) !important;">mark_color</td>
+<td style="text-align: left; background-color: rgba(248, 204, 0, 0.5) !important;">mark color</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; width: 5em; font-weight: bold; border-right: 1px solid; background-color: rgba(248, 204, 0, 0.5) !important;">mark_alpha</td>
+<td style="text-align: left; background-color: rgba(248, 204, 0, 0.5) !important;">mark fill alpha, default 0.3</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; width: 5em; font-weight: bold; border-right: 1px solid; background-color: rgba(248, 204, 0, 0.5) !important;">module_label</td>
+<td style="text-align: left; background-color: rgba(248, 204, 0, 0.5) !important;">show module label?</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; width: 5em; font-weight: bold; border-right: 1px solid; background-color: rgba(248, 204, 0, 0.5) !important;">module_label_cex</td>
+<td style="text-align: left; background-color: rgba(248, 204, 0, 0.5) !important;">module label cex</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; width: 5em; font-weight: bold; border-right: 1px solid; background-color: rgba(248, 204, 0, 0.5) !important;">module_label_color</td>
+<td style="text-align: left; background-color: rgba(248, 204, 0, 0.5) !important;">module label color</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; width: 5em; font-weight: bold; border-right: 1px solid; background-color: rgba(248, 204, 0, 0.5) !important;">module_label_just</td>
+<td style="text-align: left; background-color: rgba(248, 204, 0, 0.5) !important;">module label just, default c(0.5,0.5)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; width: 5em; font-weight: bold; border-right: 1px solid; background-color: rgba(190, 186, 218, 0.5) !important;">edge.color</td>
+<td style="text-align: left; background-color: rgba(190, 186, 218, 0.5) !important;">color of edges, receive vector (1. length same to number of edges; 2. length same to numbers of e_type; 3. named verctor like c(A="red",B="blue"))</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; width: 5em; font-weight: bold; border-right: 1px solid; background-color: rgba(190, 186, 218, 0.5) !important;">edge.width</td>
+<td style="text-align: left; background-color: rgba(190, 186, 218, 0.5) !important;">width of edge, receive numerical vector (length same to number of edges)please use mmscale to control vertex.size, don't be too large.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; width: 5em; font-weight: bold; border-right: 1px solid; background-color: rgba(190, 186, 218, 0.5) !important;">edge_width_range</td>
+<td style="text-align: left; background-color: rgba(190, 186, 218, 0.5) !important;">the edge width range, e.g. c(1,10)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; width: 5em; font-weight: bold; border-right: 1px solid; background-color: rgba(190, 186, 218, 0.5) !important;">edge.lty</td>
+<td style="text-align: left; background-color: rgba(190, 186, 218, 0.5) !important;">linetype of edge, receive vector (1. length same to number of edges; 2. length same to numbers of e_class; 3. named verctor like c(A="red",B="blue"))</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; width: 5em; font-weight: bold; border-right: 1px solid; background-color: rgba(190, 186, 218, 0.5) !important;">edge.arrow.size</td>
+<td style="text-align: left; background-color: rgba(190, 186, 218, 0.5) !important;">arrow size for directed network</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; width: 5em; font-weight: bold; border-right: 1px solid; background-color: rgba(190, 186, 218, 0.5) !important;">edge.arrow.width</td>
+<td style="text-align: left; background-color: rgba(190, 186, 218, 0.5) !important;">arrow width for directed network</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; width: 5em; font-weight: bold; border-right: 1px solid; background-color: rgba(190, 186, 218, 0.5) !important;">arrow.mode</td>
+<td style="text-align: left; background-color: rgba(190, 186, 218, 0.5) !important;">arrow mode, 0 no arrow, 1 back, 2 forward, 3 both</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; width: 5em; font-weight: bold; border-right: 1px solid; background-color: rgba(190, 186, 218, 0.5) !important;">edge.label</td>
+<td style="text-align: left; background-color: rgba(190, 186, 218, 0.5) !important;">the label of edges, NA indicates no label</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; width: 5em; font-weight: bold; border-right: 1px solid; background-color: rgba(190, 186, 218, 0.5) !important;">edge.label.family</td>
+<td style="text-align: left; background-color: rgba(190, 186, 218, 0.5) !important;">label font family</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; width: 5em; font-weight: bold; border-right: 1px solid; background-color: rgba(190, 186, 218, 0.5) !important;">edge.label.font</td>
+<td style="text-align: left; background-color: rgba(190, 186, 218, 0.5) !important;">label font, 1 plain, 2 bold, 3 italic, 4 bold italic, 5 symbol</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; width: 5em; font-weight: bold; border-right: 1px solid; background-color: rgba(190, 186, 218, 0.5) !important;">edge.label.cex</td>
+<td style="text-align: left; background-color: rgba(190, 186, 218, 0.5) !important;">label size</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; width: 5em; font-weight: bold; border-right: 1px solid; background-color: rgba(190, 186, 218, 0.5) !important;">edge.label.x</td>
+<td style="text-align: left; background-color: rgba(190, 186, 218, 0.5) !important;">label x-axis</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; width: 5em; font-weight: bold; border-right: 1px solid; background-color: rgba(190, 186, 218, 0.5) !important;">edge.label.y</td>
+<td style="text-align: left; background-color: rgba(190, 186, 218, 0.5) !important;">label y-axis</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; width: 5em; font-weight: bold; border-right: 1px solid; background-color: rgba(190, 186, 218, 0.5) !important;">edge.label.color</td>
+<td style="text-align: left; background-color: rgba(190, 186, 218, 0.5) !important;">label color</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; width: 5em; font-weight: bold; border-right: 1px solid; background-color: rgba(190, 186, 218, 0.5) !important;">edge.curved</td>
+<td style="text-align: left; background-color: rgba(190, 186, 218, 0.5) !important;">The curvature of the body, on a scale of 0-1, FALSE means 0, TRUE means 0.5</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; width: 5em; font-weight: bold; border-right: 1px solid; background-color: rgba(251, 128, 114, 0.5) !important;">legend</td>
+<td style="text-align: left; background-color: rgba(251, 128, 114, 0.5) !important;">show any legend? FALSE means close all legends</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; width: 5em; font-weight: bold; border-right: 1px solid; background-color: rgba(251, 128, 114, 0.5) !important;">legend_cex</td>
+<td style="text-align: left; background-color: rgba(251, 128, 114, 0.5) !important;">character expansion factor relative to current par('cex'), default: 1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; width: 5em; font-weight: bold; border-right: 1px solid; background-color: rgba(251, 128, 114, 0.5) !important;">legend_position</td>
+<td style="text-align: left; background-color: rgba(251, 128, 114, 0.5) !important;">legend_position, default: c(left_leg_x=-1.9,left_leg_y=1,right_leg_x=1.2,right_leg_y=1)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; width: 5em; font-weight: bold; border-right: 1px solid; background-color: rgba(251, 128, 114, 0.5) !important;">legend_number</td>
+<td style="text-align: left; background-color: rgba(251, 128, 114, 0.5) !important;">add numbers in legend? (v_class number, e_type number...)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; width: 5em; font-weight: bold; border-right: 1px solid; background-color: rgba(251, 128, 114, 0.5) !important;">lty_legend, lty_legend_title, lty_legend_order</td>
+<td style="text-align: left; background-color: rgba(251, 128, 114, 0.5) !important;">show lty_legend? and the title, the oreder of legend receives a vector</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; width: 5em; font-weight: bold; border-right: 1px solid; background-color: rgba(251, 128, 114, 0.5) !important;">size_legend, size_legend_tiltle</td>
+<td style="text-align: left; background-color: rgba(251, 128, 114, 0.5) !important;">show size_legend? and the title</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; width: 5em; font-weight: bold; border-right: 1px solid; background-color: rgba(251, 128, 114, 0.5) !important;">edge_legend, edge_legend_title, edge_legend_order</td>
+<td style="text-align: left; background-color: rgba(251, 128, 114, 0.5) !important;">show edge_legend? and the title, the order of legend receives a vector</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; width: 5em; font-weight: bold; border-right: 1px solid; background-color: rgba(251, 128, 114, 0.5) !important;">width_legend, width_legend_title</td>
+<td style="text-align: left; background-color: rgba(251, 128, 114, 0.5) !important;">show width_legend? and the title</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; width: 5em; font-weight: bold; border-right: 1px solid; background-color: rgba(251, 128, 114, 0.5) !important;">color_legend, color_legend_order</td>
+<td style="text-align: left; background-color: rgba(251, 128, 114, 0.5) !important;">show col_legend? and the title, the order of legend receives a vector</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; width: 5em; font-weight: bold; border-right: 1px solid; background-color: rgba(251, 128, 114, 0.5) !important;">group_legend_title, group_legend_order</td>
+<td style="text-align: left; background-color: rgba(251, 128, 114, 0.5) !important;">the title of group, the order of legend receives a vector</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; width: 5em; font-weight: bold; border-right: 1px solid; background-color: rgba(128, 177, 211, 0.5) !important;">margin</td>
+<td style="text-align: left; background-color: rgba(128, 177, 211, 0.5) !important;">margin, a vector whose length =4</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; width: 5em; font-weight: bold; border-right: 1px solid; background-color: rgba(128, 177, 211, 0.5) !important;">rescale</td>
+<td style="text-align: left; background-color: rgba(128, 177, 211, 0.5) !important;">scale the coors to [-1,1], default F</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; width: 5em; font-weight: bold; border-right: 1px solid; background-color: rgba(128, 177, 211, 0.5) !important;">asp</td>
+<td style="text-align: left; background-color: rgba(128, 177, 211, 0.5) !important;">y/x ratio</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; width: 5em; font-weight: bold; border-right: 1px solid; background-color: rgba(128, 177, 211, 0.5) !important;">frame</td>
+<td style="text-align: left; background-color: rgba(128, 177, 211, 0.5) !important;">if T, add frame</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; width: 5em; font-weight: bold; border-right: 1px solid; background-color: rgba(128, 177, 211, 0.5) !important;">main</td>
+<td style="text-align: left; background-color: rgba(128, 177, 211, 0.5) !important;">the main title of graph</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; width: 5em; font-weight: bold; border-right: 1px solid; background-color: rgba(128, 177, 211, 0.5) !important;">sub</td>
+<td style="text-align: left; background-color: rgba(128, 177, 211, 0.5) !important;">subtitle</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; width: 5em; font-weight: bold; border-right: 1px solid; background-color: rgba(128, 177, 211, 0.5) !important;">xlab</td>
+<td style="text-align: left; background-color: rgba(128, 177, 211, 0.5) !important;">x-axis label</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; width: 5em; font-weight: bold; border-right: 1px solid; background-color: rgba(128, 177, 211, 0.5) !important;">ylab</td>
+<td style="text-align: left; background-color: rgba(128, 177, 211, 0.5) !important;">y-axis label</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; width: 5em; font-weight: bold; border-right: 1px solid; background-color: rgba(128, 177, 211, 0.5) !important;">seed</td>
+<td style="text-align: left; background-color: rgba(128, 177, 211, 0.5) !important;">random seed, default:1234, make sure each plot is the same</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; width: 5em; font-weight: bold; border-right: 1px solid; background-color: rgba(128, 177, 211, 0.5) !important;">params_list</td>
+<td style="text-align: left; background-color: rgba(128, 177, 211, 0.5) !important;">a list of parameters, e.g. list(edge_legend = TRUE, lty_legend = FALSE), when the parameter is duplicated, the format argument will be used rather than the argument in params_list</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+</div>
+</div>
+</figure>
+</div>
+</div>
+<p>For example, we can use <code>c_net_plot()</code> to plot the network with annotation and set the color, size, width, legend, etc.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">c_net_plot</span>(multi1_with_anno,</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">labels_num =</span> <span class="dv">5</span>, <span class="at">vertex.color =</span> <span class="fu">get_cols</span>(<span class="dv">11</span>, <span class="st">"col1"</span>), <span class="at">vertex_size_range =</span> <span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">10</span>), <span class="at">vertex.label.color =</span> <span class="st">"red"</span>,</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">edge_width_range =</span> <span class="fu">c</span>(<span class="fl">0.5</span>, <span class="dv">3</span>), <span class="at">edge.color =</span> <span class="fu">c</span>(<span class="st">"orange"</span>, <span class="st">"green4"</span>), <span class="at">edge.curved =</span> <span class="fl">0.2</span>,</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">legend =</span> T, <span class="at">legend_number =</span> T, <span class="at">group_legend_order =</span> <span class="fu">c</span>(<span class="st">"Microbiome"</span>, <span class="st">"Metabolome"</span>, <span class="st">"Transcriptome"</span>),</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">group_legend_title =</span> <span class="fu">c</span>(<span class="st">"Phylum"</span>, <span class="st">"Metabolome"</span>, <span class="st">"Transcriptome"</span>),</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">edge_legend_title =</span> <span class="st">"Correlation"</span>, <span class="at">edge_legend_order =</span> <span class="fu">c</span>(<span class="st">"positive"</span>, <span class="st">"negative"</span>),</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">size_legend =</span> T, <span class="at">size_legend_title =</span> <span class="st">"Abundance"</span>,</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">width_legend =</span> T, <span class="at">width_legend_title =</span> <span class="st">"abs(r)"</span>,</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">lty_legend =</span> T, <span class="at">lty_legend_title =</span> <span class="st">"Omics relationship"</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-4-c_net_plot" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-4-c_net_plot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="04-visualization_files/figure-html/fig-4-c_net_plot-1.png" class="img-fluid figure-img" style="width:100.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-4-c_net_plot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4.3: Custom network plot
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p><code>params_list</code> is a special argument in <code>c_net_plot()</code>, it is a list contains parameters, it is very convenient to use it to plot a series of network with same attributes.</p>
+<div class="cell" data-layout-nrow="2">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>node_colors <span class="ot">&lt;-</span> <span class="fu">setNames</span>(<span class="fu">get_cols</span>(<span class="dv">9</span>, <span class="st">"col1"</span>), <span class="fu">unique</span>(<span class="fu">V</span>(multi1_with_anno)<span class="sc">$</span>v_class))</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>params_list <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">coors=</span><span class="fu">c_net_layout</span>(multi1_with_anno),</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">labels_num =</span> <span class="dv">5</span>,</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">vertex.color =</span> node_colors, <span class="at">vertex_size_range =</span> <span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">10</span>), <span class="at">vertex.label.color =</span> <span class="st">"red"</span>,</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">edge_width_range =</span> <span class="fu">c</span>(<span class="fl">0.5</span>, <span class="dv">3</span>), <span class="at">edge.color =</span> <span class="fu">c</span>(<span class="st">"orange"</span>, <span class="st">"green4"</span>), <span class="at">edge.curved =</span> <span class="fl">0.2</span>,</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">legend =</span> T, <span class="at">legend_number =</span> T, <span class="at">group_legend_order =</span> <span class="fu">c</span>(<span class="st">"Microbiome"</span>, <span class="st">"Metabolome"</span>, <span class="st">"Transcriptome"</span>),</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">group_legend_title =</span> <span class="fu">c</span>(<span class="st">"Phylum"</span>, <span class="st">"Metabolome"</span>, <span class="st">"Transcriptome"</span>),</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">edge_legend_title =</span> <span class="st">"Correlation"</span>, <span class="at">edge_legend_order =</span> <span class="fu">c</span>(<span class="st">"positive"</span>, <span class="st">"negative"</span>),</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">size_legend =</span> T, <span class="at">size_legend_title =</span> <span class="st">"Abundance"</span>,</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">width_legend =</span> T, <span class="at">width_legend_title =</span> <span class="st">"abs(r)"</span>,</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">lty_legend =</span> T, <span class="at">lty_legend_title =</span> <span class="st">"Omics relationship"</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="fu">c_net_plot</span>(multi1_with_anno, <span class="at">params_list =</span> params_list)</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a><span class="co"># build another multi-network</span></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>multi1_with_anno2 <span class="ot">&lt;-</span> <span class="fu">c_net_filter</span>(multi1_with_anno, v_group <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Microbiome"</span>, <span class="st">"Metabolome"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c_net_filter</span>(., e_class <span class="sc">==</span> <span class="st">"intra"</span>, <span class="at">mode =</span> <span class="st">"e"</span>)</span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a><span class="fu">c_net_plot</span>(multi1_with_anno2, <span class="at">params_list =</span> params_list)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="fig-4-params_list" class="quarto-layout-panel">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-4-params_list-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="quarto-layout-row">
+<div class="cell-output-display quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-4-params_list" style="flex-basis: 100.0%;justify-content: flex-start;">
+<div id="fig-4-params_list-1" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-4-params_list-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="04-visualization_files/figure-html/fig-4-params_list-1.png" class="img-fluid figure-img" style="width:100.0%" data-ref-parent="fig-4-params_list">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-4-params_list-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(a) plot1
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="quarto-layout-row">
+<div class="cell-output-display quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-4-params_list" style="flex-basis: 100.0%;justify-content: flex-start;">
+<div id="fig-4-params_list-2" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-4-params_list-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="04-visualization_files/figure-html/fig-4-params_list-2.png" class="img-fluid figure-img" style="width:100.0%" data-ref-parent="fig-4-params_list">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-4-params_list-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(b) plot2
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-4-params_list-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4.4: Plot a series of network using <code>params_list</code>
+</figcaption>
+</figure>
+</div>
+</div>
+</section>
+</section>
+<section id="layout" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="layout"><span class="header-section-number">4.2</span> Layout</h2>
+<p>Layout is an important part of network visualization, a good layout will present information clearly.</p>
+<p>So, in <code>MetaNet</code>, we always use a <code>coors</code> object to store the coordinates of a layout.</p>
+<p>The <code>coors</code> is a three-columns data.frame contains “name”, “X”, “Y”. <code>attributes(coors)$curved</code> is a three-columns data.frame contains “from”, “to”, “curved” or NULL.</p>
+<section id="basic-layout" class="level3">
+<h3 class="anchored" data-anchor-id="basic-layout">Basic layout</h3>
+<p>Use <code>c_net_layout()</code> to get coordinates with specific layout methods.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">c_net_layout</span>(co_net2, <span class="at">method =</span> <span class="fu">in_circle</span>()) <span class="ot">-&gt;</span> coors</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">c_net_plot</span>(co_net2, coors)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-4-c_net_layout" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-4-c_net_layout-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="04-visualization_files/figure-html/fig-4-c_net_layout-1.png" class="img-fluid figure-img" style="width:100.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-4-c_net_layout-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4.5: Plot a network using <code>c_net_layout</code>
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>The method can be one of</p>
+<ol type="1">
+<li><p><code>as_line()</code>, <code>as_arc()</code>, <code>as_polygon()</code>, <code>as_polyarc()</code>, <code>as_polycircle()</code>, <code>as_circle_tree()</code>, <code>as_multi_layer()</code>, <code>as_poly_sector()</code>.</p></li>
+<li><p>layouts in <strong>igraph</strong>: <code>in_circle()</code>, <code>nicely()</code>, <code>on_grid()</code>, <code>on_sphere()</code>, <code>randomly()</code>, <code>with_dh()</code>, <code>with_fr()</code>, <code>with_gem()</code>, <code>with_graphopt()</code>, <code>with_kk()</code>, <code>with_lgl()</code>, <code>with_mds()</code>, see <code>igraph::layout_()</code>.</p></li>
+<li><p>layouts in <strong>ggraph</strong>: a character, “auto”, “backbone”, “centrality”, “circlepack”, “dendrogram”, “eigen”, “focus”, “hive”, “igraph”, “linear”, “manual”, “matrix”, “partition”, “pmds”, “stress”, “treemap”, “unrooted”. see <code>ggraph::create_layout()</code>.</p></li>
+</ol>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>go <span class="ot">&lt;-</span> <span class="fu">erdos.renyi.game</span>(<span class="dv">30</span>, <span class="fl">0.25</span>)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co"># get a metanet</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>go <span class="ot">&lt;-</span> <span class="fu">c_net_update</span>(go)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>layout_methods <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as_star</span>(), <span class="fu">as_tree</span>(), <span class="fu">in_circle</span>(), <span class="fu">nicely</span>(),</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">on_grid</span>(), <span class="fu">on_sphere</span>(), <span class="fu">randomly</span>(), <span class="fu">with_dh</span>(),</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">with_fr</span>(), <span class="fu">with_gem</span>(), <span class="fu">with_graphopt</span>(), <span class="fu">with_kk</span>(),</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">with_lgl</span>(), <span class="fu">with_mds</span>(), <span class="fu">as_line</span>(), <span class="fu">as_arc</span>(),</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as_polygon</span>(), <span class="fu">as_polyarc</span>(), <span class="fu">as_polycircle</span>(<span class="dv">3</span>), <span class="fu">as_circle_tree</span>(),</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as_multi_layer</span>(<span class="dv">2</span>), <span class="fu">as_poly_sector</span>()</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(layout_methods) <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>  <span class="st">"as_star "</span>, <span class="st">"as_tree "</span>, <span class="st">"in_circle "</span>, <span class="st">"nicely "</span>,</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>  <span class="st">"on_grid "</span>, <span class="st">"on_sphere "</span>, <span class="st">"randomly "</span>, <span class="st">"with_dh "</span>,</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>  <span class="st">"with_fr "</span>, <span class="st">"with_gem "</span>, <span class="st">"with_graphopt "</span>, <span class="st">"with_kk "</span>,</span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>  <span class="st">"with_lgl "</span>, <span class="st">"with_mds"</span>, <span class="st">"as_line"</span>, <span class="st">"as_arc"</span>,</span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>  <span class="st">"as_polygon"</span>, <span class="st">"as_polyarc"</span>, <span class="st">"as_polycircle"</span>, <span class="st">"as_circle_tree"</span>,</span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>  <span class="st">"as_multi_layer"</span>, <span class="st">"as_poly_sector"</span></span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">6</span>, <span class="dv">4</span>))</span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">names</span>(layout_methods)) {</span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(go, layout_methods[[i]], <span class="at">legend =</span> F, <span class="at">main =</span> i, <span class="at">labels_num =</span> <span class="dv">0</span>)</span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div id="fig-4-layout-methods" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-4-layout-methods-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="04-visualization_files/figure-html/fig-4-layout-methods-1.png" class="img-fluid figure-img" style="width:100.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-4-layout-methods-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4.6: Layout methods for c_net_layout()
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>And for each method, you can add some arguments in it:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># get a metanet</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>go <span class="ot">&lt;-</span> <span class="fu">erdos.renyi.game</span>(<span class="dv">30</span>, <span class="fl">0.25</span>)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>go <span class="ot">&lt;-</span> <span class="fu">c_net_update</span>(go)</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(go, <span class="at">coors =</span> <span class="fu">with_fr</span>())</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(go, <span class="at">coors =</span> <span class="fu">with_fr</span>(<span class="at">niter =</span> <span class="dv">99</span>, <span class="at">grid =</span> <span class="st">"nogrid"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>The <code>as_polygon()</code> is interesting: it can draw a network in a polygon shape, and you can change the edge numbers of the polygon.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-4-multiangle" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-4-multiangle-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/4-1.multiangle.gif" class="img-fluid figure-img" style="width:100.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-4-multiangle-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4.7: Layout of <code>as_polygon()</code> in c_net_layout
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="transform-layout" class="level3">
+<h3 class="anchored" data-anchor-id="transform-layout">Transform layout</h3>
+<p>Using <code>transform_comors</code> can transform layouts, including zooming in and out, X/Y ratio, rotation angle, mirroring, pseudo 3D effects, etc.:</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-4-trans-layout" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-4-trans-layout-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/4-2.trans_coors.gif" class="img-fluid figure-img" style="width:80.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-4-trans-layout-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4.8: Simple usage of <code>transform_coors()</code>
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="group-layout" class="level3">
+<h3 class="anchored" data-anchor-id="group-layout">Group layout</h3>
+<p>Beside the <code>c_net_layout()</code>, we provide an advanced layout method for a network with group variable: <code>g_layout()</code>. It is easy to use <code>g_layout()</code> to control each group position and layout of each group.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><code>g_layout()</code> is a very useful function to layout a network with group variable when we have a multi-omics network (<a href="07-multi-omics.html" class="quarto-xref"><span>Chapter 7</span></a>) or module network (<a href="05-topology.html#sec-modules" class="quarto-xref"><span>Section 5.4</span></a>).</p>
+</div>
+</div>
+<ul>
+<li>First, assign a group variable.</li>
+<li>Give a <code>layout1</code> for group position, one of 1.a dataframe or matrix: rowname is group, two columns are X and Y 2.function: layout method for <code>c_net_layout()</code> default: in_circle()</li>
+<li>Adjust the <code>zoom1</code> of <code>layout1</code>.</li>
+<li>Give a <code>layout2</code> (layout method for <code>c_net_layout()</code>) for each group layout, or use a list contains functions match each group.</li>
+<li>Adjust the <code>zoom2</code> of <code>layout2</code>, you can use a vector to adjust each group zoom.</li>
+<li>use <code>show_big_layout = T</code> to see the <code>layout1</code> distribution.</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">1</span>))</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="co"># set circle layout for each group</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="fu">g_layout</span>(multi1_with_anno,</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">group =</span> <span class="st">"v_group"</span>, <span class="at">layout1 =</span> <span class="fu">in_circle</span>(),</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">zoom1 =</span> <span class="dv">10</span>, <span class="at">layout2 =</span> <span class="fu">in_circle</span>(), <span class="at">zoom2 =</span> <span class="dv">5</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>) <span class="ot">-&gt;</span> g_coors</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(multi1_with_anno, <span class="at">coors =</span> g_coors)</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="co"># set different layout for each group</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="fu">g_layout</span>(multi1_with_anno,</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">group =</span> <span class="st">"v_group"</span>, <span class="at">layout1 =</span> <span class="fu">in_circle</span>(), <span class="at">zoom1 =</span> <span class="dv">10</span>,</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">layout2 =</span> <span class="fu">list</span>(<span class="fu">in_circle</span>(), <span class="fu">with_fr</span>(), <span class="fu">as_polygon</span>()), <span class="at">zoom2 =</span> <span class="dv">3</span><span class="sc">:</span><span class="dv">5</span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>) <span class="ot">-&gt;</span> g_coors</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(multi1_with_anno, <span class="at">coors =</span> g_coors)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-4-g-layout" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-4-g-layout-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="04-visualization_files/figure-html/fig-4-g-layout-1.png" class="img-fluid figure-img" style="width:80.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-4-g-layout-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4.9: Simple usage of <code>g_layout()</code>
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>As <code>layout1</code> also receive a matrix or data.frame, so we can use the group skeleton of network to adjust the <code>layout1</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">"c_net"</span>, <span class="at">package =</span> <span class="st">"MetaNet"</span>)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">g_layout</span>(co_net,</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">group =</span> <span class="st">"v_class"</span>, <span class="at">layout1 =</span> <span class="fu">in_circle</span>(), <span class="at">zoom1 =</span> <span class="dv">10</span>,</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">layout2 =</span> <span class="fu">in_circle</span>(), <span class="at">zoom2 =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">5</span>, <span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">7</span>)</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>) <span class="ot">-&gt;</span> g_coors</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(co_net, <span class="at">coors =</span> g_coors)</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="co"># firstly get the skeleton plot</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="fu">get_group_skeleton</span>(co_net, <span class="st">"v_class"</span>) <span class="sc">%&gt;%</span> <span class="fu">clean_igraph</span>() <span class="ot">-&gt;</span> s_net</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="co"># then use tkplot to do manual adjustment.</span></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> igraph<span class="sc">::</span><span class="fu">tkplot</span>(s_net)</span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Here: Move nodes within the tkplot window to a layout you like!</span></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>da <span class="ot">&lt;-</span> igraph<span class="sc">::</span><span class="fu">tkplot.getcoords</span>(x)</span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a><span class="co"># close the window</span></span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>igraph<span class="sc">::</span><span class="fu">tkplot.close</span>(x)</span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a><span class="co"># pass the `da` to layout1</span></span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a><span class="fu">g_layout</span>(co_net,</span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>  <span class="at">group =</span> <span class="st">"v_class"</span>, <span class="at">layout1 =</span> da, <span class="at">zoom1 =</span> <span class="dv">20</span>,</span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a>  <span class="at">layout2 =</span> <span class="fu">in_circle</span>(), <span class="at">zoom2 =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">4</span>, <span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">5</span>)</span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a>) <span class="ot">-&gt;</span> g_coors</span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(co_net, <span class="at">coors =</span> g_coors)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-4-tkplot" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-4-tkplot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/4-3.tkplot1.png" class="img-fluid figure-img" style="width:50.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-4-tkplot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4.10: Use tkplot to adjust big layout.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-4-tkplot2" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-4-tkplot2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/4-2.tkplot.png" class="img-fluid figure-img" style="width:65.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-4-tkplot2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4.11: Use tkplot to adjust big layout.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p><code>g_layout()</code> provides a high degree of customization, you can adjust the layout according to different needs.</p>
+<p>Besides, there are also some good default group layout methods: - <code>g_layout_circlepack()</code> - <code>g_layout_treemap()</code> - <code>g_layout_backbone()</code> - <code>g_layout_stress()</code> - <code>g_layout_polyarc()</code> - <code>g_layout_polygon()</code> - <code>g_layout_polycircle()</code> - <code>g_layout_multi_layer()</code> - <code>g_layout_poly_sector()</code></p>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">E</span>(co_net)<span class="sc">$</span>color <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="st">"grey"</span>, <span class="fu">length</span>(<span class="fu">E</span>(co_net)))</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(co_net,</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">coors =</span> <span class="fu">g_layout_circlepack</span>(co_net, <span class="at">group =</span> <span class="st">"v_class"</span>),</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">legend =</span> F, <span class="at">labels_num =</span> <span class="dv">0</span>, <span class="at">main =</span> <span class="st">"g_layout_circlepack"</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(co_net,</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">coors =</span> <span class="fu">g_layout_treemap</span>(co_net, <span class="at">group =</span> <span class="st">"v_class"</span>),</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">legend =</span> F, <span class="at">labels_num =</span> <span class="dv">0</span>, <span class="at">main =</span> <span class="st">"g_layout_treemap"</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(co_net,</span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">coors =</span> <span class="fu">g_layout_backbone</span>(co_net, <span class="at">group =</span> <span class="st">"v_class"</span>),</span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">legend =</span> F, <span class="at">labels_num =</span> <span class="dv">0</span>, <span class="at">main =</span> <span class="st">"g_layout_backbone"</span></span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(co_net,</span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>  <span class="at">coors =</span> <span class="fu">g_layout_stress</span>(co_net, <span class="at">group =</span> <span class="st">"v_class"</span>),</span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>  <span class="at">legend =</span> F, <span class="at">labels_num =</span> <span class="dv">0</span>, <span class="at">main =</span> <span class="st">"g_layout_stress"</span></span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(co_net,</span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a>  <span class="at">coors =</span> <span class="fu">g_layout_polyarc</span>(co_net, <span class="at">group =</span> <span class="st">"v_class"</span>),</span>
+<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a>  <span class="at">legend =</span> F, <span class="at">labels_num =</span> <span class="dv">0</span>, <span class="at">main =</span> <span class="st">"g_layout_polyarc"</span></span>
+<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(co_net,</span>
+<span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a>  <span class="at">coors =</span> <span class="fu">g_layout_polygon</span>(co_net, <span class="at">group =</span> <span class="st">"v_class"</span>),</span>
+<span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a>  <span class="at">legend =</span> F, <span class="at">labels_num =</span> <span class="dv">0</span>, <span class="at">main =</span> <span class="st">"g_layout_polygon"</span></span>
+<span id="cb9-30"><a href="#cb9-30" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb9-31"><a href="#cb9-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-32"><a href="#cb9-32" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(co_net,</span>
+<span id="cb9-33"><a href="#cb9-33" aria-hidden="true" tabindex="-1"></a>  <span class="at">coors =</span> <span class="fu">g_layout_polycircle</span>(co_net, <span class="at">group =</span> <span class="st">"v_class"</span>),</span>
+<span id="cb9-34"><a href="#cb9-34" aria-hidden="true" tabindex="-1"></a>  <span class="at">legend =</span> F, <span class="at">labels_num =</span> <span class="dv">0</span>, <span class="at">main =</span> <span class="st">"g_layout_polycircle"</span></span>
+<span id="cb9-35"><a href="#cb9-35" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb9-36"><a href="#cb9-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-37"><a href="#cb9-37" aria-hidden="true" tabindex="-1"></a>g1 <span class="ot">&lt;-</span> <span class="fu">module_net</span>(<span class="dv">3</span>)</span>
+<span id="cb9-38"><a href="#cb9-38" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(g1,</span>
+<span id="cb9-39"><a href="#cb9-39" aria-hidden="true" tabindex="-1"></a>  <span class="at">coors =</span> <span class="fu">g_layout_multi_layer</span>(g1, <span class="at">group =</span> <span class="st">"v_class"</span>),</span>
+<span id="cb9-40"><a href="#cb9-40" aria-hidden="true" tabindex="-1"></a>  <span class="at">legend =</span> F, <span class="at">labels_num =</span> <span class="dv">0</span>, <span class="at">main =</span> <span class="st">"g_layout_multi_layer"</span></span>
+<span id="cb9-41"><a href="#cb9-41" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb9-42"><a href="#cb9-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-43"><a href="#cb9-43" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(g1,</span>
+<span id="cb9-44"><a href="#cb9-44" aria-hidden="true" tabindex="-1"></a>  <span class="at">coors =</span> <span class="fu">g_layout_multi_layer</span>(g1, <span class="at">group =</span> <span class="st">"v_class"</span>, <span class="at">layout =</span> <span class="fu">on_grid</span>()),</span>
+<span id="cb9-45"><a href="#cb9-45" aria-hidden="true" tabindex="-1"></a>  <span class="at">legend =</span> F, <span class="at">labels_num =</span> <span class="dv">0</span>, <span class="at">main =</span> <span class="st">"g_layout_multi_layer"</span></span>
+<span id="cb9-46"><a href="#cb9-46" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb9-47"><a href="#cb9-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-48"><a href="#cb9-48" aria-hidden="true" tabindex="-1"></a>g2 <span class="ot">&lt;-</span> <span class="fu">module_net</span>(<span class="dv">5</span>)</span>
+<span id="cb9-49"><a href="#cb9-49" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(g2,</span>
+<span id="cb9-50"><a href="#cb9-50" aria-hidden="true" tabindex="-1"></a>  <span class="at">coors =</span> <span class="fu">g_layout_poly_sector</span>(g2, <span class="at">group =</span> <span class="st">"v_class"</span>),</span>
+<span id="cb9-51"><a href="#cb9-51" aria-hidden="true" tabindex="-1"></a>  <span class="at">legend =</span> F, <span class="at">labels_num =</span> <span class="dv">0</span>, <span class="at">main =</span> <span class="st">"g_layout_poly_sector"</span></span>
+<span id="cb9-52"><a href="#cb9-52" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div id="fig-4-g_layout_nice" class="quarto-layout-panel">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-4-g_layout_nice-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="quarto-layout-row">
+<div class="cell-output-display quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-4-g_layout_nice" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-4-g_layout_nice-1" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-4-g_layout_nice-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="04-visualization_files/figure-html/fig-4-g_layout_nice-1.png" class="img-fluid figure-img" style="width:100.0%" data-ref-parent="fig-4-g_layout_nice">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-4-g_layout_nice-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(a) g_layout_circlepack()
+</figcaption>
+</figure>
+</div>
+</div>
+<div class="cell-output-display quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-4-g_layout_nice" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-4-g_layout_nice-2" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-4-g_layout_nice-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="04-visualization_files/figure-html/fig-4-g_layout_nice-2.png" class="img-fluid figure-img" style="width:100.0%" data-ref-parent="fig-4-g_layout_nice">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-4-g_layout_nice-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(b) g_layout_treemap()
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="quarto-layout-row">
+<div class="cell-output-display quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-4-g_layout_nice" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-4-g_layout_nice-3" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-4-g_layout_nice-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="04-visualization_files/figure-html/fig-4-g_layout_nice-3.png" class="img-fluid figure-img" style="width:100.0%" data-ref-parent="fig-4-g_layout_nice">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-4-g_layout_nice-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(c) g_layout_backbone()
+</figcaption>
+</figure>
+</div>
+</div>
+<div class="cell-output-display quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-4-g_layout_nice" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-4-g_layout_nice-4" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-4-g_layout_nice-4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="04-visualization_files/figure-html/fig-4-g_layout_nice-4.png" class="img-fluid figure-img" style="width:100.0%" data-ref-parent="fig-4-g_layout_nice">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-4-g_layout_nice-4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(d) g_layout_stress()
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="quarto-layout-row">
+<div class="cell-output-display quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-4-g_layout_nice" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-4-g_layout_nice-5" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-4-g_layout_nice-5-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="04-visualization_files/figure-html/fig-4-g_layout_nice-5.png" class="img-fluid figure-img" style="width:100.0%" data-ref-parent="fig-4-g_layout_nice">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-4-g_layout_nice-5-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(e) g_layout_polyarc()
+</figcaption>
+</figure>
+</div>
+</div>
+<div class="cell-output-display quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-4-g_layout_nice" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-4-g_layout_nice-6" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-4-g_layout_nice-6-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="04-visualization_files/figure-html/fig-4-g_layout_nice-6.png" class="img-fluid figure-img" style="width:100.0%" data-ref-parent="fig-4-g_layout_nice">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-4-g_layout_nice-6-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(f) g_layout_polygon()
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="quarto-layout-row">
+<div class="cell-output-display quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-4-g_layout_nice" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-4-g_layout_nice-7" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-4-g_layout_nice-7-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="04-visualization_files/figure-html/fig-4-g_layout_nice-7.png" class="img-fluid figure-img" style="width:100.0%" data-ref-parent="fig-4-g_layout_nice">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-4-g_layout_nice-7-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(g) g_layout_polycircle()
+</figcaption>
+</figure>
+</div>
+</div>
+<div class="cell-output-display quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-4-g_layout_nice" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-4-g_layout_nice-8" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-4-g_layout_nice-8-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="04-visualization_files/figure-html/fig-4-g_layout_nice-8.png" class="img-fluid figure-img" style="width:100.0%" data-ref-parent="fig-4-g_layout_nice">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-4-g_layout_nice-8-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(h) g_layout_multi_layer()
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="quarto-layout-row">
+<div class="cell-output-display quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-4-g_layout_nice" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-4-g_layout_nice-9" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-4-g_layout_nice-9-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="04-visualization_files/figure-html/fig-4-g_layout_nice-9.png" class="img-fluid figure-img" style="width:100.0%" data-ref-parent="fig-4-g_layout_nice">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-4-g_layout_nice-9-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(i) g_layout_multi_layer(layout = on_grid())
+</figcaption>
+</figure>
+</div>
+</div>
+<div class="cell-output-display quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-4-g_layout_nice" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-4-g_layout_nice-10" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-4-g_layout_nice-10-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="04-visualization_files/figure-html/fig-4-g_layout_nice-10.png" class="img-fluid figure-img" style="width:100.0%" data-ref-parent="fig-4-g_layout_nice">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-4-g_layout_nice-10-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(j) g_layout_poly_sector()
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-4-g_layout_nice-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4.12: Usage of g_layout_*()
+</figcaption>
+</figure>
+</div>
+<!-- You can plot some more complex module-plot. -->
+</section>
+<section id="spatstat-layout" class="level3">
+<h3 class="anchored" data-anchor-id="spatstat-layout"><code>spatstat</code> layout</h3>
+<p>You can also use <code>spatstat</code> to construct any polygon, and then randomly or uniformly sample the interior or edges of the polygon to generate a layout:</p>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="sc">!</span><span class="fu">require</span>(<span class="st">"spatstat"</span>))<span class="fu">install.packages</span>(<span class="st">"spatstat"</span>)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>poly_x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">0</span>)</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>poly_y <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">1</span>)</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>win_poly <span class="ot">&lt;-</span> spatstat.geom<span class="sc">::</span><span class="fu">owin</span>(<span class="at">poly =</span> <span class="fu">list</span>(<span class="at">x =</span> poly_x, <span class="at">y =</span> poly_y))</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(win_poly)</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>coors1 <span class="ot">&lt;-</span> <span class="fu">spatstat_layout</span>(co_net, win_poly, <span class="at">type =</span> <span class="st">"random"</span>, <span class="at">mode =</span> <span class="st">"surface"</span>)</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(co_net, <span class="at">coors =</span> coors1)</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>coors1 <span class="ot">&lt;-</span> <span class="fu">spatstat_layout</span>(co_net, win_poly, <span class="at">type =</span> <span class="st">"regular"</span>, <span class="at">mode =</span> <span class="st">"surface"</span>,<span class="at">order_by=</span><span class="st">"v_class"</span>)</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(co_net, <span class="at">coors =</span> coors1)</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>coors2 <span class="ot">&lt;-</span> <span class="fu">spatstat_layout</span>(co_net2, win_poly, <span class="at">type =</span> <span class="st">"random"</span>, <span class="at">mode =</span> <span class="st">"boundary"</span>)</span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(co_net2, <span class="at">coors =</span> coors2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="fig-4-spatstat_layout" class="quarto-layout-panel">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-4-spatstat_layout-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="quarto-layout-row">
+<div class="cell-output-display quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-4-spatstat_layout" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-4-spatstat_layout-1" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-4-spatstat_layout-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="04-visualization_files/figure-html/fig-4-spatstat_layout-1.png" class="img-fluid figure-img" style="width:100.0%" data-ref-parent="fig-4-spatstat_layout">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-4-spatstat_layout-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(a) plot owin
+</figcaption>
+</figure>
+</div>
+</div>
+<div class="cell-output-display quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-4-spatstat_layout" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-4-spatstat_layout-2" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-4-spatstat_layout-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="04-visualization_files/figure-html/fig-4-spatstat_layout-2.png" class="img-fluid figure-img" style="width:100.0%" data-ref-parent="fig-4-spatstat_layout">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-4-spatstat_layout-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(b) random-surface
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="quarto-layout-row">
+<div class="cell-output-display quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-4-spatstat_layout" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-4-spatstat_layout-3" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-4-spatstat_layout-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="04-visualization_files/figure-html/fig-4-spatstat_layout-3.png" class="img-fluid figure-img" style="width:100.0%" data-ref-parent="fig-4-spatstat_layout">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-4-spatstat_layout-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(c) regular-surface
+</figcaption>
+</figure>
+</div>
+</div>
+<div class="cell-output-display quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-4-spatstat_layout" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-4-spatstat_layout-4" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-4-spatstat_layout-4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="04-visualization_files/figure-html/fig-4-spatstat_layout-4.png" class="img-fluid figure-img" style="width:100.0%" data-ref-parent="fig-4-spatstat_layout">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-4-spatstat_layout-4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(d) random-boundary
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-4-spatstat_layout-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4.13: Usage of spatstat_layout
+</figcaption>
+</figure>
+</div>
+<p>Try a ⭐️：</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(spatstat.geom)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>create_star_window <span class="ot">&lt;-</span> <span class="cf">function</span>(<span class="at">r_outer =</span> <span class="dv">1</span>, <span class="at">r_inner =</span> <span class="fl">0.4</span>, <span class="at">center =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>)) {</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># 创建五角星的10个顶点（外、内交替）</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  theta <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">2</span> <span class="sc">*</span> pi, <span class="at">length.out =</span> <span class="dv">11</span>)[<span class="sc">-</span><span class="dv">11</span>]  <span class="co"># 10个点</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>  theta_outer <span class="ot">&lt;-</span> theta[<span class="fu">seq</span>(<span class="dv">1</span>, <span class="dv">10</span>, <span class="dv">2</span>)]</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>  theta_inner <span class="ot">&lt;-</span> theta[<span class="fu">seq</span>(<span class="dv">2</span>, <span class="dv">10</span>, <span class="dv">2</span>)]</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>  x <span class="ot">&lt;-</span> <span class="fu">c</span>(r_outer <span class="sc">*</span> <span class="fu">cos</span>(theta_outer),</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>         r_inner <span class="sc">*</span> <span class="fu">cos</span>(theta_inner))</span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>  y <span class="ot">&lt;-</span> <span class="fu">c</span>(r_outer <span class="sc">*</span> <span class="fu">sin</span>(theta_outer),</span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>         r_inner <span class="sc">*</span> <span class="fu">sin</span>(theta_inner))</span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>  <span class="co"># 重新排序成首尾相连的路径</span></span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>  order_index <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">6</span>,<span class="dv">2</span>,<span class="dv">7</span>,<span class="dv">3</span>,<span class="dv">8</span>,<span class="dv">4</span>,<span class="dv">9</span>,<span class="dv">5</span>,<span class="dv">10</span>)</span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a>  x <span class="ot">&lt;-</span> x[order_index] <span class="sc">+</span> center[<span class="dv">1</span>]</span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a>  y <span class="ot">&lt;-</span> y[order_index] <span class="sc">+</span> center[<span class="dv">2</span>]</span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a>  <span class="co"># 构建 spatstat 的 owin 窗口</span></span>
+<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a>  win <span class="ot">&lt;-</span> <span class="fu">owin</span>(<span class="at">poly =</span> <span class="fu">list</span>(<span class="at">x =</span> x, <span class="at">y =</span> y))</span>
+<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(win)</span>
+<span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb11-23"><a href="#cb11-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-24"><a href="#cb11-24" aria-hidden="true" tabindex="-1"></a>win_star <span class="ot">&lt;-</span> <span class="fu">create_star_window</span>()</span>
+<span id="cb11-25"><a href="#cb11-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-26"><a href="#cb11-26" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(co_net, <span class="at">coors =</span> <span class="fu">spatstat_layout</span>(co_net, win_star, <span class="at">order_by=</span><span class="st">"v_class"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-4-spatstat_layout_star" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-4-spatstat_layout_star-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="04-visualization_files/figure-html/fig-4-spatstat_layout_star-1.png" class="img-fluid figure-img" style="width:100.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-4-spatstat_layout_star-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4.14: Usage of spatstat_layout in a star
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Even in a map!</p>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sf)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>nc <span class="ot">=</span> <span class="fu">st_read</span>(<span class="fu">system.file</span>(<span class="st">"shape/nc.shp"</span>, <span class="at">package=</span><span class="st">"sf"</span>))</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="do">## Reading layer `nc' from data source </span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="do">##   `/Library/Frameworks/R.framework/Versions/4.2-arm64/Resources/library/sf/shape/nc.shp' </span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="do">##   using driver `ESRI Shapefile'</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="do">## Simple feature collection with 100 features and 14 fields</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="do">## Geometry type: MULTIPOLYGON</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="do">## Dimension:     XY</span></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a><span class="do">## Bounding box:  xmin: -84.32385 ymin: 33.88199 xmax: -75.45698 ymax: 36.58965</span></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a><span class="do">## Geodetic CRS:  NAD27</span></span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(nc[<span class="dv">5</span>,<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">15</span>)])</span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(co_net, <span class="at">coors =</span> <span class="fu">spatstat_layout</span>(co_net, nc[<span class="dv">5</span>,<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">15</span>)], <span class="at">type =</span> <span class="st">"regular"</span>, <span class="at">order_by=</span><span class="st">"v_class"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="fig-4-spatstat_layout_map" class="quarto-layout-panel">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-4-spatstat_layout_map-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="quarto-layout-row">
+<div class="cell-output-display quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-4-spatstat_layout_map" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-4-spatstat_layout_map-1" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-4-spatstat_layout_map-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="04-visualization_files/figure-html/fig-4-spatstat_layout_map-1.png" class="img-fluid figure-img" style="width:100.0%" data-ref-parent="fig-4-spatstat_layout_map">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-4-spatstat_layout_map-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(a) plot map
+</figcaption>
+</figure>
+</div>
+</div>
+<div class="cell-output-display quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-4-spatstat_layout_map" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-4-spatstat_layout_map-2" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-4-spatstat_layout_map-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="04-visualization_files/figure-html/fig-4-spatstat_layout_map-2.png" class="img-fluid figure-img" style="width:100.0%" data-ref-parent="fig-4-spatstat_layout_map">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-4-spatstat_layout_map-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(b) regular-surface
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-4-spatstat_layout_map-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4.15: Usage of spatstat_layout in a map
+</figcaption>
+</figure>
+</div>
+</section>
+</section>
+<section id="other-features" class="level2" data-number="4.3">
+<h2 data-number="4.3" class="anchored" data-anchor-id="other-features"><span class="header-section-number">4.3</span> Other features</h2>
+<section id="module-plot" class="level3">
+<h3 class="anchored" data-anchor-id="module-plot">Module plot</h3>
+<p>use <code>mark_module = T</code> to mark your modules in network, for more details, see <a href="05-topology.html#sec-modules" class="quarto-xref"><span>Section 5.4</span></a>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>test_module_net <span class="ot">&lt;-</span> <span class="fu">module_net</span>(<span class="at">module_number =</span> <span class="dv">3</span>, <span class="at">n_node_in_module =</span> <span class="dv">30</span>)</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">c_net_plot</span>(test_module_net, <span class="at">mark_module =</span> T,<span class="at">module_label =</span> T,<span class="at">module_label_just=</span><span class="fu">c</span>(<span class="fl">0.2</span>,<span class="fl">0.8</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-4-module-net" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-4-module-net-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="04-visualization_files/figure-html/fig-4-module-net-1.png" class="img-fluid figure-img" style="width:100.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-4-module-net-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4.16: A 3-modules network generated by <code>module_net()</code>
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="pie-node" class="level3">
+<h3 class="anchored" data-anchor-id="pie-node">Pie node</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">"otutab"</span>)</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">"c_net"</span>)</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="fu">hebing</span>(otutab, metadata<span class="sc">$</span>Group) <span class="ot">-&gt;</span> otutab_G</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(otutab_G)</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="do">##                                     NS        WS        CS</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="do">## s__un_f__Thermomonosporaceae 1218.3333 1227.3333 1912.1667</span></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="do">## s__Pelomonas_puraquae        2087.6667  873.5000 1241.6667</span></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a><span class="do">## s__Rhizobacter_bergeniae      819.1667  781.3333 1164.8333</span></span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a><span class="do">## s__Flavobacterium_terrae      816.1667  944.6667  986.5000</span></span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a><span class="do">## s__un_g__Rhizobacter          821.8333  540.6667  953.3333</span></span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a><span class="do">## s__un_o__Burkholderiales      972.6667  327.5000  522.6667</span></span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>co_net_f<span class="ot">=</span><span class="fu">c_net_filter</span>(co_net,name<span class="sc">%in%</span><span class="fu">head</span>(<span class="fu">rownames</span>(otutab_G),<span class="dv">30</span>))</span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a><span class="fu">c_net_plot</span>(co_net_f,<span class="at">pie_value=</span>otutab_G,<span class="at">vertex.shape=</span><span class="fu">c</span>(<span class="st">"pie"</span>),</span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">pie_legend=</span>T,<span class="at">color_legend=</span>F,<span class="at">vertex_size_range=</span><span class="fu">c</span>(<span class="dv">10</span>,<span class="dv">15</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-4-pie-node-net" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-4-pie-node-net-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="04-visualization_files/figure-html/fig-4-pie-node-net-1.png" class="img-fluid figure-img" style="width:100.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-4-pie-node-net-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4.17: A network with pie node
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="venn-plot" class="level3">
+<h3 class="anchored" data-anchor-id="venn-plot">Venn plot</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(otutab, <span class="at">package =</span> <span class="st">"pcutils"</span>)</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>tab <span class="ot">&lt;-</span> otutab[<span class="dv">400</span><span class="sc">:</span><span class="dv">485</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>]</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="fu">venn_net</span>(tab) <span class="ot">-&gt;</span> v_net</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(v_net)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-4-venn" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-4-venn-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="04-visualization_files/figure-html/fig-4-venn-1.png" class="img-fluid figure-img" style="width:100.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-4-venn-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4.18: Venn plot in network style
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="network-tree" class="level3">
+<h3 class="anchored" data-anchor-id="network-tree">Network tree</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">"otutab"</span>, <span class="at">package =</span> <span class="st">"pcutils"</span>)</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cbind</span>(taxonomy, <span class="at">num =</span> <span class="fu">rowSums</span>(otutab))[<span class="dv">1</span><span class="sc">:</span><span class="dv">20</span>, ] <span class="ot">-&gt;</span> test</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="fu">df2net_tree</span>(test) <span class="ot">-&gt;</span> ttt</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>))</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(ttt, <span class="at">edge_legend =</span> F, <span class="at">main =</span> <span class="st">"Tree network"</span>, <span class="at">legend_position =</span> <span class="fu">c</span>(<span class="at">left_leg_x =</span> <span class="sc">-</span><span class="fl">1.3</span>),</span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">edge.arrow.size =</span> <span class="dv">1</span>,<span class="at">edge.arrow.width =</span> <span class="dv">1</span>,<span class="at">rescale=</span>T)</span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(ttt, <span class="at">coors =</span> <span class="fu">as_circle_tree</span>(), <span class="at">legend =</span> F, <span class="at">main =</span> <span class="st">"Circle tree network"</span>,</span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">edge.arrow.size =</span> <span class="fl">0.5</span>,<span class="at">edge.arrow.width =</span> <span class="dv">1</span>,<span class="at">rescale=</span>T)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-4-df2net" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-4-df2net-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="04-visualization_files/figure-html/fig-4-df2net-1.png" class="img-fluid figure-img" style="width:100.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-4-df2net-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4.19: Dataframe to network tree plot
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="other-styles" class="level2" data-number="4.4">
+<h2 data-number="4.4" class="anchored" data-anchor-id="other-styles"><span class="header-section-number">4.4</span> Other styles</h2>
+<p>It is also easy to transfer the basic plot to other styles, like <code>ggplot2</code>, <code>Gephi</code>, <code>Cytoscape</code>, and <code>NetworkD3</code>.</p>
+<section id="ggplot2" class="level3">
+<h3 class="anchored" data-anchor-id="ggplot2">ggplot2</h3>
+<p>If you are more familiar with <code>ggplot2</code>, use the function <code>as.ggig()</code> transfer the basic R plot to ggplot2 style, so that you can use some convenient function like <code>labs()</code>, <code>theme()</code>, <code>ggsave()</code>, and <code>cowplot::plot_grid()</code> to make better figure.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">as.ggig</span>(multi1_with_anno) <span class="ot">-&gt;</span> ggig</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(ggig)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-4-ggig" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-4-ggig-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="04-visualization_files/figure-html/fig-4-ggig-1.png" class="img-fluid figure-img" style="width:100.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-4-ggig-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4.20: Plot a network in ggplot2 style
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="gephi" class="level3">
+<h3 class="anchored" data-anchor-id="gephi">Gephi</h3>
+<p>If you are dealing with some big dataset, We recommend to use <code>Gephi</code> to make layout. We provide a interface to Gephi by <code>graphml</code> format file, you can use the algorithm in <code>Gephi</code> then export a graphml file.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(co_net)</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="fu">c_net_save</span>(co_net, <span class="at">filename =</span> <span class="st">"test"</span>, <span class="at">format =</span> <span class="st">"graphml"</span>)</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="co"># then input test.graphml to Gephi and do a layout</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="co"># and export a graphml file from Gephi: test2.graphml, So you can re-draw it in MetaNet</span></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a><span class="fu">input_gephi</span>(<span class="st">"test2.graphml"</span>) <span class="ot">-&gt;</span> gephi</span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a><span class="fu">c_net_plot</span>(co_net, <span class="at">coors =</span> gephi<span class="sc">$</span>coors, <span class="at">legend_number =</span> T, <span class="at">group_legend_title =</span> <span class="st">"Phylum"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="cytoscape" class="level3">
+<h3 class="anchored" data-anchor-id="cytoscape">Cytoscape</h3>
+<p>Cytoscape is also a pretty software for network visualization which contains lots of plugins.</p>
+<p>Use the “data.frame” and “cyjs” format to transfer network.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(co_net)</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="fu">c_net_save</span>(co_net, <span class="at">filename =</span> <span class="st">"test"</span>, <span class="at">format =</span> <span class="st">"data.frame"</span>)</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="co"># then input test_nodes.csv and test_nodes.csv to Cytoscape and do a layout</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a><span class="co"># and export a cyjs file from Cytoscape: test.cyjs, So you can re-draw it in MetaNet</span></span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a><span class="fu">input_cytoscape</span>(<span class="st">"test.cyjs"</span>) <span class="ot">-&gt;</span> cyto</span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a><span class="fu">c_net_plot</span>(co_net, <span class="at">coors =</span> cyto<span class="sc">$</span>coors, <span class="at">legend_number =</span> T, <span class="at">group_legend_title =</span> <span class="st">"Phylum"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="networkd3" class="level3">
+<h3 class="anchored" data-anchor-id="networkd3">NetworkD3</h3>
+<p>NetworkD3 can produce interactive network plot based on JavaScript, the output object is a htmlwidgets which are suitable for website.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">netD3plot</span>(multi1_with_anno)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="fig-4-netd3" class="cell-output-display quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-4-netd3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="forceNetwork html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-1b4ff99564eb6e8884a5" style="width:100%;height:384px;"></div>
+<script type="application/json" data-for="htmlwidget-1b4ff99564eb6e8884a5">{"x":{"links":{"source":[0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,2,2,2,2,2,2,3,3,3,3,4,4,4,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,6,6,6,6,6,7,7,8,8,8,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,10,10,10,11,11,11,12,12,12,12,13,13,14,14,14,15,16,16,16,17,17,17,17,17,17,17,18,18,18,18,18,18,19,19,19,20,20,20,20,20,20,20,20,20,20,20,21,21,21,21,22,22,22,22,22,22,23,23,24,25,26,26,26,26,26,26,26,26,27,27,28,28,29,30,30,30,30,30,31,31,31,31,31,31,31,32,32,32,33,33,33,33,33,33,33,33,33,34,34,34,34,35,35,35,36,36,36,36,37,38,38,38,38,38,38,38,38,38,38,39,40,40,40,41,41,41,41,41,41,41,41,41,41,41,42,43,43,43,43,43,43,43,43,43,43,43,44,44,45,46,47,47,48,49,49,49,49,50,50,50,50,50,50,50,51,51,51,51,51,52,53,53,54,54,54,54,54,55,55,55,55,55,56,56,56,57,58,59,59,60,60,60,60,61,61,61,61,61,61,61,61,63,65,65,65,65,65,65,65,65,66,66,66,66,67,68,68,68,69,69,69,69,70,71,72,72,73,74,75,75,76,77,78,78,79,81,81,83,84,85,85,85,86,87,87,87,88,89,90,91,91,91,93,94,94,95,95,96,96,96,96,98,101,102,106,108,112,113,115,116,116,116,117,127],"target":[14,18,24,34,5,9,17,20,33,38,41,43,54,55,56,61,69,78,83,104,107,115,25,26,27,28,82,104,114,11,53,108,109,82,104,106,9,20,21,26,33,38,41,43,54,61,62,65,69,83,90,112,115,116,13,57,65,94,110,14,24,84,100,133,17,20,22,33,38,41,43,54,55,56,61,69,83,85,90,104,28,40,52,44,53,108,65,74,94,110,47,94,15,24,84,81,27,77,118,22,55,69,78,102,115,125,24,34,47,51,77,88,84,87,133,33,43,46,54,61,63,66,69,83,88,90,26,29,41,115,41,55,61,96,115,129,25,27,94,27,31,41,43,50,73,101,104,121,103,114,40,82,39,51,58,96,116,129,41,43,50,60,79,85,115,53,66,97,38,39,43,54,61,65,69,73,112,36,58,77,126,70,80,111,67,77,86,107,129,43,54,61,65,69,85,94,112,115,116,93,52,80,105,43,50,55,59,61,72,73,90,93,104,115,130,50,54,55,56,61,69,83,86,90,115,119,48,126,63,54,101,121,126,56,66,96,105,53,73,90,101,104,108,132,58,85,96,116,129,80,70,71,61,69,73,83,90,56,61,69,78,107,69,72,78,65,64,93,99,79,116,122,128,65,69,83,86,96,115,116,119,66,70,85,94,96,110,116,124,129,87,96,97,117,86,93,97,134,78,81,83,115,79,79,73,110,132,110,98,121,103,113,115,125,128,86,115,86,100,92,94,116,131,96,117,133,90,129,132,103,105,122,97,96,116,113,123,116,117,124,129,120,135,133,122,109,116,123,116,119,124,129,134,131],"colour":["#48A4F0","#48A4F0","#48A4F0","#48A4F0","#48A4F0","#48A4F0","#E85D5D","#48A4F0","#48A4F0","#48A4F0","#48A4F0","#E85D5D","#48A4F0","#E85D5D","#48A4F0","#E85D5D","#48A4F0","#E85D5D","#48A4F0","#48A4F0","#E85D5D","#E85D5D","#48A4F0","#E85D5D","#48A4F0","#48A4F0","#48A4F0","#48A4F0","#48A4F0","#48A4F0","#48A4F0","#E85D5D","#48A4F0","#48A4F0","#48A4F0","#48A4F0","#48A4F0","#48A4F0","#48A4F0","#E85D5D","#48A4F0","#48A4F0","#48A4F0","#E85D5D","#48A4F0","#E85D5D","#48A4F0","#E85D5D","#48A4F0","#48A4F0","#48A4F0","#48A4F0","#E85D5D","#48A4F0","#48A4F0","#48A4F0","#48A4F0","#48A4F0","#E85D5D","#48A4F0","#48A4F0","#E85D5D","#48A4F0","#E85D5D","#E85D5D","#48A4F0","#E85D5D","#48A4F0","#48A4F0","#48A4F0","#E85D5D","#48A4F0","#E85D5D","#48A4F0","#E85D5D","#48A4F0","#48A4F0","#48A4F0","#48A4F0","#48A4F0","#48A4F0","#48A4F0","#48A4F0","#48A4F0","#48A4F0","#E85D5D","#E85D5D","#48A4F0","#E85D5D","#48A4F0","#48A4F0","#48A4F0","#48A4F0","#48A4F0","#E85D5D","#E85D5D","#E85D5D","#48A4F0","#48A4F0","#48A4F0","#48A4F0","#E85D5D","#48A4F0","#48A4F0","#48A4F0","#48A4F0","#48A4F0","#48A4F0","#48A4F0","#48A4F0","#48A4F0","#48A4F0","#48A4F0","#48A4F0","#48A4F0","#48A4F0","#E85D5D","#48A4F0","#48A4F0","#E85D5D","#48A4F0","#48A4F0","#48A4F0","#48A4F0","#E85D5D","#48A4F0","#E85D5D","#48A4F0","#48A4F0","#E85D5D","#E85D5D","#48A4F0","#48A4F0","#48A4F0","#48A4F0","#E85D5D","#48A4F0","#48A4F0","#48A4F0","#48A4F0","#E85D5D","#E85D5D","#48A4F0","#E85D5D","#E85D5D","#48A4F0","#E85D5D","#48A4F0","#E85D5D","#48A4F0","#48A4F0","#48A4F0","#48A4F0","#48A4F0","#48A4F0","#48A4F0","#E85D5D","#E85D5D","#48A4F0","#E85D5D","#48A4F0","#48A4F0","#48A4F0","#48A4F0","#E85D5D","#48A4F0","#E85D5D","#E85D5D","#48A4F0","#48A4F0","#E85D5D","#48A4F0","#E85D5D","#E85D5D","#48A4F0","#48A4F0","#48A4F0","#48A4F0","#48A4F0","#48A4F0","#48A4F0","#48A4F0","#E85D5D","#E85D5D","#E85D5D","#48A4F0","#48A4F0","#48A4F0","#48A4F0","#E85D5D","#48A4F0","#E85D5D","#E85D5D","#48A4F0","#48A4F0","#E85D5D","#48A4F0","#E85D5D","#48A4F0","#E85D5D","#48A4F0","#48A4F0","#48A4F0","#E85D5D","#48A4F0","#E85D5D","#48A4F0","#E85D5D","#48A4F0","#48A4F0","#48A4F0","#E85D5D","#48A4F0","#E85D5D","#E85D5D","#E85D5D","#E85D5D","#48A4F0","#E85D5D","#48A4F0","#E85D5D","#E85D5D","#48A4F0","#E85D5D","#48A4F0","#E85D5D","#48A4F0","#E85D5D","#48A4F0","#48A4F0","#E85D5D","#E85D5D","#E85D5D","#48A4F0","#48A4F0","#E85D5D","#E85D5D","#48A4F0","#48A4F0","#48A4F0","#E85D5D","#48A4F0","#E85D5D","#E85D5D","#48A4F0","#E85D5D","#48A4F0","#E85D5D","#E85D5D","#48A4F0","#48A4F0","#E85D5D","#E85D5D","#48A4F0","#48A4F0","#48A4F0","#48A4F0","#E85D5D","#48A4F0","#E85D5D","#48A4F0","#48A4F0","#48A4F0","#48A4F0","#E85D5D","#48A4F0","#48A4F0","#E85D5D","#E85D5D","#48A4F0","#48A4F0","#E85D5D","#48A4F0","#48A4F0","#E85D5D","#E85D5D","#48A4F0","#48A4F0","#48A4F0","#E85D5D","#E85D5D","#48A4F0","#E85D5D","#E85D5D","#48A4F0","#48A4F0","#E85D5D","#E85D5D","#E85D5D","#E85D5D","#48A4F0","#E85D5D","#48A4F0","#48A4F0","#E85D5D","#E85D5D","#48A4F0","#E85D5D","#E85D5D","#E85D5D","#48A4F0","#E85D5D","#48A4F0","#E85D5D","#48A4F0","#48A4F0","#E85D5D","#48A4F0","#E85D5D","#48A4F0","#48A4F0","#48A4F0","#48A4F0","#48A4F0","#48A4F0","#48A4F0","#48A4F0","#E85D5D","#E85D5D","#E85D5D","#E85D5D","#48A4F0","#48A4F0","#E85D5D","#48A4F0","#48A4F0","#E85D5D","#E85D5D","#E85D5D","#E85D5D","#E85D5D","#48A4F0","#E85D5D","#48A4F0","#E85D5D","#48A4F0","#E85D5D","#E85D5D","#E85D5D","#E85D5D","#E85D5D","#48A4F0","#48A4F0","#E85D5D","#E85D5D","#E85D5D","#48A4F0","#E85D5D","#E85D5D","#48A4F0","#48A4F0","#48A4F0","#E85D5D","#E85D5D"]},"nodes":{"name":["s__un_f__Thermomonosporaceae","s__Pelomonas_puraquae","s__Rhizobacter_bergeniae","s__Flavobacterium_terrae","s__un_g__Rhizobacter","s__un_o__Burkholderiales","s__un_g__Streptomyces","s__Lentzea_flaviverrucosa","s__un_g__Actinoplanes","s__un_g__Rhizobium","s__un_g__Noviherbaspirillum","s__un_f__Comamonadaceae","s__Bradyrhizobium_neotropicale","s__Streptomyces_ederensis","s__Actinocorallia_herbida","s__un_g__Amycolatopsis","s__Actinophytocola_burenkhanensis","s__un_p__Proteobacteria","s__Kribbella_catacumbae","s__un_o__Rhizobiales","s__un_g__Sphingomonas","s__Amycolatopsis_keratiniphila_subsp._keratiniphila","s__Kinneretia_asaccharophila","s__un_f__Burkholderiales_incertae_sedis","s__Kineosporia_rhamnosa","s__un_f__Oxalobacteraceae","s__un_g__Bacillus","s__Pseudoduganella_violaceinigra","s__Piscinibacter_aquaticus","s__un_g__Lentzea","s__Steroidobacter_denitrificans","s__Sphingopyxis_soli","s__un_g__Herpetosiphon","s__Phenylobacterium_composti","s__un_f__Micromonosporaceae","s__un_g__Ensifer","s__un_g__Agromyces","s__un_g__Nocardioides","s__un_g__Devosia","s__un_f__Bradyrhizobiaceae","s__Noviherbaspirillum_suwonense","s__un_c__Deltaproteobacteria","s__Kibdelosporangium_phytohabitans","s__Dongia_mobilis","s__un_g__Pseudomonas","s__Pseudoxanthomonas_gei","s__un_f__Xanthomonadaceae","metabolite1","metabolite2","metabolite3","metabolite4","metabolite5","metabolite6","metabolite7","metabolite8","metabolite9","metabolite10","metabolite12","metabolite13","metabolite14","metabolite15","metabolite16","metabolite17","metabolite18","metabolite19","metabolite20","metabolite21","metabolite22","metabolite23","metabolite24","metabolite25","metabolite26","metabolite27","metabolite28","metabolite29","metabolite30","metabolite31","metabolite32","metabolite34","metabolite35","metabolite36","metabolite37","metabolite38","metabolite39","metabolite41","metabolite42","metabolite43","metabolite44","metabolite45","metabolite46","metabolite47","metabolite48","metabolite49","metabolite50","gene1","gene2","gene3","gene5","gene6","gene7","gene8","gene10","gene11","gene12","gene14","gene15","gene18","gene19","gene20","gene21","gene22","gene23","gene24","gene25","gene27","gene28","gene29","gene30","gene32","gene33","gene34","gene35","gene36","gene37","gene38","gene40","gene41","gene42","gene43","gene44","gene45","gene46","gene47","gene48","gene49","gene50"],"group":["p__Actinobacteria","p__Proteobacteria","p__Proteobacteria","p__Bacteroidetes","p__Proteobacteria","p__Proteobacteria","p__Actinobacteria","p__Actinobacteria","p__Actinobacteria","p__Proteobacteria","p__Proteobacteria","p__Proteobacteria","p__Proteobacteria","p__Actinobacteria","p__Actinobacteria","p__Actinobacteria","p__Actinobacteria","p__Proteobacteria","p__Actinobacteria","p__Proteobacteria","p__Proteobacteria","p__Actinobacteria","p__Proteobacteria","p__Proteobacteria","p__Actinobacteria","p__Proteobacteria","p__Firmicutes","p__Proteobacteria","p__Proteobacteria","p__Actinobacteria","p__Proteobacteria","p__Proteobacteria","p__Chloroflexi","p__Proteobacteria","p__Actinobacteria","p__Proteobacteria","p__Actinobacteria","p__Actinobacteria","p__Proteobacteria","p__Proteobacteria","p__Proteobacteria","p__Proteobacteria","p__Actinobacteria","p__Proteobacteria","p__Proteobacteria","p__Proteobacteria","p__Proteobacteria","B","A","A","A","A","A","A","A","A","B","A","A","A","B","A","B","A","A","B","A","A","B","B","B","B","B","B","B","A","B","A","B","B","B","B","A","A","A","B","A","B","A","A","B","B","A","A","D","C","C","C","C","D","C","D","D","D","D","D","C","D","D","C","C","C","D","C","C","D","D","D","D","D","C","C","C","D","C","D","C","D","D","D","C","D","C","D","C","C"],"nodesize":[40,38.6323000116104,25.947985603158,25.789155927087,21.981655636828,17.6314872866597,17.4491272882077,15.5299353690158,14.0739966716978,13.0018963582182,11.6606679825071,11.350361856109,10.7076899260807,9.99883896435621,8.65319865319865,7.94287704632532,7.15755253686288,7.11931576299392,7.02813576376795,6.85312899106003,6.68694608924494,6.55752931615001,6.19427996439491,6.17810286775804,6.13398351329386,6.07956964278803,5.66484771082472,5.62661093695576,5.55601996981307,5.43395642246217,5.42072061612292,5.36630674561709,5.08100158674871,5.0765896513023,5.02070513564767,4.95305545880259,4.58980610704749,4.4471535276133,4.44568288246449,4.40744610859553,4.15302449785208,3.96478191880491,3.89272030651341,3.80006966213863,3.64271063121638,3.59270869615697,3.54711869654398,3.54417740624637,3.46917450365726,3.29269708580053,3.27651998916367,3.26769611827083,3.23828321529471,3.21034095746739,3.06915902318201,3.0662177328844,3.02651031386664,2.97797902395604,2.97209644336081,2.96768450791439,2.96621386276559,2.91621192770618,2.90444676651573,2.88826966987887,2.84267967026588,2.81767870273617,2.77061805797438,2.73238128410542,2.7264987035102,2.70885096172452,2.68090870389721,2.66767289755796,2.65590773636751,2.64561322032586,2.63825999458183,2.59708193041526,2.58531676922482,2.5573745113975,2.54266805990944,2.52354967297496,2.50590193118929,2.47795967336197,2.46913580246914,2.46619451217152,2.39119160958241,2.38089709354077,2.37942644839197,2.37795580324316,2.37648515809435,2.35736677115987,2.34560160996943,2.33383644877898,2.32795386818375,2.30589419095166,2.28677580401718,2.25883354618987,2.25883354618987,2.25295096559464,2.24853903014823,2.24559773985061,2.23971515925539,2.22353806261852,2.22206741746972,2.20441967568404,2.17500677270792,2.15882967607106,2.15000580517822,2.14265257943419,2.11912225705329,2.11618096675568,2.11323967645807,2.11323967645807,2.11029838616045,2.09853322497001,2.09412128952359,2.08823870892836,2.08823870892836,2.08529741863075,2.0720616122915,2.0720616122915,2.06912032199389,2.06617903169627,2.06470838654747,2.06176709624985,2.06176709624985,2.02794225782732,2.0250009675297,2.0235303223809,2.02205967723209,2.01911838693448,2.01176516119045,2.01176516119045,2.00441193544642,2.00441193544642,2.00294129029761,2]},"options":{"NodeID":"name","Group":"group","colourScale":"d3.scaleOrdinal([`#b2df8a`,`#ff7f00`,`#cab2d6`,`#e31a1c`,`#33a02c`,`#fb9a99`,`#a6bce3`,`#1f78b4`,`#fdbf6f`])","fontSize":7,"fontFamily":"serif","clickTextSize":17.5,"linkDistance":20,"linkWidth":"function(d) { return (d.width); }","charge":-5,"opacity":0.6,"zoom":false,"legend":true,"arrows":false,"nodesize":true,"radiusCalculation":" Math.sqrt(d.nodesize)+6","bounded":false,"opacityNoHover":0,"clickAction":null}},"evals":[],"jsHooks":[]}</script>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-4-netd3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4.21: Plot a network in NetworkD3 style
+</figcaption>
+</figure>
+</div>
+</div>
+</section>
+</section>
+<section id="intersting-plot" class="level2" data-number="4.5">
+<h2 data-number="4.5" class="anchored" data-anchor-id="intersting-plot"><span class="header-section-number">4.5</span> Intersting plot</h2>
+<ul>
+<li>Two columns edge list</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>twocol <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"col1"</span> <span class="ot">=</span> <span class="fu">sample</span>(letters, <span class="dv">30</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">"col2"</span> <span class="ot">=</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">"A"</span>, <span class="st">"B"</span>), <span class="dv">30</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>twocol_net <span class="ot">&lt;-</span> <span class="fu">twocol_edgelist</span>(twocol)</span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a><span class="fu">c_net_plot</span>(twocol_net, <span class="fu">g_layout_polygon</span>(twocol_net))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-4-twocol" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-4-twocol-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="04-visualization_files/figure-html/fig-4-twocol-1.png" class="img-fluid figure-img" style="width:60.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-4-twocol-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4.22: Two columns edge list plot
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<ul>
+<li>Olympic rings plot</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">olympic_rings_net</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-4-olympic" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-4-olympic-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="04-visualization_files/figure-html/fig-4-olympic-1.png" class="img-fluid figure-img" style="width:70.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-4-olympic-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4.23: Olympic rings plot
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+    const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+    const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+    let newTheme = '';
+    if(darkModeDefault) {
+      newTheme = isAlternate ? baseTheme : alternateTheme;
+    } else {
+      newTheme = isAlternate ? alternateTheme : baseTheme;
+    }
+    const changeGiscusTheme = () => {
+      // From: https://github.com/giscus/giscus/issues/336
+      const sendMessage = (message) => {
+        const iframe = document.querySelector('iframe.giscus-frame');
+        if (!iframe) return;
+        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+      }
+      sendMessage({
+        setConfig: {
+          theme: newTheme
+        }
+      });
+    }
+    const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+    if (isGiscussLoaded) {
+      changeGiscusTheme();
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  const darkModeDefault = false;
+  let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+    toggleGiscusIfUsed(toAlternate, darkModeDefault);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./03-manipulation.html" class="pagination-link  aria-label=" &lt;span="">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Manipulation</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./05-topology.html" class="pagination-link" aria-label="<span class='chapter-number'>5</span>&nbsp; <span class='chapter-title'>Topology</span>">
+        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Topology</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/Asa12138/MetaNet_q_book/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li><li><a href="https://github.com/Asa12138/MetaNet_q_book/blob/main/04-visualization.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></div></div></footer></body></html>

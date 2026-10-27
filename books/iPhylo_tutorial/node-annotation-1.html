@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>13 Node annotation | iPhylo Tutorial</title>
+  <meta name="description" content="This is a tutorial for the iPhylo website." />
+  <meta name="generator" content="bookdown 0.32 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="13 Node annotation | iPhylo Tutorial" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="This is a tutorial for the iPhylo website." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="13 Node annotation | iPhylo Tutorial" />
+  
+  <meta name="twitter:description" content="This is a tutorial for the iPhylo website." />
+  
+
+<meta name="author" content="Chen Peng and Yueer Li" />
+
+
+<meta name="date" content="2025-01-02" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  <link rel="shortcut icon" href="img/iphylo.png" type="image/x-icon" />
+<link rel="prev" href="leaf-annotation-1.html"/>
+<link rel="next" href="canvas-and-legend.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Welcome</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#citation"><i class="fa fa-check"></i>Citation</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
+<li class="part"><span><b>I iPhylo Tree</b></span></li>
+<li class="chapter" data-level="2" data-path="iphylo-tree.html"><a href="iphylo-tree.html"><i class="fa fa-check"></i><b>2</b> iPhylo Tree</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="iphylo-tree.html"><a href="iphylo-tree.html#working-on-the-tree-page"><i class="fa fa-check"></i><b>2.1</b> Working on the Tree page</a></li>
+<li class="chapter" data-level="2.2" data-path="iphylo-tree.html"><a href="iphylo-tree.html#classification-systems"><i class="fa fa-check"></i><b>2.2</b> Classification Systems</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="iphylo-tree.html"><a href="iphylo-tree.html#phylo-tree"><i class="fa fa-check"></i><b>2.2.1</b> Phylo Tree</a></li>
+<li class="chapter" data-level="2.2.2" data-path="iphylo-tree.html"><a href="iphylo-tree.html#chemical-tree"><i class="fa fa-check"></i><b>2.2.2</b> Chemical Tree</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="tree-object.html"><a href="tree-object.html"><i class="fa fa-check"></i><b>3</b> Tree Object</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="tree-object.html"><a href="tree-object.html#taxonomic-level"><i class="fa fa-check"></i><b>3.1</b> Taxonomic level</a></li>
+<li class="chapter" data-level="3.2" data-path="tree-object.html"><a href="tree-object.html#branch_length"><i class="fa fa-check"></i><b>3.2</b> Branch length</a></li>
+<li class="chapter" data-level="3.3" data-path="tree-object.html"><a href="tree-object.html#nodes"><i class="fa fa-check"></i><b>3.3</b> Nodes</a></li>
+<li class="chapter" data-level="3.4" data-path="tree-object.html"><a href="tree-object.html#manipulate-your-tree"><i class="fa fa-check"></i><b>3.4</b> Manipulate your tree</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="tree-object.html"><a href="tree-object.html#interrupt"><i class="fa fa-check"></i><b>3.4.1</b> Interrupt</a></li>
+<li class="chapter" data-level="3.4.2" data-path="tree-object.html"><a href="tree-object.html#subtree"><i class="fa fa-check"></i><b>3.4.2</b> Sub-tree</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="input-output.html"><a href="input-output.html"><i class="fa fa-check"></i><b>4</b> Input &amp; Output</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="input-output.html"><a href="input-output.html#input"><i class="fa fa-check"></i><b>4.1</b> Input</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="input-output.html"><a href="input-output.html#input-elements"><i class="fa fa-check"></i><b>4.1.1</b> Input elements</a></li>
+<li class="chapter" data-level="4.1.2" data-path="input-output.html"><a href="input-output.html#biological"><i class="fa fa-check"></i><b>4.1.2</b> Biological</a></li>
+<li class="chapter" data-level="4.1.3" data-path="input-output.html"><a href="input-output.html#chemical"><i class="fa fa-check"></i><b>4.1.3</b> Chemical</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="input-output.html"><a href="input-output.html#output"><i class="fa fa-check"></i><b>4.2</b> Output</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="input-output.html"><a href="input-output.html#tree-file"><i class="fa fa-check"></i><b>4.2.1</b> Tree file</a></li>
+<li class="chapter" data-level="4.2.2" data-path="input-output.html"><a href="input-output.html#tree-structure-visualizations"><i class="fa fa-check"></i><b>4.2.2</b> Tree structure visualizations</a></li>
+<li class="chapter" data-level="4.2.3" data-path="input-output.html"><a href="input-output.html#additional-files"><i class="fa fa-check"></i><b>4.2.3</b> Additional files</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="integration-with-iphylo-visual.html"><a href="integration-with-iphylo-visual.html"><i class="fa fa-check"></i><b>5</b> Integration with iPhylo Visual</a></li>
+<li class="part"><span><b>II iPhylo CLI</b></span></li>
+<li class="chapter" data-level="6" data-path="iphylo-cli.html"><a href="iphylo-cli.html"><i class="fa fa-check"></i><b>6</b> iPhylo CLI</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="iphylo-cli.html"><a href="iphylo-cli.html#set-up"><i class="fa fa-check"></i><b>6.1</b> Set up</a></li>
+<li class="chapter" data-level="6.2" data-path="iphylo-cli.html"><a href="iphylo-cli.html#packages-environment"><i class="fa fa-check"></i><b>6.2</b> Packages environment</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="modules.html"><a href="modules.html"><i class="fa fa-check"></i><b>7</b> Modules</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="modules.html"><a href="modules.html#phylotree"><i class="fa fa-check"></i><b>7.1</b> Phylotree</a></li>
+<li class="chapter" data-level="7.2" data-path="modules.html"><a href="modules.html#chemtree"><i class="fa fa-check"></i><b>7.2</b> Chemtree</a></li>
+<li class="chapter" data-level="7.3" data-path="modules.html"><a href="modules.html#chemonline"><i class="fa fa-check"></i><b>7.3</b> Chem Online</a></li>
+<li class="chapter" data-level="7.4" data-path="modules.html"><a href="modules.html#csv2tree"><i class="fa fa-check"></i><b>7.4</b> CSV2Tree</a></li>
+</ul></li>
+<li class="part"><span><b>III iPhylo Visual</b></span></li>
+<li class="chapter" data-level="8" data-path="iPhylo_v.html"><a href="iPhylo_v.html"><i class="fa fa-check"></i><b>8</b> iPhylo Visual</a></li>
+<li class="chapter" data-level="9" data-path="user-interface.html"><a href="user-interface.html"><i class="fa fa-check"></i><b>9</b> User interface</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="user-interface.html"><a href="user-interface.html#dashboard"><i class="fa fa-check"></i><b>9.1</b> Dashboard</a></li>
+<li class="chapter" data-level="9.2" data-path="user-interface.html"><a href="user-interface.html#inspection"><i class="fa fa-check"></i><b>9.2</b> Inspection</a></li>
+<li class="chapter" data-level="9.3" data-path="user-interface.html"><a href="user-interface.html#help"><i class="fa fa-check"></i><b>9.3</b> Help</a></li>
+<li class="chapter" data-level="9.4" data-path="user-interface.html"><a href="user-interface.html#gallery-and-demo"><i class="fa fa-check"></i><b>9.4</b> Gallery and demo</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="data.html"><a href="data.html"><i class="fa fa-check"></i><b>10</b> Data</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="data.html"><a href="data.html#import"><i class="fa fa-check"></i><b>10.1</b> Import</a>
+<ul>
+<li class="chapter" data-level="10.1.1" data-path="data.html"><a href="data.html#tree-file-1"><i class="fa fa-check"></i><b>10.1.1</b> Tree file</a></li>
+<li class="chapter" data-level="10.1.2" data-path="data.html"><a href="data.html#leaf-annotation"><i class="fa fa-check"></i><b>10.1.2</b> Leaf annotation</a></li>
+<li class="chapter" data-level="10.1.3" data-path="data.html"><a href="data.html#node-annotation"><i class="fa fa-check"></i><b>10.1.3</b> Node annotation</a></li>
+<li class="chapter" data-level="10.1.4" data-path="data.html"><a href="data.html#session"><i class="fa fa-check"></i><b>10.1.4</b> Session</a></li>
+</ul></li>
+<li class="chapter" data-level="10.2" data-path="data.html"><a href="data.html#export"><i class="fa fa-check"></i><b>10.2</b> Export</a>
+<ul>
+<li class="chapter" data-level="10.2.1" data-path="data.html"><a href="data.html#export-image"><i class="fa fa-check"></i><b>10.2.1</b> Export image</a></li>
+<li class="chapter" data-level="10.2.2" data-path="data.html"><a href="data.html#save-session"><i class="fa fa-check"></i><b>10.2.2</b> Save session</a></li>
+<li class="chapter" data-level="10.2.3" data-path="data.html"><a href="data.html#download-r-scripts"><i class="fa fa-check"></i><b>10.2.3</b> Download R scripts</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="basic-feature.html"><a href="basic-feature.html"><i class="fa fa-check"></i><b>11</b> Basic feature</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="basic-feature.html"><a href="basic-feature.html#tree-layout"><i class="fa fa-check"></i><b>11.1</b> Tree layout</a></li>
+<li class="chapter" data-level="11.2" data-path="basic-feature.html"><a href="basic-feature.html#branch-color"><i class="fa fa-check"></i><b>11.2</b> Branch color</a></li>
+<li class="chapter" data-level="11.3" data-path="basic-feature.html"><a href="basic-feature.html#line-type"><i class="fa fa-check"></i><b>11.3</b> Line type</a></li>
+<li class="chapter" data-level="11.4" data-path="basic-feature.html"><a href="basic-feature.html#branch-length"><i class="fa fa-check"></i><b>11.4</b> Branch length</a></li>
+<li class="chapter" data-level="11.5" data-path="basic-feature.html"><a href="basic-feature.html#branch-range"><i class="fa fa-check"></i><b>11.5</b> Branch range</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="leaf-annotation-1.html"><a href="leaf-annotation-1.html"><i class="fa fa-check"></i><b>12</b> Leaf annotation</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="leaf-annotation-1.html"><a href="leaf-annotation-1.html#tip-label"><i class="fa fa-check"></i><b>12.1</b> Tip label</a></li>
+<li class="chapter" data-level="12.2" data-path="leaf-annotation-1.html"><a href="leaf-annotation-1.html#tip-point"><i class="fa fa-check"></i><b>12.2</b> Tip point</a></li>
+<li class="chapter" data-level="12.3" data-path="leaf-annotation-1.html"><a href="leaf-annotation-1.html#heatmap"><i class="fa fa-check"></i><b>12.3</b> Heatmap</a></li>
+<li class="chapter" data-level="12.4" data-path="leaf-annotation-1.html"><a href="leaf-annotation-1.html#bar-plot"><i class="fa fa-check"></i><b>12.4</b> Bar plot</a></li>
+<li class="chapter" data-level="12.5" data-path="leaf-annotation-1.html"><a href="leaf-annotation-1.html#bubble-plot"><i class="fa fa-check"></i><b>12.5</b> Bubble plot</a></li>
+<li class="chapter" data-level="12.6" data-path="leaf-annotation-1.html"><a href="leaf-annotation-1.html#box-plot"><i class="fa fa-check"></i><b>12.6</b> Box plot</a></li>
+<li class="chapter" data-level="12.7" data-path="leaf-annotation-1.html"><a href="leaf-annotation-1.html#violin-plot"><i class="fa fa-check"></i><b>12.7</b> Violin plot</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="node-annotation-1.html"><a href="node-annotation-1.html"><i class="fa fa-check"></i><b>13</b> Node annotation</a>
+<ul>
+<li class="chapter" data-level="13.1" data-path="node-annotation-1.html"><a href="node-annotation-1.html#node-label"><i class="fa fa-check"></i><b>13.1</b> Node label</a></li>
+<li class="chapter" data-level="13.2" data-path="node-annotation-1.html"><a href="node-annotation-1.html#color-branch"><i class="fa fa-check"></i><b>13.2</b> Color branch</a></li>
+<li class="chapter" data-level="13.3" data-path="node-annotation-1.html"><a href="node-annotation-1.html#highlight"><i class="fa fa-check"></i><b>13.3</b> Highlight</a></li>
+<li class="chapter" data-level="13.4" data-path="node-annotation-1.html"><a href="node-annotation-1.html#strip"><i class="fa fa-check"></i><b>13.4</b> Strip</a></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="canvas-and-legend.html"><a href="canvas-and-legend.html"><i class="fa fa-check"></i><b>14</b> Canvas and Legend</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">iPhylo Tutorial</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="node-annotation-1" class="section level1 hasAnchor" number="13">
+<h1><span class="header-section-number">13</span> Node annotation<a href="node-annotation-1.html#node-annotation-1" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p><img src="images/node_anno2.png" /></p>
+<p>The “Node Annotation” tab handles annotation tracks related to internal nodes and branches, including strips, clade branch colors, clade backgrounds, and node labels.</p>
+<div id="node-label" class="section level2 hasAnchor" number="13.1">
+<h2><span class="header-section-number">13.1</span> Node label<a href="node-annotation-1.html#node-label" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><strong>Specifying the track type of node as ‘node label’ enables showing node labels:</strong></p>
+<p>Prepare the node annotation file:</p>
+<p>Choose ‘label’ as the column name containing the labels we want to map.</p>
+<p>Choose ‘color’ as the column name containing the values we want to map. If the values are continuous, it will draw a gradient of colors.</p>
+<p>Choose ‘size’ as the continuous variable for the label size.</p>
+<p>Choose ‘background’ as the column name containing the values we want to map. If the values are continuous, it will draw a gradient of colors.</p>
+<p><strong>Example data:</strong></p>
+<table>
+<thead>
+<tr class="header">
+<th align="right">id</th>
+<th align="left">clade</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">22</td>
+<td align="left">Clade1</td>
+</tr>
+<tr class="even">
+<td align="right">32</td>
+<td align="left">Clade2</td>
+</tr>
+</tbody>
+</table>
+<p><img src="images/node_label.png" /></p>
+<p>Other parameters:</p>
+<ul>
+<li><p><strong>Manual color:</strong> Allows users to manually specify colors for different categories or values.</p></li>
+<li><p><strong>Manual size:</strong> Allows users to manually specify size of points for different values.</p></li>
+<li><p><strong>Offset x:</strong> Specifies the offset for the labels at x-axis.</p></li>
+<li><p><strong>Offset y:</strong> Specifies the offset for the labels at y-axis.</p></li>
+<li><p><strong>Alpha:</strong> Sets the transparency level for the plot.</p></li>
+<li><p><strong>Label display:</strong> Sets the direction of node labels (rotating or horizontal?).</p></li>
+<li><p><strong>Border:</strong> Specifies whether to plot the border.</p></li>
+<li><p><strong>Legend:</strong> Controls the display of the legend for the plot.</p></li>
+</ul>
+</div>
+<div id="color-branch" class="section level2 hasAnchor" number="13.2">
+<h2><span class="header-section-number">13.2</span> Color branch<a href="node-annotation-1.html#color-branch" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><strong>Specifying the track type of node as ‘color branch’ enables the coloring branch of a tree plot:</strong></p>
+<p>Prepare the node annotation file:</p>
+<p>Choose ‘color’ as the variable (clade) for coloring branch.</p>
+<p><strong>Example data:</strong></p>
+<table>
+<thead>
+<tr class="header">
+<th align="right">id</th>
+<th align="left">clade</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">22</td>
+<td align="left">Clade1</td>
+</tr>
+<tr class="even">
+<td align="right">32</td>
+<td align="left">Clade2</td>
+</tr>
+</tbody>
+</table>
+<p><img src="images/color_branch.png" /></p>
+<p>Other parameters:</p>
+<ul>
+<li><p><strong>Manual color:</strong> Allows users to manually specify colors for different categories or values.</p></li>
+<li><p><strong>Legend:</strong> Controls the display of the legend for the plot.</p></li>
+</ul>
+</div>
+<div id="highlight" class="section level2 hasAnchor" number="13.3">
+<h2><span class="header-section-number">13.3</span> Highlight<a href="node-annotation-1.html#highlight" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><strong>Specifying the track type of node as ‘highlight’ enables the highlighting of a tree plot:</strong></p>
+<p>Prepare the node annotation file:</p>
+<p>Choose ‘color’ as the variable (clade) for highlighting branch.</p>
+<p><strong>Example data:</strong></p>
+<table>
+<thead>
+<tr class="header">
+<th align="right">id</th>
+<th align="left">clade</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">22</td>
+<td align="left">Clade1</td>
+</tr>
+<tr class="even">
+<td align="right">32</td>
+<td align="left">Clade2</td>
+</tr>
+</tbody>
+</table>
+<p><img src="images/highlight.png" /></p>
+<p>Other parameters:</p>
+<ul>
+<li><p><strong>Manual color:</strong> Allows users to manually specify colors for different categories or values.</p></li>
+<li><p><strong>Legend:</strong> Controls the display of the legend for the plot.</p></li>
+<li><p><strong>Border color:</strong> Sets the color of the borders around plot tiles.</p></li>
+<li><p><strong>Border width:</strong> Adjusts the width of the borders around plot tiles.</p></li>
+<li><p><strong>Alpha:</strong> Sets the transparency level for the plot.</p></li>
+<li><p><strong>To bottom:</strong> Control the highlighting to the bottom of the plot.</p></li>
+</ul>
+</div>
+<div id="strip" class="section level2 hasAnchor" number="13.4">
+<h2><span class="header-section-number">13.4</span> Strip<a href="node-annotation-1.html#strip" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><strong>Specifying the track type of node as ‘strip’ enables the drawing of strips of a tree plot:</strong></p>
+<p>Prepare the node annotation file:</p>
+<p>Choose ‘color’ as the variable (clade) for drawing strips.</p>
+<p><strong>Example data:</strong></p>
+<table>
+<thead>
+<tr class="header">
+<th align="right">id</th>
+<th align="left">clade</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">22</td>
+<td align="left">Clade1</td>
+</tr>
+<tr class="even">
+<td align="right">32</td>
+<td align="left">Clade2</td>
+</tr>
+</tbody>
+</table>
+<p><img src="images/strip.png" /></p>
+<p>Other parameters:</p>
+<ul>
+<li><p><strong>Manual color:</strong> Allows users to manually specify colors for different categories or values.</p></li>
+<li><p><strong>Offset:</strong> Specifies the offset for the plot.</p></li>
+<li><p><strong>Legend:</strong> Controls the display of the legend for the plot.</p></li>
+<li><p><strong>Alpha:</strong> Sets the transparency level for the plot.</p></li>
+<li><p><strong>Font size:</strong> Adjusts the size of the font used for labels.</p></li>
+<li><p><strong>Label offset:</strong> Sets the offset of the labels in the plot.</p></li>
+</ul>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="leaf-annotation-1.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="canvas-and-legend.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

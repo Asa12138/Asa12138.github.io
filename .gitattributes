@@ -1,0 +1,7 @@
+# Auto detect text files and perform LF normalization
+* text=auto
+
+# Preserve published downloads and tutorial/database assets byte-for-byte.
+FileList/** -text
+books/** -text
+databases/** -text

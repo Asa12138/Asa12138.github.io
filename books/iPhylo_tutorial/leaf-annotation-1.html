@@ -1,0 +1,5937 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>12 Leaf annotation | iPhylo Tutorial</title>
+  <meta name="description" content="This is a tutorial for the iPhylo website." />
+  <meta name="generator" content="bookdown 0.32 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="12 Leaf annotation | iPhylo Tutorial" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="This is a tutorial for the iPhylo website." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="12 Leaf annotation | iPhylo Tutorial" />
+  
+  <meta name="twitter:description" content="This is a tutorial for the iPhylo website." />
+  
+
+<meta name="author" content="Chen Peng and Yueer Li" />
+
+
+<meta name="date" content="2025-01-02" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  <link rel="shortcut icon" href="img/iphylo.png" type="image/x-icon" />
+<link rel="prev" href="basic-feature.html"/>
+<link rel="next" href="node-annotation-1.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Welcome</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#citation"><i class="fa fa-check"></i>Citation</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
+<li class="part"><span><b>I iPhylo Tree</b></span></li>
+<li class="chapter" data-level="2" data-path="iphylo-tree.html"><a href="iphylo-tree.html"><i class="fa fa-check"></i><b>2</b> iPhylo Tree</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="iphylo-tree.html"><a href="iphylo-tree.html#working-on-the-tree-page"><i class="fa fa-check"></i><b>2.1</b> Working on the Tree page</a></li>
+<li class="chapter" data-level="2.2" data-path="iphylo-tree.html"><a href="iphylo-tree.html#classification-systems"><i class="fa fa-check"></i><b>2.2</b> Classification Systems</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="iphylo-tree.html"><a href="iphylo-tree.html#phylo-tree"><i class="fa fa-check"></i><b>2.2.1</b> Phylo Tree</a></li>
+<li class="chapter" data-level="2.2.2" data-path="iphylo-tree.html"><a href="iphylo-tree.html#chemical-tree"><i class="fa fa-check"></i><b>2.2.2</b> Chemical Tree</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="tree-object.html"><a href="tree-object.html"><i class="fa fa-check"></i><b>3</b> Tree Object</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="tree-object.html"><a href="tree-object.html#taxonomic-level"><i class="fa fa-check"></i><b>3.1</b> Taxonomic level</a></li>
+<li class="chapter" data-level="3.2" data-path="tree-object.html"><a href="tree-object.html#branch_length"><i class="fa fa-check"></i><b>3.2</b> Branch length</a></li>
+<li class="chapter" data-level="3.3" data-path="tree-object.html"><a href="tree-object.html#nodes"><i class="fa fa-check"></i><b>3.3</b> Nodes</a></li>
+<li class="chapter" data-level="3.4" data-path="tree-object.html"><a href="tree-object.html#manipulate-your-tree"><i class="fa fa-check"></i><b>3.4</b> Manipulate your tree</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="tree-object.html"><a href="tree-object.html#interrupt"><i class="fa fa-check"></i><b>3.4.1</b> Interrupt</a></li>
+<li class="chapter" data-level="3.4.2" data-path="tree-object.html"><a href="tree-object.html#subtree"><i class="fa fa-check"></i><b>3.4.2</b> Sub-tree</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="input-output.html"><a href="input-output.html"><i class="fa fa-check"></i><b>4</b> Input &amp; Output</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="input-output.html"><a href="input-output.html#input"><i class="fa fa-check"></i><b>4.1</b> Input</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="input-output.html"><a href="input-output.html#input-elements"><i class="fa fa-check"></i><b>4.1.1</b> Input elements</a></li>
+<li class="chapter" data-level="4.1.2" data-path="input-output.html"><a href="input-output.html#biological"><i class="fa fa-check"></i><b>4.1.2</b> Biological</a></li>
+<li class="chapter" data-level="4.1.3" data-path="input-output.html"><a href="input-output.html#chemical"><i class="fa fa-check"></i><b>4.1.3</b> Chemical</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="input-output.html"><a href="input-output.html#output"><i class="fa fa-check"></i><b>4.2</b> Output</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="input-output.html"><a href="input-output.html#tree-file"><i class="fa fa-check"></i><b>4.2.1</b> Tree file</a></li>
+<li class="chapter" data-level="4.2.2" data-path="input-output.html"><a href="input-output.html#tree-structure-visualizations"><i class="fa fa-check"></i><b>4.2.2</b> Tree structure visualizations</a></li>
+<li class="chapter" data-level="4.2.3" data-path="input-output.html"><a href="input-output.html#additional-files"><i class="fa fa-check"></i><b>4.2.3</b> Additional files</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="integration-with-iphylo-visual.html"><a href="integration-with-iphylo-visual.html"><i class="fa fa-check"></i><b>5</b> Integration with iPhylo Visual</a></li>
+<li class="part"><span><b>II iPhylo CLI</b></span></li>
+<li class="chapter" data-level="6" data-path="iphylo-cli.html"><a href="iphylo-cli.html"><i class="fa fa-check"></i><b>6</b> iPhylo CLI</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="iphylo-cli.html"><a href="iphylo-cli.html#set-up"><i class="fa fa-check"></i><b>6.1</b> Set up</a></li>
+<li class="chapter" data-level="6.2" data-path="iphylo-cli.html"><a href="iphylo-cli.html#packages-environment"><i class="fa fa-check"></i><b>6.2</b> Packages environment</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="modules.html"><a href="modules.html"><i class="fa fa-check"></i><b>7</b> Modules</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="modules.html"><a href="modules.html#phylotree"><i class="fa fa-check"></i><b>7.1</b> Phylotree</a></li>
+<li class="chapter" data-level="7.2" data-path="modules.html"><a href="modules.html#chemtree"><i class="fa fa-check"></i><b>7.2</b> Chemtree</a></li>
+<li class="chapter" data-level="7.3" data-path="modules.html"><a href="modules.html#chemonline"><i class="fa fa-check"></i><b>7.3</b> Chem Online</a></li>
+<li class="chapter" data-level="7.4" data-path="modules.html"><a href="modules.html#csv2tree"><i class="fa fa-check"></i><b>7.4</b> CSV2Tree</a></li>
+</ul></li>
+<li class="part"><span><b>III iPhylo Visual</b></span></li>
+<li class="chapter" data-level="8" data-path="iPhylo_v.html"><a href="iPhylo_v.html"><i class="fa fa-check"></i><b>8</b> iPhylo Visual</a></li>
+<li class="chapter" data-level="9" data-path="user-interface.html"><a href="user-interface.html"><i class="fa fa-check"></i><b>9</b> User interface</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="user-interface.html"><a href="user-interface.html#dashboard"><i class="fa fa-check"></i><b>9.1</b> Dashboard</a></li>
+<li class="chapter" data-level="9.2" data-path="user-interface.html"><a href="user-interface.html#inspection"><i class="fa fa-check"></i><b>9.2</b> Inspection</a></li>
+<li class="chapter" data-level="9.3" data-path="user-interface.html"><a href="user-interface.html#help"><i class="fa fa-check"></i><b>9.3</b> Help</a></li>
+<li class="chapter" data-level="9.4" data-path="user-interface.html"><a href="user-interface.html#gallery-and-demo"><i class="fa fa-check"></i><b>9.4</b> Gallery and demo</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="data.html"><a href="data.html"><i class="fa fa-check"></i><b>10</b> Data</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="data.html"><a href="data.html#import"><i class="fa fa-check"></i><b>10.1</b> Import</a>
+<ul>
+<li class="chapter" data-level="10.1.1" data-path="data.html"><a href="data.html#tree-file-1"><i class="fa fa-check"></i><b>10.1.1</b> Tree file</a></li>
+<li class="chapter" data-level="10.1.2" data-path="data.html"><a href="data.html#leaf-annotation"><i class="fa fa-check"></i><b>10.1.2</b> Leaf annotation</a></li>
+<li class="chapter" data-level="10.1.3" data-path="data.html"><a href="data.html#node-annotation"><i class="fa fa-check"></i><b>10.1.3</b> Node annotation</a></li>
+<li class="chapter" data-level="10.1.4" data-path="data.html"><a href="data.html#session"><i class="fa fa-check"></i><b>10.1.4</b> Session</a></li>
+</ul></li>
+<li class="chapter" data-level="10.2" data-path="data.html"><a href="data.html#export"><i class="fa fa-check"></i><b>10.2</b> Export</a>
+<ul>
+<li class="chapter" data-level="10.2.1" data-path="data.html"><a href="data.html#export-image"><i class="fa fa-check"></i><b>10.2.1</b> Export image</a></li>
+<li class="chapter" data-level="10.2.2" data-path="data.html"><a href="data.html#save-session"><i class="fa fa-check"></i><b>10.2.2</b> Save session</a></li>
+<li class="chapter" data-level="10.2.3" data-path="data.html"><a href="data.html#download-r-scripts"><i class="fa fa-check"></i><b>10.2.3</b> Download R scripts</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="basic-feature.html"><a href="basic-feature.html"><i class="fa fa-check"></i><b>11</b> Basic feature</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="basic-feature.html"><a href="basic-feature.html#tree-layout"><i class="fa fa-check"></i><b>11.1</b> Tree layout</a></li>
+<li class="chapter" data-level="11.2" data-path="basic-feature.html"><a href="basic-feature.html#branch-color"><i class="fa fa-check"></i><b>11.2</b> Branch color</a></li>
+<li class="chapter" data-level="11.3" data-path="basic-feature.html"><a href="basic-feature.html#line-type"><i class="fa fa-check"></i><b>11.3</b> Line type</a></li>
+<li class="chapter" data-level="11.4" data-path="basic-feature.html"><a href="basic-feature.html#branch-length"><i class="fa fa-check"></i><b>11.4</b> Branch length</a></li>
+<li class="chapter" data-level="11.5" data-path="basic-feature.html"><a href="basic-feature.html#branch-range"><i class="fa fa-check"></i><b>11.5</b> Branch range</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="leaf-annotation-1.html"><a href="leaf-annotation-1.html"><i class="fa fa-check"></i><b>12</b> Leaf annotation</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="leaf-annotation-1.html"><a href="leaf-annotation-1.html#tip-label"><i class="fa fa-check"></i><b>12.1</b> Tip label</a></li>
+<li class="chapter" data-level="12.2" data-path="leaf-annotation-1.html"><a href="leaf-annotation-1.html#tip-point"><i class="fa fa-check"></i><b>12.2</b> Tip point</a></li>
+<li class="chapter" data-level="12.3" data-path="leaf-annotation-1.html"><a href="leaf-annotation-1.html#heatmap"><i class="fa fa-check"></i><b>12.3</b> Heatmap</a></li>
+<li class="chapter" data-level="12.4" data-path="leaf-annotation-1.html"><a href="leaf-annotation-1.html#bar-plot"><i class="fa fa-check"></i><b>12.4</b> Bar plot</a></li>
+<li class="chapter" data-level="12.5" data-path="leaf-annotation-1.html"><a href="leaf-annotation-1.html#bubble-plot"><i class="fa fa-check"></i><b>12.5</b> Bubble plot</a></li>
+<li class="chapter" data-level="12.6" data-path="leaf-annotation-1.html"><a href="leaf-annotation-1.html#box-plot"><i class="fa fa-check"></i><b>12.6</b> Box plot</a></li>
+<li class="chapter" data-level="12.7" data-path="leaf-annotation-1.html"><a href="leaf-annotation-1.html#violin-plot"><i class="fa fa-check"></i><b>12.7</b> Violin plot</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="node-annotation-1.html"><a href="node-annotation-1.html"><i class="fa fa-check"></i><b>13</b> Node annotation</a>
+<ul>
+<li class="chapter" data-level="13.1" data-path="node-annotation-1.html"><a href="node-annotation-1.html#node-label"><i class="fa fa-check"></i><b>13.1</b> Node label</a></li>
+<li class="chapter" data-level="13.2" data-path="node-annotation-1.html"><a href="node-annotation-1.html#color-branch"><i class="fa fa-check"></i><b>13.2</b> Color branch</a></li>
+<li class="chapter" data-level="13.3" data-path="node-annotation-1.html"><a href="node-annotation-1.html#highlight"><i class="fa fa-check"></i><b>13.3</b> Highlight</a></li>
+<li class="chapter" data-level="13.4" data-path="node-annotation-1.html"><a href="node-annotation-1.html#strip"><i class="fa fa-check"></i><b>13.4</b> Strip</a></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="canvas-and-legend.html"><a href="canvas-and-legend.html"><i class="fa fa-check"></i><b>14</b> Canvas and Legend</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">iPhylo Tutorial</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="leaf-annotation-1" class="section level1 hasAnchor" number="12">
+<h1><span class="header-section-number">12</span> Leaf annotation<a href="leaf-annotation-1.html#leaf-annotation-1" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>The “Leaf Annotation” tab manages the annotation tracks for tree leaves, encompassing bars, tiles, boxes, violins, tip points, and tip labels.</p>
+<p><img src="images/leaf_anno2.png" /></p>
+<div id="tip-label" class="section level2 hasAnchor" number="12.1">
+<h2><span class="header-section-number">12.1</span> Tip label<a href="leaf-annotation-1.html#tip-label" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><strong>Specifying the track type of leaf as ‘tip label’ enables showing tip labels:</strong></p>
+<p><img src="images/tip_label.png" /></p>
+<p><strong>We can also modify the styles of tip labels:</strong></p>
+<p>Prepare the leaf annotation file:</p>
+<p>Choose ‘label’ as the column name containing the labels we want to map.</p>
+<p>Choose ‘color’ as the column name containing the labels we want to map. If the values are continuous, it will draw a gradient of colors.</p>
+<p>Choose ‘size’ as the continuous variable for the label size.</p>
+<p><strong>Example data:</strong></p>
+<div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:300px; overflow-x: scroll; width:100%; ">
+<table class="table" style="font-size: 13px; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+id
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+value
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+OSQWA2679
+</td>
+<td style="text-align:right;">
+0.55
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ESRUW9777
+</td>
+<td style="text-align:right;">
+0.79
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+OFAGM8366
+</td>
+<td style="text-align:right;">
+1.01
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+NPJBL9744
+</td>
+<td style="text-align:right;">
+0.71
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+IXMJT4621
+</td>
+<td style="text-align:right;">
+0.16
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ITXUG9776
+</td>
+<td style="text-align:right;">
+0.12
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+GROKY6004
+</td>
+<td style="text-align:right;">
+0.32
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+QEYPL1702
+</td>
+<td style="text-align:right;">
+1.54
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+KVCTL4245
+</td>
+<td style="text-align:right;">
+0.56
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+JPFRB7291
+</td>
+<td style="text-align:right;">
+0.94
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+RRYFL9967
+</td>
+<td style="text-align:right;">
+0.94
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+XRNWJ1205
+</td>
+<td style="text-align:right;">
+0.19
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+OLXHY4687
+</td>
+<td style="text-align:right;">
+1.73
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+RYWRM7476
+</td>
+<td style="text-align:right;">
+0.93
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+BZPWN4417
+</td>
+<td style="text-align:right;">
+1.39
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+DXYHZ6481
+</td>
+<td style="text-align:right;">
+0.53
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+MMPEW5637
+</td>
+<td style="text-align:right;">
+0.82
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+PCIUJ0473
+</td>
+<td style="text-align:right;">
+1.67
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+GNGZT3233
+</td>
+<td style="text-align:right;">
+0.26
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+CVSCI9337
+</td>
+<td style="text-align:right;">
+1.68
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><img src="images/tip_label2.png" /></p>
+<p>Other parameters:</p>
+<ul>
+<li><p><strong>Manual color:</strong> Allows users to manually specify colors for different categories or values.</p></li>
+<li><p><strong>Manual size:</strong> Allows users to manually specify size of points for different values.</p></li>
+<li><p><strong>Offset:</strong> Specifies the offset for the plot.</p></li>
+<li><p><strong>Legend:</strong> Controls the display of the legend for the plot.</p></li>
+<li><p><strong>Line type:</strong> Sets the line type if align is TRUE.</p></li>
+<li><p><strong>Line size:</strong> Adjusts the width of the line if align is TRUE.</p></li>
+<li><p><strong>Align:</strong> Specifies whether to align all labels.</p></li>
+</ul>
+</div>
+<div id="tip-point" class="section level2 hasAnchor" number="12.2">
+<h2><span class="header-section-number">12.2</span> Tip point<a href="leaf-annotation-1.html#tip-point" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><strong>Specifying the track type of leaf as ‘tip point’ enables the drawing of points at tips:</strong></p>
+<p>Prepare the leaf annotation file:</p>
+<p>Choose ‘color’ as the column name containing the values we want to map. If the values are continuous, it will draw a gradient of colors.</p>
+<p>Choose ‘shape’ as the categorical variable (group) for the points.</p>
+<p>Choose ‘size’ as the continuous variable for the points.</p>
+<p><strong>Example data:</strong></p>
+<div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:300px; overflow-x: scroll; width:100%; ">
+<table class="table" style="font-size: 13px; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+id
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+group
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+value
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+OSQWA2679
+</td>
+<td style="text-align:left;">
+A
+</td>
+<td style="text-align:right;">
+0.3454520
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ESRUW9777
+</td>
+<td style="text-align:left;">
+A
+</td>
+<td style="text-align:right;">
+1.3195295
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+OFAGM8366
+</td>
+<td style="text-align:left;">
+A
+</td>
+<td style="text-align:right;">
+0.5200337
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+NPJBL9744
+</td>
+<td style="text-align:left;">
+A
+</td>
+<td style="text-align:right;">
+1.1939274
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+IXMJT4621
+</td>
+<td style="text-align:left;">
+A
+</td>
+<td style="text-align:right;">
+1.1706463
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ITXUG9776
+</td>
+<td style="text-align:left;">
+A
+</td>
+<td style="text-align:right;">
+0.6910996
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+GROKY6004
+</td>
+<td style="text-align:left;">
+A
+</td>
+<td style="text-align:right;">
+1.0380695
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+QEYPL1702
+</td>
+<td style="text-align:left;">
+A
+</td>
+<td style="text-align:right;">
+1.3366934
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+KVCTL4245
+</td>
+<td style="text-align:left;">
+A
+</td>
+<td style="text-align:right;">
+0.5482420
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+JPFRB7291
+</td>
+<td style="text-align:left;">
+A
+</td>
+<td style="text-align:right;">
+0.3555761
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+RRYFL9967
+</td>
+<td style="text-align:left;">
+B
+</td>
+<td style="text-align:right;">
+0.2518943
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+XRNWJ1205
+</td>
+<td style="text-align:left;">
+B
+</td>
+<td style="text-align:right;">
+0.5427021
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+OLXHY4687
+</td>
+<td style="text-align:left;">
+B
+</td>
+<td style="text-align:right;">
+0.0797344
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+RYWRM7476
+</td>
+<td style="text-align:left;">
+B
+</td>
+<td style="text-align:right;">
+2.1533550
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+BZPWN4417
+</td>
+<td style="text-align:left;">
+B
+</td>
+<td style="text-align:right;">
+0.3020899
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+DXYHZ6481
+</td>
+<td style="text-align:left;">
+C
+</td>
+<td style="text-align:right;">
+1.2910100
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+MMPEW5637
+</td>
+<td style="text-align:left;">
+C
+</td>
+<td style="text-align:right;">
+1.8894510
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+PCIUJ0473
+</td>
+<td style="text-align:left;">
+C
+</td>
+<td style="text-align:right;">
+0.6348867
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+GNGZT3233
+</td>
+<td style="text-align:left;">
+C
+</td>
+<td style="text-align:right;">
+0.8754801
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+CVSCI9337
+</td>
+<td style="text-align:left;">
+C
+</td>
+<td style="text-align:right;">
+0.6716307
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><img src="images/tip_point.png" /></p>
+<p>Other parameters:</p>
+<ul>
+<li><p><strong>Manual color:</strong> Allows users to manually specify colors for different categories or values.</p></li>
+<li><p><strong>Column order:</strong> Determines the order in which columns are displayed in the plot.</p></li>
+<li><p><strong>Manual size:</strong> Allows users to manually specify size of points for different values.</p></li>
+<li><p><strong>Offset:</strong> Specifies the offset for the plot.</p></li>
+<li><p><strong>Legend:</strong> Controls the display of the legend for the plot.</p></li>
+<li><p><strong>Border color:</strong> Sets the color of the borders around plot tiles.</p></li>
+<li><p><strong>Border width:</strong> Adjusts the width of the borders around plot tiles.</p></li>
+<li><p><strong>Manual shape:</strong> Allows users to manually specify shape of points for different categories.</p></li>
+</ul>
+<p><img src="images/starshape.png" style="width:60.0%" /></p>
+<ul>
+<li><p><strong>Track height:</strong> Defines the height of the entire track.</p></li>
+<li><p><strong>Alpha:</strong> Sets the transparency level for the plot.</p></li>
+<li><p><strong>Grid:</strong> Enables or disables the grid lines in the plot.</p></li>
+<li><p><strong>Axis:</strong> Specifies whether to display axes for the plot.</p></li>
+<li><p><strong>Font size:</strong> Adjusts the size of the font used for labels.</p></li>
+<li><p><strong>Label angle:</strong> Sets the angle of the labels in the plot.</p></li>
+<li><p><strong>Label align:</strong> Controls the alignment of labels in the plot (e.g., top, bottom, center).</p></li>
+<li><p><strong>Align:</strong> Specifies whether to align all points.</p></li>
+</ul>
+</div>
+<div id="heatmap" class="section level2 hasAnchor" number="12.3">
+<h2><span class="header-section-number">12.3</span> Heatmap<a href="leaf-annotation-1.html#heatmap" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><strong>Specifying the track type of leaf as ‘tile’ enables the drawing of a heatmap:</strong></p>
+<p>Prepare the leaf annotation file:</p>
+<p>Choose ‘color’ as the column name containing the values we want to map.</p>
+<p>If the values are categorical, it will draw grouped color blocks.</p>
+<p><strong>Example data:</strong></p>
+<div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:300px; overflow-x: scroll; width:100%; ">
+<table class="table" style="font-size: 13px; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+id
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+group
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+OSQWA2679
+</td>
+<td style="text-align:left;">
+A
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ESRUW9777
+</td>
+<td style="text-align:left;">
+A
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+OFAGM8366
+</td>
+<td style="text-align:left;">
+A
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+NPJBL9744
+</td>
+<td style="text-align:left;">
+A
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+IXMJT4621
+</td>
+<td style="text-align:left;">
+A
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ITXUG9776
+</td>
+<td style="text-align:left;">
+A
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+GROKY6004
+</td>
+<td style="text-align:left;">
+A
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+QEYPL1702
+</td>
+<td style="text-align:left;">
+A
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+KVCTL4245
+</td>
+<td style="text-align:left;">
+A
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+JPFRB7291
+</td>
+<td style="text-align:left;">
+A
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+RRYFL9967
+</td>
+<td style="text-align:left;">
+B
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+XRNWJ1205
+</td>
+<td style="text-align:left;">
+B
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+OLXHY4687
+</td>
+<td style="text-align:left;">
+B
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+RYWRM7476
+</td>
+<td style="text-align:left;">
+B
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+BZPWN4417
+</td>
+<td style="text-align:left;">
+B
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+DXYHZ6481
+</td>
+<td style="text-align:left;">
+C
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+MMPEW5637
+</td>
+<td style="text-align:left;">
+C
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+PCIUJ0473
+</td>
+<td style="text-align:left;">
+C
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+GNGZT3233
+</td>
+<td style="text-align:left;">
+C
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+CVSCI9337
+</td>
+<td style="text-align:left;">
+C
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><img src="images/heatmap1.png" /></p>
+<p>If the values are continuous, it will draw a gradient of colors.</p>
+<p>Choose ‘column’ as the categorical variable (layer) for the heatmap, making it easy to draw multiple columns of heatmaps.</p>
+<p><strong>Example data:</strong></p>
+<div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:300px; overflow-x: scroll; width:100%; ">
+<table class="table" style="font-size: 13px; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+id
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+layer
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+value
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+OSQWA2679
+</td>
+<td style="text-align:left;">
+Layer1
+</td>
+<td style="text-align:right;">
+0.55
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ESRUW9777
+</td>
+<td style="text-align:left;">
+Layer1
+</td>
+<td style="text-align:right;">
+0.79
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+OFAGM8366
+</td>
+<td style="text-align:left;">
+Layer1
+</td>
+<td style="text-align:right;">
+1.01
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+NPJBL9744
+</td>
+<td style="text-align:left;">
+Layer1
+</td>
+<td style="text-align:right;">
+0.71
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+IXMJT4621
+</td>
+<td style="text-align:left;">
+Layer1
+</td>
+<td style="text-align:right;">
+0.16
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ITXUG9776
+</td>
+<td style="text-align:left;">
+Layer1
+</td>
+<td style="text-align:right;">
+0.12
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+GROKY6004
+</td>
+<td style="text-align:left;">
+Layer1
+</td>
+<td style="text-align:right;">
+0.32
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+QEYPL1702
+</td>
+<td style="text-align:left;">
+Layer1
+</td>
+<td style="text-align:right;">
+1.54
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+KVCTL4245
+</td>
+<td style="text-align:left;">
+Layer1
+</td>
+<td style="text-align:right;">
+0.56
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+JPFRB7291
+</td>
+<td style="text-align:left;">
+Layer1
+</td>
+<td style="text-align:right;">
+0.94
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+RRYFL9967
+</td>
+<td style="text-align:left;">
+Layer1
+</td>
+<td style="text-align:right;">
+0.94
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+XRNWJ1205
+</td>
+<td style="text-align:left;">
+Layer1
+</td>
+<td style="text-align:right;">
+0.19
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+OLXHY4687
+</td>
+<td style="text-align:left;">
+Layer1
+</td>
+<td style="text-align:right;">
+1.73
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+RYWRM7476
+</td>
+<td style="text-align:left;">
+Layer1
+</td>
+<td style="text-align:right;">
+0.93
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+BZPWN4417
+</td>
+<td style="text-align:left;">
+Layer1
+</td>
+<td style="text-align:right;">
+1.39
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+DXYHZ6481
+</td>
+<td style="text-align:left;">
+Layer1
+</td>
+<td style="text-align:right;">
+0.53
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+MMPEW5637
+</td>
+<td style="text-align:left;">
+Layer1
+</td>
+<td style="text-align:right;">
+0.82
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+PCIUJ0473
+</td>
+<td style="text-align:left;">
+Layer1
+</td>
+<td style="text-align:right;">
+1.67
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+GNGZT3233
+</td>
+<td style="text-align:left;">
+Layer1
+</td>
+<td style="text-align:right;">
+0.26
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+CVSCI9337
+</td>
+<td style="text-align:left;">
+Layer1
+</td>
+<td style="text-align:right;">
+1.68
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+OSQWA2679
+</td>
+<td style="text-align:left;">
+Layer2
+</td>
+<td style="text-align:right;">
+1.32
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ESRUW9777
+</td>
+<td style="text-align:left;">
+Layer2
+</td>
+<td style="text-align:right;">
+1.37
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+OFAGM8366
+</td>
+<td style="text-align:left;">
+Layer2
+</td>
+<td style="text-align:right;">
+0.36
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+NPJBL9744
+</td>
+<td style="text-align:left;">
+Layer2
+</td>
+<td style="text-align:right;">
+0.61
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+IXMJT4621
+</td>
+<td style="text-align:left;">
+Layer2
+</td>
+<td style="text-align:right;">
+0.49
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ITXUG9776
+</td>
+<td style="text-align:left;">
+Layer2
+</td>
+<td style="text-align:right;">
+0.18
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+GROKY6004
+</td>
+<td style="text-align:left;">
+Layer2
+</td>
+<td style="text-align:right;">
+0.27
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+QEYPL1702
+</td>
+<td style="text-align:left;">
+Layer2
+</td>
+<td style="text-align:right;">
+0.49
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+KVCTL4245
+</td>
+<td style="text-align:left;">
+Layer2
+</td>
+<td style="text-align:right;">
+0.16
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+JPFRB7291
+</td>
+<td style="text-align:left;">
+Layer2
+</td>
+<td style="text-align:right;">
+0.65
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+RRYFL9967
+</td>
+<td style="text-align:left;">
+Layer2
+</td>
+<td style="text-align:right;">
+1.16
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+XRNWJ1205
+</td>
+<td style="text-align:left;">
+Layer2
+</td>
+<td style="text-align:right;">
+0.59
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+OLXHY4687
+</td>
+<td style="text-align:left;">
+Layer2
+</td>
+<td style="text-align:right;">
+0.17
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+RYWRM7476
+</td>
+<td style="text-align:left;">
+Layer2
+</td>
+<td style="text-align:right;">
+0.62
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+BZPWN4417
+</td>
+<td style="text-align:left;">
+Layer2
+</td>
+<td style="text-align:right;">
+0.02
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+DXYHZ6481
+</td>
+<td style="text-align:left;">
+Layer2
+</td>
+<td style="text-align:right;">
+1.35
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+MMPEW5637
+</td>
+<td style="text-align:left;">
+Layer2
+</td>
+<td style="text-align:right;">
+0.22
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+PCIUJ0473
+</td>
+<td style="text-align:left;">
+Layer2
+</td>
+<td style="text-align:right;">
+1.43
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+GNGZT3233
+</td>
+<td style="text-align:left;">
+Layer2
+</td>
+<td style="text-align:right;">
+1.80
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+CVSCI9337
+</td>
+<td style="text-align:left;">
+Layer2
+</td>
+<td style="text-align:right;">
+1.83
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+OSQWA2679
+</td>
+<td style="text-align:left;">
+Layer3
+</td>
+<td style="text-align:right;">
+0.71
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ESRUW9777
+</td>
+<td style="text-align:left;">
+Layer3
+</td>
+<td style="text-align:right;">
+1.83
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+OFAGM8366
+</td>
+<td style="text-align:left;">
+Layer3
+</td>
+<td style="text-align:right;">
+0.76
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+NPJBL9744
+</td>
+<td style="text-align:left;">
+Layer3
+</td>
+<td style="text-align:right;">
+0.80
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+IXMJT4621
+</td>
+<td style="text-align:left;">
+Layer3
+</td>
+<td style="text-align:right;">
+0.53
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ITXUG9776
+</td>
+<td style="text-align:left;">
+Layer3
+</td>
+<td style="text-align:right;">
+0.94
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+GROKY6004
+</td>
+<td style="text-align:left;">
+Layer3
+</td>
+<td style="text-align:right;">
+0.40
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+QEYPL1702
+</td>
+<td style="text-align:left;">
+Layer3
+</td>
+<td style="text-align:right;">
+0.77
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+KVCTL4245
+</td>
+<td style="text-align:left;">
+Layer3
+</td>
+<td style="text-align:right;">
+0.03
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+JPFRB7291
+</td>
+<td style="text-align:left;">
+Layer3
+</td>
+<td style="text-align:right;">
+0.81
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+RRYFL9967
+</td>
+<td style="text-align:left;">
+Layer3
+</td>
+<td style="text-align:right;">
+0.17
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+XRNWJ1205
+</td>
+<td style="text-align:left;">
+Layer3
+</td>
+<td style="text-align:right;">
+1.36
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+OLXHY4687
+</td>
+<td style="text-align:left;">
+Layer3
+</td>
+<td style="text-align:right;">
+0.61
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+RYWRM7476
+</td>
+<td style="text-align:left;">
+Layer3
+</td>
+<td style="text-align:right;">
+1.27
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+BZPWN4417
+</td>
+<td style="text-align:left;">
+Layer3
+</td>
+<td style="text-align:right;">
+2.23
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+DXYHZ6481
+</td>
+<td style="text-align:left;">
+Layer3
+</td>
+<td style="text-align:right;">
+0.23
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+MMPEW5637
+</td>
+<td style="text-align:left;">
+Layer3
+</td>
+<td style="text-align:right;">
+1.14
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+PCIUJ0473
+</td>
+<td style="text-align:left;">
+Layer3
+</td>
+<td style="text-align:right;">
+0.09
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+GNGZT3233
+</td>
+<td style="text-align:left;">
+Layer3
+</td>
+<td style="text-align:right;">
+1.22
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+CVSCI9337
+</td>
+<td style="text-align:left;">
+Layer3
+</td>
+<td style="text-align:right;">
+0.08
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><img src="images/heatmap2.png" /></p>
+<p>Other parameters:</p>
+<ul>
+<li><p><strong>Manual color:</strong> Allows users to manually specify colors for different categories or values.</p></li>
+<li><p><strong>Column order:</strong> Determines the order in which columns are displayed in the heatmap.</p></li>
+<li><p><strong>Offset:</strong> Specifies the offset for the heatmap.</p></li>
+<li><p><strong>Legend:</strong> Controls the display of the legend for the heatmap.</p></li>
+<li><p><strong>Border color:</strong> Sets the color of the borders around heatmap tiles.</p></li>
+<li><p><strong>Border width:</strong> Adjusts the width of the borders around heatmap tiles.</p></li>
+<li><p><strong>Track height:</strong> Defines the height of the entire track.</p></li>
+<li><p><strong>Alpha:</strong> Sets the transparency level for the heatmap tiles.</p></li>
+<li><p><strong>Grid:</strong> Enables or disables the grid lines in the heatmap.</p></li>
+<li><p><strong>Axis:</strong> Specifies whether to display axes for the heatmap.</p></li>
+<li><p><strong>Font size:</strong> Adjusts the size of the font used for labels.</p></li>
+<li><p><strong>Label angle:</strong> Sets the angle of the labels in the heatmap.</p></li>
+<li><p><strong>Label align:</strong> Controls the alignment of labels in the heatmap (e.g., top, bottom, center).</p></li>
+</ul>
+</div>
+<div id="bar-plot" class="section level2 hasAnchor" number="12.4">
+<h2><span class="header-section-number">12.4</span> Bar plot<a href="leaf-annotation-1.html#bar-plot" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><strong>Specifying the track type of leaf as ‘bar’ enables the drawing of a bar plot:</strong></p>
+<p>Prepare the leaf annotation file:</p>
+<p>Choose ‘color’ as the column name containing the values we want to map. If the values are categorical, it will draw grouped color blocks. If the values are continuous, it will draw a gradient of colors.</p>
+<p>Choose ‘column’ as the continuous variable (value) for the bar plot, it will be the y-axis value of each leaf.</p>
+<p><strong>Example data:</strong></p>
+<div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:300px; overflow-x: scroll; width:100%; ">
+<table class="table" style="font-size: 13px; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+id
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+group
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+value
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+OSQWA2679
+</td>
+<td style="text-align:left;">
+A
+</td>
+<td style="text-align:right;">
+0.3454520
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ESRUW9777
+</td>
+<td style="text-align:left;">
+A
+</td>
+<td style="text-align:right;">
+1.3195295
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+OFAGM8366
+</td>
+<td style="text-align:left;">
+A
+</td>
+<td style="text-align:right;">
+0.5200337
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+NPJBL9744
+</td>
+<td style="text-align:left;">
+A
+</td>
+<td style="text-align:right;">
+1.1939274
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+IXMJT4621
+</td>
+<td style="text-align:left;">
+A
+</td>
+<td style="text-align:right;">
+1.1706463
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ITXUG9776
+</td>
+<td style="text-align:left;">
+A
+</td>
+<td style="text-align:right;">
+0.6910996
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+GROKY6004
+</td>
+<td style="text-align:left;">
+A
+</td>
+<td style="text-align:right;">
+1.0380695
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+QEYPL1702
+</td>
+<td style="text-align:left;">
+A
+</td>
+<td style="text-align:right;">
+1.3366934
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+KVCTL4245
+</td>
+<td style="text-align:left;">
+A
+</td>
+<td style="text-align:right;">
+0.5482420
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+JPFRB7291
+</td>
+<td style="text-align:left;">
+A
+</td>
+<td style="text-align:right;">
+0.3555761
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+RRYFL9967
+</td>
+<td style="text-align:left;">
+B
+</td>
+<td style="text-align:right;">
+0.2518943
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+XRNWJ1205
+</td>
+<td style="text-align:left;">
+B
+</td>
+<td style="text-align:right;">
+0.5427021
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+OLXHY4687
+</td>
+<td style="text-align:left;">
+B
+</td>
+<td style="text-align:right;">
+0.0797344
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+RYWRM7476
+</td>
+<td style="text-align:left;">
+B
+</td>
+<td style="text-align:right;">
+2.1533550
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+BZPWN4417
+</td>
+<td style="text-align:left;">
+B
+</td>
+<td style="text-align:right;">
+0.3020899
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+DXYHZ6481
+</td>
+<td style="text-align:left;">
+C
+</td>
+<td style="text-align:right;">
+1.2910100
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+MMPEW5637
+</td>
+<td style="text-align:left;">
+C
+</td>
+<td style="text-align:right;">
+1.8894510
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+PCIUJ0473
+</td>
+<td style="text-align:left;">
+C
+</td>
+<td style="text-align:right;">
+0.6348867
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+GNGZT3233
+</td>
+<td style="text-align:left;">
+C
+</td>
+<td style="text-align:right;">
+0.8754801
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+CVSCI9337
+</td>
+<td style="text-align:left;">
+C
+</td>
+<td style="text-align:right;">
+0.6716307
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><img src="images/bar.png" /></p>
+<p>Other parameters:</p>
+<ul>
+<li><p><strong>Manual color:</strong> Allows users to manually specify colors for different categories or values.</p></li>
+<li><p><strong>Column order:</strong> Determines the order in which columns are displayed in the plot.</p></li>
+<li><p><strong>Offset:</strong> Specifies the offset for the plot.</p></li>
+<li><p><strong>Legend:</strong> Controls the display of the legend for the plot.</p></li>
+<li><p><strong>Border color:</strong> Sets the color of the borders around plot tiles.</p></li>
+<li><p><strong>Border width:</strong> Adjusts the width of the borders around plot tiles.</p></li>
+<li><p><strong>Track height:</strong> Defines the height of the entire track.</p></li>
+<li><p><strong>Alpha:</strong> Sets the transparency level for the plot.</p></li>
+<li><p><strong>Grid:</strong> Enables or disables the grid lines in the plot.</p></li>
+<li><p><strong>Axis:</strong> Specifies whether to display axes for the plot.</p></li>
+<li><p><strong>Font size:</strong> Adjusts the size of the font used for labels.</p></li>
+<li><p><strong>Label angle:</strong> Sets the angle of the labels in the plot.</p></li>
+<li><p><strong>Label align:</strong> Controls the alignment of labels in the plot (e.g., top, bottom, center).</p></li>
+</ul>
+</div>
+<div id="bubble-plot" class="section level2 hasAnchor" number="12.5">
+<h2><span class="header-section-number">12.5</span> Bubble plot<a href="leaf-annotation-1.html#bubble-plot" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><strong>Specifying the track type of leaf as ‘tip point’ enables the drawing of a bubble plot:</strong></p>
+<p>Prepare the leaf annotation file:</p>
+<p>Choose ‘color’ as the column name containing the values we want to map. If the values are continuous, it will draw a gradient of colors.</p>
+<p>Choose ‘column’ as the categorical variable (layer) for the bubble plot, making it easy to draw multiple columns of bubble plot.</p>
+<p>Choose ‘column’ as the categorical variable (layer) for the bubble plot, making it easy to draw multiple columns of bubble plot.</p>
+<p>Choose ‘size’ as the continuous variable for the bubble plot.</p>
+<p><strong>Example data:</strong></p>
+<div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:300px; overflow-x: scroll; width:100%; ">
+<table class="table" style="font-size: 13px; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+id
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+layer
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+value
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+OSQWA2679
+</td>
+<td style="text-align:left;">
+Layer1
+</td>
+<td style="text-align:right;">
+0.55
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ESRUW9777
+</td>
+<td style="text-align:left;">
+Layer1
+</td>
+<td style="text-align:right;">
+0.79
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+OFAGM8366
+</td>
+<td style="text-align:left;">
+Layer1
+</td>
+<td style="text-align:right;">
+1.01
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+NPJBL9744
+</td>
+<td style="text-align:left;">
+Layer1
+</td>
+<td style="text-align:right;">
+0.71
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+IXMJT4621
+</td>
+<td style="text-align:left;">
+Layer1
+</td>
+<td style="text-align:right;">
+0.16
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ITXUG9776
+</td>
+<td style="text-align:left;">
+Layer1
+</td>
+<td style="text-align:right;">
+0.12
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+GROKY6004
+</td>
+<td style="text-align:left;">
+Layer1
+</td>
+<td style="text-align:right;">
+0.32
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+QEYPL1702
+</td>
+<td style="text-align:left;">
+Layer1
+</td>
+<td style="text-align:right;">
+1.54
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+KVCTL4245
+</td>
+<td style="text-align:left;">
+Layer1
+</td>
+<td style="text-align:right;">
+0.56
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+JPFRB7291
+</td>
+<td style="text-align:left;">
+Layer1
+</td>
+<td style="text-align:right;">
+0.94
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+RRYFL9967
+</td>
+<td style="text-align:left;">
+Layer1
+</td>
+<td style="text-align:right;">
+0.94
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+XRNWJ1205
+</td>
+<td style="text-align:left;">
+Layer1
+</td>
+<td style="text-align:right;">
+0.19
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+OLXHY4687
+</td>
+<td style="text-align:left;">
+Layer1
+</td>
+<td style="text-align:right;">
+1.73
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+RYWRM7476
+</td>
+<td style="text-align:left;">
+Layer1
+</td>
+<td style="text-align:right;">
+0.93
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+BZPWN4417
+</td>
+<td style="text-align:left;">
+Layer1
+</td>
+<td style="text-align:right;">
+1.39
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+DXYHZ6481
+</td>
+<td style="text-align:left;">
+Layer1
+</td>
+<td style="text-align:right;">
+0.53
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+MMPEW5637
+</td>
+<td style="text-align:left;">
+Layer1
+</td>
+<td style="text-align:right;">
+0.82
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+PCIUJ0473
+</td>
+<td style="text-align:left;">
+Layer1
+</td>
+<td style="text-align:right;">
+1.67
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+GNGZT3233
+</td>
+<td style="text-align:left;">
+Layer1
+</td>
+<td style="text-align:right;">
+0.26
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+CVSCI9337
+</td>
+<td style="text-align:left;">
+Layer1
+</td>
+<td style="text-align:right;">
+1.68
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+OSQWA2679
+</td>
+<td style="text-align:left;">
+Layer2
+</td>
+<td style="text-align:right;">
+1.32
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ESRUW9777
+</td>
+<td style="text-align:left;">
+Layer2
+</td>
+<td style="text-align:right;">
+1.37
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+OFAGM8366
+</td>
+<td style="text-align:left;">
+Layer2
+</td>
+<td style="text-align:right;">
+0.36
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+NPJBL9744
+</td>
+<td style="text-align:left;">
+Layer2
+</td>
+<td style="text-align:right;">
+0.61
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+IXMJT4621
+</td>
+<td style="text-align:left;">
+Layer2
+</td>
+<td style="text-align:right;">
+0.49
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ITXUG9776
+</td>
+<td style="text-align:left;">
+Layer2
+</td>
+<td style="text-align:right;">
+0.18
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+GROKY6004
+</td>
+<td style="text-align:left;">
+Layer2
+</td>
+<td style="text-align:right;">
+0.27
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+QEYPL1702
+</td>
+<td style="text-align:left;">
+Layer2
+</td>
+<td style="text-align:right;">
+0.49
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+KVCTL4245
+</td>
+<td style="text-align:left;">
+Layer2
+</td>
+<td style="text-align:right;">
+0.16
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+JPFRB7291
+</td>
+<td style="text-align:left;">
+Layer2
+</td>
+<td style="text-align:right;">
+0.65
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+RRYFL9967
+</td>
+<td style="text-align:left;">
+Layer2
+</td>
+<td style="text-align:right;">
+1.16
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+XRNWJ1205
+</td>
+<td style="text-align:left;">
+Layer2
+</td>
+<td style="text-align:right;">
+0.59
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+OLXHY4687
+</td>
+<td style="text-align:left;">
+Layer2
+</td>
+<td style="text-align:right;">
+0.17
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+RYWRM7476
+</td>
+<td style="text-align:left;">
+Layer2
+</td>
+<td style="text-align:right;">
+0.62
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+BZPWN4417
+</td>
+<td style="text-align:left;">
+Layer2
+</td>
+<td style="text-align:right;">
+0.02
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+DXYHZ6481
+</td>
+<td style="text-align:left;">
+Layer2
+</td>
+<td style="text-align:right;">
+1.35
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+MMPEW5637
+</td>
+<td style="text-align:left;">
+Layer2
+</td>
+<td style="text-align:right;">
+0.22
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+PCIUJ0473
+</td>
+<td style="text-align:left;">
+Layer2
+</td>
+<td style="text-align:right;">
+1.43
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+GNGZT3233
+</td>
+<td style="text-align:left;">
+Layer2
+</td>
+<td style="text-align:right;">
+1.80
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+CVSCI9337
+</td>
+<td style="text-align:left;">
+Layer2
+</td>
+<td style="text-align:right;">
+1.83
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+OSQWA2679
+</td>
+<td style="text-align:left;">
+Layer3
+</td>
+<td style="text-align:right;">
+0.71
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ESRUW9777
+</td>
+<td style="text-align:left;">
+Layer3
+</td>
+<td style="text-align:right;">
+1.83
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+OFAGM8366
+</td>
+<td style="text-align:left;">
+Layer3
+</td>
+<td style="text-align:right;">
+0.76
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+NPJBL9744
+</td>
+<td style="text-align:left;">
+Layer3
+</td>
+<td style="text-align:right;">
+0.80
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+IXMJT4621
+</td>
+<td style="text-align:left;">
+Layer3
+</td>
+<td style="text-align:right;">
+0.53
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ITXUG9776
+</td>
+<td style="text-align:left;">
+Layer3
+</td>
+<td style="text-align:right;">
+0.94
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+GROKY6004
+</td>
+<td style="text-align:left;">
+Layer3
+</td>
+<td style="text-align:right;">
+0.40
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+QEYPL1702
+</td>
+<td style="text-align:left;">
+Layer3
+</td>
+<td style="text-align:right;">
+0.77
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+KVCTL4245
+</td>
+<td style="text-align:left;">
+Layer3
+</td>
+<td style="text-align:right;">
+0.03
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+JPFRB7291
+</td>
+<td style="text-align:left;">
+Layer3
+</td>
+<td style="text-align:right;">
+0.81
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+RRYFL9967
+</td>
+<td style="text-align:left;">
+Layer3
+</td>
+<td style="text-align:right;">
+0.17
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+XRNWJ1205
+</td>
+<td style="text-align:left;">
+Layer3
+</td>
+<td style="text-align:right;">
+1.36
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+OLXHY4687
+</td>
+<td style="text-align:left;">
+Layer3
+</td>
+<td style="text-align:right;">
+0.61
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+RYWRM7476
+</td>
+<td style="text-align:left;">
+Layer3
+</td>
+<td style="text-align:right;">
+1.27
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+BZPWN4417
+</td>
+<td style="text-align:left;">
+Layer3
+</td>
+<td style="text-align:right;">
+2.23
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+DXYHZ6481
+</td>
+<td style="text-align:left;">
+Layer3
+</td>
+<td style="text-align:right;">
+0.23
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+MMPEW5637
+</td>
+<td style="text-align:left;">
+Layer3
+</td>
+<td style="text-align:right;">
+1.14
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+PCIUJ0473
+</td>
+<td style="text-align:left;">
+Layer3
+</td>
+<td style="text-align:right;">
+0.09
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+GNGZT3233
+</td>
+<td style="text-align:left;">
+Layer3
+</td>
+<td style="text-align:right;">
+1.22
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+CVSCI9337
+</td>
+<td style="text-align:left;">
+Layer3
+</td>
+<td style="text-align:right;">
+0.08
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><img src="images/bubble.png" /></p>
+<p>Other parameters:</p>
+<ul>
+<li><p><strong>Manual color:</strong> Allows users to manually specify colors for different categories or values.</p></li>
+<li><p><strong>Column order:</strong> Determines the order in which columns are displayed in the plot.</p></li>
+<li><p><strong>Manual size:</strong> Allows users to manually specify size of points for different values.</p></li>
+<li><p><strong>Offset:</strong> Specifies the offset for the plot.</p></li>
+<li><p><strong>Legend:</strong> Controls the display of the legend for the plot.</p></li>
+<li><p><strong>Border color:</strong> Sets the color of the borders around plot tiles.</p></li>
+<li><p><strong>Border width:</strong> Adjusts the width of the borders around plot tiles.</p></li>
+<li><p><strong>Shape:</strong> Allows users to mapping shape of points.</p></li>
+<li><p><strong>Manual shape:</strong> Allows users to manually specify shape of points for different categories.</p></li>
+</ul>
+<p><img src="images/starshape.png" style="width:60.0%" /></p>
+<ul>
+<li><p><strong>Track height:</strong> Defines the height of the entire track.</p></li>
+<li><p><strong>Alpha:</strong> Sets the transparency level for the plot.</p></li>
+<li><p><strong>Grid:</strong> Enables or disables the grid lines in the plot.</p></li>
+<li><p><strong>Axis:</strong> Specifies whether to display axes for the plot.</p></li>
+<li><p><strong>Font size:</strong> Adjusts the size of the font used for labels.</p></li>
+<li><p><strong>Label angle:</strong> Sets the angle of the labels in the plot.</p></li>
+<li><p><strong>Label align:</strong> Controls the alignment of labels in the plot (e.g., top, bottom, center).</p></li>
+<li><p><strong>Align:</strong> Specifies whether to align all points.</p></li>
+</ul>
+</div>
+<div id="box-plot" class="section level2 hasAnchor" number="12.6">
+<h2><span class="header-section-number">12.6</span> Box plot<a href="leaf-annotation-1.html#box-plot" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><strong>Specifying the track type of leaf as ‘box’ enables the drawing of a box plot:</strong></p>
+<p>Prepare the leaf annotation file:</p>
+<p>Choose ‘column’ as the continuous variable (value) for the box plot, it will be the y-axis value of each leaf.</p>
+<p><strong>Example data:</strong></p>
+<div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:300px; overflow-x: scroll; width:100%; ">
+<table class="table" style="font-size: 13px; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+id
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+value
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+OSQWA2679
+</td>
+<td style="text-align:right;">
+1.7139226
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ESRUW9777
+</td>
+<td style="text-align:right;">
+0.1692439
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+OFAGM8366
+</td>
+<td style="text-align:right;">
+0.7890045
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+NPJBL9744
+</td>
+<td style="text-align:right;">
+0.1380269
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+IXMJT4621
+</td>
+<td style="text-align:right;">
+2.5331384
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ITXUG9776
+</td>
+<td style="text-align:right;">
+0.1402700
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+GROKY6004
+</td>
+<td style="text-align:right;">
+0.0877751
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+QEYPL1702
+</td>
+<td style="text-align:right;">
+0.3324896
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+KVCTL4245
+</td>
+<td style="text-align:right;">
+0.4958188
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+JPFRB7291
+</td>
+<td style="text-align:right;">
+1.6763859
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+RRYFL9967
+</td>
+<td style="text-align:right;">
+0.7254029
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+XRNWJ1205
+</td>
+<td style="text-align:right;">
+0.8223092
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+OLXHY4687
+</td>
+<td style="text-align:right;">
+0.5365051
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+RYWRM7476
+</td>
+<td style="text-align:right;">
+0.1955164
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+BZPWN4417
+</td>
+<td style="text-align:right;">
+1.6762909
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+DXYHZ6481
+</td>
+<td style="text-align:right;">
+0.0495314
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+MMPEW5637
+</td>
+<td style="text-align:right;">
+0.0134147
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+PCIUJ0473
+</td>
+<td style="text-align:right;">
+0.8426530
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+GNGZT3233
+</td>
+<td style="text-align:right;">
+1.0146761
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+CVSCI9337
+</td>
+<td style="text-align:right;">
+0.1381128
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+OSQWA2679
+</td>
+<td style="text-align:right;">
+1.1391237
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ESRUW9777
+</td>
+<td style="text-align:right;">
+0.6916754
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+OFAGM8366
+</td>
+<td style="text-align:right;">
+3.4170925
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+NPJBL9744
+</td>
+<td style="text-align:right;">
+0.3702410
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+IXMJT4621
+</td>
+<td style="text-align:right;">
+0.6876392
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ITXUG9776
+</td>
+<td style="text-align:right;">
+0.3520154
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+GROKY6004
+</td>
+<td style="text-align:right;">
+1.0738444
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+QEYPL1702
+</td>
+<td style="text-align:right;">
+1.2603112
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+KVCTL4245
+</td>
+<td style="text-align:right;">
+0.4417195
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+JPFRB7291
+</td>
+<td style="text-align:right;">
+0.0543929
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+RRYFL9967
+</td>
+<td style="text-align:right;">
+1.3202823
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+XRNWJ1205
+</td>
+<td style="text-align:right;">
+1.2026172
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+OLXHY4687
+</td>
+<td style="text-align:right;">
+0.2408666
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+RYWRM7476
+</td>
+<td style="text-align:right;">
+0.5810605
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+BZPWN4417
+</td>
+<td style="text-align:right;">
+0.3973637
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+DXYHZ6481
+</td>
+<td style="text-align:right;">
+1.1037415
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+MMPEW5637
+</td>
+<td style="text-align:right;">
+0.2369583
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+PCIUJ0473
+</td>
+<td style="text-align:right;">
+1.2722285
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+GNGZT3233
+</td>
+<td style="text-align:right;">
+1.0196708
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+CVSCI9337
+</td>
+<td style="text-align:right;">
+1.5938927
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+OSQWA2679
+</td>
+<td style="text-align:right;">
+0.4049199
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ESRUW9777
+</td>
+<td style="text-align:right;">
+0.0034813
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+OFAGM8366
+</td>
+<td style="text-align:right;">
+0.4912153
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+NPJBL9744
+</td>
+<td style="text-align:right;">
+0.8548826
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+IXMJT4621
+</td>
+<td style="text-align:right;">
+2.2421701
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ITXUG9776
+</td>
+<td style="text-align:right;">
+1.2994069
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+GROKY6004
+</td>
+<td style="text-align:right;">
+0.8203667
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+QEYPL1702
+</td>
+<td style="text-align:right;">
+1.0513009
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+KVCTL4245
+</td>
+<td style="text-align:right;">
+0.2231083
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+JPFRB7291
+</td>
+<td style="text-align:right;">
+0.3680792
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+RRYFL9967
+</td>
+<td style="text-align:right;">
+0.0249564
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+XRNWJ1205
+</td>
+<td style="text-align:right;">
+1.5978399
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+OLXHY4687
+</td>
+<td style="text-align:right;">
+0.3452257
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+RYWRM7476
+</td>
+<td style="text-align:right;">
+1.4500343
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+BZPWN4417
+</td>
+<td style="text-align:right;">
+0.2521606
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+DXYHZ6481
+</td>
+<td style="text-align:right;">
+1.8992152
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+MMPEW5637
+</td>
+<td style="text-align:right;">
+0.0139672
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+PCIUJ0473
+</td>
+<td style="text-align:right;">
+0.3236669
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+GNGZT3233
+</td>
+<td style="text-align:right;">
+0.0316505
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+CVSCI9337
+</td>
+<td style="text-align:right;">
+0.1521737
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+OSQWA2679
+</td>
+<td style="text-align:right;">
+1.8386026
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ESRUW9777
+</td>
+<td style="text-align:right;">
+0.3293844
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+OFAGM8366
+</td>
+<td style="text-align:right;">
+0.8225729
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+NPJBL9744
+</td>
+<td style="text-align:right;">
+1.3337066
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+IXMJT4621
+</td>
+<td style="text-align:right;">
+1.4325406
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ITXUG9776
+</td>
+<td style="text-align:right;">
+0.4031323
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+GROKY6004
+</td>
+<td style="text-align:right;">
+0.0139731
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+QEYPL1702
+</td>
+<td style="text-align:right;">
+1.1990303
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+KVCTL4245
+</td>
+<td style="text-align:right;">
+0.7451819
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+JPFRB7291
+</td>
+<td style="text-align:right;">
+1.4913384
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+RRYFL9967
+</td>
+<td style="text-align:right;">
+0.8062194
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+XRNWJ1205
+</td>
+<td style="text-align:right;">
+0.8239946
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+OLXHY4687
+</td>
+<td style="text-align:right;">
+1.5079721
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+RYWRM7476
+</td>
+<td style="text-align:right;">
+1.0203457
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+BZPWN4417
+</td>
+<td style="text-align:right;">
+0.6194179
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+DXYHZ6481
+</td>
+<td style="text-align:right;">
+2.0465736
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+MMPEW5637
+</td>
+<td style="text-align:right;">
+0.8001764
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+PCIUJ0473
+</td>
+<td style="text-align:right;">
+0.0208043
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+GNGZT3233
+</td>
+<td style="text-align:right;">
+0.5763465
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+CVSCI9337
+</td>
+<td style="text-align:right;">
+1.1345368
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+OSQWA2679
+</td>
+<td style="text-align:right;">
+0.8864298
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ESRUW9777
+</td>
+<td style="text-align:right;">
+0.0402544
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+OFAGM8366
+</td>
+<td style="text-align:right;">
+2.0405460
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+NPJBL9744
+</td>
+<td style="text-align:right;">
+0.3900764
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+IXMJT4621
+</td>
+<td style="text-align:right;">
+0.5319518
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ITXUG9776
+</td>
+<td style="text-align:right;">
+0.6353661
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+GROKY6004
+</td>
+<td style="text-align:right;">
+0.1376743
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+QEYPL1702
+</td>
+<td style="text-align:right;">
+0.1912515
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+KVCTL4245
+</td>
+<td style="text-align:right;">
+0.3128723
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+JPFRB7291
+</td>
+<td style="text-align:right;">
+0.3461296
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+RRYFL9967
+</td>
+<td style="text-align:right;">
+1.9989839
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+XRNWJ1205
+</td>
+<td style="text-align:right;">
+1.0400758
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+OLXHY4687
+</td>
+<td style="text-align:right;">
+0.5526598
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+RYWRM7476
+</td>
+<td style="text-align:right;">
+1.5144789
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+BZPWN4417
+</td>
+<td style="text-align:right;">
+0.3811676
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+DXYHZ6481
+</td>
+<td style="text-align:right;">
+1.1819449
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+MMPEW5637
+</td>
+<td style="text-align:right;">
+0.2991659
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+PCIUJ0473
+</td>
+<td style="text-align:right;">
+0.7365343
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+GNGZT3233
+</td>
+<td style="text-align:right;">
+1.0422128
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+CVSCI9337
+</td>
+<td style="text-align:right;">
+0.1700525
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+OSQWA2679
+</td>
+<td style="text-align:right;">
+0.1747209
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ESRUW9777
+</td>
+<td style="text-align:right;">
+1.4388000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+OFAGM8366
+</td>
+<td style="text-align:right;">
+0.8022827
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+NPJBL9744
+</td>
+<td style="text-align:right;">
+1.2308044
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+IXMJT4621
+</td>
+<td style="text-align:right;">
+0.5257156
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ITXUG9776
+</td>
+<td style="text-align:right;">
+1.0239022
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+GROKY6004
+</td>
+<td style="text-align:right;">
+0.9037053
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+QEYPL1702
+</td>
+<td style="text-align:right;">
+1.3148140
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+KVCTL4245
+</td>
+<td style="text-align:right;">
+1.6196226
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+JPFRB7291
+</td>
+<td style="text-align:right;">
+0.7776291
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+RRYFL9967
+</td>
+<td style="text-align:right;">
+0.3716507
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+XRNWJ1205
+</td>
+<td style="text-align:right;">
+2.3177442
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+OLXHY4687
+</td>
+<td style="text-align:right;">
+0.3851916
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+RYWRM7476
+</td>
+<td style="text-align:right;">
+0.1991026
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+BZPWN4417
+</td>
+<td style="text-align:right;">
+0.1176758
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+DXYHZ6481
+</td>
+<td style="text-align:right;">
+0.4453197
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+MMPEW5637
+</td>
+<td style="text-align:right;">
+1.0093290
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+PCIUJ0473
+</td>
+<td style="text-align:right;">
+0.5976304
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+GNGZT3233
+</td>
+<td style="text-align:right;">
+0.4727152
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+CVSCI9337
+</td>
+<td style="text-align:right;">
+0.0003796
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+OSQWA2679
+</td>
+<td style="text-align:right;">
+1.1199306
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ESRUW9777
+</td>
+<td style="text-align:right;">
+1.3958571
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+OFAGM8366
+</td>
+<td style="text-align:right;">
+0.7234590
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+NPJBL9744
+</td>
+<td style="text-align:right;">
+0.4626633
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+IXMJT4621
+</td>
+<td style="text-align:right;">
+0.9788236
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ITXUG9776
+</td>
+<td style="text-align:right;">
+1.5865962
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+GROKY6004
+</td>
+<td style="text-align:right;">
+1.4471481
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+QEYPL1702
+</td>
+<td style="text-align:right;">
+1.0109909
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+KVCTL4245
+</td>
+<td style="text-align:right;">
+2.1631712
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+JPFRB7291
+</td>
+<td style="text-align:right;">
+0.3460799
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+RRYFL9967
+</td>
+<td style="text-align:right;">
+0.7885243
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+XRNWJ1205
+</td>
+<td style="text-align:right;">
+0.8841424
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+OLXHY4687
+</td>
+<td style="text-align:right;">
+0.6062781
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+RYWRM7476
+</td>
+<td style="text-align:right;">
+0.1444490
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+BZPWN4417
+</td>
+<td style="text-align:right;">
+2.1969155
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+DXYHZ6481
+</td>
+<td style="text-align:right;">
+0.9013570
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+MMPEW5637
+</td>
+<td style="text-align:right;">
+1.3755314
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+PCIUJ0473
+</td>
+<td style="text-align:right;">
+0.5871956
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+GNGZT3233
+</td>
+<td style="text-align:right;">
+1.2236890
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+CVSCI9337
+</td>
+<td style="text-align:right;">
+0.1966324
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+OSQWA2679
+</td>
+<td style="text-align:right;">
+1.1804610
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ESRUW9777
+</td>
+<td style="text-align:right;">
+0.6567064
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+OFAGM8366
+</td>
+<td style="text-align:right;">
+0.3153820
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+NPJBL9744
+</td>
+<td style="text-align:right;">
+2.6317379
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+IXMJT4621
+</td>
+<td style="text-align:right;">
+0.5318544
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ITXUG9776
+</td>
+<td style="text-align:right;">
+0.5783791
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+GROKY6004
+</td>
+<td style="text-align:right;">
+0.9792216
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+QEYPL1702
+</td>
+<td style="text-align:right;">
+0.6389339
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+KVCTL4245
+</td>
+<td style="text-align:right;">
+2.0289271
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+JPFRB7291
+</td>
+<td style="text-align:right;">
+0.7357921
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+RRYFL9967
+</td>
+<td style="text-align:right;">
+0.0724318
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+XRNWJ1205
+</td>
+<td style="text-align:right;">
+0.2830424
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+OLXHY4687
+</td>
+<td style="text-align:right;">
+0.0475461
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+RYWRM7476
+</td>
+<td style="text-align:right;">
+0.5188582
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+BZPWN4417
+</td>
+<td style="text-align:right;">
+1.1795441
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+DXYHZ6481
+</td>
+<td style="text-align:right;">
+0.2921048
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+MMPEW5637
+</td>
+<td style="text-align:right;">
+0.7915654
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+PCIUJ0473
+</td>
+<td style="text-align:right;">
+0.1252748
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+GNGZT3233
+</td>
+<td style="text-align:right;">
+0.4395111
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+CVSCI9337
+</td>
+<td style="text-align:right;">
+1.0279077
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+OSQWA2679
+</td>
+<td style="text-align:right;">
+0.2523669
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ESRUW9777
+</td>
+<td style="text-align:right;">
+0.0228920
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+OFAGM8366
+</td>
+<td style="text-align:right;">
+0.7660293
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+NPJBL9744
+</td>
+<td style="text-align:right;">
+0.4806514
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+IXMJT4621
+</td>
+<td style="text-align:right;">
+1.4311540
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ITXUG9776
+</td>
+<td style="text-align:right;">
+0.5941172
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+GROKY6004
+</td>
+<td style="text-align:right;">
+1.0895659
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+QEYPL1702
+</td>
+<td style="text-align:right;">
+2.0600244
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+KVCTL4245
+</td>
+<td style="text-align:right;">
+1.5102025
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+JPFRB7291
+</td>
+<td style="text-align:right;">
+0.4385944
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+RRYFL9967
+</td>
+<td style="text-align:right;">
+1.0164413
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+XRNWJ1205
+</td>
+<td style="text-align:right;">
+1.4155280
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+OLXHY4687
+</td>
+<td style="text-align:right;">
+0.8617560
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+RYWRM7476
+</td>
+<td style="text-align:right;">
+0.7761275
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+BZPWN4417
+</td>
+<td style="text-align:right;">
+1.3001602
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+DXYHZ6481
+</td>
+<td style="text-align:right;">
+0.4010517
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+MMPEW5637
+</td>
+<td style="text-align:right;">
+0.2601128
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+PCIUJ0473
+</td>
+<td style="text-align:right;">
+0.1800129
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+GNGZT3233
+</td>
+<td style="text-align:right;">
+0.6271655
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+CVSCI9337
+</td>
+<td style="text-align:right;">
+1.5569636
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+OSQWA2679
+</td>
+<td style="text-align:right;">
+1.1516524
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ESRUW9777
+</td>
+<td style="text-align:right;">
+0.6992130
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+OFAGM8366
+</td>
+<td style="text-align:right;">
+1.9920143
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+NPJBL9744
+</td>
+<td style="text-align:right;">
+0.3106052
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+IXMJT4621
+</td>
+<td style="text-align:right;">
+0.4364596
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ITXUG9776
+</td>
+<td style="text-align:right;">
+2.4271736
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+GROKY6004
+</td>
+<td style="text-align:right;">
+0.3010645
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+QEYPL1702
+</td>
+<td style="text-align:right;">
+1.1296851
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+KVCTL4245
+</td>
+<td style="text-align:right;">
+1.1725890
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+JPFRB7291
+</td>
+<td style="text-align:right;">
+1.4492794
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+RRYFL9967
+</td>
+<td style="text-align:right;">
+0.3099543
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+XRNWJ1205
+</td>
+<td style="text-align:right;">
+0.8783183
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+OLXHY4687
+</td>
+<td style="text-align:right;">
+0.5560619
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+RYWRM7476
+</td>
+<td style="text-align:right;">
+1.1508815
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+BZPWN4417
+</td>
+<td style="text-align:right;">
+0.4008188
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+DXYHZ6481
+</td>
+<td style="text-align:right;">
+0.3066845
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+MMPEW5637
+</td>
+<td style="text-align:right;">
+0.1228437
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+PCIUJ0473
+</td>
+<td style="text-align:right;">
+0.3823029
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+GNGZT3233
+</td>
+<td style="text-align:right;">
+0.0567727
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+CVSCI9337
+</td>
+<td style="text-align:right;">
+0.6852805
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><img src="images/box.png" /></p>
+<p>Other parameters:</p>
+<ul>
+<li><p><strong>Manual color:</strong> Allows users to manually specify colors for different categories or values.</p></li>
+<li><p><strong>Column order:</strong> Determines the order in which columns are displayed in the plot.</p></li>
+<li><p><strong>Offset:</strong> Specifies the offset for the plot.</p></li>
+<li><p><strong>Legend:</strong> Controls the display of the legend for the plot.</p></li>
+<li><p><strong>Border color:</strong> Sets the color of the borders around plot tiles.</p></li>
+<li><p><strong>Border width:</strong> Adjusts the width of the borders around plot tiles.</p></li>
+<li><p><strong>Track height:</strong> Defines the height of the entire track.</p></li>
+<li><p><strong>Alpha:</strong> Sets the transparency level for the plot.</p></li>
+<li><p><strong>Grid:</strong> Enables or disables the grid lines in the plot.</p></li>
+<li><p><strong>Axis:</strong> Specifies whether to display axes for the plot.</p></li>
+<li><p><strong>Font size:</strong> Adjusts the size of the font used for labels.</p></li>
+<li><p><strong>Label angle:</strong> Sets the angle of the labels in the plot.</p></li>
+<li><p><strong>Label align:</strong> Controls the alignment of labels in the plot (e.g., top, bottom, center).</p></li>
+</ul>
+</div>
+<div id="violin-plot" class="section level2 hasAnchor" number="12.7">
+<h2><span class="header-section-number">12.7</span> Violin plot<a href="leaf-annotation-1.html#violin-plot" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><strong>Specifying the track type of leaf as ‘violin’ enables the drawing of a violin plot:</strong></p>
+<p>Prepare the leaf annotation file:</p>
+<p>Choose ‘column’ as the continuous variable (value) for the violin plot, it will be the y-axis value of each leaf.</p>
+<p><strong>Example data:</strong></p>
+<div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:300px; overflow-x: scroll; width:100%; ">
+<table class="table" style="font-size: 13px; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+id
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+value
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+OSQWA2679
+</td>
+<td style="text-align:right;">
+1.7139226
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ESRUW9777
+</td>
+<td style="text-align:right;">
+0.1692439
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+OFAGM8366
+</td>
+<td style="text-align:right;">
+0.7890045
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+NPJBL9744
+</td>
+<td style="text-align:right;">
+0.1380269
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+IXMJT4621
+</td>
+<td style="text-align:right;">
+2.5331384
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ITXUG9776
+</td>
+<td style="text-align:right;">
+0.1402700
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+GROKY6004
+</td>
+<td style="text-align:right;">
+0.0877751
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+QEYPL1702
+</td>
+<td style="text-align:right;">
+0.3324896
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+KVCTL4245
+</td>
+<td style="text-align:right;">
+0.4958188
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+JPFRB7291
+</td>
+<td style="text-align:right;">
+1.6763859
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+RRYFL9967
+</td>
+<td style="text-align:right;">
+0.7254029
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+XRNWJ1205
+</td>
+<td style="text-align:right;">
+0.8223092
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+OLXHY4687
+</td>
+<td style="text-align:right;">
+0.5365051
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+RYWRM7476
+</td>
+<td style="text-align:right;">
+0.1955164
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+BZPWN4417
+</td>
+<td style="text-align:right;">
+1.6762909
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+DXYHZ6481
+</td>
+<td style="text-align:right;">
+0.0495314
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+MMPEW5637
+</td>
+<td style="text-align:right;">
+0.0134147
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+PCIUJ0473
+</td>
+<td style="text-align:right;">
+0.8426530
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+GNGZT3233
+</td>
+<td style="text-align:right;">
+1.0146761
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+CVSCI9337
+</td>
+<td style="text-align:right;">
+0.1381128
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+OSQWA2679
+</td>
+<td style="text-align:right;">
+1.1391237
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ESRUW9777
+</td>
+<td style="text-align:right;">
+0.6916754
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+OFAGM8366
+</td>
+<td style="text-align:right;">
+3.4170925
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+NPJBL9744
+</td>
+<td style="text-align:right;">
+0.3702410
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+IXMJT4621
+</td>
+<td style="text-align:right;">
+0.6876392
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ITXUG9776
+</td>
+<td style="text-align:right;">
+0.3520154
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+GROKY6004
+</td>
+<td style="text-align:right;">
+1.0738444
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+QEYPL1702
+</td>
+<td style="text-align:right;">
+1.2603112
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+KVCTL4245
+</td>
+<td style="text-align:right;">
+0.4417195
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+JPFRB7291
+</td>
+<td style="text-align:right;">
+0.0543929
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+RRYFL9967
+</td>
+<td style="text-align:right;">
+1.3202823
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+XRNWJ1205
+</td>
+<td style="text-align:right;">
+1.2026172
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+OLXHY4687
+</td>
+<td style="text-align:right;">
+0.2408666
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+RYWRM7476
+</td>
+<td style="text-align:right;">
+0.5810605
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+BZPWN4417
+</td>
+<td style="text-align:right;">
+0.3973637
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+DXYHZ6481
+</td>
+<td style="text-align:right;">
+1.1037415
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+MMPEW5637
+</td>
+<td style="text-align:right;">
+0.2369583
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+PCIUJ0473
+</td>
+<td style="text-align:right;">
+1.2722285
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+GNGZT3233
+</td>
+<td style="text-align:right;">
+1.0196708
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+CVSCI9337
+</td>
+<td style="text-align:right;">
+1.5938927
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+OSQWA2679
+</td>
+<td style="text-align:right;">
+0.4049199
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ESRUW9777
+</td>
+<td style="text-align:right;">
+0.0034813
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+OFAGM8366
+</td>
+<td style="text-align:right;">
+0.4912153
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+NPJBL9744
+</td>
+<td style="text-align:right;">
+0.8548826
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+IXMJT4621
+</td>
+<td style="text-align:right;">
+2.2421701
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ITXUG9776
+</td>
+<td style="text-align:right;">
+1.2994069
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+GROKY6004
+</td>
+<td style="text-align:right;">
+0.8203667
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+QEYPL1702
+</td>
+<td style="text-align:right;">
+1.0513009
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+KVCTL4245
+</td>
+<td style="text-align:right;">
+0.2231083
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+JPFRB7291
+</td>
+<td style="text-align:right;">
+0.3680792
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+RRYFL9967
+</td>
+<td style="text-align:right;">
+0.0249564
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+XRNWJ1205
+</td>
+<td style="text-align:right;">
+1.5978399
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+OLXHY4687
+</td>
+<td style="text-align:right;">
+0.3452257
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+RYWRM7476
+</td>
+<td style="text-align:right;">
+1.4500343
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+BZPWN4417
+</td>
+<td style="text-align:right;">
+0.2521606
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+DXYHZ6481
+</td>
+<td style="text-align:right;">
+1.8992152
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+MMPEW5637
+</td>
+<td style="text-align:right;">
+0.0139672
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+PCIUJ0473
+</td>
+<td style="text-align:right;">
+0.3236669
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+GNGZT3233
+</td>
+<td style="text-align:right;">
+0.0316505
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+CVSCI9337
+</td>
+<td style="text-align:right;">
+0.1521737
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+OSQWA2679
+</td>
+<td style="text-align:right;">
+1.8386026
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ESRUW9777
+</td>
+<td style="text-align:right;">
+0.3293844
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+OFAGM8366
+</td>
+<td style="text-align:right;">
+0.8225729
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+NPJBL9744
+</td>
+<td style="text-align:right;">
+1.3337066
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+IXMJT4621
+</td>
+<td style="text-align:right;">
+1.4325406
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ITXUG9776
+</td>
+<td style="text-align:right;">
+0.4031323
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+GROKY6004
+</td>
+<td style="text-align:right;">
+0.0139731
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+QEYPL1702
+</td>
+<td style="text-align:right;">
+1.1990303
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+KVCTL4245
+</td>
+<td style="text-align:right;">
+0.7451819
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+JPFRB7291
+</td>
+<td style="text-align:right;">
+1.4913384
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+RRYFL9967
+</td>
+<td style="text-align:right;">
+0.8062194
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+XRNWJ1205
+</td>
+<td style="text-align:right;">
+0.8239946
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+OLXHY4687
+</td>
+<td style="text-align:right;">
+1.5079721
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+RYWRM7476
+</td>
+<td style="text-align:right;">
+1.0203457
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+BZPWN4417
+</td>
+<td style="text-align:right;">
+0.6194179
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+DXYHZ6481
+</td>
+<td style="text-align:right;">
+2.0465736
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+MMPEW5637
+</td>
+<td style="text-align:right;">
+0.8001764
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+PCIUJ0473
+</td>
+<td style="text-align:right;">
+0.0208043
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+GNGZT3233
+</td>
+<td style="text-align:right;">
+0.5763465
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+CVSCI9337
+</td>
+<td style="text-align:right;">
+1.1345368
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+OSQWA2679
+</td>
+<td style="text-align:right;">
+0.8864298
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ESRUW9777
+</td>
+<td style="text-align:right;">
+0.0402544
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+OFAGM8366
+</td>
+<td style="text-align:right;">
+2.0405460
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+NPJBL9744
+</td>
+<td style="text-align:right;">
+0.3900764
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+IXMJT4621
+</td>
+<td style="text-align:right;">
+0.5319518
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ITXUG9776
+</td>
+<td style="text-align:right;">
+0.6353661
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+GROKY6004
+</td>
+<td style="text-align:right;">
+0.1376743
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+QEYPL1702
+</td>
+<td style="text-align:right;">
+0.1912515
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+KVCTL4245
+</td>
+<td style="text-align:right;">
+0.3128723
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+JPFRB7291
+</td>
+<td style="text-align:right;">
+0.3461296
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+RRYFL9967
+</td>
+<td style="text-align:right;">
+1.9989839
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+XRNWJ1205
+</td>
+<td style="text-align:right;">
+1.0400758
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+OLXHY4687
+</td>
+<td style="text-align:right;">
+0.5526598
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+RYWRM7476
+</td>
+<td style="text-align:right;">
+1.5144789
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+BZPWN4417
+</td>
+<td style="text-align:right;">
+0.3811676
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+DXYHZ6481
+</td>
+<td style="text-align:right;">
+1.1819449
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+MMPEW5637
+</td>
+<td style="text-align:right;">
+0.2991659
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+PCIUJ0473
+</td>
+<td style="text-align:right;">
+0.7365343
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+GNGZT3233
+</td>
+<td style="text-align:right;">
+1.0422128
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+CVSCI9337
+</td>
+<td style="text-align:right;">
+0.1700525
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+OSQWA2679
+</td>
+<td style="text-align:right;">
+0.1747209
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ESRUW9777
+</td>
+<td style="text-align:right;">
+1.4388000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+OFAGM8366
+</td>
+<td style="text-align:right;">
+0.8022827
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+NPJBL9744
+</td>
+<td style="text-align:right;">
+1.2308044
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+IXMJT4621
+</td>
+<td style="text-align:right;">
+0.5257156
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ITXUG9776
+</td>
+<td style="text-align:right;">
+1.0239022
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+GROKY6004
+</td>
+<td style="text-align:right;">
+0.9037053
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+QEYPL1702
+</td>
+<td style="text-align:right;">
+1.3148140
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+KVCTL4245
+</td>
+<td style="text-align:right;">
+1.6196226
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+JPFRB7291
+</td>
+<td style="text-align:right;">
+0.7776291
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+RRYFL9967
+</td>
+<td style="text-align:right;">
+0.3716507
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+XRNWJ1205
+</td>
+<td style="text-align:right;">
+2.3177442
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+OLXHY4687
+</td>
+<td style="text-align:right;">
+0.3851916
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+RYWRM7476
+</td>
+<td style="text-align:right;">
+0.1991026
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+BZPWN4417
+</td>
+<td style="text-align:right;">
+0.1176758
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+DXYHZ6481
+</td>
+<td style="text-align:right;">
+0.4453197
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+MMPEW5637
+</td>
+<td style="text-align:right;">
+1.0093290
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+PCIUJ0473
+</td>
+<td style="text-align:right;">
+0.5976304
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+GNGZT3233
+</td>
+<td style="text-align:right;">
+0.4727152
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+CVSCI9337
+</td>
+<td style="text-align:right;">
+0.0003796
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+OSQWA2679
+</td>
+<td style="text-align:right;">
+1.1199306
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ESRUW9777
+</td>
+<td style="text-align:right;">
+1.3958571
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+OFAGM8366
+</td>
+<td style="text-align:right;">
+0.7234590
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+NPJBL9744
+</td>
+<td style="text-align:right;">
+0.4626633
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+IXMJT4621
+</td>
+<td style="text-align:right;">
+0.9788236
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ITXUG9776
+</td>
+<td style="text-align:right;">
+1.5865962
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+GROKY6004
+</td>
+<td style="text-align:right;">
+1.4471481
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+QEYPL1702
+</td>
+<td style="text-align:right;">
+1.0109909
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+KVCTL4245
+</td>
+<td style="text-align:right;">
+2.1631712
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+JPFRB7291
+</td>
+<td style="text-align:right;">
+0.3460799
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+RRYFL9967
+</td>
+<td style="text-align:right;">
+0.7885243
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+XRNWJ1205
+</td>
+<td style="text-align:right;">
+0.8841424
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+OLXHY4687
+</td>
+<td style="text-align:right;">
+0.6062781
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+RYWRM7476
+</td>
+<td style="text-align:right;">
+0.1444490
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+BZPWN4417
+</td>
+<td style="text-align:right;">
+2.1969155
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+DXYHZ6481
+</td>
+<td style="text-align:right;">
+0.9013570
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+MMPEW5637
+</td>
+<td style="text-align:right;">
+1.3755314
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+PCIUJ0473
+</td>
+<td style="text-align:right;">
+0.5871956
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+GNGZT3233
+</td>
+<td style="text-align:right;">
+1.2236890
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+CVSCI9337
+</td>
+<td style="text-align:right;">
+0.1966324
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+OSQWA2679
+</td>
+<td style="text-align:right;">
+1.1804610
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ESRUW9777
+</td>
+<td style="text-align:right;">
+0.6567064
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+OFAGM8366
+</td>
+<td style="text-align:right;">
+0.3153820
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+NPJBL9744
+</td>
+<td style="text-align:right;">
+2.6317379
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+IXMJT4621
+</td>
+<td style="text-align:right;">
+0.5318544
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ITXUG9776
+</td>
+<td style="text-align:right;">
+0.5783791
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+GROKY6004
+</td>
+<td style="text-align:right;">
+0.9792216
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+QEYPL1702
+</td>
+<td style="text-align:right;">
+0.6389339
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+KVCTL4245
+</td>
+<td style="text-align:right;">
+2.0289271
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+JPFRB7291
+</td>
+<td style="text-align:right;">
+0.7357921
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+RRYFL9967
+</td>
+<td style="text-align:right;">
+0.0724318
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+XRNWJ1205
+</td>
+<td style="text-align:right;">
+0.2830424
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+OLXHY4687
+</td>
+<td style="text-align:right;">
+0.0475461
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+RYWRM7476
+</td>
+<td style="text-align:right;">
+0.5188582
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+BZPWN4417
+</td>
+<td style="text-align:right;">
+1.1795441
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+DXYHZ6481
+</td>
+<td style="text-align:right;">
+0.2921048
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+MMPEW5637
+</td>
+<td style="text-align:right;">
+0.7915654
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+PCIUJ0473
+</td>
+<td style="text-align:right;">
+0.1252748
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+GNGZT3233
+</td>
+<td style="text-align:right;">
+0.4395111
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+CVSCI9337
+</td>
+<td style="text-align:right;">
+1.0279077
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+OSQWA2679
+</td>
+<td style="text-align:right;">
+0.2523669
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ESRUW9777
+</td>
+<td style="text-align:right;">
+0.0228920
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+OFAGM8366
+</td>
+<td style="text-align:right;">
+0.7660293
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+NPJBL9744
+</td>
+<td style="text-align:right;">
+0.4806514
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+IXMJT4621
+</td>
+<td style="text-align:right;">
+1.4311540
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ITXUG9776
+</td>
+<td style="text-align:right;">
+0.5941172
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+GROKY6004
+</td>
+<td style="text-align:right;">
+1.0895659
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+QEYPL1702
+</td>
+<td style="text-align:right;">
+2.0600244
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+KVCTL4245
+</td>
+<td style="text-align:right;">
+1.5102025
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+JPFRB7291
+</td>
+<td style="text-align:right;">
+0.4385944
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+RRYFL9967
+</td>
+<td style="text-align:right;">
+1.0164413
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+XRNWJ1205
+</td>
+<td style="text-align:right;">
+1.4155280
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+OLXHY4687
+</td>
+<td style="text-align:right;">
+0.8617560
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+RYWRM7476
+</td>
+<td style="text-align:right;">
+0.7761275
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+BZPWN4417
+</td>
+<td style="text-align:right;">
+1.3001602
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+DXYHZ6481
+</td>
+<td style="text-align:right;">
+0.4010517
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+MMPEW5637
+</td>
+<td style="text-align:right;">
+0.2601128
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+PCIUJ0473
+</td>
+<td style="text-align:right;">
+0.1800129
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+GNGZT3233
+</td>
+<td style="text-align:right;">
+0.6271655
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+CVSCI9337
+</td>
+<td style="text-align:right;">
+1.5569636
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+OSQWA2679
+</td>
+<td style="text-align:right;">
+1.1516524
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ESRUW9777
+</td>
+<td style="text-align:right;">
+0.6992130
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+OFAGM8366
+</td>
+<td style="text-align:right;">
+1.9920143
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+NPJBL9744
+</td>
+<td style="text-align:right;">
+0.3106052
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+IXMJT4621
+</td>
+<td style="text-align:right;">
+0.4364596
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ITXUG9776
+</td>
+<td style="text-align:right;">
+2.4271736
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+GROKY6004
+</td>
+<td style="text-align:right;">
+0.3010645
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+QEYPL1702
+</td>
+<td style="text-align:right;">
+1.1296851
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+KVCTL4245
+</td>
+<td style="text-align:right;">
+1.1725890
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+JPFRB7291
+</td>
+<td style="text-align:right;">
+1.4492794
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+RRYFL9967
+</td>
+<td style="text-align:right;">
+0.3099543
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+XRNWJ1205
+</td>
+<td style="text-align:right;">
+0.8783183
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+OLXHY4687
+</td>
+<td style="text-align:right;">
+0.5560619
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+RYWRM7476
+</td>
+<td style="text-align:right;">
+1.1508815
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+BZPWN4417
+</td>
+<td style="text-align:right;">
+0.4008188
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+DXYHZ6481
+</td>
+<td style="text-align:right;">
+0.3066845
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+MMPEW5637
+</td>
+<td style="text-align:right;">
+0.1228437
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+PCIUJ0473
+</td>
+<td style="text-align:right;">
+0.3823029
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+GNGZT3233
+</td>
+<td style="text-align:right;">
+0.0567727
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+CVSCI9337
+</td>
+<td style="text-align:right;">
+0.6852805
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><img src="images/violin.png" /></p>
+<p>Other parameters:</p>
+<ul>
+<li><p><strong>Manual color:</strong> Allows users to manually specify colors for different categories or values.</p></li>
+<li><p><strong>Column order:</strong> Determines the order in which columns are displayed in the plot.</p></li>
+<li><p><strong>Offset:</strong> Specifies the offset for the plot.</p></li>
+<li><p><strong>Legend:</strong> Controls the display of the legend for the plot.</p></li>
+<li><p><strong>Border color:</strong> Sets the color of the borders around plot tiles.</p></li>
+<li><p><strong>Border width:</strong> Adjusts the width of the borders around plot tiles.</p></li>
+<li><p><strong>Track height:</strong> Defines the height of the entire track.</p></li>
+<li><p><strong>Alpha:</strong> Sets the transparency level for the plot.</p></li>
+<li><p><strong>Grid:</strong> Enables or disables the grid lines in the plot.</p></li>
+<li><p><strong>Axis:</strong> Specifies whether to display axes for the plot.</p></li>
+<li><p><strong>Font size:</strong> Adjusts the size of the font used for labels.</p></li>
+<li><p><strong>Label angle:</strong> Sets the angle of the labels in the plot.</p></li>
+<li><p><strong>Label align:</strong> Controls the alignment of labels in the plot (e.g., top, bottom, center).</p></li>
+</ul>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="basic-feature.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="node-annotation-1.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

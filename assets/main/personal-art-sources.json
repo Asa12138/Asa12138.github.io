@@ -1,0 +1,14 @@
+{
+  "asa-ai-lab.png": {
+    "source": "User-provided brand artwork, 2026-10-27. Original copied; portrait framing uses CSS.",
+    "sha256": "f21abfc7f81ed226eb8cc6b6e7c6202e1b9fb41cc46ef77f3eda3e915bff1d5c"
+  },
+  "hoopoe-atlas.png": {
+    "source": "botanical-explorer/art/birds/atlases/04-garden-visitors-spaced.png; standing hoopoe region: 79,1129,203,205, from upupa_epops--standing.tres.",
+    "sha256": "a77672f7471cfa5412ba4545f1c4ddde3b9c4dc3766193d74718ecdae1ad9ee3"
+  },
+  "dandelion-atlas.png": {
+    "source": "botanical-explorer/art/plants/atlases/dandelion-states.png; left (seed-head) form, displayed through SVG viewBox.",
+    "sha256": "e4c973320e0a3724154806483e0a0e9d6c2d1f084321bc270dbe97f32d5522c9"
+  }
+}

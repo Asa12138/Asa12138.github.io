@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>CRISPRome</title>
+		<link rel="stylesheet" href="styles.css">
+		<link rel="icon" href="favicon_io/favicon.ico" type="image/x-icon">
+	</head>
+	<body>
+		<header>
+			<h1>Welcome to CRISPRome</h1>
+			<img src="images/crispr.png" alt="CRISPRome Logo" class="logo">
+		</header>
+		<nav>
+			<a href="index.html">Home</a>
+			<a href="help.html" class="active">Help</a>
+			<a href="comments.html">Comments</a>
+			<a href="citation.html">Citation/Policy</a>
+		</nav>
+		<div class="content">
+			<h2>How to Use CRISPRome</h2>
+			<p>CRISPRome provides <a href="https://zenodo.org/records/14975125">downloadable datasets</a> for exploring CRISPR-Cas systems.</p>
+			<p>First, please unzip the four .gz files. The introductions to the resulting four directories are as follows:</p>
+			<div id="spacer_fasta.tar.gz" class="section level2">
+				<h3>spacer_fasta.tar.gz</h3>
+				<p>The three files in the <strong>spacer_fasta</strong> directory
+					contain unique spacer sequences after deduplication within each CRISPR
+					array:</p>
+				<ul>
+					<li>
+						<strong>archaea_unique_spacer.fa</strong>: Unique spacer sequences
+						from archaea.
+						<br />
+					</li>
+					<li>
+						<strong>bacteria_unique_spacer.fa</strong>: Unique spacer sequences
+						from bacteria.
+						<br />
+					</li>
+					<li>
+						<strong>environment_unique_spacer.fa</strong>: Unique spacer
+						sequences from environmental samples.
+					</li>
+				</ul>
+			</div>
+			<div id="crispr_cas_info.tar.gz" class="section level2">
+				<h3>crispr_cas_info.tar.gz</h3>
+				<p>The <strong>crispr_cas_info</strong> directory contains CRISPR-Cas
+					information from archaea, bacteria, and six environmental microbial
+					samples, including locus details, subtype classification, repeat
+					sequences, and statistical summaries.</p>
+			</div>
+			<div id="source_target_network.tar.gz" class="section level2">
+				<h3>source_target_network.tar.gz</h3>
+				<p>The <strong>source_target_network</strong> directory contains
+					archaeal and bacterial CRISPR source-target network data.</p>
+				<p>The file <strong>archaea_bacteria_net_info.tsv</strong> represents
+					CRISPR source-target network pairs with the following columns:</p>
+				<ul>
+					<li>
+						<strong>genome_id</strong> – Identifier for the source genome.
+						<br />
+					</li>
+					<li>
+						<strong>total_array</strong> – Total number of CRISPR arrays in the
+						genome.
+						<br />
+					</li>
+					<li>
+						<strong>total_spacer</strong> – Total number of spacers in the
+						genome.
+						<br />
+					</li>
+					<li>
+						<strong>unique_spacer_count</strong> – Number of unique spacers
+						after deduplication.
+						<br />
+					</li>
+					<li>
+						<strong>array_id</strong> – Identifier for the specific CRISPR
+						array.
+						<br />
+					</li>
+					<li>
+						<strong>spacer_id</strong> – Identifier for the specific
+						spacer.
+						<br />
+					</li>
+					<li>
+						<strong>source_domain</strong> – Domain classification of the source
+						organism (e.g., Archaea or Bacteria).
+						<br />
+					</li>
+					<li>
+						<strong>source_name</strong> – Scientific name of the source
+						organism.
+						<br />
+					</li>
+					<li>
+						<strong>source_taxid</strong> – NCBI Taxonomy ID of the source
+						organism.
+						<br />
+					</li>
+					<li>
+						<strong>source_lineage</strong> – Taxonomic lineage of the source
+						organism.
+						<br />
+					</li>
+					<li>
+						<strong>target_domain</strong> – Domain classification of the target
+						entity.
+						<br />
+					</li>
+					<li>
+						<strong>target_name</strong> – Scientific name of the target
+						entity.
+						<br />
+					</li>
+					<li>
+						<strong>target_taxid</strong> – NCBI Taxonomy ID of the target
+						entity.
+						<br />
+					</li>
+					<li>
+						<strong>target_lineage</strong> – Taxonomic lineage of the target
+						entity.
+					</li>
+				</ul>
+			</div>
+			<div id="spacer_fasta.tar.gz-1" class="section level2">
+				<h3>spacer_fasta.tar.gz</h3>
+				<p>The source_target_loci_info directory contains the following
+					files:</p>
+				<p>archaea_spacer_mapping_results bacteria_spacer_mapping_results
+					environment_spacer_mapping_results These files contain spacer mapping
+					results with the following columns:</p>
+				<ul>
+					<li>
+						<strong>unique_spacer_id</strong> – Identifier for the unique spacer
+						in the analysis.
+					</li>
+					<li>
+						<strong>target_taxid</strong> – NCBI Taxonomy ID of the target
+						organism, identifying the species involved in the target region.
+					</li>
+					<li>
+						<strong>target_lineage</strong> – Taxonomic lineage of the target
+						organism, providing its hierarchical classification.
+					</li>
+					<li>
+						<strong>target_kingdom</strong> – Kingdom classification of the
+						target organism (e.g., Bacteria, Archaea).
+					</li>
+					<li>
+						<strong>sseqid</strong> – Sequence identifier for the subject
+						sequence (target genome) in the BLAST alignment.
+					</li>
+					<li>
+						<strong>pident</strong> – Percentage of identical matches between
+						the spacer (query) and the subject sequence (target genome) in the
+						alignment.
+					</li>
+					<li>
+						<strong>length</strong> – Length of the aligned region between the
+						spacer and the subject sequence in the BLAST result.
+					</li>
+					<li>
+						<strong>mismatch</strong> – Number of mismatches (non-identical
+						bases) between the spacer and the subject sequence in the
+						alignment.
+					</li>
+					<li>
+						<strong>gapopen</strong> – Number of gap openings (insertions or
+						deletions) introduced in the alignment.
+					</li>
+					<li>
+						<strong>qstart</strong> – Start position of the spacer sequence
+						(query) in the alignment.
+					</li>
+					<li>
+						<strong>qend</strong> – End position of the spacer sequence (query)
+						in the alignment.
+					</li>
+					<li>
+						<strong>start</strong> – Start position of the subject sequence
+						(target genome) in the alignment.
+					</li>
+					<li>
+						<strong>send</strong> – End position of the subject sequence (target
+						genome) in the alignment.
+					</li>
+					<li>
+						<strong>evalue</strong> – Expectation value of the alignment,
+						representing how likely the alignment is to occur by chance.
+					</li>
+					<li>
+						<strong>bitscore</strong> – Score of the alignment in bits,
+						indicating the strength of the match; higher bitscores represent better
+						alignment quality.
+					</li>
+					<li>
+						<strong>database</strong> – The database used for the BLAST
+						alignment, which could be a genomic database or other sequence
+						repository.
+					</li>
+					<li>
+						<strong>sseqid_corrected</strong> – Corrected version of the
+						sequence identifier for the subject sequence.
+					</li>
+					<li>
+						<strong>sbjct_taxid (before LCA)</strong> – NCBI Taxonomy ID of the
+						subject sequence before the Lowest Common Ancestor (LCA) analysis was
+						performed.
+					</li>
+					<li>
+						<strong>target_genome</strong> – Identifier for the target genome,
+						representing the organism whose genome is being analyzed.
+					</li>
+					<li>
+						<strong>loci_start (gene annotation)</strong> – Start position of
+						the gene annotation in the target loci within the target genome, marking
+						the beginning of the annotated gene region.
+					</li>
+					<li>
+						<strong>loci_end (gene annotation)</strong> – End position of the
+						gene annotation in the target loci within the target genome, marking the
+						conclusion of the annotated gene region.
+					</li>
+					<li>
+						<strong>gene_or_not</strong> – Indicates whether the locus
+						corresponds to a gene or a non-coding region (e.g., “gene” for coding
+						regions, “intergene” for intergenic or non-coding regions).
+					</li>
+					<li>
+						<strong>sseq_length</strong> – Length of the subject sequence
+						involved in the BLAST alignment with the spacer.
+					</li>
+					<li>
+						<strong>relative_loci</strong> – Position of the loci in the context
+						of the gene/intergene, indicating where the alignment region appears
+						relative to the entire gene/intergene sequence.
+					</li>
+					<li>
+						<strong>gene_or_intergene_length</strong> – The length of the region
+						in the target genome, indicating whether it lies within a gene or in an
+						intergenic region.
+					</li>
+					<li>
+						<strong>target_genome_gene_ratio</strong> – The ratio of genes to
+						the total genome size in the target genome, offering insight into the
+						genomic structure, with a higher ratio indicating a more gene-dense
+						genome.
+					</li>
+				</ul>
+			</div>
+		</div>
+		<footer>&copy; 2025 CRISPRome Project</footer>
+	</body>
+</html>
