@@ -17,7 +17,7 @@ node scripts/build-english-web.cjs /绝对路径/网站仓库/apps/research-engl
 
 本机的正式输出目录是 `/Users/asa/Documents/GitHub/Asa12138.github.io/apps/research-english`。旧 `research-english-pages` 在主站重建后仅保留为历史副本，不再作为 Git 发布入口。
 
-构建不需要 npm 安装，使用已纳入源码的 hash.js SHA256 子集（MIT）、PDF.js、SheetJS。生成器只更新英语页面所需文件，不清空目录，也不读取用户课程、密钥或已安装 ZTools 的数据。网页产物可直接放入 GitHub Pages，不需要 Node 服务端。素材统一维护在输出目录下的 `materials/`，目录中的课程、音频和词表使用相对路径，并保留 SHA256 校验；生成器不会覆盖素材。
+构建不需要 npm 安装，使用已纳入源码的 hash.js SHA256 子集（MIT）、PDF.js、SheetJS。生成器只更新英语页面所需文件，不清空目录，也不读取用户课程、密钥或已安装 ZTools 的数据。网页产物可直接放入 GitHub Pages，不需要 Node 服务端。素材统一维护在输出目录下的 `materials/`，目录中的课程、音频和词表使用相对路径，并保留 SHA256 校验；生成器不会覆盖素材。浏览器从当前应用目录相对读取官方 materials/，本地预览和正式网站使用同一份文件。
 
 生成后核对 `sync-manifest.json` 的版本和源码指纹，检查网页启动及素材读取。每次执行 `git push` 前，都要向用户说明目标仓库、分支和实际改动，并获得本次推送的明确确认；生成文件或通过检查不代表已发布。推送获准后，等待 Pages 部署成功并回读线上版本。
 
@@ -46,7 +46,9 @@ node scripts/build-english-web.cjs /绝对路径/网站仓库/apps/research-engl
 
 - 自定义 AI 支持 OpenAI 兼容 `chat/completions` HTTPS 接口。翻译支持 Google 网页接口、Google Cloud、OpenAI 兼容接口和自建翻译中转（POST `{text,source,target}`，返回 `{translation}`）。
 - 接口必须允许网页 Origin 的 CORS 请求。第三方 API 禁止跨域时，浏览器无法像 Electron 的 Node 层一样直连；可配置用户自己的 HTTPS 后端中转。网页不能读取系统代理配置、设置 HTTP CONNECT 代理或运行 localhost MCP Server。不提供公共密钥中转，不上传给维护者。素材广场沿用现有 Supabase 公共目录；`web/english/community-config.json` 仅含已公开的项目地址与 publishable key，不含用户会话或服务端密钥。社区迁移项目时同步这个公开配置。
-- 官方课程可下载并缓存 Andrew 配套音频。桌面微软 WebSocket TTS 依赖特殊请求头，网页不直接复用；自建课程可选择本机浏览器英语声音，具体音色及是否联网由系统决定。网页只启用 Andrew 和浏览器声音，其他桌面音色保留试听资源。
+- 微软语音复用桌面相同的 edge-tts v2 协议，通过浏览器原生 WebSocket 按需生成任意课程句子，支持 Andrew、Ava、Emma、Ryan、Sonia；无需下载配套音频包，也不自动降级为系统声音。生成结果复用 IndexedDB 播放缓存；在线许可与预加载开关继续生效。已在 Microsoft Edge 156 验证真实合成；同机 Chromium 直连失败，Chrome、Firefox、Safari 不能保证可用，可手动选择系统声音。若以后需要跨浏览器稳定的微软语音，再部署服务端中转。
+- 单词美式/英式发音使用浏览器音频播放器直接加载 Google 音频，翻译接口仍通过 fetch 读取 JSON；媒体播放不要求接口允许脚本跨域读取音频字节。
+- 练习快捷键使用捕获阶段处理 Alt+A / Alt+P，并支持 F8 打开答案与解析（Mac 顶部按键为媒体控制时可用 Fn+F8）。浏览器或扩展若在网页收到事件前拦截 Alt+A，可使用 F8 或界面按钮。
 - 音频首次自动播放可能被拦截，点击播放后即可继续。录音需要 HTTPS 和用户麦克风授权；PDF 与 Excel 在本机解析，不上传文件。所有接口只在用户发起相应操作时接收必要文本。
 - 面向近期 Chrome、Edge、Firefox、Safari，需支持 IndexedDB、Web Crypto、Web Locks、Web Audio、dialog；旧浏览器会明确提示启动失败。手机可用，物理键盘操作体验更完整。
 
