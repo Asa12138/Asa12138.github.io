@@ -1,0 +1,69 @@
+{
+  "edition": "2026-10 v1",
+  "origin": "original AI-assisted teaching content, not article quotations",
+  "courses": 4,
+  "sentences": 240,
+  "uniqueSentences": 240,
+  "bytes": 265971,
+  "minWords": 8,
+  "maxWords": 15,
+  "checks": [
+    "EnglishCore.clean",
+    "EnglishCore.validateTeaching(requireChunks:true)",
+    "60 sentences per course",
+    "global unique English sentences",
+    "Chinese, grammar note, oral question and vocabulary supplied",
+    "vocabulary headword or its plural occurs in its sentence",
+    "original content has no fabricated quotation",
+    "SHA256 for each course"
+  ],
+  "coursesDetail": [
+    {
+      "id": "research-communication",
+      "title": "科研交流与博后面试",
+      "sentences": 60,
+      "minWords": 9,
+      "maxWords": 15,
+      "bytes": 69042,
+      "sha256": "4e6cea208893492b75a207405e641e6bb1af17b519c22508979a8eb5e38b4ca8"
+    },
+    {
+      "id": "bioinformatics-reproducibility",
+      "title": "生信分析与可复现研究",
+      "sentences": 60,
+      "minWords": 8,
+      "maxWords": 11,
+      "bytes": 65305,
+      "sha256": "2ef8cecbc3459a269926152b96f6780940bd5438039a1943870c0d991802f401"
+    },
+    {
+      "id": "microbiome-environment",
+      "title": "微生物生态与环境研究",
+      "sentences": 60,
+      "minWords": 9,
+      "maxWords": 13,
+      "bytes": 65861,
+      "sha256": "fc191f68dd13a2349329f189f60af613f2fef113b980e95d4653ad6822d7396b"
+    },
+    {
+      "id": "reading-discussion",
+      "title": "论文精读与学术讨论",
+      "sentences": 60,
+      "minWords": 9,
+      "maxWords": 13,
+      "bytes": 65763,
+      "sha256": "026f9fde82af721c92ecf341ed77d75cf8fb65dfc0fca3dd06b32b4bffe6be55"
+    }
+  ],
+  "compatibility": {
+    "catalogEndpoints": 2,
+    "remoteCoursesPerCatalog": 4,
+    "verifiedDownloads": 8,
+    "bulkImportCourses": 4,
+    "bulkImportSentences": 240,
+    "repeatImportDeduplicated": true,
+    "practiceProgressPreserved": true,
+    "downloadMatchesOfflineImport": true,
+    "transport": "Local files injected into the real catalog downloader; the new URL has not been published."
+  }
+}

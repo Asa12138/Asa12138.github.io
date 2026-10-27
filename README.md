@@ -40,9 +40,13 @@ FileList/
 databases/CRISPRome/     # 原站文件整体迁移
 ```
 
-三本教程保持各自的静态资源和内部目录。下载文件只维护在 `FileList/`，保留原文件名和 URL，不创建资源副本；直接替换对应文件后提交即可。科研英语入口链接到 [Asa English Community](https://asa-english-community.netlify.app/)，本站不再保存课程和音频。
+三本教程保持各自的静态资源和内部目录。下载文件只维护在 `FileList/`，保留原文件名和 URL，不创建资源副本；直接替换对应文件后提交即可。科研英语网页版位于 `apps/research-english/`，课程、配套音频和词表统一放在该目录的 `materials/`，素材入口为 `apps/research-english/materials/catalog.json`。素材社区仍链接到 [Asa English Community](https://asa-english-community.netlify.app/)。不恢复旧 `resources/` 目录。
 
-未来独立小应用放在 `apps/<name>/`，自行维护资源和独立 browser storage key，并在 Projects 页面加入入口。
+独立小应用放在 `apps/<name>/`，自行维护资源和独立 browser storage key，并在 Projects 页面加入入口。
+
+科研英语以 ZTools 的 `micro-tools` 为源码：先更新和验证 ZTools，再从同一源码生成同版本网页。构建说明见 [英语同步说明](apps/research-english/web/english/README.md)。本机输出到此仓库的 `apps/research-english/`；旧 `research-english-pages` 仅保留为历史副本。每次推送之前向用户展示目标仓库、分支和实际改动，获得本次确认后才执行 `git push`。
+
+从旧 `/research-english/` 迁入新路径时继续使用原浏览器数据库，已有记录保留。新版客户端会迁移旧官方素材地址；旧客户端需升级或手动把目录改为新地址，404 页跳转不适用于程序下载。
 
 ## 旧地址兼容
 

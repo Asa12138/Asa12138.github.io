@@ -1,6 +1,8 @@
 /* Browser bookmarks only: GitHub Pages cannot redirect programmatic downloads. */
 (() => {
   const replacements = [
+    ['/resources/research-english/', '/apps/research-english/materials/'],
+    ['/research-english/', '/apps/research-english/'],
     ['/iPhylo_tutorial/', '/books/iPhylo_tutorial/'],
     ['/MetaNet_tutorial/', '/books/MetaNet_tutorial/'],
     ['/pctax_tutorial/', '/books/pctax_tutorial/'],

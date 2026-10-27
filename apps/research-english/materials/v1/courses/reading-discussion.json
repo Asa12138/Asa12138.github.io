@@ -1,0 +1,2293 @@
+{
+  "title": "论文精读与学术讨论",
+  "domain": "reading",
+  "description": "60 句原创教学表达：1–20 论文阅读，21–40 讲图与研究限制，41–60 合作与组会。练习提炼问题、解释结果图、提出建设性问题与商定下一步；并非具体论文的原文摘录。",
+  "level": "B1–B2",
+  "source": {
+    "title": "科研小盒原创科研英语课程 · 2026-10",
+    "url": "",
+    "kind": "original"
+  },
+  "sentences": [
+    {
+      "en": "Before reading the methods, I identify the main research question.",
+      "zh": "阅读方法之前，我先识别论文的核心研究问题。",
+      "note": "Before 加动名词短语交代阅读顺序；identify 强调找准问题。",
+      "quote": "",
+      "question": "State the central question of a paper you recently read.",
+      "chunks": [
+        {
+          "role": "状语",
+          "en": "Before reading the methods,",
+          "zh": "阅读方法之前"
+        },
+        {
+          "role": "主语",
+          "en": "I",
+          "zh": "我"
+        },
+        {
+          "role": "谓语",
+          "en": "identify",
+          "zh": "识别"
+        },
+        {
+          "role": "宾语",
+          "en": "the main research question.",
+          "zh": "核心研究问题"
+        }
+      ],
+      "vocabulary": [
+        {
+          "term": "identify",
+          "ipa": "aɪˈdentɪfaɪ",
+          "meaning": "识别；确定"
+        }
+      ],
+      "phonetics": []
+    },
+    {
+      "en": "The abstract provides an overview, but important details require closer reading.",
+      "zh": "摘要提供概览，但重要细节需要进一步仔细阅读。",
+      "note": "but 连接两项信息；closer reading 指比摘要浏览更细致的阅读。",
+      "quote": "",
+      "question": "Which details would you verify beyond the abstract?",
+      "chunks": [
+        {
+          "role": "主语",
+          "en": "The abstract",
+          "zh": "摘要"
+        },
+        {
+          "role": "谓语",
+          "en": "provides",
+          "zh": "提供"
+        },
+        {
+          "role": "宾语",
+          "en": "an overview,",
+          "zh": "概览"
+        },
+        {
+          "role": "连词",
+          "en": "but",
+          "zh": "但是"
+        },
+        {
+          "role": "主语",
+          "en": "important details",
+          "zh": "重要细节"
+        },
+        {
+          "role": "谓语",
+          "en": "require closer reading.",
+          "zh": "需要仔细阅读"
+        }
+      ],
+      "vocabulary": [
+        {
+          "term": "overview",
+          "ipa": "ˈoʊvərvjuː",
+          "meaning": "概览"
+        }
+      ],
+      "phonetics": []
+    },
+    {
+      "en": "A clear hypothesis specifies a relationship that the study can evaluate.",
+      "zh": "清晰的假设明确指出研究能够评估的一种关系。",
+      "note": "that 引导定语从句，限定 relationship；evaluate 比 prove 更适合描述检验过程。",
+      "quote": "",
+      "question": "How would you restate the authors’ hypothesis in your own words?",
+      "chunks": [
+        {
+          "role": "主语",
+          "en": "A clear hypothesis",
+          "zh": "清晰的假设"
+        },
+        {
+          "role": "谓语",
+          "en": "specifies",
+          "zh": "明确指出"
+        },
+        {
+          "role": "宾语",
+          "en": "a relationship",
+          "zh": "一种关系"
+        },
+        {
+          "role": "定语",
+          "en": "that the study can evaluate.",
+          "zh": "该研究能够评估的"
+        }
+      ],
+      "vocabulary": [
+        {
+          "term": "hypothesis",
+          "ipa": "haɪˈpɑːθəsɪs",
+          "meaning": "假设"
+        }
+      ],
+      "phonetics": []
+    },
+    {
+      "en": "The introduction should explain why the research gap matters.",
+      "zh": "引言应说明这一研究空白为什么重要。",
+      "note": "why 引导宾语从句，连接知识缺口与研究价值；matters 作动词表示重要。",
+      "quote": "",
+      "question": "Why does the gap addressed in your chosen paper matter?",
+      "chunks": [
+        {
+          "role": "主语",
+          "en": "The introduction",
+          "zh": "引言"
+        },
+        {
+          "role": "谓语",
+          "en": "should explain",
+          "zh": "应说明"
+        },
+        {
+          "role": "宾语从句",
+          "en": "why the research gap",
+          "zh": "为什么这一研究空白"
+        },
+        {
+          "role": "从句谓语",
+          "en": "matters.",
+          "zh": "重要"
+        }
+      ],
+      "vocabulary": [
+        {
+          "term": "gap",
+          "ipa": "ɡæp",
+          "meaning": "空白；缺口"
+        }
+      ],
+      "phonetics": []
+    },
+    {
+      "en": "I look for the comparison that directly addresses the stated question.",
+      "zh": "我会寻找直接回应所提出问题的那项比较。",
+      "note": "look for 表示有目的地查找；stated 指论文明确提出的，而非读者推测的问题。",
+      "quote": "",
+      "question": "Which comparison most directly answers the research question?",
+      "chunks": [
+        {
+          "role": "主语",
+          "en": "I",
+          "zh": "我"
+        },
+        {
+          "role": "谓语",
+          "en": "look for",
+          "zh": "寻找"
+        },
+        {
+          "role": "宾语",
+          "en": "the comparison",
+          "zh": "比较"
+        },
+        {
+          "role": "定语",
+          "en": "that directly addresses",
+          "zh": "直接回应的"
+        },
+        {
+          "role": "宾语",
+          "en": "the stated question.",
+          "zh": "所提出的问题"
+        }
+      ],
+      "vocabulary": [
+        {
+          "term": "comparison",
+          "ipa": "kəmˈpærɪsən",
+          "meaning": "比较"
+        }
+      ],
+      "phonetics": []
+    },
+    {
+      "en": "The methods section should define the study population and sampling strategy.",
+      "zh": "方法部分应界定研究总体和采样策略。",
+      "note": "define 用于明确研究对象与选择方法；并列名词结构使概括更紧凑。",
+      "quote": "",
+      "question": "Who or what was sampled, and how were samples selected?",
+      "chunks": [
+        {
+          "role": "主语",
+          "en": "The methods section",
+          "zh": "方法部分"
+        },
+        {
+          "role": "谓语",
+          "en": "should define",
+          "zh": "应界定"
+        },
+        {
+          "role": "宾语",
+          "en": "the study population",
+          "zh": "研究总体"
+        },
+        {
+          "role": "并列宾语",
+          "en": "and sampling strategy.",
+          "zh": "与采样策略"
+        }
+      ],
+      "vocabulary": [
+        {
+          "term": "strategy",
+          "ipa": "ˈstrætədʒi",
+          "meaning": "策略"
+        }
+      ],
+      "phonetics": []
+    },
+    {
+      "en": "An observational design requires careful consideration of potential confounding.",
+      "zh": "观察性设计需要认真考虑潜在混杂。",
+      "note": "consideration of 是名词搭配；potential 表明混杂因素需要结合具体设计判断。",
+      "quote": "",
+      "question": "Which potential confounder would you examine in this study?",
+      "chunks": [
+        {
+          "role": "主语",
+          "en": "An observational design",
+          "zh": "观察性设计"
+        },
+        {
+          "role": "谓语",
+          "en": "requires",
+          "zh": "需要"
+        },
+        {
+          "role": "宾语",
+          "en": "careful consideration",
+          "zh": "认真考虑"
+        },
+        {
+          "role": "定语",
+          "en": "of potential confounding.",
+          "zh": "潜在混杂的"
+        }
+      ],
+      "vocabulary": [
+        {
+          "term": "confounding",
+          "ipa": "kənˈfaʊndɪŋ",
+          "meaning": "混杂"
+        }
+      ],
+      "phonetics": []
+    },
+    {
+      "en": "The control group determines which comparison the experiment can support.",
+      "zh": "对照组决定实验能够支持哪一种比较。",
+      "note": "which comparison 引导宾语从句；support 在此表示研究设计可以支撑的比较。",
+      "quote": "",
+      "question": "What does the chosen control group allow the authors to compare?",
+      "chunks": [
+        {
+          "role": "主语",
+          "en": "The control group",
+          "zh": "对照组"
+        },
+        {
+          "role": "谓语",
+          "en": "determines",
+          "zh": "决定"
+        },
+        {
+          "role": "宾语",
+          "en": "which comparison",
+          "zh": "哪一种比较"
+        },
+        {
+          "role": "从句谓语",
+          "en": "the experiment can support.",
+          "zh": "实验能够支持"
+        }
+      ],
+      "vocabulary": [
+        {
+          "term": "control",
+          "ipa": "kənˈtroʊl",
+          "meaning": "对照；控制"
+        }
+      ],
+      "phonetics": []
+    },
+    {
+      "en": "I check whether the analysis matches the original sampling structure.",
+      "zh": "我会核查分析是否与原始采样结构匹配。",
+      "note": "whether 引导需要核查的判断；sampling structure 包含分组、配对或嵌套等结构。",
+      "quote": "",
+      "question": "Which feature of the sampling structure should the analysis preserve?",
+      "chunks": [
+        {
+          "role": "主语",
+          "en": "I",
+          "zh": "我"
+        },
+        {
+          "role": "谓语",
+          "en": "check",
+          "zh": "核查"
+        },
+        {
+          "role": "宾语从句",
+          "en": "whether the analysis",
+          "zh": "分析是否"
+        },
+        {
+          "role": "从句谓语",
+          "en": "matches",
+          "zh": "匹配"
+        },
+        {
+          "role": "宾语",
+          "en": "the original sampling structure.",
+          "zh": "原始采样结构"
+        }
+      ],
+      "vocabulary": [
+        {
+          "term": "structure",
+          "ipa": "ˈstrʌktʃər",
+          "meaning": "结构"
+        }
+      ],
+      "phonetics": []
+    },
+    {
+      "en": "The number of measurements may exceed the number of independent samples.",
+      "zh": "测量次数可能超过独立样本数量。",
+      "note": "the number of 后面的谓语按 number 的单数形式处理；may exceed 提醒区分两种计数。",
+      "quote": "",
+      "question": "How many independent units support the central comparison?",
+      "chunks": [
+        {
+          "role": "主语",
+          "en": "The number of measurements",
+          "zh": "测量次数"
+        },
+        {
+          "role": "谓语",
+          "en": "may exceed",
+          "zh": "可能超过"
+        },
+        {
+          "role": "宾语",
+          "en": "the number",
+          "zh": "数量"
+        },
+        {
+          "role": "定语",
+          "en": "of independent samples.",
+          "zh": "独立样本的"
+        }
+      ],
+      "vocabulary": [
+        {
+          "term": "exceed",
+          "ipa": "ɪkˈsiːd",
+          "meaning": "超过"
+        }
+      ],
+      "phonetics": []
+    },
+    {
+      "en": "Exclusion criteria can influence which populations the findings apply to.",
+      "zh": "排除标准可能影响研究结果能够适用于哪些总体。",
+      "note": "apply to 表示适用范围；疑问词引导的从句中保留陈述语序。",
+      "quote": "",
+      "question": "How might the exclusion criteria limit the scope of the findings?",
+      "chunks": [
+        {
+          "role": "主语",
+          "en": "Exclusion criteria",
+          "zh": "排除标准"
+        },
+        {
+          "role": "谓语",
+          "en": "can influence",
+          "zh": "可能影响"
+        },
+        {
+          "role": "宾语",
+          "en": "which populations",
+          "zh": "哪些总体"
+        },
+        {
+          "role": "从句谓语",
+          "en": "the findings apply to.",
+          "zh": "研究结果适用于"
+        }
+      ],
+      "vocabulary": [
+        {
+          "term": "criteria",
+          "ipa": "kraɪˈtɪriə",
+          "meaning": "标准，criterion 的复数"
+        }
+      ],
+      "phonetics": []
+    },
+    {
+      "en": "Missing observations may affect the conclusions depending on why they are missing.",
+      "zh": "缺失观测可能影响结论，具体取决于其缺失原因。",
+      "note": "depending on 引出条件；why they are missing 将缺失机制纳入讨论。",
+      "quote": "",
+      "question": "What information would help you assess the missing observations?",
+      "chunks": [
+        {
+          "role": "主语",
+          "en": "Missing observations",
+          "zh": "缺失的观测"
+        },
+        {
+          "role": "谓语",
+          "en": "may affect",
+          "zh": "可能影响"
+        },
+        {
+          "role": "宾语",
+          "en": "the conclusions",
+          "zh": "结论"
+        },
+        {
+          "role": "状语",
+          "en": "depending on why they are missing.",
+          "zh": "取决于它们缺失的原因"
+        }
+      ],
+      "vocabulary": [
+        {
+          "term": "observation",
+          "ipa": "ˌɑːbzərˈveɪʃən",
+          "meaning": "观测；观测值"
+        }
+      ],
+      "phonetics": []
+    },
+    {
+      "en": "I separate the reported results from the authors’ proposed explanations.",
+      "zh": "我会区分文中报告的结果和作者提出的解释。",
+      "note": "separate A from B 用于区分证据与解释；proposed 表示解释是作者提出的。",
+      "quote": "",
+      "question": "Give one reported result and one proposed explanation from a paper.",
+      "chunks": [
+        {
+          "role": "主语",
+          "en": "I",
+          "zh": "我"
+        },
+        {
+          "role": "谓语",
+          "en": "separate",
+          "zh": "区分"
+        },
+        {
+          "role": "宾语",
+          "en": "the reported results",
+          "zh": "文中报告的结果"
+        },
+        {
+          "role": "介词短语",
+          "en": "from the authors’ proposed explanations.",
+          "zh": "与作者提出的解释"
+        }
+      ],
+      "vocabulary": [
+        {
+          "term": "explanation",
+          "ipa": "ˌekspləˈneɪʃən",
+          "meaning": "解释"
+        }
+      ],
+      "phonetics": []
+    },
+    {
+      "en": "A statistically significant result does not establish practical importance by itself.",
+      "zh": "统计学显著的结果本身并不能确定其实际重要性。",
+      "note": "by itself 强调仅凭这一信息不够；practical importance 与统计显著性关注不同问题。",
+      "quote": "",
+      "question": "What else would you examine before calling an effect important?",
+      "chunks": [
+        {
+          "role": "主语",
+          "en": "A statistically significant result",
+          "zh": "统计学显著的结果"
+        },
+        {
+          "role": "谓语",
+          "en": "does not establish",
+          "zh": "并不能确定"
+        },
+        {
+          "role": "宾语",
+          "en": "practical importance",
+          "zh": "实际重要性"
+        },
+        {
+          "role": "状语",
+          "en": "by itself.",
+          "zh": "仅凭自身"
+        }
+      ],
+      "vocabulary": [
+        {
+          "term": "practical",
+          "ipa": "ˈpræktɪkəl",
+          "meaning": "实际的；实践中的"
+        }
+      ],
+      "phonetics": []
+    },
+    {
+      "en": "An effect estimate is easier to interpret with its uncertainty and measurement scale.",
+      "zh": "结合不确定性和测量尺度，效应估计值更容易理解。",
+      "note": "easier to interpret 为比较级加不定式；with 指明理解所需的配套信息。",
+      "quote": "",
+      "question": "Which scale is used for the effect estimate in this paper?",
+      "chunks": [
+        {
+          "role": "主语",
+          "en": "An effect estimate",
+          "zh": "效应估计值"
+        },
+        {
+          "role": "谓语",
+          "en": "is easier to interpret",
+          "zh": "更容易理解"
+        },
+        {
+          "role": "介词短语",
+          "en": "with its uncertainty",
+          "zh": "结合其不确定性"
+        },
+        {
+          "role": "并列宾语",
+          "en": "and measurement scale.",
+          "zh": "与测量尺度"
+        }
+      ],
+      "vocabulary": [
+        {
+          "term": "estimate",
+          "ipa": "ˈestɪmət",
+          "meaning": "估计值"
+        }
+      ],
+      "phonetics": []
+    },
+    {
+      "en": "The supplementary materials may contain details needed to assess reproducibility.",
+      "zh": "补充材料可能包含评估可复现性所需的细节。",
+      "note": "needed to assess 是过去分词短语，后置修饰 details；may contain 提醒主动查阅。",
+      "quote": "",
+      "question": "Which supplementary detail would you inspect before reproducing an analysis?",
+      "chunks": [
+        {
+          "role": "主语",
+          "en": "The supplementary materials",
+          "zh": "补充材料"
+        },
+        {
+          "role": "谓语",
+          "en": "may contain",
+          "zh": "可能包含"
+        },
+        {
+          "role": "宾语",
+          "en": "details",
+          "zh": "细节"
+        },
+        {
+          "role": "定语",
+          "en": "needed to assess reproducibility.",
+          "zh": "评估可复现性所需的"
+        }
+      ],
+      "vocabulary": [
+        {
+          "term": "supplementary",
+          "ipa": "ˌsʌpləˈmentəri",
+          "meaning": "补充的"
+        }
+      ],
+      "phonetics": []
+    },
+    {
+      "en": "A citation should support the specific claim made in the text.",
+      "zh": "引用应支持正文中提出的具体论断。",
+      "note": "made in the text 为过去分词定语；specific claim 强调逐项核对引用用途。",
+      "quote": "",
+      "question": "How would you check whether a citation supports a particular claim?",
+      "chunks": [
+        {
+          "role": "主语",
+          "en": "A citation",
+          "zh": "引用"
+        },
+        {
+          "role": "谓语",
+          "en": "should support",
+          "zh": "应支持"
+        },
+        {
+          "role": "宾语",
+          "en": "the specific claim",
+          "zh": "具体论断"
+        },
+        {
+          "role": "定语",
+          "en": "made in the text.",
+          "zh": "正文中提出的"
+        }
+      ],
+      "vocabulary": [
+        {
+          "term": "citation",
+          "ipa": "saɪˈteɪʃən",
+          "meaning": "引用"
+        }
+      ],
+      "phonetics": []
+    },
+    {
+      "en": "I compare the headline conclusion with the evidence actually presented.",
+      "zh": "我会比较最醒目的结论与论文实际展示的证据。",
+      "note": "compare A with B 将结论与证据对照；actually presented 限定为文中确实展示的信息。",
+      "quote": "",
+      "question": "Does the headline conclusion match the evidence you can identify?",
+      "chunks": [
+        {
+          "role": "主语",
+          "en": "I",
+          "zh": "我"
+        },
+        {
+          "role": "谓语",
+          "en": "compare",
+          "zh": "比较"
+        },
+        {
+          "role": "宾语",
+          "en": "the headline conclusion",
+          "zh": "最醒目的结论"
+        },
+        {
+          "role": "介词短语",
+          "en": "with the evidence",
+          "zh": "与证据"
+        },
+        {
+          "role": "定语",
+          "en": "actually presented.",
+          "zh": "实际展示的"
+        }
+      ],
+      "vocabulary": [
+        {
+          "term": "headline",
+          "ipa": "ˈhedlaɪn",
+          "meaning": "醒目的主要表述；标题"
+        }
+      ],
+      "phonetics": []
+    },
+    {
+      "en": "A useful critique explains how a limitation could change the interpretation.",
+      "zh": "有用的评议会说明某项局限可能如何改变解释。",
+      "note": "could change 把局限与实际推断影响联系起来；how 引出作用方式。",
+      "quote": "",
+      "question": "Which limitation would most affect your interpretation of this paper?",
+      "chunks": [
+        {
+          "role": "主语",
+          "en": "A useful critique",
+          "zh": "有用的评议"
+        },
+        {
+          "role": "谓语",
+          "en": "explains",
+          "zh": "说明"
+        },
+        {
+          "role": "宾语从句",
+          "en": "how a limitation",
+          "zh": "某项局限如何"
+        },
+        {
+          "role": "从句谓语",
+          "en": "could change",
+          "zh": "可能改变"
+        },
+        {
+          "role": "宾语",
+          "en": "the interpretation.",
+          "zh": "解释"
+        }
+      ],
+      "vocabulary": [
+        {
+          "term": "critique",
+          "ipa": "krɪˈtiːk",
+          "meaning": "评议；评论"
+        }
+      ],
+      "phonetics": []
+    },
+    {
+      "en": "After reading, I summarize one finding and one unresolved question.",
+      "zh": "读完之后，我会概括一项发现和一个尚未解决的问题。",
+      "note": "one...and one... 将总结控制在可复述的两个重点；unresolved 表示仍待回答。",
+      "quote": "",
+      "question": "What finding and unresolved question would you share at journal club?",
+      "chunks": [
+        {
+          "role": "状语",
+          "en": "After reading,",
+          "zh": "读完之后"
+        },
+        {
+          "role": "主语",
+          "en": "I",
+          "zh": "我"
+        },
+        {
+          "role": "谓语",
+          "en": "summarize",
+          "zh": "概括"
+        },
+        {
+          "role": "宾语",
+          "en": "one finding",
+          "zh": "一项发现"
+        },
+        {
+          "role": "并列宾语",
+          "en": "and one unresolved question.",
+          "zh": "与一个尚未解决的问题"
+        }
+      ],
+      "vocabulary": [
+        {
+          "term": "unresolved",
+          "ipa": "ˌʌnrɪˈzɑːlvd",
+          "meaning": "尚未解决的"
+        }
+      ],
+      "phonetics": []
+    },
+    {
+      "en": "Before interpreting the pattern, I check the axis labels and units.",
+      "zh": "解释图中模式之前，我先查看坐标轴标签和单位。",
+      "note": "Before interpreting 引出先行步骤；labels and units 提醒同时看变量名称和尺度。",
+      "quote": "",
+      "question": "What do the two axes represent in your chosen figure?",
+      "chunks": [
+        {
+          "role": "状语",
+          "en": "Before interpreting the pattern,",
+          "zh": "解释模式之前"
+        },
+        {
+          "role": "主语",
+          "en": "I",
+          "zh": "我"
+        },
+        {
+          "role": "谓语",
+          "en": "check",
+          "zh": "查看"
+        },
+        {
+          "role": "宾语",
+          "en": "the axis labels and units.",
+          "zh": "坐标轴标签和单位"
+        }
+      ],
+      "vocabulary": [
+        {
+          "term": "axis",
+          "ipa": "ˈæksɪs",
+          "meaning": "坐标轴"
+        }
+      ],
+      "phonetics": []
+    },
+    {
+      "en": "The legend should explain the symbols, colors, and groups shown in the figure.",
+      "zh": "图例应说明图中展示的符号、颜色和分组。",
+      "note": "shown in the figure 是过去分词短语；并列宾语有助于逐项检查图例。",
+      "quote": "",
+      "question": "Which visual element would be unclear without the legend?",
+      "chunks": [
+        {
+          "role": "主语",
+          "en": "The legend",
+          "zh": "图例"
+        },
+        {
+          "role": "谓语",
+          "en": "should explain",
+          "zh": "应说明"
+        },
+        {
+          "role": "宾语",
+          "en": "the symbols, colors, and groups",
+          "zh": "符号、颜色和分组"
+        },
+        {
+          "role": "定语",
+          "en": "shown in the figure.",
+          "zh": "图中展示的"
+        }
+      ],
+      "vocabulary": [
+        {
+          "term": "legend",
+          "ipa": "ˈledʒənd",
+          "meaning": "图例"
+        }
+      ],
+      "phonetics": []
+    },
+    {
+      "en": "Each point should correspond to a clearly defined observation or sampling unit.",
+      "zh": "每个点应对应一个定义明确的观测或采样单位。",
+      "note": "correspond to 表示对应；observation 与 sampling unit 需要按图的实际含义区分。",
+      "quote": "",
+      "question": "What exactly does one point represent in your plot?",
+      "chunks": [
+        {
+          "role": "主语",
+          "en": "Each point",
+          "zh": "每个点"
+        },
+        {
+          "role": "谓语",
+          "en": "should correspond",
+          "zh": "应对应"
+        },
+        {
+          "role": "介词短语",
+          "en": "to a clearly defined",
+          "zh": "一个定义明确的"
+        },
+        {
+          "role": "宾语",
+          "en": "observation or sampling unit.",
+          "zh": "观测或采样单位"
+        }
+      ],
+      "vocabulary": [
+        {
+          "term": "correspond",
+          "ipa": "ˌkɔːrəˈspɑːnd",
+          "meaning": "对应"
+        }
+      ],
+      "phonetics": []
+    },
+    {
+      "en": "A logarithmic axis changes how numerical differences appear on the page.",
+      "zh": "对数坐标轴会改变数值差异在页面上的呈现方式。",
+      "note": "how 引导宾语从句；changes how...appear 描述视觉映射方式的改变。",
+      "quote": "",
+      "question": "Why might the authors choose a logarithmic axis?",
+      "chunks": [
+        {
+          "role": "主语",
+          "en": "A logarithmic axis",
+          "zh": "对数坐标轴"
+        },
+        {
+          "role": "谓语",
+          "en": "changes",
+          "zh": "改变"
+        },
+        {
+          "role": "宾语",
+          "en": "how numerical differences",
+          "zh": "数值差异如何"
+        },
+        {
+          "role": "从句谓语",
+          "en": "appear",
+          "zh": "呈现"
+        },
+        {
+          "role": "状语",
+          "en": "on the page.",
+          "zh": "在页面上"
+        }
+      ],
+      "vocabulary": [
+        {
+          "term": "logarithmic",
+          "ipa": "ˌlɔːɡəˈrɪðmɪk",
+          "meaning": "对数的"
+        }
+      ],
+      "phonetics": []
+    },
+    {
+      "en": "The caption should state what the error bars represent.",
+      "zh": "图注应注明误差线代表什么。",
+      "note": "what 引导宾语从句；represent 要与实际使用的标准差、标准误或区间相对应。",
+      "quote": "",
+      "question": "What do the error bars represent in this figure?",
+      "chunks": [
+        {
+          "role": "主语",
+          "en": "The caption",
+          "zh": "图注"
+        },
+        {
+          "role": "谓语",
+          "en": "should state",
+          "zh": "应注明"
+        },
+        {
+          "role": "宾语从句",
+          "en": "what the error bars",
+          "zh": "误差线所表示的内容"
+        },
+        {
+          "role": "从句谓语",
+          "en": "represent.",
+          "zh": "是什么"
+        }
+      ],
+      "vocabulary": [
+        {
+          "term": "caption",
+          "ipa": "ˈkæpʃən",
+          "meaning": "图注"
+        }
+      ],
+      "phonetics": []
+    },
+    {
+      "en": "Group averages can hide variation among the individual observations.",
+      "zh": "组均值可能掩盖各个观测值之间的变异。",
+      "note": "can hide 表示汇总可能带来的信息损失；among 指多个观测值之间。",
+      "quote": "",
+      "question": "What additional display would reveal variation within each group?",
+      "chunks": [
+        {
+          "role": "主语",
+          "en": "Group averages",
+          "zh": "组均值"
+        },
+        {
+          "role": "谓语",
+          "en": "can hide",
+          "zh": "可能掩盖"
+        },
+        {
+          "role": "宾语",
+          "en": "variation",
+          "zh": "变异"
+        },
+        {
+          "role": "范围",
+          "en": "among the individual observations.",
+          "zh": "在各个观测值之间"
+        }
+      ],
+      "vocabulary": [
+        {
+          "term": "variation",
+          "ipa": "ˌveriˈeɪʃən",
+          "meaning": "变异；变化"
+        }
+      ],
+      "phonetics": []
+    },
+    {
+      "en": "Overlapping data points may obscure the density of observations.",
+      "zh": "重叠的数据点可能使观测值的密度难以辨认。",
+      "note": "may obscure 描述视觉上的遮蔽；density of observations 指点在图中的聚集程度。",
+      "quote": "",
+      "question": "How could you make overlapping observations easier to see?",
+      "chunks": [
+        {
+          "role": "主语",
+          "en": "Overlapping data points",
+          "zh": "重叠的数据点"
+        },
+        {
+          "role": "谓语",
+          "en": "may obscure",
+          "zh": "可能遮蔽"
+        },
+        {
+          "role": "宾语",
+          "en": "the density",
+          "zh": "密度"
+        },
+        {
+          "role": "定语",
+          "en": "of observations.",
+          "zh": "观测值的"
+        }
+      ],
+      "vocabulary": [
+        {
+          "term": "obscure",
+          "ipa": "əbˈskjʊr",
+          "meaning": "遮蔽；使不清楚"
+        }
+      ],
+      "phonetics": []
+    },
+    {
+      "en": "The direction of association should be described before discussing its possible explanation.",
+      "zh": "讨论可能解释之前，应先描述关联方向。",
+      "note": "should be described 使用被动语态突出报告顺序；possible explanation 保留解释的假设性质。",
+      "quote": "",
+      "question": "Describe the direction of an association without explaining its cause.",
+      "chunks": [
+        {
+          "role": "主语",
+          "en": "The direction of association",
+          "zh": "关联方向"
+        },
+        {
+          "role": "谓语",
+          "en": "should be described",
+          "zh": "应描述"
+        },
+        {
+          "role": "状语",
+          "en": "before discussing",
+          "zh": "在讨论之前"
+        },
+        {
+          "role": "宾语",
+          "en": "its possible explanation.",
+          "zh": "其可能解释"
+        }
+      ],
+      "vocabulary": [
+        {
+          "term": "direction",
+          "ipa": "dəˈrekʃən",
+          "meaning": "方向"
+        }
+      ],
+      "phonetics": []
+    },
+    {
+      "en": "The apparent trend may depend on a small number of influential observations.",
+      "zh": "表面上呈现的趋势可能取决于少数影响较大的观测值。",
+      "note": "depend on 为固定搭配；influential 指对估计或趋势影响较大的点。",
+      "quote": "",
+      "question": "How would you examine whether a few observations drive the trend?",
+      "chunks": [
+        {
+          "role": "主语",
+          "en": "The apparent trend",
+          "zh": "表面上呈现的趋势"
+        },
+        {
+          "role": "谓语",
+          "en": "may depend",
+          "zh": "可能取决于"
+        },
+        {
+          "role": "介词短语",
+          "en": "on a small number",
+          "zh": "少数"
+        },
+        {
+          "role": "宾语",
+          "en": "of influential observations.",
+          "zh": "影响较大的观测值"
+        }
+      ],
+      "vocabulary": [
+        {
+          "term": "influential",
+          "ipa": "ˌɪnfluˈenʃəl",
+          "meaning": "影响较大的"
+        }
+      ],
+      "phonetics": []
+    },
+    {
+      "en": "A wide interval indicates substantial uncertainty under the stated analysis assumptions.",
+      "zh": "在所声明的分析假设下，较宽的区间表明较大的不确定性。",
+      "note": "under the stated assumptions 将解释限定在所采用的方法条件内；substantial 表示程度较大。",
+      "quote": "",
+      "question": "How would you communicate a wide uncertainty interval to a general audience?",
+      "chunks": [
+        {
+          "role": "主语",
+          "en": "A wide interval",
+          "zh": "较宽的区间"
+        },
+        {
+          "role": "谓语",
+          "en": "indicates",
+          "zh": "表明"
+        },
+        {
+          "role": "宾语",
+          "en": "substantial uncertainty",
+          "zh": "较大的不确定性"
+        },
+        {
+          "role": "范围",
+          "en": "under the stated analysis assumptions.",
+          "zh": "在所声明的分析假设下"
+        }
+      ],
+      "vocabulary": [
+        {
+          "term": "interval",
+          "ipa": "ˈɪntərvəl",
+          "meaning": "区间"
+        }
+      ],
+      "phonetics": []
+    },
+    {
+      "en": "The figure alone cannot establish the causal direction between these variables.",
+      "zh": "单凭这张图无法确定这些变量之间的因果方向。",
+      "note": "alone 强调证据来源有限；causal direction 指哪一个变量影响另一个。",
+      "quote": "",
+      "question": "What other evidence would help investigate the causal direction?",
+      "chunks": [
+        {
+          "role": "主语",
+          "en": "The figure alone",
+          "zh": "单凭这张图"
+        },
+        {
+          "role": "谓语",
+          "en": "cannot establish",
+          "zh": "无法确定"
+        },
+        {
+          "role": "宾语",
+          "en": "the causal direction",
+          "zh": "因果方向"
+        },
+        {
+          "role": "范围",
+          "en": "between these variables.",
+          "zh": "在这些变量之间"
+        }
+      ],
+      "vocabulary": [
+        {
+          "term": "causal",
+          "ipa": "ˈkɔːzəl",
+          "meaning": "因果的"
+        }
+      ],
+      "phonetics": []
+    },
+    {
+      "en": "A nonsignificant result does not demonstrate the complete absence of an effect.",
+      "zh": "不显著的结果并不证明完全不存在效应。",
+      "note": "does not demonstrate 区分未检出证据和已经证实不存在；absence of 为常用搭配。",
+      "quote": "",
+      "question": "How would you describe a nonsignificant result without overstating it?",
+      "chunks": [
+        {
+          "role": "主语",
+          "en": "A nonsignificant result",
+          "zh": "不显著的结果"
+        },
+        {
+          "role": "谓语",
+          "en": "does not demonstrate",
+          "zh": "并不证明"
+        },
+        {
+          "role": "宾语",
+          "en": "the complete absence",
+          "zh": "完全不存在"
+        },
+        {
+          "role": "定语",
+          "en": "of an effect.",
+          "zh": "效应"
+        }
+      ],
+      "vocabulary": [
+        {
+          "term": "absence",
+          "ipa": "ˈæbsəns",
+          "meaning": "不存在；缺失"
+        }
+      ],
+      "phonetics": []
+    },
+    {
+      "en": "The confidence interval provides information about the precision of the estimate.",
+      "zh": "置信区间提供了关于估计精度的信息。",
+      "note": "information about 后接所说明的方面；precision 与效应大小是不同概念。",
+      "quote": "",
+      "question": "What does the interval width tell you about precision?",
+      "chunks": [
+        {
+          "role": "主语",
+          "en": "The confidence interval",
+          "zh": "置信区间"
+        },
+        {
+          "role": "谓语",
+          "en": "provides",
+          "zh": "提供"
+        },
+        {
+          "role": "宾语",
+          "en": "information",
+          "zh": "信息"
+        },
+        {
+          "role": "定语",
+          "en": "about the precision",
+          "zh": "关于精度的"
+        },
+        {
+          "role": "补充",
+          "en": "of the estimate.",
+          "zh": "该估计的"
+        }
+      ],
+      "vocabulary": [
+        {
+          "term": "precision",
+          "ipa": "prɪˈsɪʒən",
+          "meaning": "精度"
+        }
+      ],
+      "phonetics": []
+    },
+    {
+      "en": "A sensitivity analysis can show whether conclusions depend on particular choices.",
+      "zh": "敏感性分析可以显示结论是否依赖特定的分析选择。",
+      "note": "whether 引导需要考察的问题；depend on 用于说明结论对选择的依赖。",
+      "quote": "",
+      "question": "Which analysis choice would you vary in a sensitivity analysis?",
+      "chunks": [
+        {
+          "role": "主语",
+          "en": "A sensitivity analysis",
+          "zh": "敏感性分析"
+        },
+        {
+          "role": "谓语",
+          "en": "can show",
+          "zh": "可以显示"
+        },
+        {
+          "role": "宾语从句",
+          "en": "whether conclusions",
+          "zh": "结论是否"
+        },
+        {
+          "role": "从句谓语",
+          "en": "depend",
+          "zh": "依赖"
+        },
+        {
+          "role": "介词短语",
+          "en": "on particular choices.",
+          "zh": "特定选择"
+        }
+      ],
+      "vocabulary": [
+        {
+          "term": "sensitivity",
+          "ipa": "ˌsensəˈtɪvəti",
+          "meaning": "敏感性"
+        }
+      ],
+      "phonetics": []
+    },
+    {
+      "en": "Consistency across analyses can strengthen confidence in a specific interpretation.",
+      "zh": "不同分析间的一致性可以增强对某一具体解释的信心。",
+      "note": "strengthen confidence in 表达增强支持程度；specific 避免把一致性扩展为所有解释都成立。",
+      "quote": "",
+      "question": "Which analyses would provide meaningfully different checks of your conclusion?",
+      "chunks": [
+        {
+          "role": "主语",
+          "en": "Consistency across analyses",
+          "zh": "不同分析间的一致性"
+        },
+        {
+          "role": "谓语",
+          "en": "can strengthen",
+          "zh": "可以增强"
+        },
+        {
+          "role": "宾语",
+          "en": "confidence",
+          "zh": "信心"
+        },
+        {
+          "role": "介词短语",
+          "en": "in a specific interpretation.",
+          "zh": "对某一具体解释的"
+        }
+      ],
+      "vocabulary": [
+        {
+          "term": "consistency",
+          "ipa": "kənˈsɪstənsi",
+          "meaning": "一致性"
+        }
+      ],
+      "phonetics": []
+    },
+    {
+      "en": "A limitation is most informative when its consequences are explained clearly.",
+      "zh": "说明清楚后果时，对局限的讨论最有信息价值。",
+      "note": "when 引出有用讨论的条件；consequences 要具体对应结果、范围或解释。",
+      "quote": "",
+      "question": "Explain how one limitation affects the conclusion, rather than only naming it.",
+      "chunks": [
+        {
+          "role": "主语",
+          "en": "A limitation",
+          "zh": "某项局限"
+        },
+        {
+          "role": "谓语",
+          "en": "is most informative",
+          "zh": "最有信息价值"
+        },
+        {
+          "role": "条件",
+          "en": "when its consequences",
+          "zh": "当其后果"
+        },
+        {
+          "role": "从句谓语",
+          "en": "are explained clearly.",
+          "zh": "被解释清楚时"
+        }
+      ],
+      "vocabulary": [
+        {
+          "term": "consequence",
+          "ipa": "ˈkɑːnsəkwens",
+          "meaning": "后果；影响"
+        }
+      ],
+      "phonetics": []
+    },
+    {
+      "en": "The findings may not generalize beyond the conditions represented in this study.",
+      "zh": "这些发现可能无法推广到本研究涵盖条件之外。",
+      "note": "generalize beyond 表示向研究范围外推广；may not 保留对具体情境的判断。",
+      "quote": "",
+      "question": "Which new setting would be most different from the study conditions?",
+      "chunks": [
+        {
+          "role": "主语",
+          "en": "The findings",
+          "zh": "这些发现"
+        },
+        {
+          "role": "谓语",
+          "en": "may not generalize",
+          "zh": "可能无法推广"
+        },
+        {
+          "role": "介词短语",
+          "en": "beyond the conditions",
+          "zh": "超出这些条件"
+        },
+        {
+          "role": "定语",
+          "en": "represented in this study.",
+          "zh": "本研究所涵盖的"
+        }
+      ],
+      "vocabulary": [
+        {
+          "term": "generalize",
+          "ipa": "ˈdʒenərəlaɪz",
+          "meaning": "推广；概括"
+        }
+      ],
+      "phonetics": []
+    },
+    {
+      "en": "We can acknowledge uncertainty while explaining what the evidence supports.",
+      "zh": "我们可以承认不确定性，同时说明证据支持什么。",
+      "note": "while 加动名词连接同时进行的两项沟通任务；supports 指证据实际支撑的范围。",
+      "quote": "",
+      "question": "How would you explain both the main evidence and its uncertainty?",
+      "chunks": [
+        {
+          "role": "主语",
+          "en": "We",
+          "zh": "我们"
+        },
+        {
+          "role": "谓语",
+          "en": "can acknowledge",
+          "zh": "可以承认"
+        },
+        {
+          "role": "宾语",
+          "en": "uncertainty",
+          "zh": "不确定性"
+        },
+        {
+          "role": "状语",
+          "en": "while explaining",
+          "zh": "同时说明"
+        },
+        {
+          "role": "宾语",
+          "en": "what the evidence supports.",
+          "zh": "证据所支持的内容"
+        }
+      ],
+      "vocabulary": [
+        {
+          "term": "acknowledge",
+          "ipa": "əkˈnɑːlɪdʒ",
+          "meaning": "承认；认可"
+        }
+      ],
+      "phonetics": []
+    },
+    {
+      "en": "The next experiment should distinguish between plausible explanations for this pattern.",
+      "zh": "下一项实验应能区分对这一模式的几种合理解释。",
+      "note": "distinguish between 表示在多个解释之间作区分；plausible 指合理可信、仍有待检验。",
+      "quote": "",
+      "question": "What comparison could separate two plausible explanations for your result?",
+      "chunks": [
+        {
+          "role": "主语",
+          "en": "The next experiment",
+          "zh": "下一项实验"
+        },
+        {
+          "role": "谓语",
+          "en": "should distinguish",
+          "zh": "应区分"
+        },
+        {
+          "role": "宾语",
+          "en": "between plausible explanations",
+          "zh": "合理可信的解释之间的差异"
+        },
+        {
+          "role": "定语",
+          "en": "for this pattern.",
+          "zh": "针对这一模式的"
+        }
+      ],
+      "vocabulary": [
+        {
+          "term": "plausible",
+          "ipa": "ˈplɔːzəbəl",
+          "meaning": "合理可信的"
+        }
+      ],
+      "phonetics": []
+    },
+    {
+      "en": "My concluding sentence should connect the key result to the original question.",
+      "zh": "我的总结句应把关键结果与最初的研究问题联系起来。",
+      "note": "connect A to B 使报告结尾回到研究目标；concluding sentence 指收束讨论的总结句。",
+      "quote": "",
+      "question": "Give a one-sentence conclusion that directly answers your original question.",
+      "chunks": [
+        {
+          "role": "主语",
+          "en": "My concluding sentence",
+          "zh": "我的总结句"
+        },
+        {
+          "role": "谓语",
+          "en": "should connect",
+          "zh": "应连接"
+        },
+        {
+          "role": "宾语",
+          "en": "the key result",
+          "zh": "关键结果"
+        },
+        {
+          "role": "介词短语",
+          "en": "to the original question.",
+          "zh": "与最初的问题"
+        }
+      ],
+      "vocabulary": [
+        {
+          "term": "concluding",
+          "ipa": "kənˈkluːdɪŋ",
+          "meaning": "总结性的；结束时的"
+        }
+      ],
+      "phonetics": []
+    },
+    {
+      "en": "Could we agree on the main goal for today's meeting?",
+      "zh": "我们能否先就今天会议的主要目标达成一致？",
+      "note": "Could we… 用共同商量的语气提议；agree on 后接需要达成一致的事项。",
+      "question": "What should your next project meeting accomplish?",
+      "quote": "",
+      "chunks": [
+        {
+          "role": "疑问主谓",
+          "en": "Could we agree",
+          "zh": "我们能否达成一致"
+        },
+        {
+          "role": "介词短语",
+          "en": "on the main goal",
+          "zh": "关于主要目标"
+        },
+        {
+          "role": "定语",
+          "en": "for today’s meeting?",
+          "zh": "今天会议的"
+        }
+      ],
+      "vocabulary": [
+        {
+          "term": "goal",
+          "ipa": "ɡoʊl",
+          "meaning": "目标"
+        }
+      ],
+      "phonetics": []
+    },
+    {
+      "en": "I have added the main discussion points to our agenda.",
+      "zh": "我已将主要讨论事项加入议程。",
+      "note": "have added 用现在完成时说明准备已完成；add A to B 表示把事项加入议程。",
+      "question": "Which items would you include in a project meeting agenda?",
+      "quote": "",
+      "chunks": [
+        {
+          "role": "主语",
+          "en": "I",
+          "zh": "我"
+        },
+        {
+          "role": "谓语",
+          "en": "have added",
+          "zh": "已经加入"
+        },
+        {
+          "role": "宾语",
+          "en": "the main discussion points",
+          "zh": "主要讨论事项"
+        },
+        {
+          "role": "介词短语",
+          "en": "to our agenda.",
+          "zh": "到我们的议程中"
+        }
+      ],
+      "vocabulary": [
+        {
+          "term": "agenda",
+          "ipa": "əˈdʒendə",
+          "meaning": "议程"
+        }
+      ],
+      "phonetics": []
+    },
+    {
+      "en": "Let us separate urgent decisions from topics that need further discussion.",
+      "zh": "我们先把紧急决策和需要进一步讨论的话题分开。",
+      "note": "Let us… 提出共同采取的行动；separate A from B 可用于整理议题的优先级。",
+      "question": "Which decision needs attention first in your current project?",
+      "quote": "",
+      "chunks": [
+        {
+          "role": "主谓结构",
+          "en": "Let us separate",
+          "zh": "让我们分开"
+        },
+        {
+          "role": "宾语",
+          "en": "urgent decisions",
+          "zh": "紧急决策"
+        },
+        {
+          "role": "介词",
+          "en": "from",
+          "zh": "与"
+        },
+        {
+          "role": "介词宾语",
+          "en": "topics that need further discussion.",
+          "zh": "需要进一步讨论的话题"
+        }
+      ],
+      "vocabulary": [
+        {
+          "term": "urgent",
+          "ipa": "ˈɜrdʒənt",
+          "meaning": "紧急的"
+        }
+      ],
+      "phonetics": []
+    },
+    {
+      "en": "I can prepare a short summary before our next meeting.",
+      "zh": "我可以在下次会议前准备一份简短总结。",
+      "note": "can prepare 表示主动承担任务；before 明确交付的时间节点。",
+      "question": "What would you summarize before meeting a potential collaborator?",
+      "quote": "",
+      "chunks": [
+        {
+          "role": "主语",
+          "en": "I",
+          "zh": "我"
+        },
+        {
+          "role": "谓语",
+          "en": "can prepare",
+          "zh": "可以准备"
+        },
+        {
+          "role": "宾语",
+          "en": "a short summary",
+          "zh": "一份简短总结"
+        },
+        {
+          "role": "时间状语",
+          "en": "before our next meeting.",
+          "zh": "在下次会议之前"
+        }
+      ],
+      "vocabulary": [
+        {
+          "term": "summary",
+          "ipa": "ˈsʌməri",
+          "meaning": "总结；摘要"
+        }
+      ],
+      "phonetics": []
+    },
+    {
+      "en": "Could you explain how this task fits the project timeline?",
+      "zh": "你能说明这项任务如何纳入项目时间安排吗？",
+      "note": "how 引导宾语从句；fits the timeline 用于讨论任务与整体进度的关系。",
+      "question": "How would you explain the timing of your next analysis task?",
+      "quote": "",
+      "chunks": [
+        {
+          "role": "疑问主谓",
+          "en": "Could you explain",
+          "zh": "你能否解释"
+        },
+        {
+          "role": "从句连接词",
+          "en": "how",
+          "zh": "如何"
+        },
+        {
+          "role": "从句主语",
+          "en": "this task",
+          "zh": "这项任务"
+        },
+        {
+          "role": "从句谓语",
+          "en": "fits",
+          "zh": "纳入"
+        },
+        {
+          "role": "从句宾语",
+          "en": "the project timeline?",
+          "zh": "项目时间安排"
+        }
+      ],
+      "vocabulary": [
+        {
+          "term": "timeline",
+          "ipa": "ˈtaɪmlaɪn",
+          "meaning": "时间安排；时间线"
+        }
+      ],
+      "phonetics": []
+    },
+    {
+      "en": "We should confirm who is responsible for each analysis step.",
+      "zh": "我们应确认每个分析步骤由谁负责。",
+      "note": "who is responsible… 是嵌入问句，保持陈述语序；be responsible for 表示负责。",
+      "question": "How would you clarify responsibilities in a shared analysis project?",
+      "quote": "",
+      "chunks": [
+        {
+          "role": "主语",
+          "en": "We",
+          "zh": "我们"
+        },
+        {
+          "role": "谓语",
+          "en": "should confirm",
+          "zh": "应当确认"
+        },
+        {
+          "role": "宾语从句",
+          "en": "who is responsible",
+          "zh": "谁负责"
+        },
+        {
+          "role": "介词短语",
+          "en": "for each analysis step.",
+          "zh": "每个分析步骤"
+        }
+      ],
+      "vocabulary": [
+        {
+          "term": "responsible",
+          "ipa": "rɪˈspɑnsəbəl",
+          "meaning": "负有责任的"
+        }
+      ],
+      "phonetics": []
+    },
+    {
+      "en": "I will share the draft once the figures are ready.",
+      "zh": "图准备好后，我会分享草稿。",
+      "note": "once 在这里表示一旦；时间从句用 are ready，不需要使用 will。",
+      "question": "What needs to be ready before you share your next draft?",
+      "quote": "",
+      "chunks": [
+        {
+          "role": "主语",
+          "en": "I",
+          "zh": "我"
+        },
+        {
+          "role": "谓语",
+          "en": "will share",
+          "zh": "会分享"
+        },
+        {
+          "role": "宾语",
+          "en": "the draft",
+          "zh": "草稿"
+        },
+        {
+          "role": "时间状语从句",
+          "en": "once the figures are ready.",
+          "zh": "一旦图已准备好"
+        }
+      ],
+      "vocabulary": [
+        {
+          "term": "draft",
+          "ipa": "dræft",
+          "meaning": "草稿"
+        }
+      ],
+      "phonetics": []
+    },
+    {
+      "en": "Please let me know which section needs the most attention.",
+      "zh": "请告诉我哪一部分最需要重点修改。",
+      "note": "let me know 用于请求反馈；which section needs… 以 section 为从句主语。",
+      "question": "Which section of your current work would benefit most from feedback?",
+      "quote": "",
+      "chunks": [
+        {
+          "role": "礼貌请求",
+          "en": "Please let me know",
+          "zh": "请告诉我"
+        },
+        {
+          "role": "从句主语",
+          "en": "which section",
+          "zh": "哪一部分"
+        },
+        {
+          "role": "从句谓语",
+          "en": "needs",
+          "zh": "需要"
+        },
+        {
+          "role": "从句宾语",
+          "en": "the most attention.",
+          "zh": "最多关注"
+        }
+      ],
+      "vocabulary": [
+        {
+          "term": "attention",
+          "ipa": "əˈtenʃən",
+          "meaning": "关注；注意"
+        }
+      ],
+      "phonetics": []
+    },
+    {
+      "en": "Your suggestion helps me see the problem from another perspective.",
+      "zh": "你的建议帮助我从另一个角度理解这个问题。",
+      "note": "help someone do something 表示帮助某人做某事；from another perspective 引出新视角。",
+      "question": "Can you describe feedback that changed how you approached a problem?",
+      "quote": "",
+      "chunks": [
+        {
+          "role": "主语",
+          "en": "Your suggestion",
+          "zh": "你的建议"
+        },
+        {
+          "role": "谓语",
+          "en": "helps",
+          "zh": "帮助"
+        },
+        {
+          "role": "宾语及补足语",
+          "en": "me see the problem",
+          "zh": "我理解这个问题"
+        },
+        {
+          "role": "方式状语",
+          "en": "from another perspective.",
+          "zh": "从另一个角度"
+        }
+      ],
+      "vocabulary": [
+        {
+          "term": "perspective",
+          "ipa": "pərˈspektɪv",
+          "meaning": "视角"
+        }
+      ],
+      "phonetics": []
+    },
+    {
+      "en": "I agree with the goal, but I suggest a different approach.",
+      "zh": "我赞同这个目标，但建议采用另一种做法。",
+      "note": "agree with the goal 先明确共同目标；suggest 后接名词短语，提出具体替代方法。",
+      "question": "How would you propose another approach while maintaining a constructive tone?",
+      "quote": "",
+      "chunks": [
+        {
+          "role": "主语",
+          "en": "I",
+          "zh": "我"
+        },
+        {
+          "role": "谓语",
+          "en": "agree",
+          "zh": "赞同"
+        },
+        {
+          "role": "介词短语",
+          "en": "with the goal,",
+          "zh": "这个目标"
+        },
+        {
+          "role": "并列主谓",
+          "en": "but I suggest",
+          "zh": "但我建议"
+        },
+        {
+          "role": "宾语",
+          "en": "a different approach.",
+          "zh": "另一种做法"
+        }
+      ],
+      "vocabulary": [
+        {
+          "term": "approach",
+          "ipa": "əˈproʊtʃ",
+          "meaning": "方法；做法"
+        }
+      ],
+      "phonetics": []
+    },
+    {
+      "en": "Could we compare the advantages of these two options first?",
+      "zh": "我们可以先比较这两个选项的优点吗？",
+      "note": "Could we compare… 是合作式提议；of these two options 修饰 advantages。",
+      "question": "What criteria would you use to compare two analysis options?",
+      "quote": "",
+      "chunks": [
+        {
+          "role": "疑问主谓",
+          "en": "Could we compare",
+          "zh": "我们可以比较吗"
+        },
+        {
+          "role": "宾语",
+          "en": "the advantages",
+          "zh": "优点"
+        },
+        {
+          "role": "定语",
+          "en": "of these two options",
+          "zh": "这两个选项的"
+        },
+        {
+          "role": "顺序状语",
+          "en": "first?",
+          "zh": "先"
+        }
+      ],
+      "vocabulary": [
+        {
+          "term": "advantages",
+          "ipa": "ədˈvæntɪdʒɪz",
+          "meaning": "优点；优势"
+        }
+      ],
+      "phonetics": []
+    },
+    {
+      "en": "I may have misunderstood the scope of the requested revision.",
+      "zh": "我可能误解了这次修改要求的范围。",
+      "note": "may have misunderstood 表示对过去理解的可能性判断；scope 指工作范围。",
+      "question": "How would you clarify an ambiguous revision request?",
+      "quote": "",
+      "chunks": [
+        {
+          "role": "主语",
+          "en": "I",
+          "zh": "我"
+        },
+        {
+          "role": "谓语",
+          "en": "may have misunderstood",
+          "zh": "可能误解了"
+        },
+        {
+          "role": "宾语",
+          "en": "the scope",
+          "zh": "范围"
+        },
+        {
+          "role": "定语",
+          "en": "of the requested revision.",
+          "zh": "所要求修改的"
+        }
+      ],
+      "vocabulary": [
+        {
+          "term": "scope",
+          "ipa": "skoʊp",
+          "meaning": "范围"
+        }
+      ],
+      "phonetics": []
+    },
+    {
+      "en": "This change would require additional time for checking the results.",
+      "zh": "这一改动需要额外时间来核查结果。",
+      "note": "would require 用于说明拟议改动的影响；for checking 表达额外时间的用途。",
+      "question": "How would you explain a reasonable delay caused by additional checks?",
+      "quote": "",
+      "chunks": [
+        {
+          "role": "主语",
+          "en": "This change",
+          "zh": "这一改动"
+        },
+        {
+          "role": "谓语",
+          "en": "would require",
+          "zh": "将需要"
+        },
+        {
+          "role": "宾语",
+          "en": "additional time",
+          "zh": "额外时间"
+        },
+        {
+          "role": "目的状语",
+          "en": "for checking the results.",
+          "zh": "用于核查结果"
+        }
+      ],
+      "vocabulary": [
+        {
+          "term": "additional",
+          "ipa": "əˈdɪʃənəl",
+          "meaning": "额外的"
+        }
+      ],
+      "phonetics": []
+    },
+    {
+      "en": "Would it help if we divided this task into smaller steps?",
+      "zh": "如果把这项任务拆成更小的步骤，会有帮助吗？",
+      "note": "Would it help if… 委婉提出建议；divided 采用过去式以配合假设语气。",
+      "question": "How could you break a complex analysis task into manageable parts?",
+      "quote": "",
+      "chunks": [
+        {
+          "role": "疑问主谓",
+          "en": "Would it help",
+          "zh": "会有帮助吗"
+        },
+        {
+          "role": "条件从句主谓",
+          "en": "if we divided",
+          "zh": "如果我们拆分"
+        },
+        {
+          "role": "从句宾语",
+          "en": "this task",
+          "zh": "这项任务"
+        },
+        {
+          "role": "结果补充",
+          "en": "into smaller steps?",
+          "zh": "成更小的步骤"
+        }
+      ],
+      "vocabulary": [
+        {
+          "term": "divided",
+          "ipa": "dɪˈvaɪdɪd",
+          "meaning": "划分；拆分"
+        }
+      ],
+      "phonetics": []
+    },
+    {
+      "en": "I would appreciate feedback on the clarity of this explanation.",
+      "zh": "我希望得到关于这段解释是否清楚的反馈。",
+      "note": "I would appreciate… 比 I want 更适合礼貌请求；on the clarity 明确希望反馈的重点。",
+      "question": "Which part of your project is hardest to explain clearly?",
+      "quote": "",
+      "chunks": [
+        {
+          "role": "主语",
+          "en": "I",
+          "zh": "我"
+        },
+        {
+          "role": "谓语",
+          "en": "would appreciate",
+          "zh": "希望得到"
+        },
+        {
+          "role": "宾语",
+          "en": "feedback",
+          "zh": "反馈"
+        },
+        {
+          "role": "介词短语",
+          "en": "on the clarity",
+          "zh": "关于清晰程度"
+        },
+        {
+          "role": "定语",
+          "en": "of this explanation.",
+          "zh": "这段解释的"
+        }
+      ],
+      "vocabulary": [
+        {
+          "term": "clarity",
+          "ipa": "ˈklærəti",
+          "meaning": "清晰程度"
+        }
+      ],
+      "phonetics": []
+    },
+    {
+      "en": "Let us record the decision so everyone has the same understanding.",
+      "zh": "我们把决定记录下来，以便大家保持一致的理解。",
+      "note": "so 引出记录决定的目的；the same understanding 强调对行动事项的共同理解。",
+      "question": "What details should a meeting record include to prevent confusion?",
+      "quote": "",
+      "chunks": [
+        {
+          "role": "主谓结构",
+          "en": "Let us record",
+          "zh": "让我们记录"
+        },
+        {
+          "role": "宾语",
+          "en": "the decision",
+          "zh": "决定"
+        },
+        {
+          "role": "目的从句主谓",
+          "en": "so everyone has",
+          "zh": "以便每个人都拥有"
+        },
+        {
+          "role": "从句宾语",
+          "en": "the same understanding.",
+          "zh": "相同的理解"
+        }
+      ],
+      "vocabulary": [
+        {
+          "term": "decision",
+          "ipa": "dɪˈsɪʒən",
+          "meaning": "决定"
+        }
+      ],
+      "phonetics": []
+    },
+    {
+      "en": "We can revisit this question after reviewing the new information.",
+      "zh": "我们可以在查看新信息之后重新讨论这个问题。",
+      "note": "revisit 表示重新审视已讨论的问题；after reviewing 把讨论放在检查信息之后。",
+      "question": "When would it be useful to reconsider a previous project decision?",
+      "quote": "",
+      "chunks": [
+        {
+          "role": "主语",
+          "en": "We",
+          "zh": "我们"
+        },
+        {
+          "role": "谓语",
+          "en": "can revisit",
+          "zh": "可以重新讨论"
+        },
+        {
+          "role": "宾语",
+          "en": "this question",
+          "zh": "这个问题"
+        },
+        {
+          "role": "时间状语",
+          "en": "after reviewing the new information.",
+          "zh": "在查看新信息之后"
+        }
+      ],
+      "vocabulary": [
+        {
+          "term": "revisit",
+          "ipa": "ˌriˈvɪzɪt",
+          "meaning": "重新审视；再次讨论"
+        }
+      ],
+      "phonetics": []
+    },
+    {
+      "en": "Could we schedule a short follow-up meeting for next week?",
+      "zh": "我们可以安排下周进行一次简短的后续会议吗？",
+      "note": "schedule 作动词表示安排时间；follow-up 作定语说明这是后续沟通。",
+      "question": "What would you want to review in a follow-up meeting?",
+      "quote": "",
+      "chunks": [
+        {
+          "role": "疑问主谓",
+          "en": "Could we schedule",
+          "zh": "我们可以安排吗"
+        },
+        {
+          "role": "宾语",
+          "en": "a short follow-up meeting",
+          "zh": "一次简短后续会议"
+        },
+        {
+          "role": "时间状语",
+          "en": "for next week?",
+          "zh": "在下周"
+        }
+      ],
+      "vocabulary": [
+        {
+          "term": "schedule",
+          "ipa": "ˈskedʒuːl",
+          "meaning": "安排；日程"
+        }
+      ],
+      "phonetics": []
+    },
+    {
+      "en": "I will send a written summary of the agreed next steps.",
+      "zh": "我会发送一份书面总结，列出已商定的下一步行动。",
+      "note": "written 是过去分词作定语；agreed next steps 指各方已商定的后续行动。",
+      "question": "How would you summarize next steps after a productive meeting?",
+      "quote": "",
+      "chunks": [
+        {
+          "role": "主语",
+          "en": "I",
+          "zh": "我"
+        },
+        {
+          "role": "谓语",
+          "en": "will send",
+          "zh": "会发送"
+        },
+        {
+          "role": "宾语",
+          "en": "a written summary",
+          "zh": "一份书面总结"
+        },
+        {
+          "role": "定语",
+          "en": "of the agreed next steps.",
+          "zh": "关于已商定的下一步行动"
+        }
+      ],
+      "vocabulary": [
+        {
+          "term": "written",
+          "ipa": "ˈrɪtən",
+          "meaning": "书面的"
+        }
+      ],
+      "phonetics": []
+    },
+    {
+      "en": "Thank you for explaining the reasoning behind your recommendation.",
+      "zh": "感谢你解释这项建议背后的理由。",
+      "note": "thank someone for doing something 表达感谢；reasoning 强调推理过程，而不仅是结论。",
+      "question": "How would you acknowledge useful feedback before explaining your next action?",
+      "quote": "",
+      "chunks": [
+        {
+          "role": "主句",
+          "en": "Thank you",
+          "zh": "谢谢你"
+        },
+        {
+          "role": "介词与动名词",
+          "en": "for explaining",
+          "zh": "解释了"
+        },
+        {
+          "role": "宾语",
+          "en": "the reasoning",
+          "zh": "推理依据"
+        },
+        {
+          "role": "定语",
+          "en": "behind your recommendation.",
+          "zh": "这项建议背后的"
+        }
+      ],
+      "vocabulary": [
+        {
+          "term": "reasoning",
+          "ipa": "ˈriːzənɪŋ",
+          "meaning": "推理；论证过程"
+        }
+      ],
+      "phonetics": []
+    }
+  ]
+}
