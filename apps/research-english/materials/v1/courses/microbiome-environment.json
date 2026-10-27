@@ -1,8 +1,14 @@
 {
+  "format": "research-english-course-v1",
   "title": "微生物生态与环境研究",
   "domain": "environment",
   "description": "60 句原创教学表达：1–20 微生物生态，21–40 土壤与环境，41–60 统计解释。练习描述群落差异、环境关联及不确定性；表达模板中的研究情境请替换为真实项目。",
-  "level": "B1–B2",
+  "level": "★★★",
+  "tags": [
+    "微生物生态",
+    "环境研究",
+    "统计解释"
+  ],
   "source": {
     "title": "科研小盒原创科研英语课程 · 2026-10",
     "url": "",
@@ -2026,8 +2032,8 @@
       "en": "An interaction term allows an association to vary across conditions.",
       "zh": "交互项允许关联随条件变化。",
       "note": "allow something to do 表示允许某种变化；交互项在模型中表达这种变化，是否有统计证据还需检验。",
-      "question": "How would you explain an interaction to a collaborator?",
       "quote": "",
+      "question": "How would you explain an interaction to a collaborator?",
       "chunks": [
         {
           "role": "主语",

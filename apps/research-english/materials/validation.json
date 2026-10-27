@@ -4,7 +4,7 @@
   "courses": 4,
   "sentences": 240,
   "uniqueSentences": 240,
-  "bytes": 265971,
+  "bytes": 266451,
   "minWords": 8,
   "maxWords": 15,
   "checks": [
@@ -24,8 +24,8 @@
       "sentences": 60,
       "minWords": 9,
       "maxWords": 15,
-      "bytes": 69042,
-      "sha256": "4e6cea208893492b75a207405e641e6bb1af17b519c22508979a8eb5e38b4ca8"
+      "bytes": 69162,
+      "sha256": "32825d6a64c8342b1694f21bf55a61d178ba297eae80df3a3f48cc3f9c9006d9"
     },
     {
       "id": "bioinformatics-reproducibility",
@@ -33,8 +33,8 @@
       "sentences": 60,
       "minWords": 8,
       "maxWords": 11,
-      "bytes": 65305,
-      "sha256": "2ef8cecbc3459a269926152b96f6780940bd5438039a1943870c0d991802f401"
+      "bytes": 65428,
+      "sha256": "18765c1fdca9b07ff06bd99f07eab535effc8a354cff11849def42cba76d808b"
     },
     {
       "id": "microbiome-environment",
@@ -42,8 +42,8 @@
       "sentences": 60,
       "minWords": 9,
       "maxWords": 13,
-      "bytes": 65861,
-      "sha256": "fc191f68dd13a2349329f189f60af613f2fef113b980e95d4653ad6822d7396b"
+      "bytes": 65984,
+      "sha256": "a3ca0c74c825f98106801850d0fd6faf884da28d8ab020841a17c2ccf41d1c71"
     },
     {
       "id": "reading-discussion",
@@ -51,8 +51,8 @@
       "sentences": 60,
       "minWords": 9,
       "maxWords": 13,
-      "bytes": 65763,
-      "sha256": "026f9fde82af721c92ecf341ed77d75cf8fb65dfc0fca3dd06b32b4bffe6be55"
+      "bytes": 65877,
+      "sha256": "6fc17df44a6fe6aa6353f560c86697dfb57b759f362d22b298b2e0b416590eef"
     }
   ],
   "compatibility": {
