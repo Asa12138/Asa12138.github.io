@@ -175,7 +175,7 @@ module.exports=function createBackup(storage,{lessonIds,wordbookIds,activity}){
    else if(k.startsWith('english-progress:'))next=C.mergeProgress(old||{},v);
    else if(['research-english-library-v1','english-wordbooks-v1','english-vocabulary-v1'].includes(k)){
     const all=old||[],ids=new Set(all.map(x=>x.id));next=[...all,...v.filter(x=>!ids.has(x.id))];
-   }else if(k.startsWith('english-wordbook-progress:'))next={...v,...old,completed:[...new Set([...(old?.completed||[]),...(v.completed||[])])],seconds:Math.max(old?.seconds||0,v.seconds||0)};
+   }else if(k.startsWith('english-wordbook-progress:')){const timestamp=x=>Number.isFinite(x)?x:Date.parse(x)||0;next={...v,...old,completed:[...new Set([...(old?.completed||[]),...(v.completed||[])])],cardCompleted:[...new Set([...(old?.cardCompleted||[]),...(v.cardCompleted||[])])],seconds:Math.max(old?.seconds||0,v.seconds||0),lastOpenedAt:Math.max(timestamp(old?.lastOpenedAt),timestamp(v.lastOpenedAt))}}
    else if(k.startsWith('english-wordbook-cardtime:')){const sessions={...v.sessions};for(const [id,s]of Object.entries(old?.sessions||{}))sessions[id]=Math.max(sessions[id]||0,s);next={...v,...old,sessions,seconds:Math.max(old?.seconds||0,v.seconds||0,Object.values(sessions).reduce((n,s)=>n+(Number(s)||0),0))}}
    else next=old??v;
    writes.set(k,next);before.set(k,old??null);
@@ -1235,31 +1235,46 @@ function publicURL(value,base){
  if([...url.searchParams.keys()].some(k=>/^(?:token|access_token|api[_-]?key|key|password|secret|authorization|auth)$/i.test(k)))throw Error('请使用公开素材地址，不要在链接中填写密钥');
  return url.href;
 }
-function requestBytes(value,{maxBytes=MAX_BYTES,timeoutMs=TIMEOUT,headers={},method='GET',body}={}){
+function requestBytes(value,{maxBytes=MAX_BYTES,timeoutMs=TIMEOUT,headers={},method='GET',body,proxyOrigins=[]}={}){
  let headerOrigin;try{headerOrigin=new URL(publicURL(value)).origin}catch(error){return Promise.reject(error)}
  const deadline=Date.now()+Math.min(60000,timeoutMs);
- function follow(value,redirects){return new Promise((resolve,reject)=>{
-  let url;try{url=publicURL(value)}catch(error){reject(error);return}
+ const retryable=new Set(['ECONNRESET','ECONNREFUSED','EPIPE','ETIMEDOUT','EAI_AGAIN']);
+ async function follow(value,redirects,retry){
+  const url=publicURL(value);let agent;
+  // Only the community's fixed, validated service origins may use the OS proxy.
+  // Custom catalog/import URLs retain the public-DNS checks below.
+  if(proxyOrigins.includes(new URL(url).origin)){
+   const {proxy}=await require('./english-network').route({mode:'auto'});
+   if(proxy){const {HttpsProxyAgent}=require('../../vendor/proxy/node_modules/https-proxy-agent');agent=new HttpsProxyAgent(proxy)}
+  }
+  return new Promise((resolve,reject)=>{
   const remaining=deadline-Date.now();if(remaining<=0){reject(Error('素材请求超时，请稍后刷新'));return}
-  let finished=false,req;const finish=(error,value)=>{if(finished)return;finished=true;clearTimeout(timer);error?reject(error):resolve(value)};
+  let finished=false,req;const finish=(error,value)=>{if(finished)return;finished=true;clearTimeout(timer);agent?.destroy();error?reject(error):resolve(value)};
   const timer=setTimeout(()=>{finish(Error('素材请求超时，请稍后刷新'));req?.destroy()},remaining);
-  req=(method==='POST'?https.request:https.get)(url,{method,headers:{Accept:'application/json,text/plain','User-Agent':'Research-English-Catalog/1.0','Accept-Encoding':'identity',...(new URL(url).origin===headerOrigin?headers:{})},lookup(host,options,callback){
+  req=(method==='POST'?https.request:https.get)(url,{method,agent:agent||(retry?false:undefined),headers:{Accept:'application/json,text/plain','User-Agent':'Research-English-Catalog/1.0','Accept-Encoding':'identity',...(new URL(url).origin===headerOrigin?headers:{})},lookup(host,options,callback){
    dns.lookup(host,{all:true},(error,addresses)=>{if(error){callback(error);return}if(!addresses.length||addresses.some(a=>!isPublicAddress(a.address))){callback(Error('素材域名不能指向本机或内网地址'));return}if(options?.all)callback(null,addresses);else callback(null,addresses[0].address,addresses[0].family)})
   }},res=>{
    if([301,302,303,307,308].includes(res.statusCode)){
     if(method!=='GET'){res.resume();finish(Error('统计请求不接受重定向'));return}
     res.resume();if(redirects>=3||!res.headers.location){finish(Error('素材地址重定向次数过多或缺少跳转地址'));return}
     let next;try{next=publicURL(res.headers.location,url)}catch(error){finish(error);return}
-    clearTimeout(timer);follow(next,redirects+1).then(v=>finish(null,v),finish);return;
+    clearTimeout(timer);follow(next,redirects+1,retry).then(v=>finish(null,v),finish);return;
    }
    if(res.statusCode!==200){res.resume();finish(Error('素材网站返回 HTTP '+res.statusCode));return}
    if(Number(res.headers['content-length'])>maxBytes){finish(Error('素材文件超过 '+(maxBytes/1024/1024)+' MB'));res.destroy();return}
    let size=0;const chunks=[];res.on('data',chunk=>{size+=chunk.length;if(size>maxBytes){finish(Error('素材文件超过 '+(maxBytes/1024/1024)+' MB'));res.destroy();return}chunks.push(chunk)});
-   res.on('end',()=>finish(null,Buffer.concat(chunks)));res.on('error',finish);res.on('aborted',()=>finish(Error('素材下载中断，请重试')));
+   res.on('end',()=>finish(null,Buffer.concat(chunks)));res.on('error',finish);res.on('aborted',()=>finish(Object.assign(Error('素材下载中断，请重试'),{code:'ECONNRESET'})));
   });
-  req.on('error',error=>finish(Error('无法获取素材：'+error.message)));
+  req.on('error',error=>finish(Object.assign(Error('无法获取素材：'+error.message),{code:error.code})));
   if(method==='POST')req.end(body);
- })}return follow(value,0);
+ })}
+ return (async()=>{
+  for(let retry=0;;retry++)try{return await follow(value,0,retry)}catch(error){
+   if(method==='GET'&&retry<2&&retryable.has(error.code)&&Date.now()<deadline)continue;
+   if(error.code==='ECONNRESET')throw Object.assign(Error('素材连接被重置（ECONNRESET），请检查网络或系统代理后重试。'),{code:error.code});
+   throw error;
+  }
+ })();
 }
 function parseBytes(value){const bytes=Buffer.isBuffer(value)?value:Buffer.from(value);if(bytes.length>MAX_BYTES)throw Error('素材文件超过 2 MB');try{return JSON.parse(bytes.toString('utf8').replace(/^\uFEFF/,''))}catch{throw Error('素材网站未返回有效 JSON，请使用文件的原始内容地址')} }
 function string(value,label,max,required=false){if(value==null&&!required)return '';if(typeof value!=='string'||value.length>max||required&&!value.trim())throw Error(label+'无效');return value.trim()}
@@ -1527,14 +1542,16 @@ module.exports=function createWordbooks(storage,vocabulary,catalog){
  function get(id){if(id==='favorites')return {id,title:'收藏词汇',words:vocabulary(),builtin:true,kind:'favorites'};const b=all().find(b=>b.id===id);if(!b)throw Error('找不到单词本');return b}
  function saveBook(title,words,material,metadata={}){metadata=C.wordbookMetadata(metadata);const contentSignature=signature(words),id='words-'+crypto.createHash('sha256').update(JSON.stringify({title,words})).digest('hex').slice(0,24);const existing=all().find(b=>(material||b.kind==='builtin'||b.kind==='optional'||b.id===id)&&signature(b.words)===contentSignature);if(existing){restore(existing.id);if(existing.kind!=='builtin'&&(material||Object.keys(metadata).length)){const books=read(),b=books.find(b=>b.id===existing.id);Object.assign(b,metadata);if(material)b.material=material;storage.setItem(key,books)}return {id:existing.id,existing:true,count:words.length}}const books=read();if(books.length>=100)throw Error('最多保存 100 个单词本，请先导出整理');books.push({...metadata,id,title,words,...(material?{material}:{}),createdAt:new Date().toISOString()});storage.setItem(key,books);return {id,count:words.length}}
  return function wordbooks(action='list',input={}){
-  if(action==='list')return [get('favorites'),...all()].filter(b=>input.includeTrashed||!hidden()[b.id]).map(b=>({...C.wordbookMetadata(b),id:b.id,title:b.title,count:b.words.length,builtin:!!b.builtin,kind:b.kind,mastered:b.words.filter(w=>w.mastered).length,progress:copy(storage.getItem(pkey(b.id))||{})}));
+  if(action==='list')return [get('favorites'),...all()].filter(b=>input.includeTrashed||!hidden()[b.id]).map(b=>{const progress=copy(storage.getItem(pkey(b.id))||{}),valid=new Set(b.words.map(w=>w.id)),completedCount=new Set([...(Array.isArray(progress.completed)?progress.completed:[]),...(Array.isArray(progress.cardCompleted)?progress.cardCompleted:[])].filter(id=>valid.has(id))).size,cardtime=storage.getItem('english-wordbook-cardtime:'+b.id)||{};return {...C.wordbookMetadata(b),id:b.id,title:b.title,count:b.words.length,builtin:!!b.builtin,kind:b.kind,mastered:b.words.filter(w=>w.mastered).length,progress,completedCount,started:completedCount>0||Number(progress.seconds)>0||Number(cardtime.seconds)>0,lastOpenedAt:progress.lastOpenedAt||null}});
   if(action==='get')return get(input.id);
   if(action==='catalog')return catalog.list(input).then(result=>({...result,wordbooks:result.wordbooks.map(item=>({...item,installedBookId:all().find(b=>!hidden()[b.id]&&signature(b.words)===item.contentHash)?.id||null}))}));
   if(action==='download')return catalog.downloadWordbook(input).then(({item,words,metadata})=>saveBook(item.title,words,{id:item.id,url:item.url,sha256:item.sha256},metadata));
   if(action==='import'){const parsed=cleanRows(input.rows),title=String(input.title||'').trim();if(!title||title.length>100)throw Error('请填写 1–100 字的单词本名称');if(input.preview!==false)return {title,...parsed};return saveBook(title,parsed.words,null,input.metadata)}
-  if(action==='preferences'){const key='english-wordbook-preferences-v1',old=storage.getItem(key)||{};const next={layout:old.layout==='grid'?'grid':'list',autoMaster:old.autoMaster===true};if(input.value){if(['list','grid'].includes(input.value.layout))next.layout=input.value.layout;if(typeof input.value.autoMaster==='boolean')next.autoMaster=input.value.autoMaster;storage.setItem(key,next)}return next}
+  if(action==='preferences'){const key='english-wordbook-preferences-v1',old=storage.getItem(key)||{},sorts=['recent','completion-asc','completion-desc','title'];const next={layout:old.layout==='grid'?'grid':'list',autoMaster:old.autoMaster===true,autoPronounce:old.autoPronounce!==false,pronunciationAccent:old.pronunciationAccent==='en-GB'?'en-GB':'en-US',wordbookSort:sorts.includes(old.wordbookSort)?old.wordbookSort:'recent'};if(input.value){if(['list','grid'].includes(input.value.layout))next.layout=input.value.layout;for(const field of ['autoMaster','autoPronounce'])if(typeof input.value[field]==='boolean')next[field]=input.value[field];if(['en-US','en-GB'].includes(input.value.pronunciationAccent))next.pronunciationAccent=input.value.pronunciationAccent;if(sorts.includes(input.value.wordbookSort))next.wordbookSort=input.value.wordbookSort;storage.setItem(key,next)}return next}
   if(action==='trashList')return [get('favorites'),...all()].filter(b=>hidden()[b.id]).map(b=>({id:b.id,title:b.title}));
   const book=get(input.id);
+  if(action==='opened'){const old=storage.getItem(pkey(book.id))||{},lastOpenedAt=Date.now();storage.setItem(pkey(book.id),{...old,lastOpenedAt});return {id:book.id,lastOpenedAt}}
+  if(action==='studied'){const old=storage.getItem(pkey(book.id))||{},valid=new Set(book.words.map(w=>w.id));if(!valid.has(input.wordId))throw Error('词条不存在');const cardCompleted=[...new Set([...(Array.isArray(old.cardCompleted)?old.cardCompleted:[]),input.wordId])].filter(id=>valid.has(id));storage.setItem(pkey(book.id),{...old,cardCompleted});return {id:book.id,cardCompleted}}
   if(action==='fillMeaning'){
    const meaning=typeof input.meaning==='string'?input.meaning.trim():'';if(!meaning||meaning.length>2000)throw Error('释义须为 1–2000 字符');
    const word=book.words.find(w=>w.id===input.wordId);
@@ -1551,9 +1568,9 @@ module.exports=function createWordbooks(storage,vocabulary,catalog){
    const title=String(input.title||'').trim();if(!title||title.length>100)throw Error('请填写 1–100 字的名称');if(!Array.isArray(input.words)||input.words.length>20000)throw Error('单词本最多 20000 词');
    const oldByTerm=new Map(book.words.map(w=>[w.term.normalize('NFKC').toLowerCase(),w])),seen=new Set(),words=input.words.map(raw=>{const term=String(raw.term||'').trim(),meaning=String(raw.meaning||'').trim(),usphone=String(raw.usphone||'').trim(),ukphone=String(raw.ukphone||'').trim(),normalized=term.normalize('NFKC').toLowerCase();if(!term||term.length>120||meaning.length>2000||usphone.length>200||ukphone.length>200)throw Error('请检查词条长度：英文必填，最多 120 字符');if(seen.has(normalized))throw Error('存在重复词条：'+term);seen.add(normalized);const old=oldByTerm.get(normalized);return {...(old||{}),id:old?.id||crypto.createHash('sha256').update(normalized).digest('hex').slice(0,20),term,meaning,usphone,ukphone,mastered:old?.mastered===true}});
    if(book.id==='favorites')storage.setItem('english-vocabulary-v1',words);else{const books=read(),index=books.findIndex(b=>b.id===book.id),next={...book,title,words,customized:true,originalKind:book.kind};if(index<0)books.unshift(next);else books[index]=next;storage.setItem(key,books)}
-   const progress=storage.getItem(pkey(book.id));if(progress){const valid=new Set(words.map(w=>w.id));storage.setItem(pkey(book.id),{...progress,index:Math.max(0,Math.min(progress.index||0,words.length-1)),completed:(progress.completed||[]).filter(id=>valid.has(id)),sequence:(progress.sequence||[]).filter(id=>valid.has(id))})}return {id:book.id};
+   const progress=storage.getItem(pkey(book.id));if(progress){const valid=new Set(words.map(w=>w.id));storage.setItem(pkey(book.id),{...progress,index:Math.max(0,Math.min(progress.index||0,words.length-1)),completed:(progress.completed||[]).filter(id=>valid.has(id)),cardCompleted:(progress.cardCompleted||[]).filter(id=>valid.has(id)),sequence:(progress.sequence||[]).filter(id=>valid.has(id))})}return {id:book.id};
   }
-  if(action==='progress'){if(!input.value)return copy(storage.getItem(pkey(book.id))||{});const v=input.value,old=storage.getItem(pkey(book.id))||{},valid=new Set(book.words.map(w=>w.id));const next={index:Math.max(0,Math.min(book.words.length-1,Math.floor(Number(v.index)||0))),completed:[...new Set([...(old.completed||[]),...(Array.isArray(v.completed)?v.completed:[])])].filter(id=>valid.has(id)),seconds:Math.max(Number(old.seconds)||0,Math.min(1e8,Math.max(0,Number(v.seconds)||0))),updatedAt:new Date().toISOString()};next.order=v.order==='random'?'random':v.order==='sequential'?'sequential':old.order||'sequential';const sequence=Array.isArray(v.sequence)?v.sequence:old.sequence||[];next.sequence=[...new Set(sequence)].filter(id=>valid.has(id));storage.setItem(pkey(book.id),next);return copy(next)}
+  if(action==='progress'){if(!input.value)return copy(storage.getItem(pkey(book.id))||{});const v=input.value,old=storage.getItem(pkey(book.id))||{},valid=new Set(book.words.map(w=>w.id));const next={...old,index:Math.max(0,Math.min(book.words.length-1,Math.floor(Number(v.index)||0))),completed:[...new Set([...(old.completed||[]),...(Array.isArray(v.completed)?v.completed:[])])].filter(id=>valid.has(id)),seconds:Math.max(Number(old.seconds)||0,Math.min(1e8,Math.max(0,Number(v.seconds)||0))),updatedAt:new Date().toISOString()};next.order=v.order==='random'?'random':v.order==='sequential'?'sequential':old.order||'sequential';const sequence=Array.isArray(v.sequence)?v.sequence:old.sequence||[];next.sequence=[...new Set(sequence)].filter(id=>valid.has(id));storage.setItem(pkey(book.id),next);return copy(next)}
   if(action==='toggle'||action==='mastery'){if(action==='mastery'&&typeof input.mastered!=='boolean')throw Error('请指定掌握状态');const current=book.words.find(w=>w.id===input.wordId);if(!current)throw Error('词条不存在');if(action==='mastery'&&!!current.mastered===input.mastered)return copy(current);if(book.id==='favorites')return vocabulary('toggle',{id:input.wordId});const all=read();let b=all.find(x=>x.id===book.id);if(!b){b=copy(book);all.unshift(b)}const w=b.words.find(x=>x.id===input.wordId);if(!w)throw Error('词条不存在');w.mastered=action==='mastery'?input.mastered:!w.mastered;storage.setItem(key,all);return copy(w)}
   throw Error('不支持的单词本操作');
  };
@@ -1590,9 +1607,11 @@ function entry(raw,cloud=false){
  let url='';if(!cloud){url=catalog.publicURL(raw.url,ORIGIN);const u=new URL(url);if(u.origin!==ORIGIN||!u.pathname.startsWith('/materials/')||!u.pathname.endsWith('.json'))throw Error('素材地址不属于广场公开目录')}
  return {id,cloudId:cloud?raw.id:null,official:cloud?!!raw.official_key:true,like_count:Number(raw.like_count)||0,download_count:Number(raw.download_count)||0,comment_count:Number(raw.comment_count)||0,updated_at:raw.updated_at||m.updatedAt||'',type:m.type,title:text(m.title,160),description:text(m.description),author:text(m.author,80),domain:text(m.domain,80),level:m.level===null?null:text(m.level,80),license:text(m.license,80),sourceNote:text(m.sourceNote),tags:(Array.isArray(m.tags)?m.tags:[]).map(t=>text(t,30)).filter(Boolean).slice(0,6),count,bytes,sha256:raw.sha256.toLowerCase(),cloud,url,version:text(m.version,40)};
 }
-module.exports=function({storage,request=catalog.requestBytes}={}){
+module.exports=function({storage,request}={}){
+ const proxyOrigins=new Set([ORIGIN]);
+ request=request||((url,options)=>catalog.requestBytes(url,{...options,proxyOrigins:[...proxyOrigins]}));
  let configPromise,officialPromise;const entries=new Map(),contents=new Map();
- async function config(){if(!configPromise)configPromise=(async()=>{const raw=parse(await request(ORIGIN+'/config.json',{maxBytes:65536}),65536),c=raw.supabase,u=new URL(c?.url);if(u.protocol!=='https:'||!u.hostname.endsWith('.supabase.co')||u.username||u.password||u.pathname!=='/'||u.search||u.hash||!/^sb_publishable_[\w-]+$/.test(c.publishableKey||''))throw Error('广场服务配置无效');return {url:u.origin,key:c.publishableKey,unified:raw.unifiedCatalog===true}})().catch(e=>{configPromise=null;throw e});return configPromise}
+ async function config(){if(!configPromise)configPromise=(async()=>{const raw=parse(await request(ORIGIN+'/config.json',{maxBytes:65536}),65536),c=raw.supabase,u=new URL(c?.url);if(u.protocol!=='https:'||!u.hostname.endsWith('.supabase.co')||u.username||u.password||u.port||u.pathname!=='/'||u.search||u.hash||!/^sb_publishable_[\w-]+$/.test(c.publishableKey||''))throw Error('广场服务配置无效');proxyOrigins.add(u.origin);return {url:u.origin,key:c.publishableKey,unified:raw.unifiedCatalog===true}})().catch(e=>{configPromise=null;throw e});return configPromise}
  async function cloud(query){const c=await config();return parse(await request(c.url+'/rest/v1/community_packs?'+new URLSearchParams(query),{headers:{apikey:c.key},maxBytes:8*MAX}),8*MAX)}
  const remember=items=>{for(const item of items)entries.set(item.id,item);return items};
  async function official(refresh){if(refresh)officialPromise=null;if(!officialPromise)officialPromise=(async()=>{const data=parse(await request(ORIGIN+'/community-index.json'));if(data.version!==1||!Array.isArray(data.packs)||data.packs.length>400)throw Error('广场目录格式无效');return data.packs.map(p=>entry(p))})().catch(e=>{officialPromise=null;throw e});return officialPromise}
