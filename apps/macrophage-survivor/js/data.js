@@ -123,7 +123,7 @@
   tips.barrier=['屏障先一步失守。换用 IgG、补体和 CTL，把伤害集中在单个目标。'];
   tips.bleed=['中性粒细胞巡逻时持续耗血。及时接触小怪补充生命，才能等到下一张网。'];
   upgrades.turret={name:'B 细胞抗体炮台',effect:'部署自动发射抗体的友军，升级增加召唤数量。',science:'B 细胞可分化为分泌抗体的浆细胞。'};
-  var thresholds=[5,8,12,18,25,34,45,58,73,92,108,136,172,194];
+  var thresholds=[8,12,16,18,25,34,45,58,73,92,108,136,172,194];
   function nextXP(level){return level<=thresholds.length?thresholds[level-1]:194+(level-14)*45+7*Math.pow(level-14,2);}
   function antigenValue(e,digested){
     if(bossKinds.indexOf(e.kind)>=0)return 9;

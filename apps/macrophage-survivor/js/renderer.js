@@ -304,12 +304,13 @@
       ring(c,e.x,e.y,r+4,'#61445e',1.8);ring(c,e.x,e.y,r+4,'#ff9cbc',2,-Math.PI/2,-Math.PI/2+TAU*Math.max(.001,e.fuse/(k==='cmv'?11:9)));if(k==='cmv')ring(c,e.x,e.y,r+7,'#a5a1dd',1);
     }
   }
-  function icon(canvas,kind,size,time) {
+  function icon(canvas,kind,size,time,elite) {
     var ratio=Math.min(window.devicePixelRatio||1,2),side=Math.ceil(size*ratio);
     if(canvas.width!==side||canvas.height!==side)canvas.width=canvas.height=side;
     var c=canvas.getContext('2d'),t=time||0;
     c.setTransform(ratio,0,0,ratio,0,0);c.clearRect(0,0,size,size);
-    enemy(c,{kind:kind,x:size*.52,y:size*(.5+.014*Math.sin(t*1.6)),r:size*.355,angle:-.42+.10*Math.sin(t*.8)},t);
+    var body=size*(elite?.3:.355);
+    enemy(c,{kind:kind,x:size*.5,y:size*(.5+.012*Math.sin(t*1.6)),r:body,angle:-.42+.10*Math.sin(t*.8),elite:!!elite},t);
   }
   var moteSeeds=[];
   for(var mi=0;mi<66;mi++)moteSeeds.push([grain(mi+948),grain(mi+137),grain(mi+468),grain(mi+238)]);

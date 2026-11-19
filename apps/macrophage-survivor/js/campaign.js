@@ -134,8 +134,9 @@
     var target=s.label?(count===2?'两名':'')+s.label:(s.lords||['boss']).map(function(k){return D.species[k].name;}).join('与');
     var note=timed?'视野内只剩一个敌人或清场时，波次倒计时加快一倍。':'提前击败目标后仍需守满时间。防守时间到后，存活的首领可继续追击。';
     if(s.map==='brain')note+=' 手动释放活性氧聚爆会消耗 8% 屏障，耗尽即失败。';
+    var lead=timed?'倒计时结束前击败':'守住防线，并击败';
     return {title:s.name,target:target,location:'第 '+stage+' 关 · '+D.maps[s.map].name,icon:s.elite||(s.lords||['boss'])[0],
-      goal:(timed?'倒计时结束前击败':'守住防线，并击败')+target+'。',
+      elite:!!s.elite,goalLead:lead,goalName:target,goalTail:'。',goal:lead+target+'。',
       clockLabel:timed?'波次时限':'最短防守',clock:D.clock(s.duration),
       arrivalLabel:'目标登场时剩余',arrival:D.clock(s.duration-s.bossAt),note:note};
   }

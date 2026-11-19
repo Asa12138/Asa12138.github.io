@@ -191,7 +191,10 @@ kbd{font:600 10px var(--face);letter-spacing:1px;border-radius:6px;border:1px so
 .build-summary canvas{width:22px;height:22px}
 .build-summary small{display:block;width:100%;font-size:10px;color:#accec9;margin:4px 0}
 .scope[data-screen=upgrade] .panel{height:100%;max-height:680px;display:flex;flex-direction:column;overflow:hidden}
-.scope[data-screen=upgrade] #sheet-body{min-height:0;overflow-y:auto;overscroll-behavior:contain;scrollbar-width:thin;padding:0 2px}
+.scope[data-screen=upgrade] #sheet-body{display:flex;flex-direction:column;flex:1;min-height:0;overflow:hidden;padding:0 2px}
+.upgrade-scroll{flex:1;min-height:0;overflow-y:auto;overscroll-behavior:contain;scrollbar-width:thin}
+.scope[data-screen=upgrade] .reroll-btn{flex:none;width:100%;margin-top:8px;min-height:48px;padding:8px 12px;border-radius:14px;border:1px solid #f0c36a;background:linear-gradient(180deg,#4a3d22,#2c2618);color:#ffe7a8;font-size:15px;font-weight:750;line-height:1.35;white-space:normal}
+.scope[data-screen=upgrade] .reroll-btn:disabled{border-color:#4d4638;color:#8d8374;background:#1c2430}
 .pick-card{display:grid;grid-template-columns:minmax(0,1fr) 48px;border:1px solid #4c7d88;border-radius:15px;background:linear-gradient(118deg,#284854,#19283e);margin:7px 0;overflow:hidden}
 .pick-card button{background:transparent;border:0;border-radius:0}
 .pick-main{display:flex;align-items:center;min-height:72px;flex:1;text-align:left;padding:5px 8px}
@@ -221,7 +224,7 @@ kbd{font:600 10px var(--face);letter-spacing:1px;border-radius:6px;border:1px so
 #hud[data-edge=mutate]{animation:mutate-edge 1.3s ease-out}
 @keyframes mutate-edge{0%,48%{box-shadow:inset 0 0 13px 2px rgba(213,91,144,.34)}25%,100%{box-shadow:inset 0 0 5px 1px rgba(217,157,88,.16)}}
 @media (prefers-reduced-motion:reduce){#hud[data-edge=mutate]{animation:none;box-shadow:inset 0 0 0 2px rgba(213,143,170,.36)}}
-.report-wrap img{max-height:calc(100% - 236px);align-self:center}
+.report-wrap img{flex:1 1 auto;min-height:0;max-height:none;align-self:center}
 .scope[data-outcome]{--outcome-color:#ffb7a7}
 .scope[data-outcome=win]{--outcome-color:#9dffd7}
 .scope[data-outcome=timeout]{--outcome-color:#ffdc99}
@@ -237,6 +240,17 @@ kbd{font:600 10px var(--face);letter-spacing:1px;border-radius:6px;border:1px so
 #result-storage,#export-status,#rank-status{flex:none;color:#c4d7df;line-height:1.4}
 .report-wrap>:last-child{margin-bottom:auto}
 @media(max-height:510px){.report-wrap img{flex:none;max-height:48%}.result-head{margin-top:5px}.result-head h2,#outro strong{font-size:24px}}
+#result{align-items:stretch;padding:12px 14px}
+#result .report-wrap{display:flex;flex-direction:column;flex:1;height:auto;min-height:0;max-height:100%;overflow:hidden}
+#result .report-wrap img{flex:1 1 0;width:100%;max-width:100%;height:auto;min-height:0;max-height:100%;margin:0 auto 8px;object-fit:contain}
+#result .report-buttons{display:flex;flex:none;flex-direction:column;align-items:stretch;gap:8px}
+#result .report-buttons button{width:100%;min-height:46px;font-size:16px}
+#result #next-stage{min-height:52px;font-size:18px}
+#result #restart:not(.primary){color:#e7fff8;background:#173e4c;border:1px solid #67cbb8;box-shadow:none;font-weight:750}
+#result .report-secondary{display:flex;flex:none;flex-wrap:wrap;gap:6px;margin:6px 0 0}
+#result .report-secondary button{flex:1 1 40%;min-width:0;min-height:36px;padding:6px 4px;font-size:12px;line-height:1.25;background:#284355;border-color:#466576}
+#result #rank-submit{flex-basis:100%;margin-left:0;color:#ffe7a8}
+#result #back-home{min-height:34px;margin-top:2px;padding:6px 10px;font-size:13px;background:transparent;border-color:transparent;color:#b7c9d6}
 .report-secondary{display:flex;flex:none;margin:5px 0 0}
 .report-secondary button{flex:1;min-width:0;padding:7px 5px;font-size:13px;background:#284355;border-color:#466576}
 #rank-submit{margin-left:6px;color:#ffe3aa}
@@ -456,15 +470,24 @@ kbd{font:600 10px var(--face);letter-spacing:1px;border-radius:6px;border:1px so
 .telemetry #clock-label{font-size:9px;line-height:10px;letter-spacing:.06em;color:#c4e4de}
 .scope[data-screen=mission] .panel{padding:22px;border-color:#4a787e}
 .scope[data-screen=mission] .panel h2{margin:6px 0 17px}
-.mission-target{display:flex;align-items:center;padding:12px 10px;border-radius:16px;background:linear-gradient(110deg,#173e47,#1d3549)}
-.mission-target canvas{width:58px;height:58px;flex:none;margin-right:10px}
+.mission-target{display:flex;align-items:center;padding:14px 12px;border-radius:16px;border:1px solid rgba(255,222,141,.45);background:linear-gradient(110deg,#173e47,#1d3549);box-shadow:inset 0 0 24px rgba(255,210,120,.08)}
+.mission-target canvas{width:72px;height:72px;flex:none;margin-right:12px}
 .mission-target small,.mission-clocks small{display:block;color:#a0ddd3;font-size:11px;margin-bottom:4px}
-.mission-target strong{display:block;font-size:17px;line-height:1.42;color:#effff8}
+.mission-target small{font-size:12px;letter-spacing:.14em;color:#d8fff3}
+.mission-target strong{display:block;font-size:19px;line-height:1.45;font-weight:750;color:#f7fffb}
+.mission-name{color:#ffde8d;font-weight:900}
 .mission-clocks{display:flex;margin:16px 0 12px}
 .mission-clocks>div{flex:1;padding-left:10px;border-left:2px solid #51918d}
 .mission-clocks b{font-size:21px;line-height:1.2;font-variant-numeric:tabular-nums;color:#f4e3b7}
 .scope[data-screen=mission] .mission-note{margin:10px 0 18px;font-size:13px}
-@media(max-height:580px){.scope[data-screen=mission] .panel{padding:15px}.mission-target{padding:6px}.mission-clocks{margin:10px 0}}
+@media(max-height:580px){.scope[data-screen=mission] .panel{padding:15px}.mission-target{padding:8px}.mission-target canvas{width:58px;height:58px}.mission-target strong{font-size:16px}.mission-clocks{margin:10px 0}}
+#coach{position:absolute;inset:0;z-index:6;touch-action:none}
+#coach-ring{position:absolute;border:2px solid #f3e2a4;box-shadow:0 0 0 200vmax rgba(3,8,16,.78);background:transparent}
+#coach-card{position:absolute;left:12px;right:12px;z-index:2;padding:14px 14px 12px;border-radius:16px;background:rgba(12,28,40,.94);border:1px solid rgba(255,222,141,.55);box-shadow:0 10px 28px rgba(0,0,0,.35)}
+#coach-text{margin:0 0 12px;color:#f4fffb;font-size:15px;line-height:1.5;font-weight:650}
+.coach-actions{display:flex;align-items:center;gap:8px}
+#coach-skip{flex:none;min-height:36px;padding:6px 8px;border:0;background:transparent;color:#b7c9d4;font-size:13px}
+#coach-next{flex:1;min-height:44px;font-size:16px}
 
 /* Keep the rank, effect and four lit steps legible even on the smallest phones. */
 .skill-intro-tiers,.pick-tier-list{display:flex;flex-direction:column}
