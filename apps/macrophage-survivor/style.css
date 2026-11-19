@@ -190,11 +190,13 @@ kbd{font:600 10px var(--face);letter-spacing:1px;border-radius:6px;border:1px so
 .build-summary span{display:flex;align-items:center;font-size:11px}
 .build-summary canvas{width:22px;height:22px}
 .build-summary small{display:block;width:100%;font-size:10px;color:#accec9;margin:4px 0}
-.scope[data-screen=upgrade] .panel{height:100%;max-height:680px;display:flex;flex-direction:column;overflow:hidden}
-.scope[data-screen=upgrade] #sheet-body{display:flex;flex-direction:column;flex:1;min-height:0;overflow:hidden;padding:0 2px}
-.upgrade-scroll{flex:1;min-height:0;overflow-y:auto;overscroll-behavior:contain;scrollbar-width:thin}
-.scope[data-screen=upgrade] .reroll-btn{flex:none;width:100%;margin-top:8px;min-height:48px;padding:8px 12px;border-radius:14px;border:1px solid #f0c36a;background:linear-gradient(180deg,#4a3d22,#2c2618);color:#ffe7a8;font-size:15px;font-weight:750;line-height:1.35;white-space:normal}
-.scope[data-screen=upgrade] .reroll-btn:disabled{border-color:#4d4638;color:#8d8374;background:#1c2430}
+.scope[data-screen=upgrade] #sheet{flex-direction:column;align-items:stretch;padding:12px 14px}
+.scope[data-screen=upgrade] .panel{flex:1 1 auto;height:auto;max-height:100%;min-height:0;margin:0;display:flex;flex-direction:column;overflow:hidden}
+.scope[data-screen=upgrade] #sheet-kicker,.scope[data-screen=upgrade] #sheet-title{flex:none}
+.scope[data-screen=upgrade] #sheet-body{display:flex;flex-direction:column;flex:1 1 auto;min-height:0;overflow:hidden;padding:0 2px}
+.scope[data-screen=upgrade] .upgrade-scroll{flex:1 1 auto;min-height:0;overflow-y:auto;overscroll-behavior:contain;scrollbar-width:thin}
+.scope[data-screen=upgrade] button.reroll-btn{flex:none;width:100%;margin-top:10px;min-height:52px;padding:10px 14px;border-radius:16px;border:1px solid #fff1c4;background-color:#f0c36a;background-image:linear-gradient(180deg,#ffe7a8,#f0c36a 46%,#e2a63a);color:#3a2a08;font-size:16px;font-weight:800;line-height:1.35;white-space:normal;box-shadow:0 8px 18px rgba(0,0,0,.28)}
+.scope[data-screen=upgrade] button.reroll-btn:disabled{border-color:#6b5c40;color:#b4a48a;background-color:#3a3428;background-image:none;box-shadow:none}
 .pick-card{display:grid;grid-template-columns:minmax(0,1fr) 48px;border:1px solid #4c7d88;border-radius:15px;background:linear-gradient(118deg,#284854,#19283e);margin:7px 0;overflow:hidden}
 .pick-card button{background:transparent;border:0;border-radius:0}
 .pick-main{display:flex;align-items:center;min-height:72px;flex:1;text-align:left;padding:5px 8px}

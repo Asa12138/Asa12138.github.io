@@ -1381,13 +1381,13 @@
       if(isSkill){detail.appendChild(tierRows(k,true));if(counters[k])detail.appendChild(paragraph(counters[k]));}
       detail.appendChild(paragraph(data.science));card.appendChild(detail);scroll.appendChild(card);
     });
-    box.appendChild(scroll);
     if(g.rerollLimit){
       var left=g.rerollLimit-g.rerollsUsed;
       var refresh=button(left?'重新抗原呈递 · 换一批（余 '+left+' 次）':'本局已刷新','reroll-btn',function(){
         if(state==='upgrade'&&g.rerollsUsed<g.rerollLimit&&performance.now()>=g.pickAfter){g.rerollsUsed++;offer(true);}
-      });refresh.disabled=!left;box.appendChild(refresh);
-    }hud();
+      });refresh.disabled=!left;scroll.appendChild(refresh);
+    }
+    box.appendChild(scroll);hud();
   }
   function outcome(won){
     var campaign=g.mode==='campaign',defense=campaign&&g.stage>5;
