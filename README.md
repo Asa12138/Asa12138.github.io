@@ -42,7 +42,7 @@ databases/CRISPRome/     # 原站文件整体迁移
 
 三本教程保持各自的静态资源和内部目录。下载文件只维护在 `FileList/`，保留原文件名和 URL，不创建资源副本；直接替换对应文件后提交即可。科研英语网页版位于 `apps/research-english/`，课程、配套音频和词表统一放在该目录的 `materials/`，素材入口为 `apps/research-english/materials/catalog.json`。素材社区仍链接到 [Asa English Community](https://asa-english-community.netlify.app/)。不恢复旧 `resources/` 目录。
 
-独立小应用放在 `apps/<name>/`，自行维护资源和独立 browser storage key，并在 Projects 页面加入入口。
+独立小应用放在 `apps/<name>/`，自行维护资源和独立 browser storage key，并在 Projects 页面加入入口。《巨噬幸存者：免疫防线》位于 `apps/macrophage-survivor/`，存档键前缀为 `macrophage-survivor.v1.`。
 
 科研英语以 ZTools 的 `micro-tools` 为源码：先更新和验证 ZTools，再从同一源码生成同版本网页。构建说明见 [英语同步说明](apps/research-english/web/english/README.md)。本机输出到此仓库的 `apps/research-english/`；旧 `research-english-pages` 仅保留为历史副本。每次推送之前向用户展示目标仓库、分支和实际改动，获得本次确认后才执行 `git push`。
 

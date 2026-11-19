@@ -269,6 +269,8 @@ window.ASA_ZH = {
   "qunqing-project": "记录照片、地图与小游戏的个人旅行地图册。",
   "crispr-project-open": "了解项目",
   "crispr-project": "CRISPR-Cas 系统的研究资源。",
+  "macrophage-project-open": "开始游戏",
+  "macrophage-project": "操控免疫细胞，在显微视野里清除病原体。",
   "experiments-title": "给下一个想法，留一点空间。",
   "experiments-desc": "之后开发的小应用，也会陆续加入这里。",
   "follow": "关注开发进展",

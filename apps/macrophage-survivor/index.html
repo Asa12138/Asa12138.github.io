@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="zh-CN" data-type="software">
+<head>
+<meta charset="utf-8"><meta name="application-version" content="0.5.2">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#07131e">
+<meta name="page-type" content="software"><meta name="site-kind" content="gaming">
+<title>巨噬幸存者：免疫防线</title>
+<link rel="stylesheet" href="style.css">
+<script defer src="js/xhs-bridge.js"></script><script defer src="js/audio.js"></script><script defer src="js/music.js"></script>
+<script defer src="js/data.js"></script><script defer src="js/active.js"></script><script defer src="js/campaign.js"></script><script defer src="js/profile.js"></script><script defer src="js/checkpoint.js"></script><script defer src="js/patrol.js"></script><script defer src="js/patrol-art.js"></script><script defer src="js/renderer.js"></script><script defer src="js/collections.js"></script><script defer src="js/science.js"></script><script defer src="js/game.js"></script>
+</head>
+<body>
+<header class="mast"><div class="brand"><i class="cell-logo"></i>免疫观测站 <small>Immunity Observatory</small></div><span class="live"><i></i> 显微视野在线</span></header>
+<main class="bench">
+<aside class="side left">
+<p class="eyebrow">SPECIMEN ATLAS</p><h2>显微图鉴馆</h2>
+<div id="index-list"></div>
+</aside>
+<section class="scope" id="scope" aria-label="竖屏游戏视野">
+<canvas id="field" aria-label="显微战场，拖动或用方向键移动"></canvas>
+<fieldset id="home" class="screen" aria-label="免疫观测站" disabled><div class="home-layout">
+<div class="cover-top"><button id="settings-open" class="sound" aria-label="设置" aria-haspopup="dialog"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 4 1-2h4l1 2 2 1 2 .1 2 3.5-1.1 2V13l1.1 2-2 3.5-2 .2-2 1-1 2.3h-4l-1-2.3-2-1-2-.2L3 15l1.1-2v-2.4L3 8.6l2-3.5 2-.1Z"/><circle cx="12" cy="12" r="3.2"/></svg></button>
+<button id="wallet-pill" class="funds" aria-label="ATP 余额，打开细胞培养室" aria-haspopup="dialog"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 8.5 5v10L12 22l-8.5-5V7Z M13.2 6.5l-5 6h3.6l-1 5 5-7h-3.4Z"/></svg><b id="wallet">0 ATP</b><small>培养 ›</small></button><button id="science-open" aria-haspopup="dialog"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 6C9 4 5 4 2.5 5.2v12.5c3-.8 6-.6 9.5 1.5 3.5-2.1 6.5-2.3 9.5-1.5V5.2C19 4 15 4 12 6Zm0 0v13M5.5 8l3 .6M15.5 8.6l3-.6"/></svg>免疫科普</button></div>
+<div class="titleblock"><div class="title-meta"><p>MACROPHAGE SURVIVOR <i>v0.5.2</i></p><button id="rank-open" aria-label="查看称号和排行"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h14v8c0 4-4 6-7 8-3-2-7-4-7-8Z M8.5 10l3.5-2.3 3.5 2.3 M8.5 13.5l3.5-2.3 3.5 2.3"/></svg><b id="rank-label">见习巡逻员</b></button></div><h1>巨噬幸存者<span>免疫防线</span></h1></div>
+<div id="stage" aria-label="左右滑动切换出战细胞"><canvas id="hero-view" aria-hidden="true"></canvas><button id="prev-hero" aria-label="上一位细胞">‹</button><button id="next-hero" aria-label="下一位细胞">›</button><p id="boot-status" role="status">正在准备显微视野… 如长时间停留，请重新打开。</p></div>
+<div id="stage-caption" aria-live="polite" aria-atomic="true"><div class="spec-name"><b id="hero-name">巨噬细胞</b><small id="hero-trait">吞噬与消化</small><small id="hero-active">主动 · 伪足猛扑</small></div><div id="hero-stats"><span>生命<b id="hero-hp">100</b></span><span>移速<b id="hero-speed">2档</b></span></div></div>
+<div class="cover-bottom">
+<div class="mode-switch" role="group" aria-label="巡逻模式"><button id="mode-campaign" aria-pressed="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 3 8 3v5c0 5-5 8-8 10-3-2-8-5-8-10V6Z M8 11h8m-4-4v8"/></svg>防线战役</button><button id="mode-endless" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 12c-2-3.3-3.4-5-5.8-5-5.7 0-5.7 10 0 10 2.4 0 4-2 5.8-5s3.4-5 5.8-5c5.7 0 5.7 10 0 10-2.4 0-4-2-5.8-5Z"/></svg>无尽深渊</button></div>
+<div class="route-line"><button id="route-open"><b id="route-label">第 1 关 · 破口初阵</b><span aria-hidden="true">›</span></button><button id="choose-map" disabled>器官战场</button><button id="new-run" class="text-btn" hidden>另开一局</button></div>
+<button id="start" class="primary" disabled><i class="play-mark" aria-hidden="true"></i><b id="start-label">开始第 1 关</b><small id="start-meta">45 秒实训</small></button>
+<nav class="dock" aria-label="观测站导航">
+<button id="atlas-open"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m14.5 3 4 2-4 7-4-2ZM13 11l-2 3M6 17h8M3 21h18M9 20c9 0 12-5 7.5-9.5M13.5 2.5l2.8 1.6"/></svg><b>显微图鉴</b><small id="atlas-count"></small></button>
+<button id="stamps-open"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 16c0-3 2-3.5 4.2-4-.3-2.5-1.7-3.5-1.7-5.2a4.5 4.5 0 1 1 9 0c0 1.7-1.4 2.7-1.7 5.2 2.2.5 4.2 1 4.2 4v1H5Z M4 21h16"/></svg><b>检验印章</b></button>
+<button id="tree-open"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3 3-3 3-3-3Zm0 6v4H5v4m7-4h7v4 M2 16h6v5H2Zm14 0h6v5h-6Z"/></svg><b>技能树</b></button>
+<button id="rank-dock"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.5 3h11v5c0 4-2.5 6.5-5.5 6.5S6.5 12 6.5 8Zm-.4 2H3v2.5c0 2.5 1.5 4 4.5 4m10.4-6.5H21v2.5c0 2.5-1.5 4-4.5 4 M12 15v4m-5 2h10"/></svg><b>荣耀排行</b></button>
+<button class="manual"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 6C8.8 4.3 5 4.2 2 5v14c3-.8 6.8-.7 10 1 3.2-1.7 7-1.8 10-1V5c-3-.8-6.8-.7-10 1Zm0 0v14 M5 8.5l4 .4m6 0 4-.4"/></svg><b>生存手册</b></button>
+<button id="share-game" hidden><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 15V3m-4.5 4.5L12 3l4.5 4.5M6 11H4v10h16V11h-2"/></svg><b>分享游戏</b></button></nav>
+<div class="cover-foot"><button id="statement-open" aria-haspopup="dialog">免责与科普声明 <span aria-hidden="true">›</span></button><small id="storage-note" role="status"></small></div>
+</div></div></fieldset>
+<div id="hud" hidden><div class="meter xp" aria-label="升级经验"><i id="xp"></i></div><div class="hud-top">
+<div class="vitals"><div class="avatar"><i></i><b id="level">Lv.1</b></div>
+<div class="gauges"><div class="meter life" aria-label="生命值"><i id="hp"></i><b id="hpnum">100/100</b></div>
+</div></div>
+<div class="telemetry"><small id="clock-label">存活时间</small><strong id="time" aria-label="存活时间">00:00</strong><span id="phase-dots" aria-label="防御进程"><i></i><i></i><i></i><i></i></span></div>
+<div class="combat-tally"><span title="已清除菌落"><i aria-hidden="true">🦠</i><b id="kills">0</b></span><small id="virulence" hidden></small></div>
+<button id="pause" aria-label="暂停游戏"><i></i><i></i></button></div>
+<div id="bossbar" hidden aria-label="首领生命"></div>
+<div id="cargo"><span id="cargo-title">溶酶体消化舱</span><b id="cargo-num"></b><canvas id="slots" aria-hidden="true"></canvas></div>
+<div id="fixed-stick" hidden aria-hidden="true"><i></i></div>
+<div id="active-pad" hidden><button id="active-1" aria-label="职业主动技能" aria-keyshortcuts="J Space" title="职业技能（J 或空格）"><canvas aria-hidden="true"></canvas><b></b></button><button id="active-2" aria-label="战术主动技能" aria-keyshortcuts="K E" title="战术技能（K 或 E）"><canvas aria-hidden="true"></canvas><b></b></button></div>
+<canvas id="core-dock" aria-label="常驻技能"></canvas><div id="barrier-readout" role="meter" aria-label="血脑屏障完整度" aria-valuemin="0" aria-valuemax="100" aria-valuenow="100" hidden><span>血脑屏障</span><b id="barrier-percent">100%</b></div><canvas id="status-rings" aria-label="短效状态"></canvas><div id="threat" hidden aria-label="增援方位预警"></div><p id="banner" hidden role="status"></p></div>
+<section id="sheet" class="overlay" hidden role="dialog" aria-modal="true" aria-labelledby="sheet-title"><div class="panel"><p id="sheet-kicker" class="eyebrow"></p><h2 id="sheet-title"></h2><div id="sheet-body"></div></div></section>
+<div id="home-toast" hidden role="status" aria-live="polite"></div>
+<div id="outro" hidden role="status"><div><strong id="outro-title"></strong><span id="outro-reason"></span></div></div>
+<section id="result" class="overlay" hidden aria-labelledby="result-title"><div class="report-wrap">
+<header class="result-head"><h2 id="result-title" tabindex="-1"></h2><p id="result-reason"></p></header>
+<img id="report-img" alt="虚拟游戏战报 · 免疫防线创意模拟"><div id="atp-earned" role="status"></div><div class="report-buttons"><button id="restart" class="primary">再来一局</button><button id="export">保存战报图片</button></div>
+<div class="report-secondary"><button id="share-report">分享战报</button><button id="rank-submit" hidden>提交到平台榜</button></div>
+<small id="rank-status" role="status"></small><button id="back-home" class="text-btn back-nav">返回观测站</button><small id="result-storage" role="status"></small><small id="export-status" role="status"></small></div></section>
+
+</section>
+<aside class="side right"><p class="eyebrow">PATROL TIMELINE</p><h2>防御进程</h2>
+<ol class="timeline"><li><b>00:00</b><span>免疫防线启动</span></li><li><b>01:00</b><span>局部炎症反应</span></li><li><b>01:30</b><span>高烧免疫加速</span></li><li><b>02:00</b><span>MRSA 菌王入侵</span></li><li><b>03:00</b><span>防守目标达成</span></li></ol>
+<div class="record"><p>个人最长存活</p><span id="mobile-best" hidden>00:00</span><strong id="best">00:00</strong></div>
+</aside>
+</main>
+<footer class="foot"><span><i class="cross"></i> 显微观测台</span><span><kbd>W A S D</kbd> / 方向键移动 <i>·</i> <kbd>J</kbd> 职业技能 <i>·</i> <kbd>K</kbd> 战术技能</span></footer>
+</body></html>
