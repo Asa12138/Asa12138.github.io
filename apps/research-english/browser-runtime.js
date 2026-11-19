@@ -1087,15 +1087,16 @@ module.exports=function createEnglishService(storage,options={}){
  const communityCatalog=createCatalog({storage:{getItem:k=>storage.getItem('community:'+k),setItem:(k,v)=>storage.setItem('community:'+k,v)},request:options.catalogRequest});
  communityCatalog.settings({url:communityURL+'catalog.json'});
  const community=require('./english-community-service')({storage,request:options.communityRequest||options.catalogRequest});
- const activity=require('./english-activity')({directory:options.activityDirectory,storage:options.activityStorage,baseline:()=>[...seeds,...read()].reduce((n,c)=>n+(Number(storage.getItem('english-progress:'+c.id)?.seconds)||0),0),learned:()=>{
-  const sentences=[],words=[];for(const c of [...seeds,...read()])for(const [index,result]of Object.entries(storage.getItem('english-progress:'+c.id)?.results||{}))if(Object.values(result.modes||{}).some(m=>m.complete))sentences.push(c.id+':'+index);
-  for(const b of wordbooks('list',{includeTrashed:true})){const complete=new Set(b.progress.completed||[]);for(const w of wordbooks('get',{id:b.id}).words)if(complete.has(w.id))words.push(w.term)}return {sentences,words};
+ const activity=require('./english-activity')({directory:options.activityDirectory,storage:options.activityStorage,baseline:()=>[...seeds,...readOnly()].reduce((n,c)=>n+(Number(storage.getItem('english-progress:'+c.id)?.seconds)||0),0),learned:()=>{
+  const sentences=[];for(const c of [...seeds,...readOnly()])for(const [index,result]of Object.entries(storage.getItem('english-progress:'+c.id)?.results||{}))if(Object.values(result.modes||{}).some(m=>m.complete))sentences.push(c.id+':'+index);
+  return {sentences,words:wordbooks('learned')};
  }});
- const achievements=require('./english-badges')({storage,courses:()=>[{id:'english-collection-builtin',title:'科研英语 · 基础表达',builtin:true,parts:seeds},...read().map(view)],progress:id=>C.progress(storage.getItem('english-progress:'+id)||{}),activity,now:options.now});
+ const achievements=require('./english-badges')({storage,courses:()=>[{id:'english-collection-builtin',title:'科研英语 · 基础表达',builtin:true,parts:seeds},...readOnly().map(view)],progress:id=>C.progress(storage.getItem('english-progress:'+id)||{}),activity,now:options.now});
  const courseBadges=()=>achievements().earned;
  const prepared=options.audio||require('./english-prepared-audio')();
  const hidden=()=>storage.getItem('english-trash-v1')||{};
- function read(){const saved=storage.getItem(STORE);if(saved==null)return [];if(!Array.isArray(saved))throw Error('题库存储格式异常，请先备份本地数据');return clone(saved)}
+ function readOnly(){const saved=storage.getItem(STORE);if(saved==null)return [];if(!Array.isArray(saved))throw Error('题库存储格式异常，请先备份本地数据');return saved}
+ function read(){return clone(readOnly())}
  // Existing material IDs stay pinned; new materials use their normalized-content hash.
  function provenance(raw,id){
   if(!raw||raw.lessonId!==id||!['remote','sample'].includes(raw.origin)||typeof raw.id!=='string'||!new RegExp('^'+raw.origin+':[A-Za-z0-9_-]{1,100}$').test(raw.id))return null;
@@ -1111,8 +1112,8 @@ module.exports=function createEnglishService(storage,options={}){
   const fromCatalog=record.customCopy?null:provenance(record.catalog,record.id)||officialProvenance(record.id);
   return {...record,builtin:false,library:fromCatalog?'builtin':'custom',downloaded:!!fromCatalog,...(fromCatalog?{catalog:fromCatalog}:{catalog:null})};
  }
- function list(){return [...seeds,...read().filter(x=>!hidden()[x.id])].map(view).map(x=>({id:x.id,title:x.title,domain:x.domain,description:x.description,level:x.level,...(x.tags?.length?{tags:x.tags}:{}),count:x.sentences.length,builtin:x.builtin===true,library:x.library,downloaded:x.downloaded,catalog:x.catalog||null,createdAt:x.createdAt,updatedAt:x.updatedAt,revision:x.revision||null,source:x.source}))}
- function get(id){const item=[...seeds,...read()].find(x=>x.id===id);if(!item)throw Error('找不到课程，请刷新题库');return clone(view(item))}
+ function list(){const trash=hidden();return clone([...seeds,...readOnly().filter(x=>!trash[x.id])].map(view).map(x=>({id:x.id,title:x.title,domain:x.domain,description:x.description,level:x.level,...(x.tags?.length?{tags:x.tags}:{}),count:x.sentences.length,builtin:x.builtin===true,library:x.library,downloaded:x.downloaded,catalog:x.catalog||null,createdAt:x.createdAt,updatedAt:x.updatedAt,revision:x.revision||null,source:x.source})))}
+ function get(id){const item=seeds.find(x=>x.id===id)||readOnly().find(x=>x.id===id);if(!item)throw Error('找不到课程，请刷新题库');return clone(view(item))}
  function save(raw,forceCustom=false){
   const lesson=C.clean(raw),builtin=seeds.find(s=>JSON.stringify(C.exportCourse(s))===JSON.stringify(C.exportCourse(lesson))||starterRevisions[lessonId(lesson)]===s.id);
   if(builtin&&!forceCustom)return {id:builtin.id,existing:true,lesson:clone(view(builtin))};
@@ -1193,7 +1194,7 @@ module.exports=function createEnglishService(storage,options={}){
  }
  async function communityList(input){const result=await community.list(input),installed=storage.getItem('english-community-installed-v1')||{},courses=list(),books=wordbooks();return {...result,packs:result.packs.map(p=>{const saved=installed[p.id+':'+p.sha256],valid=saved&&(saved.type==='wordbook'?books:courses).some(x=>x.id===saved.id);return {...p,installed:!!valid,installedId:valid?saved.id:null}})}}
  async function communityDownload(input){const data=await community.get(input),result=communityImport(data),installed=storage.getItem('english-community-installed-v1')||{};installed[data.manifest.id+':'+data.manifest.sha256]={type:result.type,id:result.id};storage.setItem('english-community-installed-v1',installed);let stats=null;try{stats=await community.recordDownload(data.manifest.id)}catch{}return {...result,stats}}
- const fullBackup=require('./english-backup')(storage,{activity,lessonIds:()=>[...seeds,...read()].map(c=>c.id),wordbookIds:()=>wordbooks('list',{includeTrashed:true}).map(b=>b.id)});
+ const fullBackup=require('./english-backup')(storage,{activity,lessonIds:()=>[...seeds,...readOnly()].map(c=>c.id),wordbookIds:()=>wordbooks('list',{includeTrashed:true}).map(b=>b.id)});
  return {materialAppearance,achievements,courseBadges,exportFullBackup:fullBackup.export,restoreFullBackup:fullBackup.restore,wordbooks,communityImport,communityList,communityGet:community.get,communityDownload,communityCatalog:()=>communityCatalog.list({refresh:true}),communityCatalogDownload:async input=>{const data=await communityCatalog.download(input);return save({...data.lesson,catalog:data.catalog})},activity,dictionary,list,get,save,edit,trash,purge,trashList:()=>read().filter(x=>hidden()[x.id]).map(x=>({id:x.id,title:x.title,revision:x.revision||null,supersededBy:x.supersededBy||null})),vocabulary,prepare,validateSession,tools,
  preparedAudio:prepared.get,preparedAudioAvailable:prepared.available,importURL:catalog.importURL,
  readLessonFile(value){
@@ -1414,7 +1415,7 @@ module.exports=function createBadges({storage,courses,progress,activity,now=()=>
     for(const [m,v]of Object.entries(r.modes||{}))if(MODES.includes(m)&&v.complete&&validTime(v.completedAt))x.rows[k].modes[m]=v.completedAt;
    }
   }
-  for(const c of all){const rows=c.parts.flatMap(p=>p.sentences.map((_,i)=>({k:p.id+':'+i,r:p.progress.results?.[i]})));if(rows.length&&rows.every(({k,r})=>x.rows[k]?.modes.dictation||r?.modes?.dictation?.complete)&&!x.courses[c.id]){const times=rows.map(({k,r})=>x.rows[k]?.modes.dictation||r?.modes?.dictation?.completedAt);x.courses[c.id]={dictatedAt:times.every(validTime)?times.sort().at(-1):at}}}
+  for(const c of all){if(x.courses[c.id])continue;let total=0,complete=true,validTimes=true,last='';for(const p of c.parts)for(let i=0;i<p.sentences.length;i++){total++;const k=p.id+':'+i,r=p.progress.results?.[i],time=x.rows[k]?.modes.dictation||r?.modes?.dictation?.completedAt;if(!x.rows[k]?.modes.dictation&&!r?.modes?.dictation?.complete){complete=false;break}if(!validTime(time))validTimes=false;else if(time>last)last=time}if(total&&complete)x.courses[c.id]={dictatedAt:validTimes?last:at}}
  }
  function metrics(x,all,act,today){
   const completed=new Set(),notes=new Set(),domains=new Map();let finished=0,custom=0,crab=0;const contexts={};
@@ -1494,17 +1495,17 @@ module.exports=function createActivity({directory,storage,baseline=()=>0,learned
  function write(x){if(storage){storage.setItem('english-activity-v1',x);return}const f=file();if(!f){memory=x;return}const dir=path.dirname(f);fs.mkdirSync(dir,{recursive:true,mode:0o700});const temp=f+'.'+crypto.randomUUID()+'.tmp';try{fs.writeFileSync(temp,JSON.stringify(x),{flag:'wx',mode:0o600});fs.renameSync(temp,f)}catch(e){try{fs.unlinkSync(temp)}catch{}throw Error('打卡记录保存失败，请检查磁盘空间')}}
  const digest=s=>crypto.createHash('sha256').update(s).digest('hex').slice(0,24),normalizeWord=s=>s.normalize('NFKC').trim().toLowerCase();
  const seconds=d=>Object.values(d.sessions||{}).reduce((n,x)=>n+Math.max(0,Number(x)||0),0);
- function summary(x){const today=dayKey(now()),dates=Object.keys(x.days).sort(),checked=dates.filter(k=>x.days[k].checked);let cursor=new Date(now());cursor.setHours(12,0,0,0);if(!checked.includes(today))cursor.setDate(cursor.getDate()-1);let streak=0;while(checked.includes(dayKey(cursor))){streak++;cursor.setDate(cursor.getDate()-1)}const known=learned(),sentences=new Set((known.sentences||[]).map(digest)),words=new Set((known.words||[]).map(w=>digest(normalizeWord(w))));for(const day of Object.values(x.days)){Object.keys(day.sentences||{}).forEach(k=>sentences.add(k));Object.keys(day.words||{}).forEach(k=>words.add(k))}return {goalMinutes:x.goalMinutes,checkedGoalMinutes:x.days[today]?.checkedGoalMinutes||null,totalSentences:sentences.size,totalWords:words.size,todayWords:Object.keys(x.days[today]?.words||{}).length,today,checkedToday:checked.includes(today),days:checked.length,streak,todaySeconds:seconds(x.days[today]||{}),todaySentences:Object.keys(x.days[today]?.sentences||{}).length,totalSeconds:(Number(x.legacySeconds)||0)+dates.reduce((n,k)=>n+seconds(x.days[k]),0),legacySeconds:x.legacySeconds||0,history:dates.map(date=>({date,seconds:seconds(x.days[date]),sentences:Object.keys(x.days[date].sentences||{}).length,words:Object.keys(x.days[date].words||{}).length,checked:checked.includes(date),checkedAt:x.days[date].checkedAt||null})).reverse(),storage:storage?'browser':file()?'local':'session'}}
- const activity=function activity(action='summary',input={}){const x=read();
+ function summary(x){const today=dayKey(now()),dates=Object.keys(x.days).sort(),checked=new Set(dates.filter(k=>x.days[k].checked));let cursor=new Date(now());cursor.setHours(12,0,0,0);if(!checked.has(today))cursor.setDate(cursor.getDate()-1);let streak=0;while(checked.has(dayKey(cursor))){streak++;cursor.setDate(cursor.getDate()-1)}const known=learned(),sentences=new Set((known.sentences||[]).map(digest)),words=new Set((known.words||[]).map(w=>digest(normalizeWord(w))));for(const day of Object.values(x.days)){Object.keys(day.sentences||{}).forEach(k=>sentences.add(k));Object.keys(day.words||{}).forEach(k=>words.add(k))}const history=dates.map(date=>({date,seconds:seconds(x.days[date]),sentences:Object.keys(x.days[date].sentences||{}).length,words:Object.keys(x.days[date].words||{}).length,checked:checked.has(date),checkedAt:x.days[date].checkedAt||null}));return {goalMinutes:x.goalMinutes,checkedGoalMinutes:x.days[today]?.checkedGoalMinutes||null,totalSentences:sentences.size,totalWords:words.size,todayWords:Object.keys(x.days[today]?.words||{}).length,today,checkedToday:checked.has(today),days:checked.size,streak,todaySeconds:seconds(x.days[today]||{}),todaySentences:Object.keys(x.days[today]?.sentences||{}).length,totalSeconds:(Number(x.legacySeconds)||0)+history.reduce((n,d)=>n+d.seconds,0),legacySeconds:x.legacySeconds||0,history:history.reverse(),storage:storage?'browser':file()?'local':'session'}}
+ const activity=function activity(action='summary',input={}){const x=read();let changed=false;
  // Preserve attendance already earned under the previous one-minute/manual rule.
- if(!Number.isInteger(x.goalMinutes)||x.goalMinutes<1||x.goalMinutes>1440){for(const d of Object.values(x.days))if(d.checked||seconds(d)>=60)d.checked=true;x.goalMinutes=30}
- const today=dayKey(now()),award=d=>{d.goalMinutes||=x.goalMinutes;if(!d.checked&&seconds(d)>=d.goalMinutes*60){d.checked=true;d.checkedGoalMinutes=d.goalMinutes;d.checkedAt=now().toISOString()}};
- if(action==='record'){if(!/^[\w-]{1,80}$/.test(input.session||'')||!input.totals||Object.keys(input.totals).length>366)throw Error('打卡计时数据无效');for(const [date,total]of Object.entries(input.totals)){if(!/^\d{4}-\d{2}-\d{2}$/.test(date)||dayKey(new Date(date+'T12:00:00'))!==date||!Number.isFinite(total)||total<0||total>86400)throw Error('打卡日期或时长无效');const d=x.days[date]||={sessions:{}};d.sessions[input.session]=Math.max(d.sessions[input.session]||0,total);award(d)}for(const [date,items]of Object.entries(input.sentences||{})){if(!/^\d{4}-\d{2}-\d{2}$/.test(date)||dayKey(new Date(date+'T12:00:00'))!==date||!Array.isArray(items)||items.length>20000)throw Error('学习句子数据无效');const d=x.days[date]||={sessions:{}};d.sentences||={};for(const item of items){if(typeof item!=='string'||!/^english-[a-z0-9-]+:\d{1,3}$/.test(item))throw Error('学习句子标识无效');d.sentences[crypto.createHash('sha256').update(item).digest('hex').slice(0,24)]=true}}for(const [date,items]of Object.entries(input.words||{})){if(!/^\d{4}-\d{2}-\d{2}$/.test(date)||dayKey(new Date(date+'T12:00:00'))!==date||!Array.isArray(items)||items.length>20000)throw Error('学习单词数据无效');const d=x.days[date]||={sessions:{}};d.words||={};for(const term of items){if(typeof term!=='string'||!term.trim()||term.length>120)throw Error('学习单词无效');d.words[digest(normalizeWord(term))]=true}}}else if(action==='goal'){
+ if(!Number.isInteger(x.goalMinutes)||x.goalMinutes<1||x.goalMinutes>1440){for(const d of Object.values(x.days))if(d.checked||seconds(d)>=60)d.checked=true;x.goalMinutes=30;changed=true}
+ const today=dayKey(now()),award=d=>{if(!d.goalMinutes){d.goalMinutes=x.goalMinutes;changed=true}if(!d.checked&&seconds(d)>=d.goalMinutes*60){d.checked=true;d.checkedGoalMinutes=d.goalMinutes;d.checkedAt=now().toISOString();changed=true}},day=date=>{if(!x.days[date]){x.days[date]={sessions:{}};changed=true}return x.days[date]};
+ if(action==='record'){if(!/^[\w-]{1,80}$/.test(input.session||'')||!input.totals||Object.keys(input.totals).length>366)throw Error('打卡计时数据无效');for(const [date,total]of Object.entries(input.totals)){if(!/^\d{4}-\d{2}-\d{2}$/.test(date)||dayKey(new Date(date+'T12:00:00'))!==date||!Number.isFinite(total)||total<0||total>86400)throw Error('打卡日期或时长无效');const d=day(date),next=Math.max(d.sessions[input.session]||0,total);if(d.sessions[input.session]!==next){d.sessions[input.session]=next;changed=true}award(d)}for(const [date,items]of Object.entries(input.sentences||{})){if(!/^\d{4}-\d{2}-\d{2}$/.test(date)||dayKey(new Date(date+'T12:00:00'))!==date||!Array.isArray(items)||items.length>20000)throw Error('学习句子数据无效');const d=day(date);if(!d.sentences){d.sentences={};changed=true}for(const item of items){if(typeof item!=='string'||!/^english-[a-z0-9-]+:\d{1,3}$/.test(item))throw Error('学习句子标识无效');const key=digest(item);if(d.sentences[key]!==true){d.sentences[key]=true;changed=true}}}for(const [date,items]of Object.entries(input.words||{})){if(!/^\d{4}-\d{2}-\d{2}$/.test(date)||dayKey(new Date(date+'T12:00:00'))!==date||!Array.isArray(items)||items.length>20000)throw Error('学习单词数据无效');const d=day(date);if(!d.words){d.words={};changed=true}for(const term of items){if(typeof term!=='string'||!term.trim()||term.length>120)throw Error('学习单词无效');const key=digest(normalizeWord(term));if(d.words[key]!==true){d.words[key]=true;changed=true}}}}else if(action==='goal'){
   if(!Number.isInteger(input.minutes)||input.minutes<1||input.minutes>1440)throw Error('每日目标需为 1–1440 的整数分钟');
-  x.goalMinutes=input.minutes;const d=x.days[today];if(d){d.goalMinutes=input.minutes;award(d)}
+  if(x.goalMinutes!==input.minutes){x.goalMinutes=input.minutes;changed=true}const d=x.days[today];if(d){if(d.goalMinutes!==input.minutes){d.goalMinutes=input.minutes;changed=true}award(d)}
  }else if(action==='checkin'){
   const d=x.days[today];if(!d||(!d.checked&&seconds(d)<x.goalMinutes*60))throw Error('尚未达到每日学习目标，继续学习后会自动打卡');if(d)award(d);
- }else if(action!=='summary')throw Error('不支持的打卡操作');write(x);return summary(x)};
+ }else if(action!=='summary')throw Error('不支持的打卡操作');if(changed)write(x);return summary(x)};
  activity.exportData=()=>JSON.parse(JSON.stringify(read()));
  activity.restoreData=value=>write(value);
  return activity;
@@ -1535,21 +1536,26 @@ function cleanRows(rows){
  return {words,duplicates};
 }
 module.exports=function createWordbooks(storage,vocabulary,catalog){
- const key='english-wordbooks-v1',read=()=>{const x=storage.getItem(key)||[];if(!Array.isArray(x))throw Error('单词本数据格式异常');return copy(x)},pkey=id=>'english-wordbook-progress:'+id;
+ const key='english-wordbooks-v1',stored=()=>{const x=storage.getItem(key)||[];if(!Array.isArray(x))throw Error('单词本数据格式异常');return x},read=()=>copy(stored()),pkey=id=>'english-wordbook-progress:'+id;
  const seed={...builtin,id:'words-builtin-'+builtin.id,words:cleanRows(builtin.words.map(w=>[w.term,w.meaning,w.usphone,w.ukphone])).words,kind:'builtin',builtin:true},seedSignature=signature(seed.words);
  const hidden=()=>storage.getItem('english-wordbooks-trash-v1')||{};function restore(id){const x=hidden();delete x[id];storage.setItem('english-wordbooks-trash-v1',x)}
- function all(){const books=read();let found=false;for(const b of books){if(!found&&(b.id===seed.id||b.customized&&b.originalKind==='builtin'||signature(b.words)===seedSignature)){b.kind='builtin';b.builtin=true;if(!b.customized)b.title=seed.title;found=true}else {b.kind=b.material?'optional':'imported';b.builtin=false}}if(!found)books.unshift(copy(seed));return books}
- function get(id){if(id==='favorites')return {id,title:'收藏词汇',words:vocabulary(),builtin:true,kind:'favorites'};const b=all().find(b=>b.id===id);if(!b)throw Error('找不到单词本');return b}
- function saveBook(title,words,material,metadata={}){metadata=C.wordbookMetadata(metadata);const contentSignature=signature(words),id='words-'+crypto.createHash('sha256').update(JSON.stringify({title,words})).digest('hex').slice(0,24);const existing=all().find(b=>(material||b.kind==='builtin'||b.kind==='optional'||b.id===id)&&signature(b.words)===contentSignature);if(existing){restore(existing.id);if(existing.kind!=='builtin'&&(material||Object.keys(metadata).length)){const books=read(),b=books.find(b=>b.id===existing.id);Object.assign(b,metadata);if(material)b.material=material;storage.setItem(key,books)}return {id:existing.id,existing:true,count:words.length}}const books=read();if(books.length>=100)throw Error('最多保存 100 个单词本，请先导出整理');books.push({...metadata,id,title,words,...(material?{material}:{}),createdAt:new Date().toISOString()});storage.setItem(key,books);return {id,count:words.length}}
+ // Read-only metadata paths share word arrays only inside this operation. Public
+ // getters and mutation paths still receive detached copies of the selected book.
+ function all(source=stored()){const books=source.map(b=>({...b}));let found=false;for(const b of books){if(!found&&(b.id===seed.id||b.customized&&b.originalKind==='builtin'||b.words.length===seed.words.length&&signature(b.words)===seedSignature)){b.kind='builtin';b.builtin=true;if(!b.customized)b.title=seed.title;found=true}else {b.kind=b.material?'optional':'imported';b.builtin=false}}if(!found)books.unshift({...seed});return books}
+ function favorites(readOnly=false){return {id:'favorites',title:'收藏词汇',words:readOnly?storage.getItem('english-vocabulary-v1')||[]:vocabulary(),builtin:true,kind:'favorites'}}
+ function get(id){if(id==='favorites')return favorites();const b=all().find(b=>b.id===id);if(!b)throw Error('找不到单词本');return copy(b)}
+ function progressBook(id){if(id==='favorites')return favorites(true);const books=stored(),b=books.find(b=>b.id===id)||(id===seed.id?all(books).find(b=>b.id===id):null);if(!b)throw Error('找不到单词本');return b}
+ function saveBook(title,words,material,metadata={}){metadata=C.wordbookMetadata(metadata);const contentSignature=signature(words),id='words-'+crypto.createHash('sha256').update(JSON.stringify({title,words})).digest('hex').slice(0,24);const existing=all().find(b=>b.words.length===words.length&&(material||b.kind==='builtin'||b.kind==='optional'||b.id===id)&&signature(b.words)===contentSignature);if(existing){restore(existing.id);if(existing.kind!=='builtin'&&(material||Object.keys(metadata).length)){const books=read(),b=books.find(b=>b.id===existing.id);Object.assign(b,metadata);if(material)b.material=material;storage.setItem(key,books)}return {id:existing.id,existing:true,count:words.length}}const books=read();if(books.length>=100)throw Error('最多保存 100 个单词本，请先导出整理');books.push({...metadata,id,title,words,...(material?{material}:{}),createdAt:new Date().toISOString()});storage.setItem(key,books);return {id,count:words.length}}
  return function wordbooks(action='list',input={}){
-  if(action==='list')return [get('favorites'),...all()].filter(b=>input.includeTrashed||!hidden()[b.id]).map(b=>{const progress=copy(storage.getItem(pkey(b.id))||{}),valid=new Set(b.words.map(w=>w.id)),completedCount=new Set([...(Array.isArray(progress.completed)?progress.completed:[]),...(Array.isArray(progress.cardCompleted)?progress.cardCompleted:[])].filter(id=>valid.has(id))).size,cardtime=storage.getItem('english-wordbook-cardtime:'+b.id)||{};return {...C.wordbookMetadata(b),id:b.id,title:b.title,count:b.words.length,builtin:!!b.builtin,kind:b.kind,mastered:b.words.filter(w=>w.mastered).length,progress,completedCount,started:completedCount>0||Number(progress.seconds)>0||Number(cardtime.seconds)>0,lastOpenedAt:progress.lastOpenedAt||null}});
+  if(action==='list'){const trash=hidden();return [favorites(true),...all()].filter(b=>input.includeTrashed||!trash[b.id]).map(b=>{const progress=copy(storage.getItem(pkey(b.id))||{}),completed=[...(Array.isArray(progress.completed)?progress.completed:[]),...(Array.isArray(progress.cardCompleted)?progress.cardCompleted:[])],valid=completed.length?new Set(b.words.map(w=>w.id)):null,completedCount=valid?new Set(completed.filter(id=>valid.has(id))).size:0,cardtime=storage.getItem('english-wordbook-cardtime:'+b.id)||{};return {...C.wordbookMetadata(b),id:b.id,title:b.title,count:b.words.length,builtin:!!b.builtin,kind:b.kind,mastered:b.words.filter(w=>w.mastered).length,progress,completedCount,started:completedCount>0||Number(progress.seconds)>0||Number(cardtime.seconds)>0,lastOpenedAt:progress.lastOpenedAt||null}})}
+  if(action==='learned'){const words=[];for(const b of [favorites(true),...all()]){const completed=storage.getItem(pkey(b.id))?.completed;if(!Array.isArray(completed)||!completed.length)continue;const ids=new Set(completed);for(const w of b.words)if(ids.has(w.id))words.push(w.term)}return words}
   if(action==='get')return get(input.id);
-  if(action==='catalog')return catalog.list(input).then(result=>({...result,wordbooks:result.wordbooks.map(item=>({...item,installedBookId:all().find(b=>!hidden()[b.id]&&signature(b.words)===item.contentHash)?.id||null}))}));
+  if(action==='catalog')return catalog.list(input).then(result=>{const books=all(),trash=hidden(),hashes=new Map();return {...result,wordbooks:result.wordbooks.map(item=>({...item,installedBookId:books.find(b=>{if(trash[b.id]||Number.isInteger(item.count)&&b.words.length!==item.count)return false;if(!hashes.has(b.id))hashes.set(b.id,signature(b.words));return hashes.get(b.id)===item.contentHash})?.id||null}))}});
   if(action==='download')return catalog.downloadWordbook(input).then(({item,words,metadata})=>saveBook(item.title,words,{id:item.id,url:item.url,sha256:item.sha256},metadata));
   if(action==='import'){const parsed=cleanRows(input.rows),title=String(input.title||'').trim();if(!title||title.length>100)throw Error('请填写 1–100 字的单词本名称');if(input.preview!==false)return {title,...parsed};return saveBook(title,parsed.words,null,input.metadata)}
   if(action==='preferences'){const key='english-wordbook-preferences-v1',old=storage.getItem(key)||{},sorts=['recent','completion-asc','completion-desc','title'];const next={layout:old.layout==='grid'?'grid':'list',autoMaster:old.autoMaster===true,autoPronounce:old.autoPronounce!==false,pronunciationAccent:old.pronunciationAccent==='en-GB'?'en-GB':'en-US',wordbookSort:sorts.includes(old.wordbookSort)?old.wordbookSort:'recent'};if(input.value){if(['list','grid'].includes(input.value.layout))next.layout=input.value.layout;for(const field of ['autoMaster','autoPronounce'])if(typeof input.value[field]==='boolean')next[field]=input.value[field];if(['en-US','en-GB'].includes(input.value.pronunciationAccent))next.pronunciationAccent=input.value.pronunciationAccent;if(sorts.includes(input.value.wordbookSort))next.wordbookSort=input.value.wordbookSort;storage.setItem(key,next)}return next}
-  if(action==='trashList')return [get('favorites'),...all()].filter(b=>hidden()[b.id]).map(b=>({id:b.id,title:b.title}));
-  const book=get(input.id);
+  if(action==='trashList'){const trash=hidden();return [favorites(true),...all()].filter(b=>trash[b.id]).map(b=>({id:b.id,title:b.title}))}
+  const book=['opened','studied','studyTime','progress'].includes(action)?progressBook(input.id):get(input.id);
   if(action==='opened'){const old=storage.getItem(pkey(book.id))||{},lastOpenedAt=Date.now();storage.setItem(pkey(book.id),{...old,lastOpenedAt});return {id:book.id,lastOpenedAt}}
   if(action==='studied'){const old=storage.getItem(pkey(book.id))||{},valid=new Set(book.words.map(w=>w.id));if(!valid.has(input.wordId))throw Error('词条不存在');const cardCompleted=[...new Set([...(Array.isArray(old.cardCompleted)?old.cardCompleted:[]),input.wordId])].filter(id=>valid.has(id));storage.setItem(pkey(book.id),{...old,cardCompleted});return {id:book.id,cardCompleted}}
   if(action==='fillMeaning'){
@@ -1563,7 +1569,7 @@ module.exports=function createWordbooks(storage,vocabulary,catalog){
    return {updated:true,word:copy(word)};
   }
   if(action==='trash'){if(input.restore){restore(book.id)}else{const x=hidden();x[book.id]=new Date().toISOString();storage.setItem('english-wordbooks-trash-v1',x)}return {id:book.id}}
-  if(action==='studyTime'){const key='english-wordbook-cardtime:'+book.id,old=storage.getItem(key)||{seconds:0,sessions:{}};if(input.session){if(!/^[\w-]{1,80}$/.test(input.session)||!Number.isFinite(input.seconds)||input.seconds<0||input.seconds>86400)throw Error('学习时长无效');const previous=old.sessions[input.session]||0,next=Math.max(previous,input.seconds);old.seconds+=next-previous;old.sessions[input.session]=next;storage.setItem(key,old)}return old.seconds}
+  if(action==='studyTime'){const key='english-wordbook-cardtime:'+book.id;let old=storage.getItem(key)||{seconds:0,sessions:{}};if(input.session){if(!/^[\w-]{1,80}$/.test(input.session)||!Number.isFinite(input.seconds)||input.seconds<0||input.seconds>86400)throw Error('学习时长无效');const previous=old.sessions[input.session]||0,next=Math.max(previous,input.seconds);if(old.sessions[input.session]!==next){old={...old,seconds:old.seconds+next-previous,sessions:{...old.sessions,[input.session]:next}};storage.setItem(key,old)}}return old.seconds}
   if(action==='edit'){
    const title=String(input.title||'').trim();if(!title||title.length>100)throw Error('请填写 1–100 字的名称');if(!Array.isArray(input.words)||input.words.length>20000)throw Error('单词本最多 20000 词');
    const oldByTerm=new Map(book.words.map(w=>[w.term.normalize('NFKC').toLowerCase(),w])),seen=new Set(),words=input.words.map(raw=>{const term=String(raw.term||'').trim(),meaning=String(raw.meaning||'').trim(),usphone=String(raw.usphone||'').trim(),ukphone=String(raw.ukphone||'').trim(),normalized=term.normalize('NFKC').toLowerCase();if(!term||term.length>120||meaning.length>2000||usphone.length>200||ukphone.length>200)throw Error('请检查词条长度：英文必填，最多 120 字符');if(seen.has(normalized))throw Error('存在重复词条：'+term);seen.add(normalized);const old=oldByTerm.get(normalized);return {...(old||{}),id:old?.id||crypto.createHash('sha256').update(normalized).digest('hex').slice(0,20),term,meaning,usphone,ukphone,mastered:old?.mastered===true}});
@@ -1661,14 +1667,39 @@ function validate(raw,sentences){
  if(expected?.size)throw Error('配套音频不完整');return raw;
 }
 module.exports=function createPreparedAudio({directory}={}){
- const entries=new Map();let loaded=false;
+ // Keep only a hash-to-pack index in memory. A library may contain hundreds of
+ // downloaded clips; querying availability must not retain all their base64.
+ const sources=new Map(),packs=new Map(),memory=new Map();let cached=null,rootPath,rootStamp,loaded=false;
+ const starter=path.join(__dirname,'../../assets/audio/english-starter-audio.json');
  function root(){return typeof directory==='function'?directory():directory}
- function load(){if(loaded)return;const local=path.join(__dirname,'../../assets/audio/english-starter-audio.json');if(fs.existsSync(local))for(const [k,v]of Object.entries(validate(JSON.parse(fs.readFileSync(local))).entries))entries.set(k,v.data);
-  const dir=root();if(dir&&fs.existsSync(dir)){for(const file of fs.readdirSync(dir).filter(x=>/^[a-f0-9]{64}\.json$/.test(x))){try{const p=path.join(dir,file);if(fs.statSync(p).size>8*1024*1024)continue;const raw=validate(JSON.parse(fs.readFileSync(p)));for(const [k,v]of Object.entries(raw.entries))entries.set(k,v.data)}catch{/* Damaged cache can be downloaded again. */}}}loaded=true;
+ function stamp(file){const s=fs.statSync(file);if(!s.isFile()||s.size>8*1024*1024)throw Error('invalid');return s.size+':'+s.mtimeMs+':'+s.ctimeMs}
+ function read(file){return validate(JSON.parse(fs.readFileSync(file,'utf8')))}
+ function rebuild(){sources.clear();for(const [file,pack]of packs)for(const id of pack.ids)sources.set(id,file)}
+ function refresh(force=false){
+  const dir=root();let nextStamp;try{const s=dir&&fs.statSync(dir);nextStamp=s?s.mtimeMs+':'+s.ctimeMs:null}catch{nextStamp=null}
+  if(loaded&&!force&&dir===rootPath&&nextStamp===rootStamp)return;
+  const files=[starter];if(dir&&nextStamp!==null)try{for(const f of fs.readdirSync(dir).filter(x=>/^[a-f0-9]{64}\.json$/.test(x)))files.push(path.join(dir,f))}catch{}
+  const wanted=new Set(files);let changed=false;
+  for(const file of packs.keys())if(!wanted.has(file)){packs.delete(file);if(cached?.file===file)cached=null;changed=true}
+  for(const file of files){let signature;try{signature=stamp(file)}catch{signature=null}
+   if(packs.has(file)&&packs.get(file).signature===signature)continue;
+   if(cached?.file===file)cached=null;let ids=[];
+   if(signature!==null)try{ids=Object.keys(read(file).entries)}catch{/* Damaged cache can be downloaded again. */}
+   packs.set(file,{signature,ids});changed=true;
+  }
+  if(changed)rebuild();rootPath=dir;rootStamp=nextStamp;loaded=true;
  }
- function get(text,voice='andrew'){if(voice!=='andrew'||typeof text!=='string')return null;load();return entries.get(hash(text))||null}
- function install(raw,sentences){load();validate(raw,sentences);const dir=root(),bytes=JSON.stringify(raw);if(dir){fs.mkdirSync(dir,{recursive:true});const dest=path.join(dir,hash(bytes)+'.json'),tmp=dest+'.'+crypto.randomUUID()+'.tmp';try{fs.writeFileSync(tmp,bytes);fs.renameSync(tmp,dest)}finally{try{fs.unlinkSync(tmp)}catch{}}}for(const [k,v]of Object.entries(raw.entries))entries.set(k,v.data)}
- return {get,install,has:(text,voice='andrew')=>!!get(text,voice),available:(texts,voice='andrew')=>texts.filter(t=>get(t,voice))};
+ function get(text,voice='andrew'){
+  if(voice!=='andrew'||typeof text!=='string')return null;refresh();const id=hash(text);if(memory.has(id))return memory.get(id);let file=sources.get(id);if(!file)return null;
+  let signature;try{signature=stamp(file)}catch{signature=null}
+  if(signature!==packs.get(file)?.signature){refresh(true);file=sources.get(id);if(!file)return null;signature=packs.get(file)?.signature}
+  if(cached?.file!==file||cached.signature!==signature)try{cached={file,signature,raw:read(file)}}catch{packs.set(file,{signature,ids:[]});cached=null;rebuild();return null}
+  return cached.raw.entries[id]?.data||null;
+ }
+ function install(raw,sentences){refresh();validate(raw,sentences);const dir=root(),bytes=JSON.stringify(raw);if(dir){fs.mkdirSync(dir,{recursive:true});const dest=path.join(dir,hash(bytes)+'.json'),tmp=dest+'.'+crypto.randomUUID()+'.tmp';try{fs.writeFileSync(tmp,bytes);fs.renameSync(tmp,dest)}finally{try{fs.unlinkSync(tmp)}catch{}}packs.delete(dest);packs.set(dest,{signature:stamp(dest),ids:Object.keys(raw.entries)});rebuild();cached=null}else for(const [k,v]of Object.entries(raw.entries))memory.set(k,v.data)}
+ function has(text,voice='andrew'){if(voice!=='andrew'||typeof text!=='string')return false;refresh();const id=hash(text);return memory.has(id)||sources.has(id)}
+ function available(texts,voice='andrew'){if(voice!=='andrew')return [];refresh(true);return texts.filter(t=>{if(typeof t!=='string')return false;const id=hash(t);return memory.has(id)||sources.has(id)})}
+ return {get,install,has,available};
 };
 module.exports.validate=validate;
 
@@ -1784,19 +1815,66 @@ module.exports={Bytes,cryptoAdapter,pathAdapter,fsAdapter,netAdapter};
 
 },
 "/web/english/storage.js":function(require,module,exports,__dirname){
-/* Serialize read-modify-write operations and commit each API mutation atomically. */
-const NAME='research-english-web-v1';
+/* Keep one snapshot per tab; check a small revision before each locked operation. */
+const NAME='research-english-web-v1',VERSION=2,META='meta';
 const clone=value=>value==null?value:structuredClone(value);
-function open(){return new Promise((resolve,reject)=>{const q=indexedDB.open(NAME,1);q.onupgradeneeded=()=>q.result.createObjectStore('kv');q.onsuccess=()=>{q.result.onversionchange=()=>q.result.close();resolve(q.result)};q.onerror=()=>reject(Error('无法打开浏览器数据库，请退出隐私模式或允许此网站存储数据'));q.onblocked=()=>reject(Error('数据库升级被旧标签页阻止，请关闭其他科研英语页面后重试'))})}
+function open(){return new Promise((resolve,reject)=>{
+ const q=indexedDB.open(NAME,VERSION);let blocked=false;
+ q.onupgradeneeded=()=>{for(const name of ['kv',META])if(!q.result.objectStoreNames.contains(name))q.result.createObjectStore(name)};
+ q.onsuccess=()=>{if(blocked)q.result.close();else resolve(q.result)};
+ q.onerror=()=>reject(Error('无法打开浏览器数据库，请退出隐私模式或允许此网站存储数据'));
+ q.onblocked=()=>{blocked=true;reject(Error('数据库升级被旧标签页阻止，请关闭其他科研英语页面后重试'))};
+})}
 module.exports=async function createStorage(){
  if(!navigator.locks)throw Error('当前浏览器缺少 Web Locks，请更新至近期 Chrome、Edge、Firefox 或 Safari 后使用');
- const database=await open();let values=new Map(),changed=new Map(),queue=Promise.resolve();
- const storage={getItem:key=>clone(values.get(key)),setItem(key,value){values.set(key,clone(value));changed.set(key,clone(value))}};
- async function read(){values=await new Promise((resolve,reject)=>{const map=new Map(),tx=database.transaction('kv'),q=tx.objectStore('kv').openCursor();q.onsuccess=()=>{const c=q.result;if(c){map.set(c.key,c.value);c.continue()}};tx.oncomplete=()=>resolve(map);tx.onerror=()=>reject(tx.error)});changed=new Map()}
- async function commit(){if(!changed.size)return;await new Promise((resolve,reject)=>{const tx=database.transaction('kv','readwrite'),store=tx.objectStore('kv');for(const [key,value]of changed)store.put(value,key);tx.oncomplete=resolve;tx.onabort=tx.onerror=()=>reject(Error('保存失败：浏览器存储空间不足或访问被阻止；本次改动未写入，请先导出备份'))});changed.clear()}
- function run(operation){const work=queue.then(()=>navigator.locks.request(NAME,async()=>{await read();try{const result=await operation();await commit();return clone(result)}catch(error){await read();throw error}}));queue=work.catch(()=>{});return work}
+ const database=await open();let values=new Map(),changed=new Map(),before=new Map(),queue=Promise.resolve(),revision,loaded=false,closed=false;
+ function close(){closed=true;database.close();values.clear();changed.clear();before.clear()}
+ database.onversionchange=close;
+ const storage={
+  getItem:key=>clone(values.get(key)),
+  setItem(key,value){
+   if(closed)throw Error('浏览器数据库已关闭，请刷新科研英语页面后重试');
+   if(values.has(key)&&Object.is(values.get(key),value))return;
+   const copy=clone(value);
+   if(!before.has(key))before.set(key,{exists:values.has(key),value:values.get(key)});
+   values.set(key,copy);changed.set(key,copy);
+  }
+ };
+ function currentRevision(){return new Promise((resolve,reject)=>{
+  const tx=database.transaction(META),q=tx.objectStore(META).get('revision');
+  tx.oncomplete=()=>resolve(q.result??0);tx.onabort=tx.onerror=()=>reject(tx.error||Error('无法读取浏览器数据版本'));
+ })}
+ function read(){return new Promise((resolve,reject)=>{
+  const tx=database.transaction(['kv',META]),store=tx.objectStore('kv'),keys=store.getAllKeys(),all=store.getAll(),version=tx.objectStore(META).get('revision');
+  tx.oncomplete=()=>{values=new Map(keys.result.map((key,index)=>[key,all.result[index]]));revision=version.result??0;loaded=true;changed.clear();before.clear();resolve()};
+  tx.onabort=tx.onerror=()=>reject(tx.error||Error('无法读取浏览器学习数据'));
+ })}
+ async function refresh(){if(closed)throw Error('浏览器数据库已关闭，请刷新科研英语页面后重试');if(!loaded||await currentRevision()!==revision)await read()}
+ function rollback(){for(const [key,old]of before)if(old.exists)values.set(key,old.value);else values.delete(key);changed.clear();before.clear()}
+ async function commit(){
+  if(!changed.size)return;
+  const next=revision+1;
+  await new Promise((resolve,reject)=>{
+   const tx=database.transaction(['kv',META],'readwrite'),store=tx.objectStore('kv');
+   tx.oncomplete=resolve;
+   tx.onabort=tx.onerror=()=>reject(Error('保存失败：浏览器存储空间不足或访问被阻止；本次改动未写入，请先导出备份'));
+   try{for(const [key,value]of changed)store.put(value,key);tx.objectStore(META).put(next,'revision')}catch(error){tx.abort();reject(error)}
+  });
+  revision=next;changed.clear();before.clear();
+ }
+ function run(operation){
+  const work=queue.then(()=>navigator.locks.request(NAME,async()=>{
+   await refresh();
+   try{const result=clone(await operation());await commit();return result}catch(error){rollback();throw error}
+  }));
+  queue=work.catch(()=>{});return work;
+ }
  await run(()=>{});
- return {storage,run,export:()=>run(()=>Object.fromEntries([...values].filter(([key])=>!key.startsWith('web-ai')&&!key.startsWith('web-translation')&&!key.includes('cache')&&!key.includes('community')))),restore:input=>run(()=>{for(const [key,value]of Object.entries(input))storage.setItem(key,value)}),snapshot:()=>new Map(values),close:()=>database.close()};
+ return {storage,run,
+  export:()=>run(()=>Object.fromEntries([...values].filter(([key])=>!key.startsWith('web-ai')&&!key.startsWith('web-translation')&&!key.includes('cache')&&!key.includes('community')))),
+  restore:input=>run(()=>{for(const [key,value]of Object.entries(input))storage.setItem(key,value)}),
+  snapshot:()=>new Map([...values].map(([key,value])=>[key,clone(value)])),close
+ };
 };
 
 },
@@ -2129,15 +2207,40 @@ async function boot(){
   const dictionary=require('../../features/english/english-dictionary')({request:(req)=>request(req.url,req)});
   let service;await store.run(()=>{service=require('../../features/english/english-service')(store.storage,{translation:services.translation,dictionary,audio,activityStorage:store.storage,catalogRequest,communityRequest:catalogRequest})});
   const api={platform:'browser'};for(const [name,fn]of Object.entries(service))if(typeof fn==='function')api[name]=(...args)=>store.run(()=>fn(...args));
+  // These jobs never modify the main database. Release its lock before network
+  // or audio I/O so typing and progress saves can continue while they are pending.
+  for(const name of ['translate','pronounce','dictionary','importURL'])api[name]=async(...args)=>{await store.run(()=>{});return structuredClone(await service[name](...args))};
+  for(const name of ['preparedAudio','preparedAudioAvailable','translationProviders'])api[name]=async(...args)=>service[name](...args);
   // Public metadata downloads must not hold the browser's global data-write lock.
   const communityReader=require('../../features/english/english-community-service')({storage:{getItem:key=>store.storage.getItem(key),setItem:(key,value)=>store.run(()=>store.storage.setItem(key,value))},request:catalogRequest});
+  api.communityGet=async input=>{await store.run(()=>{});return communityReader.get(input)};
   api.communityList=async input=>{const result=await communityReader.list(input);return store.run(()=>{const installed=store.storage.getItem('english-community-installed-v1')||{},courses=service.list(),books=service.wordbooks();return {...result,packs:result.packs.map(p=>{const saved=installed[p.id+':'+p.sha256],valid=saved&&(saved.type==='wordbook'?books:courses).some(x=>x.id===saved.id);return {...p,installed:!!valid,installedId:valid?saved.id:null}})}})};
+  // Validate/download first, then merge into the latest snapshot in one short
+  // transaction. Audio keeps its separate database and is installed before save.
+  const catalogDownloader=require('../../features/english/english-catalog')({storage:store.storage,request:catalogRequest});
+  api.catalogDownload=async input=>{
+   await store.run(()=>{});const downloaded=await catalogDownloader.download(input);
+   if(downloaded.audio)await audio.install(downloaded.audio,downloaded.lesson.sentences);
+   return store.run(()=>service.save({...downloaded.lesson,catalog:downloaded.catalog}));
+  };
+  api.communityDownload=async input=>{
+   const data=await api.communityGet(input),result=await store.run(()=>{
+    const saved=service.communityImport(data),installed=store.storage.getItem('english-community-installed-v1')||{};
+    installed[data.manifest.id+':'+data.manifest.sha256]={type:saved.type,id:saved.id};store.storage.setItem('english-community-installed-v1',installed);
+    // Prime the existing device key inside the transaction; concurrent downloads
+    // then use the same UUID when their optional statistics requests start.
+    if(data.manifest.cloudId){const key='english-community-device-v1',device=store.storage.getItem(key);if(typeof device!=='string'||!(/^[a-f0-9-]{36}$/i).test(device))store.storage.setItem(key,crypto.randomUUID())}
+    return saved;
+   });
+   let stats=null;try{stats=await communityReader.recordDownload(data.manifest.id)}catch{}
+   return {...result,stats};
+  };
   const directSpeech=require('./speech');
   api.speech=require('./public-speech')({direct:directSpeech,relay,onStatus:status=>{api.speechLastStatus=status;for(const id of ['enPublicVoiceStatus','enPracticePublicVoiceStatus'])if($(id))$(id).textContent=status.message;}});
   api.speechRelayConfig=patch=>store.run(()=>relay.config(patch));
   Object.defineProperty(api,'speechCapabilities',{get:()=>api.speech.capabilities()});
   window.englishApi=api;window.microToolsVersion=window.RESEARCH_ENGLISH_BUILD.version;window.ResearchEnglishWeb={api,store,validateBackup};
-  window.researchApi={...services.research,config:(patch)=>store.run(()=>services.research.config(patch)),checkAvailability:options=>store.run(()=>services.research.checkAvailability(options)),call:services.research.call,cancel:services.research.cancel};
+  window.researchApi={...services.research,config:(patch)=>store.run(()=>services.research.config(patch)),checkAvailability:async options=>{await store.run(()=>{});return services.research.checkAvailability(options)},call:services.research.call,cancel:services.research.cancel};
   window.openExternal=url=>{const u=new URL(url);if(['https:','http:'].includes(u.protocol))window.open(u.href,'_blank','noopener,noreferrer')};
   window.copyToClipboard=async text=>{try{await navigator.clipboard.writeText(text)}catch{const box=el('textarea');box.value=text;document.body.append(box);box.select();const ok=document.execCommand('copy');box.remove();if(!ok)throw Error('复制失败，请允许浏览器访问剪贴板')}};
   window.showView=view=>{if(view==='settings')openAI();else window.EnglishUI?.onView('english')};
@@ -5890,4 +5993,4 @@ module.exports={boot,validateBackup};
 ;}},cache={};let platform;
 function normalize(p){const a=[];for(const v of p.split('/')){if(v==='..')a.pop();else if(v&&v!=='.')a.push(v)}return '/'+a.join('/')}
 function load(id,from='/'){if(!id.startsWith('.')&&!id.startsWith('/')){if(id==='crypto')return platform.cryptoAdapter;if(id==='path')return platform.pathAdapter;if(id==='fs')return platform.fsAdapter;if(id==='net')return platform.netAdapter;if(id==='url')return {pathToFileURL:()=>{throw Error('请使用文件选择器')}};if(['https','dns'].includes(id))return {};throw Error('浏览器不支持模块 '+id)}id=normalize(id.startsWith('/')?id:from+'/'+id);if(!modules[id])id+='.js';if(cache[id])return cache[id].exports;if(!modules[id]){if(id.endsWith('/english-network.js'))return {request:r=>load('/web/english/network.js').request(r.url,r)};throw Error('缺少模块 '+id)}const module=cache[id]={exports:{}},dir=id.slice(0,id.lastIndexOf('/'));modules[id](name=>load(name,dir),module,module.exports,dir);return module.exports}
-platform=load('/web/english/platform.js');const Buffer=platform.Bytes;window.EnglishModules=id=>load(id);window.ResearchEnglishReady=load('/web/english/runtime.js').boot();})();
+platform=load('/web/english/platform.js');const Buffer=platform.Bytes;window.EnglishModules=id=>load(id);for(const [file,name]of Object.entries({"features/english/english-core.js":"EnglishCore","features/english/english-material.js":"EnglishMaterial","features/english/english-domains.js":"CommunityDomains"}))window[name]=load('/'+file);window.ResearchEnglishReady=load('/web/english/runtime.js').boot();})();

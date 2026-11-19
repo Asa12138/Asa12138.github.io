@@ -33,7 +33,7 @@ node scripts/build-english-web.cjs /绝对路径/网站仓库/apps/research-engl
 
 ## 数据保存与备份
 
-- 课程、进度、词表和学习足迹：独立 IndexedDB `research-english-web-v1`。共享服务的原数据键与内容哈希不变；Web Locks 将多标签页的读改写串行化，每个 API 操作在事务提交后才返回成功。
+- 课程、进度、词表和学习足迹：独立 IndexedDB `research-english-web-v1`。共享服务的原数据键与内容哈希不变；1.9.0 使用内部 revision 检测跨标签页变动，只在必要时重读全库。数据库 schema v2 增加内部 meta store，保留既有 kv 数据；升级时旧标签页需刷新。Web Locks 将多标签页的读改写串行化，每个 API 操作在事务提交后才返回成功。
 - 录音及播放缓存：IndexedDB `micro-tools-english-media`；下载的配套语音：`research-english-web-audio`。密钥在当前标签页的 sessionStorage，普通接口设置在 IndexedDB。
 - ZTools 与网页没有自动数据同步；更换浏览器、设备、协议或域名会使用另一份存储。仅改变同一域名的路径不会产生浏览器安全隔离，`asa12138.github.io` 下的页面共享同源权限。不要在公共电脑保留敏感 API key。
 - 从 `/research-english/` 迁到 `/apps/research-english/` 保持原数据库名称、数据键和课程 ID；同一浏览器、同一 HTTPS 域名下的已有记录继续使用，无需清空或重新导入。
