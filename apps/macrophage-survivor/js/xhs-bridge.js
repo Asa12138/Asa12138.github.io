@@ -1,6 +1,6 @@
 (function () {
   'use strict';
-  var memory = Object.create(null);
+  var memory = Object.create(null), guest = false;
   function webHost(){
     var host={
       available:function(){return false;},
@@ -132,6 +132,7 @@
   var retryTimer=0,retries=0,confirmed=false;
   function nativeStorage(){return supported('getStorage',9460)&&supported('setStorage',9460);}
   function status(){
+    if(guest)return '临时试玩 · 关闭游戏后本次进度消失';
     if(!nativeStorage()){
       if(version&&version<9460)return '请升级小红书以保存进度';
       if(window.xhs)return '当前环境仅保留本次进度';
@@ -147,11 +148,40 @@
   function showStatus(){
     ['storage-note','result-storage'].forEach(function(id){var node=document.getElementById(id);if(node)node.textContent=status();});
   }
-  function readNative(key){
-    return invoke('getStorage',{key:key}).then(function(r){
-      if(!r||!('data' in r)||(r.errMsg&&r.errMsg!=='getStorage:ok'))throw new Error('读取未确认');
-      return r.data==null?null:JSON.parse(r.data);
-    });
+  var keyListRequest;
+  function confirmedReply(reply,method){
+    return reply && typeof reply==='object' && (!reply.errMsg || reply.errMsg===method+':ok') &&
+      (reply.errCode==null || reply.errCode===0);
+  }
+  function nativeKeys(){
+    if(!keyListRequest){
+      keyListRequest=invoke('getStorageInfo',{},5000).then(function(r){
+        if(!confirmedReply(r,'getStorageInfo')||!Array.isArray(r.keys)||
+          !r.keys.every(function(k){return typeof k==='string';}))throw new Error('目录未确认');
+        return r.keys;
+      });
+      function release(){keyListRequest=null;}
+      keyListRequest.then(release,release);
+    }
+    return keyListRequest;
+  }
+  async function readNative(key){
+    var data;
+    try{
+      var reply=await invoke('getStorage',{key:key},5000);
+      if(!confirmedReply(reply,'getStorage')||reply.data===undefined||reply.data==='')throw new Error('读取未确认');
+      data=reply.data;
+    }catch(err){
+      // Some hosts reject a missing key. Only a successful listing can confirm absence.
+      if(supported('getStorageInfo',9460)){
+        var keys=await nativeKeys();
+        if(keys.indexOf(key)<0)return null;
+      }
+      throw err;
+    }
+    if(data===null)return null;
+    if(typeof data!=='string')throw new Error('存档格式异常');
+    return JSON.parse(data);
   }
   function writeNative(key,data){
     return invoke('setStorage',{key:key,data:data},5000,function(){
@@ -171,18 +201,23 @@
     migration=(async function(){
       if(!supported('setStorage',9460)||!supported('getStorage',9460))return;
       var marker='immune.migrated03';
-      var flag=await readNative(marker);
-      if(flag!=null)return;
-      var account=await readNative('immune.profile2');
-      var bank=await readNative('immune.atp');
-      var keys=['immune.best','immune.muted'];
-      if(account==null&&bank==null){
-        keys=keys.concat(['immune.profile2','immune.atp','immune.unlocks','immune.atlas','immune.selectedHero','immune.selectedMap','immune.survival','immune.lastDeathBy']);
-      }
+      var flagError;
+      try{if(await readNative(marker)!=null)return;}catch(err){flagError=err;}
+      var historic={},keys=['immune.best','immune.muted','immune.profile2','immune.atp','immune.unlocks','immune.atlas','immune.selectedHero','immune.selectedMap','immune.survival','immune.lastDeathBy'];
+      keys.forEach(function(key){
+        try{
+          var old=window.localStorage.getItem(key);
+          if(old!=null){JSON.parse(old);historic[key]=old;}
+        }catch(err){}
+      });
+      keys=Object.keys(historic);
+      if(!keys.length)return;
+      if(flagError)throw flagError;
+      var account=await readNative('immune.profile2'),bank=await readNative('immune.atp');
       for(var i=0;i<keys.length;i++){
-        var key=keys[i],old=null;
-        try{old=window.localStorage.getItem(key);if(old!=null)JSON.parse(old);}catch(err){continue;}
-        if(old!=null&&await readNative(key)==null)await writeNative(key,old);
+        var key=keys[i];
+        if((account!=null||bank!=null)&&key!=='immune.best'&&key!=='immune.muted')continue;
+        if(await readNative(key)==null)await writeNative(key,historic[key]);
       }
       await writeNative(marker,'true');
     }()).catch(function(err){migration=null;throw err;});
@@ -191,13 +226,24 @@
   function get(key) {
     return ready.then(function(){
       if(key in memory)return memory[key];
-      if(supported('getStorage',9460))return migrateLegacyOnce().then(function(){return readNative(key);});
+      if(guest)return null;
+      if(supported('getStorage',9460))return migrateLegacyOnce().then(function(){return readNative(key);}).catch(function(err){
+        var fault=new Error(err&&err.message||'读取未确认');
+        fault.storageItem=key.replace(/^immune\./,'');
+        if(err&&Number.isInteger(err.errCode))fault.storageCode=err.errCode;
+        throw fault;
+      });
       if(window.xhs||!host.available()){showStatus();return null;}
       var value=host.read(key);
       if(value!=null)memory[key]=value;
       showStatus();
       return value;
     });
+  }
+  function beginGuest(){
+    guest=true;
+    memory=Object.create(null);
+    showStatus();
   }
   function scheduleRetry(){
     if(retryTimer||retries>=3||document.hidden)return;
@@ -212,6 +258,7 @@
     try{data=JSON.stringify(value);}catch(err){return Promise.resolve(false);}
     if(typeof data!=='string')return Promise.resolve(false);
     memory[key]=value;
+    if(guest)return Promise.resolve(true);
     if(writes[key]&&dirty[key]===data)return writes[key];
     dirty[key]=data;
     var pending=(writes[key]||ready).then(function(){
@@ -246,7 +293,7 @@
   }
   var rankDenied=false,rankCache=Object.create(null);
   function rankAvailable(){
-    return !rankDenied&&supported('submitScore',9510)&&nativeMethod('getRankList')&&nativeMethod('getMyRank');
+    return !guest&&!rankDenied&&supported('submitScore',9510)&&nativeMethod('getRankList')&&nativeMethod('getMyRank');
   }
   function rankRequest(method,options,attempt){
     if(!rankAvailable())return Promise.reject({errCode:1005});
@@ -340,7 +387,7 @@
       return invoke('postNote',options,300000);
     }).then(function(){return '已提交笔记，可在小红书查看发布进度。';}).catch(function(){return '发笔记流程已结束，可保存战报后再试。';});
   }
-  window.XhsBridge={ready:ready,storage:{get:get,set:set,retry:retryWrites,status:status,available:function(){return nativeStorage()||(!window.xhs&&host.available());}},layout:layout,
+  window.XhsBridge={ready:ready,storage:{get:get,set:set,retry:retryWrites,status:status,beginGuest:beginGuest,available:function(){return !guest&&(nativeStorage()||(!window.xhs&&host.available()));}},layout:layout,
     ranks:{available:rankAvailable,read:readRanks,submit:submitRank},canShareGame:canShareGame,shareGame:shareGame,
     vibrate:function(type){
       if(supported('vibrateShort',9500)){invoke('vibrateShort',{type:type==='heavy'?'heavy':'light'}).catch(function(){});return;}

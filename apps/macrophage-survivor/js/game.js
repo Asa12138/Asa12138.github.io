@@ -21,8 +21,10 @@
   var activeNames={macrophage:'猛扑',neutrophil:'诱捕网',nk:'过载',dc:'集结',mist:'酸雾',pulse:'聚爆',veil:'护膜'};
   function safeLayout(){
     var ticket=++layoutRead;
+    scope.classList.toggle('native-layout',!!window.xhs);
     B.layout().then(function(info){
       if(ticket!==layoutRead)return;
+      scope.classList.toggle('native-layout',!!window.xhs);
       var style=scope.style;
       if(!info||!(info.windowWidth>0)||!(info.windowHeight>0)){
         ['--host-top','--host-bottom','--host-left','--host-right','--safe-top','--safe-bottom'].forEach(function(key){style.removeProperty(key);});
@@ -30,12 +32,12 @@
       }
       var rect=scope.getBoundingClientRect(),safe=info.safeArea||{};
       var sx=window.innerWidth/info.windowWidth,sy=window.innerHeight/info.windowHeight;
-      var top=(safe.top||0)*sy;
+      var top=(safe.top||0)*sy,hasMenu=false;
       var buttons=info.menuButtons||{};
       Object.keys(buttons).forEach(function(key){
         var b=buttons[key];
         if(b&&b.left*sx<rect.right&&b.right*sx>rect.left&&b.bottom*sy>rect.top&&b.top*sy<rect.bottom){
-          top=Math.max(top,b.bottom*sy+4);
+          hasMenu=true;top=Math.max(top,b.bottom*sy+4);
         }
       });
       function inset(key,value,minimum){
@@ -43,6 +45,7 @@
         style.setProperty(key,pixels+'px');
         return pixels;
       }
+      if(window.xhs&&!hasMenu)top=Math.max(top+44,Math.min(88,window.innerHeight*.12));
       var t=inset('--host-top',top-rect.top);
       inset('--host-right',rect.right-(safe.right||info.windowWidth)*sx);
       var b=inset('--host-bottom',rect.bottom-(safe.bottom||info.windowHeight)*sy);
@@ -77,6 +80,7 @@
   function backButton(label,fn){return button(label,'text-btn back-nav',fn);}
   function paragraph(text){var p=document.createElement('p');p.textContent=text;return p;}
   function setScreen(next){
+    if(g&&g.coaching&&state!==next){g.coaching=false;mechanic=null;clearDemoOrb();el('coach').hidden=true;}
     el('home-toast').hidden=true;
     state=next;A.scene(next,g);scope.setAttribute('data-screen',next);clearInput();el('home').hidden=next!=='home';el('hud').hidden=['playing','upgrade','paused','brief'].indexOf(next)<0;
     el('sheet').hidden=['playing','ending','result','home'].indexOf(next)>=0;
@@ -85,6 +89,7 @@
   }
   function sheet(next,kicker,title){
     setScreen(next);el('sheet-kicker').textContent=kicker;el('sheet-title').textContent=title;
+    el('sheet').classList.remove('focused-discovery');
     var box=el('sheet-body');box.textContent='';el('sheet').classList.remove('has-menu-footer');
     box.parentNode.scrollTop=0;return box;
   }
@@ -635,6 +640,10 @@
     stickBase.classList.toggle('right',mirror);stickBase.hidden=!fixedStick;
     field.setAttribute('aria-label',fixedStick?'显微战场，拖动'+(mirror?'右':'左')+'下角摇杆或用方向键移动':'显微战场，拖动或用方向键移动');
   }
+  function versionLabel(){
+    var meta=document.querySelector('meta[name="application-version"]');
+    return meta?'V'+meta.content:'';
+  }
   function preferenceRows(box){
     [['背景音乐','musicOff'],['游戏音效','muted'],['主动键位置','leftHand'],['移动摇杆','fixedStick']].forEach(function(item){
       var key=item[1],b=button('','pref-row',function(){
@@ -650,6 +659,7 @@
       b.id='pref-'+key;b.appendChild(document.createTextNode(item[0]));b.appendChild(fragment('span',''));
       box.appendChild(b);
     });
+    box.appendChild(fragment('p','settings-version','游戏版本 '+versionLabel()));
     syncPreferenceRows();
   }
   el('settings-open').addEventListener('click',function(){
@@ -667,23 +677,36 @@
   document.querySelector('.manual').addEventListener('click',function(){manual(function(){setScreen('home');});});
   function loadProgress(first){
     var account=first?CP.ready:P.load().then(CP.load);
-    return Promise.all([account,B.storage.get('immune.best'),B.storage.get('immune.muted'),B.storage.get('immune.musicOff'),B.storage.get('immune.leftHand'),B.storage.get('immune.fixedStick')]).then(function(v){
-      best=Object.keys(P.data.mapBest).reduce(function(n,k){return Math.max(n,P.data.mapBest[k]);},Number(v[1])||0);
+    return account.then(function(){
+      // Settings may be unavailable even when the patrol itself is readable.
+      return Promise.all(['best','muted','musicOff','leftHand','fixedStick'].map(function(key){
+        return B.storage.get('immune.'+key).catch(function(){return null;});
+      }));
+    }).then(function(v){
+      best=Object.keys(P.data.mapBest).reduce(function(n,k){return Math.max(n,P.data.mapBest[k]);},Number(v[0])||0);
       el('mobile-best').textContent=el('best').textContent=D.clock(best);
-      if(!prefTouched.muted)muted=v[2]===true;
-      if(!prefTouched.musicOff)musicOff=v[3]==null?muted:v[3]===true;
-      if(!prefTouched.leftHand)mirror=v[4]===true;
-      if(!prefTouched.fixedStick)fixedStick=v[5]===true;
+      if(!prefTouched.muted)muted=v[1]===true;
+      if(!prefTouched.musicOff)musicOff=v[2]==null?muted:v[2]===true;
+      if(!prefTouched.leftHand)mirror=v[3]===true;
+      if(!prefTouched.fixedStick)fixedStick=v[4]===true;
       syncControls();syncSound();syncPreferenceRows();
       loaded=true;preview=P.data.selectedHero;
       var saved=CP.get();stage=saved?saved.stage:Math.min(8,P.data.cleared+1);mode=saved?saved.mode:'campaign';
       firstWinPending=P.data.cleared===0;home();el('choose-map').disabled=false;el('home').disabled=false;el('boot-status').hidden=true;
       el('storage-note').textContent=B.storage.status();
-    },function(){
-      var box=sheet('storage-error','PATROL RECORD','暂时无法读取存档');
-      box.appendChild(paragraph('请重试读取本机进度，之后可继续上次的巡逻。'));
-      var retry=button('重试读取','primary',function(){retry.disabled=true;loadProgress(false);});
-      box.appendChild(retry);retry.focus();
+    },function(err){
+      var detail=err&&err.storageItem?' / '+err.storageItem:'';
+      if(err&&Number.isInteger(err.storageCode))detail+=' ('+err.storageCode+')';
+      var box=sheet('storage-error','PATROL RECORD / '+versionLabel()+detail,'暂时无法读取存档');
+      box.appendChild(paragraph('可重试读取上次的巡逻。也可以临时玩一局，退出后试玩进度会消失，原存档会保留。'));
+      var retry=button('重试读取','primary',function(){again(false);});
+      var trial=button('临时试玩','pause-secondary',function(){again(true);});
+      function again(temporary){
+        retry.disabled=trial.disabled=true;
+        if(temporary)B.storage.beginGuest();
+        loadProgress(false);
+      }
+      box.appendChild(retry);box.appendChild(trial);retry.focus();
     });
   }
   loadProgress(true);
@@ -713,7 +736,7 @@
       var charge=mode==='nets'?g.netEnergy/100:1-g.laserIn/.6;
       if(mode==='summon'){
         var total=0;
-        g.army.forEach(function(f){var interval=(f.kind==='ctl'?1.7-.25*g.levels.ctl:2.4)*.4;total+=clamp(1-f.cool/interval,0,1);});
+        g.army.forEach(function(f){var interval=Q.armyInterval(f.kind);total+=clamp(1-f.cool/interval,0,1);});
         charge=g.army.length?total/g.army.length:0;
       }
       rank(mode==='nets'?'诱捕网充能':mode==='laser'?'光束充能':'军团充能',Math.ceil(5*clamp(charge,0,1)),5);
@@ -752,7 +775,7 @@
     preferenceRows(box);
   }
   function pause(){
-    if(!g)return;
+    if(!g||g.coaching)return;
     var T=window.DisplayTier,box=sheet('paused','TACTICAL PAUSE　/　'+D.clock(g.time),'防御已暂停');
     var scroll=fragment('div','pause-scroll');
     scroll.appendChild(fragment('b','pause-location',g.mode==='campaign'?'第 '+g.stage+' 关 · '+C.stages[g.stage-1].name:'无尽深渊 · '+D.maps[g.map].short));
@@ -860,7 +883,7 @@
       notice(g.hero.name+' · '+g.hero.trait+'。'+D.maps[g.map].info,4);hud();CP.save(g,H);
     }
   }
-  var coachIndex=0;
+  var coachIndex=0,mechanic=null;
   var coachSteps=[
     {focus:'self',text:'你在操控这颗细胞。滑动屏幕，它就会跟着走。'},
     {focus:'level',text:'等级升高后，可以挑选一项免疫技能。'},
@@ -896,6 +919,12 @@
     return {left:sx-sr-scopeRect.left,top:sy-sr-scopeRect.top,width:sr*2,height:sr*2,round:true};
   }
   function coachHole(){
+    if(mechanic){
+      if(mechanic.at)return worldHole(mechanic.at.x,mechanic.at.y,(mechanic.at.r||10)+6);
+      var hole=coachBox(mechanic.node,4);
+      if(mechanic.icon!=null){hole.left+=27*mechanic.icon;hole.width=35;}
+      return hole;
+    }
     var step=coachSteps[coachIndex]||coachSteps[0];
     if(step.focus==='self')return worldHole(g.p.x,g.p.y,Math.max(30,g.radius+18));
     if(step.focus==='enemy'){
@@ -913,27 +942,79 @@
     ring.style.left=box.left+'px';ring.style.top=box.top+'px';ring.style.width=box.width+'px';ring.style.height=box.height+'px';
     ring.style.borderRadius=box.round?'50%':'16px';
     var scopeH=scope.getBoundingClientRect().height,cardH=card.offsetHeight||132;
-    if(box.top>cardH+20)card.style.top='12px';
-    else{
-      var below=box.top+box.height+12;
-      card.style.top=(below+cardH<scopeH-8?below:Math.max(12,scopeH-cardH-12))+'px';
-    }
+    var padding=getComputedStyle(el('coach')),top=parseFloat(padding.paddingTop)||12;
+    var bottom=scopeH-(parseFloat(padding.paddingBottom)||14),below=box.top+box.height+8,above=box.top-cardH-8;
+    card.style.top=clamp(below+cardH<=bottom?below:above,top,Math.max(top,bottom-cardH))+'px';
   }
   function endCoach(){
     if(!g||!g.coaching)return;
     clearDemoOrb();g.coaching=false;el('coach').hidden=true;
-    notice(g.hero.name+' · '+g.hero.trait+'。'+D.maps[g.map].info,4);hud();
-    P.introduce('guide/hud');CP.save(g,H);
+    if(mechanic&&mechanic.key==='guide/reroll')el('sheet-body').querySelector('.upgrade-scroll').scrollTop=0;
+    P.introduce(mechanic?mechanic.key:'guide/hud');mechanic=null;
+    previous=0;hud();CP.save(g,H);
+    if(state==='upgrade')teachUpgrade();
   }
   function showCoach(index){
     if(!g)return;
-    if(index>=coachSteps.length){endCoach();return;}
+    if(mechanic||index>=coachSteps.length){endCoach();return;}
     coachIndex=index;
     if(coachSteps[index].focus==='xp')ensureDemoOrb();else clearDemoOrb();
     el('coach').hidden=false;
-    el('coach-text').textContent=coachSteps[index].text;
+    el('coach-text').textContent=coachSteps[index].focus==='cargo'&&g.hero.mode!=='cargo'?g.hero.trait+'。这里显示职业资源。':coachSteps[index].focus==='enemy'&&g.hero.mode!=='cargo'?'金色菌团会不断分裂。利用你的职业攻击清除它们。':coachSteps[index].text;
     el('coach-next').textContent=index===coachSteps.length-1?'知道了，开始':'下一步';
     placeCoach();
+  }
+  function focusMechanic(key,text,node,at,icon){
+    key='guide/'+key;
+    if(g.coaching||P.data.introduced.indexOf(key)>=0||(!at&&(!node||!node.offsetWidth)))return false;
+    mechanic={key:key,node:node,at:at,icon:icon};clearInput();g.coaching=true;
+    el('coach').hidden=false;el('coach-text').textContent=text;el('coach-next').textContent='知道了';
+    el('coach-next').focus();placeCoach();return true;
+  }
+  function teachMechanics(){
+    if(state!=='playing'||g.coaching||g.upgradeLead)return;
+    var active=window.ActiveSkills;
+    if(C.tier(g)>=3){
+      for(var slot=1;slot<=2;slot++){
+        var s=active.status(g,slot);
+        if(!s.locked&&focusMechanic(s.key,'点这里释放「'+s.name+'」。'+D.actives[s.key].effect,el('active-'+slot)))return;
+      }
+    }
+    if(g.hero.mode!=='cargo'&&focusMechanic('hero/'+g.heroId,g.hero.name+' · '+g.hero.trait+'。这里显示职业资源。',el('cargo')))return;
+    if(g.map==='brain'&&focusMechanic('barrier',D.maps.brain.info+' 耗尽即失败。',el('barrier-readout')))return;
+    if(g.event&&focusMechanic(g.event.id,D.events[g.event.id].info,el('status-rings')))return;
+    var effects=[
+      [g.vaccineUntil>g.time,'vaccine',D.events.vaccine.info],
+      [g.antibioticWaveAt>g.time,'antibiotic',D.events.antibiotic.info],
+      [g.windUntil>g.time,'wind',D.maps.lung.info],
+      [g.hot,'fever','高烧让消化加快 50%，敌人也会加速。']
+    ];
+    for(var i=0;i<effects.length;i++){
+      var v=effects[i];if(v[0]&&focusMechanic(v[1],v[2],el('status-rings')))return;
+    }
+    if(g.mode==='endless'&&focusMechanic('epoch','每两分钟出现新领主，留意毒力和敌群强度。',el('virulence')))return;
+    var bosses=g.enemies.filter(function(e){return e.bossSerial&&!e.dead;});
+    for(var b=0;b<bosses.length;b++){
+      var boss=bosses[b];
+      if(focusMechanic('boss/'+boss.kind+'/'+boss.phase,(boss.label||'首领')+' · '+C.bossTip(boss.kind,boss.phase),el('bossbar').children[b]))return;
+    }
+    var net=g.fibrinNets[0];
+    if(net&&focusMechanic('fibrin',D.maps.skin.info,null,{x:(net.x+net.xx)/2,y:(net.y+net.yy)/2,r:22}))return;
+    var ally=g.allies.find(function(a){return a.x>15&&a.x<W-15;});
+    if(ally&&focusMechanic('reinforce','援军沿路撒网。把敌人引进网里，可以定身三秒。',null,ally))return;
+    var icons=visibleCore();
+    for(var j=0;j<icons.length;j++){
+      var k=icons[j],meta=D.supers[k]||D.upgrades[k];
+      var detail=meta.effect;
+      if(g.hero.mode==='nets'&&(k==='acid'||k==='ros'))detail='每四次触杀释放一次'+(k==='acid'?'酸波，可标记荚膜。':'范围 ROS。');
+      if(g.hero.mode==='summon'&&k==='ctl')detail='每级增加一名 CTL，优先攻击感染细胞和成熟菌丝。';
+      if(focusMechanic(k,meta.name+' · '+detail,el('core-dock'),null,j))return;
+    }
+    var film=g.films.find(function(f){return f.x>12&&f.x<W-12&&f.y>28&&f.y<H-28;});
+    if(film&&focusMechanic('film/'+(film.kind||'slime'),'绕开这片地面。'+(film.kind==='toxin'?'毒滩会减速并持续扣血。':film.kind==='colony'?'菌膜会给敌军加速。':'经过时移动速度会降低。'),null,film))return;
+    var captain=g.enemies.find(function(e){return e.captain&&!e.dead&&e.x>12&&e.x<W-12&&e.y>28&&e.y<H-28;});
+    if(captain&&focusMechanic('captain','重装队长剩余生命降到 35% 后，才可以吞噬或触杀。',null,captain))return;
+    if(Q.occupancy(g.p)>=g.capacity&&focusMechanic('full','消化舱已满。现在碰到小怪会掉血，拉开距离等空槽。',el('cargo')))return;
   }
   function notice(s){
     var labels=[['疫苗','疫苗记忆唤醒'],['冰美式','冰美式 · 消化加速'],['熬夜','熬夜 · 经验加成'],['广谱','抗生素空投'],['高烧','高烧 · 免疫加速'],['局部炎症','炎症援军抵达'],['菌王入侵','菌王入侵'],['耐药菌潮','耐药菌潮抵达']];
@@ -983,7 +1064,8 @@
       life:2.4,exclude:exclude,speed:kind==='ctl'?250:kind==='igg'?175:200});
   }
   function complement(from){
-    if(!g.levels.c3)return;
+    if(!g.levels.c3||g.time<(g.c3ReadyAt||0))return;
+    g.c3ReadyAt=g.time+.65;
     if(g.event&&g.event.id==='stayup'){
       // Complement is kill-triggered. Stretch the spacing of its queued volleys during fatigue.
       var fatigue=D.events.stayup,elapsed=g.time-(g.event.until-fatigue.duration);
@@ -994,9 +1076,9 @@
   function emitC3(from){
     var targets=Q.nearby(g,from,220).filter(function(e){return !e.dead && dist(from,e)<220;});
     targets.sort(function(a,b){return dist(from,a)-dist(from,b);});
-    for(var i=0;i<3&&targets.length;i++)shot('c3',from,targets[i%targets.length],4+3*g.levels.c3,1);
+    for(var i=0;i<2&&targets.length;i++)shot('c3',from,targets[i%targets.length],4+3*g.levels.c3,1);
   }
-  function killed(e){
+  function killed(e,source){
     if(e.dead)return;breakLinks(e);e.dead=true;Q.onRemoval(g,e,ops,false);if(!e.mirrorFor&&!e.coreFor)Q.countClear(g,e.kind,e,ops);sparks(e.x,e.y,(D.species[e.kind]||D.species.latent).color,9);
     if(e.bossSerial){
       C.bossGone(g);
@@ -1005,7 +1087,7 @@
       }
       notice(g.mode==='endless'?'领主已清除':g.boss?'尚有领主在场':'关底目标已清除');
     }
-    A.play('burst');if(e.bossSerial)g.hitStop=.03;fx('ring',e.x,e.y,e.r+8,'#b8ffe9');orb(e.x,e.y,D.antigenValue(e,false));complement(e);
+    A.play('burst');if(e.bossSerial)g.hitStop=.03;fx('ring',e.x,e.y,e.r+8,'#b8ffe9');orb(e.x,e.y,D.antigenValue(e,false));if(source!=='c3')complement(e);
   }
   function damage(e,n,pierce,direction,cap,source){
     if(e.dead)return;e.hurt=.09;e.impact=typeof direction==='number'?direction:angle(g.p,e);
@@ -1026,7 +1108,7 @@
       e.shell=0;Q.phaseImpact(g,e,ops);
     }
     n=Q.bossDefense(g,e,n,pierce,source,ops);
-    e.hp-=n*(e.armor > 0 && !pierce ? .38 : 1)*(e.resistant&&!pierce ? .5 : 1);if(e.hp<=0)killed(e);
+    e.hp-=n*(e.armor > 0 && !pierce ? .38 : 1)*(e.resistant&&!pierce ? .5 : 1);if(e.hp<=0)killed(e,source);
   }
   function area(at,r,n,color,acid,ros,exclude){
     fx('ring',at.x,at.y,r,color,.42);Q.nearby(g,at,r,true).forEach(function(e){
@@ -1123,6 +1205,7 @@
     if(shield||e.bossSerial||D.infected(e.kind)||e.mirrorFor||tooBig||e.hypha||g.hero.mode!=='cargo'){
       var contactHit=p.inv<=0;
       if(contactHit&&(tooBig||shield))A.play('shield');
+      if(contactHit&&e.bossSerial)floatLabel(shield?'先破荚膜':e.elite?'精英接触':'首领碰撞',p.x,p.y-18,'#ffbc99');
       if(contactHit && tooBig){g.fullBounces+=space===0?1:0;if(D.cargoSlots(e.kind)>1)floatLabel('槽位不足！',p.x,p.y-16,'#ffcdab');}
       if(contactHit && !shield)g.pneumoStreak=0;
       if(shield && p.inv<=0){
@@ -1242,7 +1325,7 @@
     if(dist(s,t)<=s.speed*dt+t.r){
       if((s.kind==='igg'||s.kind==='matrix')&&D.capsule(t.kind)&&!t.mark){t.mark=true;g.marked++;}
       damage(t,s.damage,false,s.a,null,s.kind);s.life=0;sparks(t.x,t.y,s.kind==='ctl'?'#9dbfff':'#c1e4a1');
-      if(s.hops>0)shot('c3',t,nearest(t,null,150,t),s.damage,s.hops-1,t);
+      if(s.hops>0)shot('c3',t,nearest(t,null,150,t),s.damage*.65,s.hops-1,t);
     }else{s.x+=Math.cos(s.a)*s.speed*dt;s.y+=Math.sin(s.a)*s.speed*dt;}
   }
   function pickups(dt){
@@ -1329,6 +1412,22 @@
     box.appendChild(button(skill?'进入技能选择':'记入图鉴，继续巡逻','primary',function(){
       P.introduce(id);discovery=null;done();
     }));
+    if(!skill)positionDiscovery(target);
+  }
+  function positionDiscovery(target){
+    if(!target)return;
+    var overlay=el('sheet'),panel=overlay.firstElementChild,box=worldHole(target.x,target.y,(target.r||10)+8);
+    var css=getComputedStyle(overlay),top=parseFloat(css.paddingTop),bottom=scope.clientHeight-parseFloat(css.paddingBottom);
+    var above=box.top-8-top,below=bottom-box.top-box.height-8;
+    overlay.classList.add('focused-discovery');
+    overlay.style.setProperty('--discovery-height',(bottom-top)+'px');
+    var height=panel.offsetHeight,y;
+    if(Math.max(above,below)>=height){
+      y=below>=above?box.top+box.height+8:box.top-8-height;
+    }else{
+      y=top+(bottom-top-height)/2;
+    }
+    overlay.style.setProperty('--discovery-y',clamp(y,top,bottom-height)+'px');
   }
   function encounter(){
     if(g.time<(g.scanAfter||0))return false;
@@ -1336,7 +1435,7 @@
     var lists=[g.enemies,g.phages,g.bifidos];
     for(var j=0;j<lists.length;j++)for(var i=0;i<lists[j].length;i++){
       var e=lists[j][i],k=j===1?'phage':j===2?'bifido':e.kind;
-      if(e.dead||e.coreFor||e.mirrorFor||!D.species[k]||e.x<28||e.x>W-28||e.y<28||e.y>H-28||P.data.introduced.indexOf('species/'+k)>=0)continue;
+      if(e.dead||e.elite||e.coreFor||e.mirrorFor||!D.species[k]||e.x<28||e.x>W-28||e.y<28||e.y>H-28||P.data.introduced.indexOf('species/'+k)>=0)continue;
       brief(k,false,e,resume);return true;
     }return false;
   }
@@ -1361,7 +1460,7 @@
     choices.forEach(function(k){
       var data=D.upgrades[k]||bonuses[k],lv=g.levels[k]||0,isSkill=!!D.upgrades[k];
       var card=fragment('div','pick-card'),b=button('','pick-main',function(){
-        if(state!=='upgrade'||performance.now()<g.pickAfter)return;
+        if(state!=='upgrade'||g.coaching||performance.now()<g.pickAfter)return;
         g.pendingPick=false;if(isSkill){g.levels[k]++;A.play('equip');}else if(k==='clear')area(g.p,140,60,'#eff9ba');
         else if(k==='heal')g.p.hp=Math.min(g.hero.hp,g.p.hp+30);
         else{g.orbs.forEach(function(o){if(!o.demo)g.xp+=o.value;});g.orbs=g.orbs.filter(function(o){return o.demo;});g.p.hp=Math.min(g.hero.hp,g.p.hp+8);}
@@ -1384,10 +1483,18 @@
     if(g.rerollLimit){
       var left=g.rerollLimit-g.rerollsUsed;
       var refresh=button(left?'重新抗原呈递 · 换一批（余 '+left+' 次）':'本局已刷新','reroll-btn',function(){
-        if(state==='upgrade'&&g.rerollsUsed<g.rerollLimit&&performance.now()>=g.pickAfter){g.rerollsUsed++;offer(true);}
+        if(state==='upgrade'&&!g.coaching&&g.rerollsUsed<g.rerollLimit&&performance.now()>=g.pickAfter){g.rerollsUsed++;offer(true);}
       });refresh.disabled=!left;scroll.appendChild(refresh);
     }
-    box.appendChild(scroll);hud();
+    box.appendChild(scroll);hud();teachUpgrade();
+  }
+  function teachUpgrade(){
+    var box=el('sheet-body');
+    if(focusMechanic('pick','点一张卡立即获得升级，点卡片右边的详情可以先比较。',box.querySelector('.pick-card')))return;
+    var refresh=box.querySelector('.reroll-btn');
+    if(refresh&&!refresh.disabled&&P.data.introduced.indexOf('guide/reroll')<0){
+      refresh.scrollIntoView({block:'nearest'});focusMechanic('reroll','点这里重抽本次升级卡，会消耗一次本局换牌机会。',refresh);
+    }
   }
   function outcome(won){
     var campaign=g.mode==='campaign',defense=campaign&&g.stage>5;
@@ -1551,7 +1658,7 @@
     });
   }
   function triggerActive(slot){
-    if(state!=='playing'||g.upgradeLead||C.tier(g)<3)return;
+    if(state!=='playing'||g.coaching||g.upgradeLead||C.tier(g)<3)return;
     if(castActive(slot)){A.play('cast');hud();}
   }
   [1,2].forEach(function(slot){
@@ -1561,12 +1668,15 @@
     else {b.addEventListener('touchstart',press,{passive:false});b.addEventListener('mousedown',press);}
     b.addEventListener('click',function(e){if(e.detail===0)triggerActive(slot);});
   });
-  function statusHud(){
+  function visibleCore(){
     var core=Object.keys(g.levels).filter(function(k){return g.levels[k]&&['mist','pulse','veil'].indexOf(k)<0;});
     Object.keys(D.supers).forEach(function(k){if(g.super[k]){
       var recipe=D.supers[k],mate=recipe.alternate&&g.levels[recipe.needs[1]]<3?recipe.alternate:recipe.needs[1];
       core=core.filter(function(v){return v!==recipe.needs[0]&&v!==mate;});core.unshift(k);}});
-    core=core.slice(0,6);var c=hudCanvas('core-dock',Math.max(1,core.length*27),28);
+    return core.slice(0,6);
+  }
+  function statusHud(){
+    var core=visibleCore(),c=hudCanvas('core-dock',Math.max(1,core.length*27),28);
     core.forEach(function(k,i){var x=i*27+13,special=!!D.supers[k];
       c.beginPath();if(special){for(var j=0;j<6;j++){var a=j*TAU/6;c.lineTo(x+12*Math.cos(a),13+12*Math.sin(a));}c.closePath();}else c.arc(x,13,11,0,TAU);
       c.fillStyle=special?'rgba(94,70,36,.36)':'rgba(17,46,64,.30)';c.fill();c.strokeStyle=special?'#ffe29a':'#6daea9';c.stroke();
@@ -1656,6 +1766,7 @@
   }
   function loop(now){
     var dt=previous?Math.min(.085,(now-previous)/1000):0;previous=now;
+    if(state==='upgrade'&&g.coaching)placeCoach();
     if(state==='playing'){
       if(g.coaching)placeCoach();
       else{
@@ -1665,7 +1776,7 @@
       if(g.p.hp<g.hero.hp*.25)A.play('heart');
       var remain=dt*scale;while(remain>.00001 && state==='playing'){var tick=Math.min(1/45,remain);step(tick);remain-=tick;}
       if(state==='playing')CP.periodic(g,H);
-      lastHud+=dt;if(lastHud>=.09 && state==='playing'){hud();lastHud=0;}
+      lastHud+=dt;if(lastHud>=.09 && state==='playing'){hud();lastHud=0;teachMechanics();}
       }
     }
     if(g && state!=='home')R.frame(ctx,g,H,ground,ending);
@@ -1677,6 +1788,7 @@
       if(ending.elapsed>=ending.duration)showResult();
     }
     if(state==='brief'&&discovery&&!discovery.skill){
+      positionDiscovery(discovery.target);
       var target=discovery.target;if(target){ctx.save();ctx.beginPath();ctx.arc(target.x,target.y,(target.r||10)+8+2*Math.sin(now/240),0,TAU);
         ctx.strokeStyle='#ffe3a3';ctx.lineWidth=2;ctx.stroke();ctx.restore();}
       if(now-discovery.last>95){R.icon(discovery.cv,discovery.key,80,now/1000);discovery.last=now;}
@@ -1685,7 +1797,7 @@
   }
   function coord(e){var rect=field.getBoundingClientRect();return {x:(e.clientX-rect.left)*W/rect.width,y:(e.clientY-rect.top)*H/rect.height};}
   function startStick(e,id){
-    if(state!=='playing'||pointer!==null)return false;
+    if(state!=='playing'||g.coaching||pointer!==null)return false;
     var p=coord(e),s={x:p.x,y:p.y,lastX:p.x,lastY:p.y,dx:0,dy:0};
     if(fixedStick){
       var base=stickBase.getBoundingClientRect(),cx=base.left+base.width/2,cy=base.top+base.height/2;
@@ -1731,8 +1843,9 @@
   var activeKeys={KeyJ:1,Space:1,KeyK:2,KeyE:2};
   window.addEventListener('keydown',function(e){
     if(g&&g.coaching){
+      if(e.code==='Tab'){e.preventDefault();(document.activeElement===el('coach-next')?el('coach-skip'):el('coach-next')).focus();return;}
       if(e.repeat)return;
-      if(e.code==='Escape')endCoach();
+      if(e.code==='Escape'||(e.code==='Enter'&&document.activeElement===el('coach-skip'))){e.preventDefault();endCoach();}
       else if(e.code==='Enter'||e.code==='Space'){e.preventDefault();showCoach(coachIndex+1);}
       return;
     }
@@ -1753,7 +1866,7 @@
   window.addEventListener('keyup',function(e){delete keys[e.code];});
   function autoPause(){clearInput();if(state==='playing')pause();}
   document.addEventListener('visibilitychange',function(){if(ending)ending.lastFrame=null;});
-  function saveOnExit(){if(g&&g.coaching)return;if(g&&!g.settled)CP.save(g,H);autoPause();}
+  function saveOnExit(){if(g&&g.coaching){if(mechanic)CP.save(g,H);return;}if(g&&!g.settled)CP.save(g,H);autoPause();}
   window.addEventListener('pagehide',saveOnExit);window.addEventListener('blur',saveOnExit);
   document.addEventListener('visibilitychange',function(){A.background(document.hidden);if(document.hidden)saveOnExit();else B.storage.retry();});
   el('start').addEventListener('click',function(){

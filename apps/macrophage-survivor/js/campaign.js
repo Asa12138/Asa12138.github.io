@@ -138,7 +138,20 @@
     return {title:s.name,target:target,location:'第 '+stage+' 关 · '+D.maps[s.map].name,icon:s.elite||(s.lords||['boss'])[0],
       elite:!!s.elite,goalLead:lead,goalName:target,goalTail:'。',goal:lead+target+'。',
       clockLabel:timed?'波次时限':'最短防守',clock:D.clock(s.duration),
-      arrivalLabel:'目标登场时剩余',arrival:D.clock(s.duration-s.bossAt),note:note};
+      arrivalLabel:'目标登场时剩余',arrival:D.clock(s.duration-s.bossAt),note:note+' '+(s.lords||[s.elite||'boss']).map(function(k){return bossTip(k,1);}).join(' ')};
+  }
+  function bossTip(kind,phase){
+    var tips={
+      staph:['绕着小怪消化并用酸波擦到精英，硬碰每次损失 4 生命。'],
+      pneumo:['两名队长各自带盾。先用 IgG 或酸波标记，再撞击或远程集火。'],
+      latent:['巢会追着你走，无法吞入。绕圈，让 CTL 或 NK 持续攻击。'],
+      tb:['重装菌团无法吞入。边退边打，横移躲开同时进场的杆菌。'],
+      boss:['避开追身的菌王。放射质粒会给周围小怪上甲。','红带锁定冲撞方向，横着走出红带。','先清两只连线供能菌，再集火菌王。'],
+      boss_cdiff:['离开即将成形的三块毒滩。','连续侧移两次，第二次突刺会重新瞄准。','八秒内拆三核，随后三秒集中攻击。'],
+      boss_crypto:['绕过弯曲弹，用抗体或穿透火力破荚膜。','向双缺口移动，小心近身潮汐的牵引。','瞄准金色真核，真身与镜像轮流发射三连弹。'],
+      boss_biofilm:['离开绿色菌膜，避免被加速的援军包围。','偏离场地中轴，绕过十字增援和扇形弹。','沿青线拆护卫，每拆一只少一层减伤。']
+    };
+    return tips[kind][phase-1]||tips[kind][0];
   }
   function missionClock(g){
     if(g.mode==='endless')return {label:'存活时间',seconds:g.time};
@@ -227,7 +240,7 @@
       result[k]=entries.sort(function(a,b){return b.time-a.time||b.kills-a.kills||b.level-a.level;}).slice(0,10);
     });return result;
   }
-  window.Campaign={stages:stages,configure:configure,briefing:briefing,missionClock:missionClock,tier:tier,skillAllowed:skillAllowed,skillCap:skillCap,skillValue:skillValue,recipeGroups:recipeGroups,recipeAllowed:recipeAllowed,recipeReady:recipeReady,
+  window.Campaign={stages:stages,bossTip:bossTip,configure:configure,briefing:briefing,missionClock:missionClock,tier:tier,skillAllowed:skillAllowed,skillCap:skillCap,skillValue:skillValue,recipeGroups:recipeGroups,recipeAllowed:recipeAllowed,recipeReady:recipeReady,
     spawnLimit:spawnLimit,spawnDelay:spawnDelay,hpScale:hpScale,contactScale:contactScale,virulence:virulence,
     canReroll:function(g){return tier(g)>=5;},spawnKind:spawnKind,scaleEnemy:scaleEnemy,tick:tick,bossGone:bossGone,rank:rank,reportRow:reportRow,record:record};
 }());

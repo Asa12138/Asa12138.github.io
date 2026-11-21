@@ -63,6 +63,7 @@
   function serialize(g,height){
     if(!g.runId)g.runId=Date.now().toString(36)+'-'+(++serial).toString(36)+'-'+Math.floor(performance.now()*1000).toString(36);
     var s=scalars(g),enemies=livingEnemies(g);
+    delete s.coaching;
     s.v=1;s.height=height;s.bossIndex=enemies.indexOf(g.boss);
     s.p=scalars(g.p);s.p.cargo=plainList(g.p.cargo);s.ctl=scalars(g.ctl);
     s.levels=scalars(g.levels);s.super=scalars(g.super);s.tallies=scalars(g.tallies);s.event=g.event?scalars(g.event):null;
@@ -83,7 +84,7 @@
     if(!valid(s))return false;
     lastSaveTime=s.time;
     var ratio=height/s.height,loaded=scalars(s);
-    ['v','height','bossIndex'].forEach(function(k){delete loaded[k];});
+    ['v','height','bossIndex','coaching'].forEach(function(k){delete loaded[k];});
     Object.assign(g,loaded);
     if(s.waveClock==null){
       g.waveClock=s.time;

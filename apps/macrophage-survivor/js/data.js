@@ -12,7 +12,7 @@
     actin:{name:'肌动蛋白重构',effect:'基础移速 +10%。扩大吞噬范围，远程职业提升射程与拾取距离。',science:'膜下肌动蛋白重排，推动伪足包围颗粒。'},
     ros:{name:'呼吸爆发（ROS）',effect:'每次消化释放活性氧环，升级增加半径和灼伤。',science:'吞噬细胞在呼吸爆发中生成活性氧。'},
     igg:{name:'IgG 抗体弹幕',effect:'自动发射 Y 型弹，优先标记荚膜菌；升级提高火力。',science:'IgG 的 Fc 段可被吞噬细胞的 Fc 受体识别。'},
-    c3:{name:'补体 C3b 级联',effect:'每次清除产生 3 颗追踪电球，升级增强弹射伤害。',science:'C3b 沉积在微生物表面，促进调理吞噬。'},
+    c3:{name:'补体 C3b 级联',effect:'消化或其他攻击清除目标时发射两颗电球，间隔至少 0.65 秒。每球弹射一次，弹射伤害为 65%，电球击杀终止级联。',science:'C3b 沉积在微生物表面，促进调理吞噬。'},
     ctl:{name:'细胞毒性 T 细胞',effect:'召唤环绕巡逻的 CTL，优先点杀感染细胞。',science:'CTL 通过穿孔素与颗粒酶促使靶细胞凋亡。'},
     ifn:{name:'γ-干扰素增敏',effect:'增强光束与弹幕火力。命中后标记目标 3 秒，队友也能利用易伤。',science:'γ-干扰素是免疫细胞传递活化信号的一种细胞因子。'},
     mhc:{name:'抗原呈递加速',effect:'缩短主动技能与自动武器冷却。每清除 12 个敌人，额外掉落一颗金色记忆抗原。',science:'抗原呈递细胞将抗原肽展示给 T 细胞，帮助启动特异性免疫应答。'}
@@ -148,10 +148,10 @@
     if(k==='actin')return [['移速',Math.min(8,speedTier(h.speed)+level),'档'],[h.mode==='cargo'?'吞噬':'射程',Math.min(5,1+level),'档']];
     if(k==='acid')return h.mode==='nets'?[['每',4,'次触杀'],['酸伤',level,'档']]:
       [['容量',5+level*2,'槽'],['消化',Math.min(5,1+level),'档']];
-    if(k==='c3')return [['',3,'颗追踪球'],['威力',level,'档']];
+    if(k==='c3')return [['',2,'颗追踪球'],['威力',level,'档']];
     if(k==='ifn')return [['火力',5*level,'%'],['易伤',vulnerability(level),'%']];
     if(k==='mhc')return [['冷却缩短',8*level,'%'],['记忆抗原',1,'颗/12次']];
-    if(k==='turret')return [['',Math.floor((1+level)*2.5),'座哨卫'],['威力',level,'档']];
+    if(k==='turret')return [['',2+level,'座哨卫'],['威力',level,'档']];
     if(a&&!a.hero)return [[k==='veil'?'护盾':'威力',level,'档'],['冷却',Math.ceil(a.cd-a.cdStep*(level-1)),'秒']];
     return [];
   }

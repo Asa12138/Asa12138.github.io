@@ -210,6 +210,7 @@
     if(g.map!=='brain')return;g.barrier=Math.max(0,g.barrier-8);
     if(!g.barrier){g.lastHit='barrier';g.p.hp=0;}else if(g.barrier<=28)ops.notice('血脑屏障完整度仅余 '+g.barrier+'%');
   }
+  function armyInterval(kind){return kind==='ctl'?1.55:.96;}
   function heroTick(g,dt,ops){
     var p=g.p;
     if(g.hero.mode==='nets'){
@@ -236,17 +237,17 @@
     }
     if(g.hero.mode==='summon'){
       // Two baseline B-cell sentries give the summoner a source of first-level antigens.
-      var kinds={ctl:g.levels.ctl,turret:1+(g.levels.turret||0)},serial=0;
-      Object.keys(kinds).forEach(function(k){var n=Math.floor(kinds[k]*2.5);
+      var kinds={ctl:g.levels.ctl,turret:2+(g.levels.turret||0)},serial=0;
+      Object.keys(kinds).forEach(function(k){var n=kinds[k];
         for(var i=0;i<n;i++,serial++){
           var f=g.army[serial];if(!f||f.kind!==k)f=g.army[serial]={kind:k,cool:i*.15};
           var a=g.time*.8+serial*2.4,r=g.rallyUntil>g.time?15+(serial%4)*4:24+(serial%4)*14;
           f.x=p.x+Math.cos(a)*r;f.y=p.y+Math.sin(a)*r;
-          var cooldown=(k==='ctl'?1.7-.25*g.levels.ctl:2.4)*.4;
+          var cooldown=armyInterval(k);
           var fatigue=g.event&&g.event.id==='stayup'?1.25:1;
           f.cool-=dt*(g.rallyUntil>g.time?2:1)*(r<=52?1.5:1)/(fatigue*D.cooldownScale(g.levels));
           if(f.cool<=0){var target=ops.nearest(f,k==='ctl'?function(e){return D.infected(e.kind)||e.hypha;}:function(e){return D.capsule(e.kind)&&!e.mark;},280+g.levels.actin*22);
-            if(target){ops.shot(k==='ctl'?'ctl':'igg',f,target,k==='ctl'?15+8*g.levels.ctl:7+2*g.levels.turret);f.cool=cooldown;}}
+            if(target){ops.shot(k==='ctl'?'ctl':'igg',f,target,k==='ctl'?8+3*g.levels.ctl:7+2*g.levels.turret);f.cool=cooldown;}}
         }
       });g.army.length=serial;g.armyCap=serial;
       g.summonIn-=dt;if(g.summonIn<=0){var gather=78+g.levels.actin*12,enemy=nearest(nearby(g,p,gather),p,function(e){return dist(e,p)<gather;});
@@ -518,7 +519,7 @@
     return ids;
   }
   function levelUp(g){if(g.event&&g.event.id==='stayup'&&g.time<g.event.until){g.nightLevels=(g.nightLevels||0)+1;if(g.nightLevels>=2)g.nightStamp=true;}}
-  window.PatrolRules={onRemoval:onRemoval,bossDefense:bossDefense,levelUp:levelUp,bossAction:bossAction,phaseImpact:phaseImpact,countClear:countClear,waveCleared:waveCleared,config:config,occupancy:occupancy,tally:tally,event:event,clocks:clocks,phages:phages,fibrin:fibrin,
+  window.PatrolRules={armyInterval:armyInterval,onRemoval:onRemoval,bossDefense:bossDefense,levelUp:levelUp,bossAction:bossAction,phaseImpact:phaseImpact,countClear:countClear,waveCleared:waveCleared,config:config,occupancy:occupancy,tally:tally,event:event,clocks:clocks,phages:phages,fibrin:fibrin,
     cargoDuration:cargoDuration,rebuildGrid:rebuildGrid,trackEnemy:trackEnemy,nearby:nearby,armoredCaptain:armoredCaptain,netRoot:netRoot,
     enemyTraits:enemyTraits,alkali:alkali,cargoStep:cargoStep,environmental:environmental,barrier:barrier,heroTick:heroTick,neutroKill:neutroKill,stamps:stamps};
 }());
