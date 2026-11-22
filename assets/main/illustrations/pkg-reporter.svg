@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="360" viewBox="0 0 640 360">
+  <defs>
+    <pattern id="grid" width="22" height="22" patternUnits="userSpaceOnUse">
+      <circle cx="1" cy="1" r="0.9" fill="#2c4254" opacity=".16"/>
+    </pattern>
+    <radialGradient id="wash">
+      <stop stop-color="#8c79b5" stop-opacity=".34"/>
+      <stop offset=".63" stop-color="#8c79b5" stop-opacity=".18"/>
+      <stop offset="1" stop-color="#8c79b5" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="accent">
+      <stop stop-color="#3a9b8e" stop-opacity=".34"/>
+      <stop offset="1" stop-color="#3a9b8e" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <path fill="#f8f6ef" d="M0 0h640v360H0z"/>
+  <ellipse cx="288" cy="205.2" rx="326.4" ry="198" fill="url(#wash)"/>
+  <ellipse cx="473.6" cy="100.8" rx="204.8" ry="129.6" fill="url(#accent)"/>
+  <path fill="url(#grid)" d="M0 0h640v360H0z" opacity=".7"/>
+  <g fill="none" stroke="#2c4254" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+    <g transform="translate(89 55) rotate(-2 192 115)">
+      <rect x="6" y="7" width="392" height="245" rx="9" fill="#8c79b5" fill-opacity=".19" stroke="none"/>
+      <rect width="392" height="245" rx="9" fill="#fbf9f3"/>
+      <path d="M95 29v182h265m-221-182v182m45-182v182m45-182v182m45-182v182m45-182v182" stroke="#8091a4" opacity=".45"/>
+      <path d="M132 29v182" stroke="#9e849c" stroke-dasharray="4 5"/>
+      <path d="M23 51h53m-44 32h44m-35 32h35m-51 32h51m-31 32h31" stroke="#7f90a0"/>
+      <path d="M95 51h238m-238 32h197m-197 32h151m-151 32h118m-118 32h76" stroke="#73918e" stroke-width="2"/>
+      <circle cx="333" cy="51" r="13" fill="#83bfb0" stroke="#4f9385"/>
+      <circle cx="292" cy="83" r="10" fill="#9fb7db" stroke="#6483b3"/>
+      <circle cx="246" cy="115" r="9" fill="#b9add5" stroke="#8c79b5"/>
+      <circle cx="213" cy="147" r="7" fill="#c5b4d9" stroke="#8c79b5"/>
+      <circle cx="171" cy="179" r="6" fill="#d9be8c" stroke="#a58053"/>
+    </g>
+    <g transform="translate(461 181) rotate(10)">
+      <rect width="99" height="106" rx="5" fill="#e2ddec" stroke="#9182a8"/>
+      <path d="M17 77h65m-65 0V21" opacity=".55"/>
+      <path d="m19 65 11-16 13 11 13-28 10 8 12-19" stroke="#5877a1" stroke-width="2.5"/>
+      <circle cx="56" cy="32" r="3" fill="#d8a35d" stroke="none"/>
+      <path d="M26-6h47v15H26Z" fill="#b8d1c5" opacity=".9" stroke="none"/>
+    </g>
+    <path d="M514 66h59m-59 10h41M71 306h58m-58 9h36" stroke="#7c83a1" stroke-dasharray="3 5" opacity=".63"/>
+  </g>
+</svg>

@@ -1,6 +1,22 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Databases · Chen Peng / Asa</title><meta name="description" content="Research database entries: CRISPRome and GreenBiome."><meta name="theme-color" content="#f3f7fb"><link rel="canonical" href="https://asa12138.github.io/databases/"><meta property="og:title" content="Databases · Chen Peng / Asa"><meta property="og:type" content="website"><meta property="og:image" content="https://asa12138.github.io/assets/main/social.png"><link rel="icon" href="/images/biollbug.png"><link rel="stylesheet" href="/assets/main/site.css?v=20261027-release1"><script src="/assets/main/translations.js?v=20261027-release1" defer></script><script src="/assets/main/site.js?v=20261027-release1" defer></script></head>
-<body data-title-en="Databases" data-title-zh="数据库"><a class="skip-link" href="#main"><span data-i18n="skip">Skip to content</span></a><header class="site-header"><a class="brand" href="/index.html" aria-label="Asa home">asa<span>.</span><small>life × code</small></a><nav class="primary-nav" aria-label="Main navigation"><a href="/index.html"><svg class="icon " aria-hidden="true" focusable="false"
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Databases · Chen Peng / Asa</title><meta name="description" content="Research database entries: CRISPRome and GreenBiome."><meta name="theme-color" content="#f4f7fb"><link rel="canonical" href="https://asa12138.github.io/databases/"><meta property="og:title" content="Databases · Chen Peng / Asa"><meta property="og:type" content="website"><meta property="og:image" content="https://asa12138.github.io/assets/main/social.png"><link rel="icon" href="/images/biollbug.png">
+<script>
+  (() => {
+    let theme;
+    try { theme = localStorage.getItem('asa-main-theme-v1'); } catch {}
+    if (theme !== 'light' && theme !== 'dark') {
+      theme = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    }
+    document.documentElement.dataset.theme = theme;
+    document.querySelector('meta[name="theme-color"]').content = theme === 'dark' ? '#0e161d' : '#f4f7fb';
+  })();
+</script>
+<link rel="stylesheet" href="/assets/main/site.css?v=20261122-v2"><script src="/assets/main/translations.js?v=20261122-v2" defer></script><script src="/assets/main/site.js?v=20261122-v2" defer></script>
+</head>
+<body data-title-en="Databases" data-title-zh="数据库"><a class="skip-link" href="#main"><span data-i18n="skip">Skip to content</span></a><header class="site-header">
+<div class="header-inner"><a class="brand" href="/index.html" aria-label="Asa home" data-i18n-aria-label="aria-home">asa<span>.</span><small>life × code</small></a><nav class="primary-nav" aria-label="Main navigation" data-i18n-aria-label="aria-nav"><a href="/index.html"><svg class="icon " aria-hidden="true" focusable="false"
   xmlns="http://www.w3.org/2000/svg"
   width="24"
   height="24"
@@ -71,7 +87,10 @@
   <path d="M12 6v14" />
   <path d="M8 8v12" />
   <path d="M4 4v16" />
-</svg><span data-i18n="nav-resources">Resources</span></a></nav><button class="language-toggle" type="button" aria-label="Switch to Chinese" hidden><svg class="icon " aria-hidden="true" focusable="false"
+</svg><span data-i18n="nav-resources">Resources</span></a></nav>
+<div class="header-controls">
+  <button class="theme-toggle" type="button" aria-label="Switch to dark mode" aria-pressed="false" hidden><svg class="icon theme-moon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M20.9 13.35A8.9 8.9 0 0 1 10.65 3.1 9 9 0 1 0 20.9 13.35Z"/></svg><svg class="icon theme-sun" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.5 1.5m11 11L19 19m0-14-1.5 1.5m-11 11L5 19"/></svg></button>
+  <button class="language-toggle" type="button" aria-label="Switch to Chinese" hidden><svg class="icon " aria-hidden="true" focusable="false"
   xmlns="http://www.w3.org/2000/svg"
   width="24"
   height="24"
@@ -88,7 +107,14 @@
   <path d="M7 2h1" />
   <path d="m22 22-5-10-5 10" />
   <path d="M14 18h6" />
-</svg><span class="language-label">中文</span></button></header><div class="page-shell"><main id="main"><section class="page-intro" id="overview"><p class="eyebrow"><svg class="icon " aria-hidden="true" focusable="false"
+</svg><span class="language-label">中文</span></button>
+</div>
+</div>
+<div class="scroll-progress" aria-hidden="true"></div>
+</header>
+<div class="page-shell"><main id="main" tabindex="-1">
+
+<section class="page-intro" id="overview" data-reveal><p class="eyebrow"><svg class="icon " aria-hidden="true" focusable="false"
   xmlns="http://www.w3.org/2000/svg"
   width="24"
   height="24"
@@ -102,57 +128,22 @@
   <ellipse cx="12" cy="5" rx="9" ry="3" />
   <path d="M3 5V19A9 3 0 0 0 21 19V5" />
   <path d="M3 12A9 3 0 0 0 21 12" />
-</svg>DATABASES</p><h1 data-i18n="db-title">Resources for
-a closer look.</h1><p data-i18n="db-title-lead" class="page-lead">Explore research data resources and their original documentation.</p></section><section class="section compact" id="databases"><div class="project-grid"><article class="project-card blue"><div class="project-top"><span class="project-symbol"><svg class="icon " aria-hidden="true" focusable="false"
-  xmlns="http://www.w3.org/2000/svg"
-  width="24"
-  height="24"
-  viewBox="0 0 24 24"
-  fill="none"
-  stroke="currentColor"
-  stroke-width="2"
-  stroke-linecap="round"
-  stroke-linejoin="round"
->
-  <path d="m10 16 1.5 1.5" />
-  <path d="m14 8-1.5-1.5" />
-  <path d="M15 2c-1.798 1.998-2.518 3.995-2.807 5.993" />
-  <path d="m16.5 10.5 1 1" />
-  <path d="m17 6-2.891-2.891" />
-  <path d="M2 15c6.667-6 13.333 0 20-6" />
-  <path d="m20 9 .891.891" />
-  <path d="M3.109 14.109 4 15" />
-  <path d="m6.5 12.5 1 1" />
-  <path d="m7 18 2.891 2.891" />
-  <path d="M9 22c1.798-1.998 2.518-3.995 2.807-5.993" />
-</svg></span><span class="type-label">DATABASE</span></div><h3>CRISPRome</h3><p data-i18n="db-crispr">A public CRISPR-Cas systems resource. Documentation and data access are available on the project site.</p><div class="card-links"><a class="text-link" href="/databases/CRISPRome/"><span data-i18n="db-crispr-open">Explore</span><svg class="icon " aria-hidden="true" focusable="false"
-  xmlns="http://www.w3.org/2000/svg"
-  width="24"
-  height="24"
-  viewBox="0 0 24 24"
-  fill="none"
-  stroke="currentColor"
-  stroke-width="2"
-  stroke-linecap="round"
-  stroke-linejoin="round"
->
-  <path d="M7 7h10v10" />
-  <path d="M7 17 17 7" />
-</svg></a></div></article><article class="project-card mint"><div class="project-top"><span class="project-symbol"><svg class="icon " aria-hidden="true" focusable="false"
-  xmlns="http://www.w3.org/2000/svg"
-  width="24"
-  height="24"
-  viewBox="0 0 24 24"
-  fill="none"
-  stroke="currentColor"
-  stroke-width="2"
-  stroke-linecap="round"
-  stroke-linejoin="round"
->
-  <circle cx="12" cy="12" r="10" />
-  <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20" />
-  <path d="M2 12h20" />
-</svg></span><span class="type-label">RESEARCH RESOURCE</span></div><h3>GreenBiome</h3><p data-i18n="db-green">Greenland Soil Microbiome Genome and Gene Catalog.</p><div class="card-links"><a class="text-link" href="https://greenbiome.netlify.app/"><span data-i18n="db-green-open">Explore</span><svg class="icon " aria-hidden="true" focusable="false"
+</svg><span data-i18n="eyebrow-databases">DATABASES</span></p><h1 data-i18n="db-title">Resources for
+a closer look.</h1><p data-i18n="db-title-lead" class="page-lead">Explore research data resources and their original documentation.</p></section>
+<section class="section compact" id="databases" data-reveal><div class="project-grid">
+<article class="project-card blue" data-reveal>
+  <div class="media-frame cover-logo">
+  <a class="media-image" href="/databases/CRISPRome/images/crispr.png" data-lightbox aria-label="Enlarge image" data-i18n-aria-label="aria-enlarge"><img src="/databases/CRISPRome/images/crispr.png" width="788" height="710" alt="CRISPRome logo with DNA and scissors" data-i18n-alt="alt-crispr" loading="lazy" decoding="async"></a>
+  <span class="image-view" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="11" cy="11" r="6.5"/><path d="m20 20-4.5-4.5M8 11h6m-3-3v6"/></svg></span>
+
+</div>
+  <div class="card-body">
+    <p class="type-label"><span data-i18n="type-database">Database</span></p>
+    <h3>CRISPRome</h3>
+    <p class="card-desc"><span data-i18n="db-crispr">A public CRISPR-Cas systems resource. Documentation and data access are available on the project site.</span></p>
+    <ul class="tag-list"><li><span data-i18n="db-tag-crispr">CRISPR-Cas</span></li><li><span data-i18n="db-tag-public">Public data</span></li></ul>
+
+    <div class="card-links"><a class="text-link" href="/databases/CRISPRome/"><span data-i18n="db-crispr-open">Explore</span><svg class="icon " aria-hidden="true" focusable="false"
   xmlns="http://www.w3.org/2000/svg"
   width="24"
   height="24"
@@ -165,7 +156,39 @@ a closer look.</h1><p data-i18n="db-title-lead" class="page-lead">Explore resear
 >
   <path d="M7 7h10v10" />
   <path d="M7 17 17 7" />
-</svg></a></div></article></div></section></main><aside class="page-rail"><div class="rail-inner"><p><span data-i18n="on-page">ON THIS PAGE</span></p><nav aria-label="On this page"><a href="#overview"><svg class="icon " aria-hidden="true" focusable="false"
+</svg></a></div>
+  </div>
+</article>
+
+<article class="project-card mint" data-reveal>
+  <div class="media-frame">
+  <a class="media-image" href="/assets/main/illustrations/db-greenbiome.svg" data-lightbox aria-label="Enlarge image" data-i18n-aria-label="aria-enlarge"><img src="/assets/main/illustrations/db-greenbiome.svg" width="640" height="360" alt="Greenland tundra above a diagram of soil DNA" data-i18n-alt="alt-greenbiome" loading="lazy" decoding="async"></a>
+  <span class="image-view" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="11" cy="11" r="6.5"/><path d="m20 20-4.5-4.5M8 11h6m-3-3v6"/></svg></span>
+
+</div>
+  <div class="card-body">
+    <p class="type-label"><span data-i18n="type-database">Database</span></p>
+    <h3>GreenBiome</h3>
+    <p class="card-desc"><span data-i18n="db-green">Greenland Soil Microbiome Genome and Gene Catalog.</span></p>
+    <ul class="tag-list"><li><span data-i18n="db-tag-greenland">Greenland soil</span></li><li><span data-i18n="db-tag-genes">Gene catalog</span></li></ul>
+
+    <div class="card-links"><a class="text-link" href="https://greenbiome.netlify.app/"><span data-i18n="db-green-open">Explore</span><svg class="icon " aria-hidden="true" focusable="false"
+  xmlns="http://www.w3.org/2000/svg"
+  width="24"
+  height="24"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path d="M7 7h10v10" />
+  <path d="M7 17 17 7" />
+</svg></a></div>
+  </div>
+</article>
+</div></section></main><aside class="page-rail"><div class="rail-inner"><p><span data-i18n="on-page">ON THIS PAGE</span></p><nav aria-label="On this page" data-i18n-aria-label="aria-rail"><a href="#overview"><svg class="icon " aria-hidden="true" focusable="false"
   xmlns="http://www.w3.org/2000/svg"
   width="24"
   height="24"

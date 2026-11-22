@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="360" viewBox="0 0 640 360">
+  <defs>
+    <pattern id="grid" width="22" height="22" patternUnits="userSpaceOnUse">
+      <circle cx="1" cy="1" r="0.9" fill="#2c4254" opacity=".16"/>
+    </pattern>
+    <radialGradient id="wash">
+      <stop stop-color="#3a9b8e" stop-opacity=".34"/>
+      <stop offset=".63" stop-color="#3a9b8e" stop-opacity=".18"/>
+      <stop offset="1" stop-color="#3a9b8e" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="accent">
+      <stop stop-color="#d8a35d" stop-opacity=".34"/>
+      <stop offset="1" stop-color="#d8a35d" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <path fill="#f8f6ef" d="M0 0h640v360H0z"/>
+  <ellipse cx="288" cy="205.2" rx="326.4" ry="198" fill="url(#wash)"/>
+  <ellipse cx="473.6" cy="100.8" rx="204.8" ry="129.6" fill="url(#accent)"/>
+  <path fill="url(#grid)" d="M0 0h640v360H0z" opacity=".7"/>
+  <g fill="none" stroke="#2c4254" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+    <g transform="translate(95 55) rotate(-3 185 118)">
+      <rect x="7" y="9" width="373" height="234" rx="8" fill="#7aa8a3" fill-opacity=".21" stroke="none"/>
+      <rect width="373" height="234" rx="8" fill="#fbfaf3"/>
+      <path d="M45 27v175h300M45 58h300M45 91h300M45 124h300M45 157h300" stroke="#839ba1" opacity=".5"/>
+      <g fill="#afd1bf" stroke="#518e7e" stroke-width="2.3">
+        <path d="M87 82h47v60H87Z"/><path d="M110 55v27m0 60v29m-14-116h28m-28 116h28m-37-62h47"/>
+      </g>
+      <g fill="#b2c1e7" stroke="#5b7eaa" stroke-width="2.3">
+        <path d="M172 68h47v50h-47Z"/><path d="M195 41v27m0 50v34m-14-111h28m-28 111h28m-37-59h47"/>
+      </g>
+      <g fill="#d7c2df" stroke="#8c79b5" stroke-width="2.3">
+        <path d="M257 125h47v39h-47Z"/><path d="M280 98v27m0 39v21m-14-87h28m-28 87h28m-37-39h47"/>
+      </g>
+      <path d="M110 44V31h85v8" stroke="#637b87" stroke-dasharray="3 4"/>
+      <circle cx="280" cy="67" r="3.2" fill="#8c79b5" stroke="none"/>
+      <path d="M100 216h22m62 0h22m63 0h22" stroke="#829da6"/>
+    </g>
+    <g transform="translate(483 141) rotate(9)">
+      <rect width="87" height="125" rx="5" fill="#ecdbac" stroke="#ac9469"/>
+      <path d="M14 28h58m-58 14h41m-41 15h57m-57 15h49m-48 21 14 12 31-26" stroke="#927650" opacity=".75"/>
+      <path d="M22-7h45v17H22Z" fill="#aed1c2" stroke="none" opacity=".86"/>
+    </g>
+    <path d="M64 298h54m387-224h61l14 16" stroke="#56877f" stroke-dasharray="4 6" opacity=".7"/>
+  </g>
+</svg>

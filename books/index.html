@@ -1,6 +1,22 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Books · Chen Peng / Asa</title><meta name="description" content="MetaNet, iPhylo and pctax tutorials."><meta name="theme-color" content="#f3f7fb"><link rel="canonical" href="https://asa12138.github.io/books/"><meta property="og:title" content="Books · Chen Peng / Asa"><meta property="og:type" content="website"><meta property="og:image" content="https://asa12138.github.io/assets/main/social.png"><link rel="icon" href="/images/biollbug.png"><link rel="stylesheet" href="/assets/main/site.css?v=20261027-release1"><script src="/assets/main/translations.js?v=20261027-release1" defer></script><script src="/assets/main/site.js?v=20261027-release1" defer></script></head>
-<body data-title-en="Books" data-title-zh="教程"><a class="skip-link" href="#main"><span data-i18n="skip">Skip to content</span></a><header class="site-header"><a class="brand" href="/index.html" aria-label="Asa home">asa<span>.</span><small>life × code</small></a><nav class="primary-nav" aria-label="Main navigation"><a href="/index.html"><svg class="icon " aria-hidden="true" focusable="false"
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Books · Chen Peng / Asa</title><meta name="description" content="MetaNet, iPhylo and pctax tutorials."><meta name="theme-color" content="#f4f7fb"><link rel="canonical" href="https://asa12138.github.io/books/"><meta property="og:title" content="Books · Chen Peng / Asa"><meta property="og:type" content="website"><meta property="og:image" content="https://asa12138.github.io/assets/main/social.png"><link rel="icon" href="/images/biollbug.png">
+<script>
+  (() => {
+    let theme;
+    try { theme = localStorage.getItem('asa-main-theme-v1'); } catch {}
+    if (theme !== 'light' && theme !== 'dark') {
+      theme = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    }
+    document.documentElement.dataset.theme = theme;
+    document.querySelector('meta[name="theme-color"]').content = theme === 'dark' ? '#0e161d' : '#f4f7fb';
+  })();
+</script>
+<link rel="stylesheet" href="/assets/main/site.css?v=20261122-v2"><script src="/assets/main/translations.js?v=20261122-v2" defer></script><script src="/assets/main/site.js?v=20261122-v2" defer></script>
+</head>
+<body data-title-en="Books" data-title-zh="教程"><a class="skip-link" href="#main"><span data-i18n="skip">Skip to content</span></a><header class="site-header">
+<div class="header-inner"><a class="brand" href="/index.html" aria-label="Asa home" data-i18n-aria-label="aria-home">asa<span>.</span><small>life × code</small></a><nav class="primary-nav" aria-label="Main navigation" data-i18n-aria-label="aria-nav"><a href="/index.html"><svg class="icon " aria-hidden="true" focusable="false"
   xmlns="http://www.w3.org/2000/svg"
   width="24"
   height="24"
@@ -71,7 +87,10 @@
   <path d="M12 6v14" />
   <path d="M8 8v12" />
   <path d="M4 4v16" />
-</svg><span data-i18n="nav-resources">Resources</span></a></nav><button class="language-toggle" type="button" aria-label="Switch to Chinese" hidden><svg class="icon " aria-hidden="true" focusable="false"
+</svg><span data-i18n="nav-resources">Resources</span></a></nav>
+<div class="header-controls">
+  <button class="theme-toggle" type="button" aria-label="Switch to dark mode" aria-pressed="false" hidden><svg class="icon theme-moon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M20.9 13.35A8.9 8.9 0 0 1 10.65 3.1 9 9 0 1 0 20.9 13.35Z"/></svg><svg class="icon theme-sun" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.5 1.5m11 11L19 19m0-14-1.5 1.5m-11 11L5 19"/></svg></button>
+  <button class="language-toggle" type="button" aria-label="Switch to Chinese" hidden><svg class="icon " aria-hidden="true" focusable="false"
   xmlns="http://www.w3.org/2000/svg"
   width="24"
   height="24"
@@ -88,7 +107,14 @@
   <path d="M7 2h1" />
   <path d="m22 22-5-10-5 10" />
   <path d="M14 18h6" />
-</svg><span class="language-label">中文</span></button></header><div class="page-shell"><main id="main"><section class="page-intro" id="overview"><p class="eyebrow"><svg class="icon " aria-hidden="true" focusable="false"
+</svg><span class="language-label">中文</span></button>
+</div>
+</div>
+<div class="scroll-progress" aria-hidden="true"></div>
+</header>
+<div class="page-shell"><main id="main" tabindex="-1">
+
+<section class="page-intro" id="overview" data-reveal><p class="eyebrow"><svg class="icon " aria-hidden="true" focusable="false"
   xmlns="http://www.w3.org/2000/svg"
   width="24"
   height="24"
@@ -101,24 +127,11 @@
 >
   <path d="M12 5v16" />
   <path d="M20.001 19A2 2 0 0022 17V5a2 2 0 00-1.999-2L16 3.002A5 5 0 0012 5a5 5 0 00-4-2H4a2 2 0 00-2 2v12a2 2 0 001.999 2H8a5 5 0 014 2 5 5 0 014-2z" />
-</svg>THE BOOKSHELF</p><h1 data-i18n="books-title">Open a book.
-Try an idea.</h1><p data-i18n="books-title-lead" class="page-lead">Three practical guides to tools I develop and use in research.</p></section><section class="section book-list" id="tutorials"><article class="book-row mint" id="metanet"><a class="book-cover" href="/books/MetaNet_tutorial/" aria-label="Read MetaNet tutorial"><span>ASA / PRACTICAL GUIDES</span><strong>MetaNet</strong><svg class="icon " aria-hidden="true" focusable="false"
-  xmlns="http://www.w3.org/2000/svg"
-  width="24"
-  height="24"
-  viewBox="0 0 24 24"
-  fill="none"
-  stroke="currentColor"
-  stroke-width="2"
-  stroke-linecap="round"
-  stroke-linejoin="round"
->
-  <rect x="16" y="16" width="6" height="6" rx="1" />
-  <rect x="2" y="16" width="6" height="6" rx="1" />
-  <rect x="9" y="2" width="6" height="6" rx="1" />
-  <path d="M5 16v-3a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v3" />
-  <path d="M12 12V8" />
-</svg><small><span data-i18n="book-tag-MetaNet">Omics networks</span></small></a><div><p class="eyebrow"><svg class="icon " aria-hidden="true" focusable="false"
+</svg><span data-i18n="eyebrow-books">THE BOOKSHELF</span></p><h1 data-i18n="books-title">Open a book.
+Try an idea.</h1><p data-i18n="books-title-lead" class="page-lead">Three practical guides to tools I develop and use in research.</p></section>
+<section class="section book-list" id="tutorials" data-reveal><article class="book-row mint" id="metanet" data-reveal><div class="book-stage">
+  <a class="book-cover" href="/books/MetaNet_tutorial/" aria-label="Read the MetaNet tutorial" data-i18n-aria-label="read-book-metanet" data-tilt><img src="/books/MetaNet_tutorial/cover1.png" width="658" height="802" alt="" loading="lazy" decoding="async"></a>
+</div><div><p class="eyebrow"><svg class="icon " aria-hidden="true" focusable="false"
   xmlns="http://www.w3.org/2000/svg"
   width="24"
   height="24"
@@ -131,7 +144,7 @@ Try an idea.</h1><p data-i18n="books-title-lead" class="page-lead">Three practic
 >
   <path d="M12 5v16" />
   <path d="M20.001 19A2 2 0 0022 17V5a2 2 0 00-1.999-2L16 3.002A5 5 0 0012 5a5 5 0 00-4-2H4a2 2 0 00-2 2v12a2 2 0 001.999 2H8a5 5 0 014 2 5 5 0 014-2z" />
-</svg> TUTORIAL</p><h2>MetaNet</h2><p data-i18n="book-desc-MetaNet">Network construction, analysis, and visualization across biological omics.</p><div class="card-links"><a class="button primary" href="/books/MetaNet_tutorial/"><span data-i18n="read-book">Read the tutorial</span><svg class="icon " aria-hidden="true" focusable="false"
+</svg> <span data-i18n="type-tutorial">TUTORIAL</span></p><h2>MetaNet</h2><p data-i18n="book-desc-MetaNet">Network construction, analysis, and visualization across biological omics.</p><ul class="tag-list"><li><span data-i18n="book-chapters-metanet-construction">Network construction</span></li><li><span data-i18n="book-chapters-metanet-visualization">Visualization</span></li><li><span data-i18n="book-chapters-metanet-stability">Stability analysis</span></li><li><span data-i18n="book-chapters-metanet-multiomics">Multi-omics</span></li></ul><div class="card-links"><a class="button primary" href="/books/MetaNet_tutorial/"><span data-i18n="read-book">Read the tutorial</span><svg class="icon " aria-hidden="true" focusable="false"
   xmlns="http://www.w3.org/2000/svg"
   width="24"
   height="24"
@@ -157,21 +170,9 @@ Try an idea.</h1><p data-i18n="books-title-lead" class="page-lead">Three practic
 >
   <path d="M7 7h10v10" />
   <path d="M7 17 17 7" />
-</svg></a></div></div></article><article class="book-row blue" id="iphylo"><a class="book-cover" href="/books/iPhylo_tutorial/" aria-label="Read iPhylo tutorial"><span>ASA / PRACTICAL GUIDES</span><strong>iPhylo</strong><svg class="icon " aria-hidden="true" focusable="false"
-  xmlns="http://www.w3.org/2000/svg"
-  width="24"
-  height="24"
-  viewBox="0 0 24 24"
-  fill="none"
-  stroke="currentColor"
-  stroke-width="2"
-  stroke-linecap="round"
-  stroke-linejoin="round"
->
-  <path d="M14 9.536V7a4 4 0 0 1 4-4h1.5a.5.5 0 0 1 .5.5V5a4 4 0 0 1-4 4 4 4 0 0 0-4 4c0 2 1 3 1 5a5 5 0 0 1-1 3" />
-  <path d="M4 9a5 5 0 0 1 8 4 5 5 0 0 1-8-4" />
-  <path d="M5 21h14" />
-</svg><small><span data-i18n="book-tag-iPhylo">Taxonomic trees</span></small></a><div><p class="eyebrow"><svg class="icon " aria-hidden="true" focusable="false"
+</svg></a></div></div></article><article class="book-row blue" id="iphylo" data-reveal><div class="book-stage">
+  <a class="book-cover" href="/books/iPhylo_tutorial/" aria-label="Read the iPhylo tutorial" data-i18n-aria-label="read-book-iphylo" data-tilt><img src="/assets/main/illustrations/book-iphylo.svg" width="360" height="480" alt="" loading="lazy" decoding="async"></a>
+</div><div><p class="eyebrow"><svg class="icon " aria-hidden="true" focusable="false"
   xmlns="http://www.w3.org/2000/svg"
   width="24"
   height="24"
@@ -184,7 +185,7 @@ Try an idea.</h1><p data-i18n="books-title-lead" class="page-lead">Three practic
 >
   <path d="M12 5v16" />
   <path d="M20.001 19A2 2 0 0022 17V5a2 2 0 00-1.999-2L16 3.002A5 5 0 0012 5a5 5 0 00-4-2H4a2 2 0 00-2 2v12a2 2 0 001.999 2H8a5 5 0 014 2 5 5 0 014-2z" />
-</svg> TUTORIAL</p><h2>iPhylo</h2><p data-i18n="book-desc-iPhylo">Build and annotate biological and chemical taxonomic trees.</p><div class="card-links"><a class="button primary" href="/books/iPhylo_tutorial/"><span data-i18n="read-book">Read the tutorial</span><svg class="icon " aria-hidden="true" focusable="false"
+</svg> <span data-i18n="type-tutorial">TUTORIAL</span></p><h2>iPhylo</h2><p data-i18n="book-desc-iPhylo">Build and annotate biological and chemical taxonomic trees.</p><ul class="tag-list"><li><span data-i18n="book-chapters-iphylo-taxonomy">Taxonomic trees</span></li><li><span data-i18n="book-chapters-iphylo-annotation">Tree annotation</span></li><li><span data-i18n="book-chapters-iphylo-cli">iPhylo CLI</span></li><li><span data-i18n="book-chapters-iphylo-export">Export &amp; sessions</span></li></ul><div class="card-links"><a class="button primary" href="/books/iPhylo_tutorial/"><span data-i18n="read-book">Read the tutorial</span><svg class="icon " aria-hidden="true" focusable="false"
   xmlns="http://www.w3.org/2000/svg"
   width="24"
   height="24"
@@ -210,29 +211,9 @@ Try an idea.</h1><p data-i18n="books-title-lead" class="page-lead">Three practic
 >
   <path d="M7 7h10v10" />
   <path d="M7 17 17 7" />
-</svg></a></div></div></article><article class="book-row lilac" id="pctax"><a class="book-cover" href="/books/pctax_tutorial/" aria-label="Read pctax tutorial"><span>ASA / PRACTICAL GUIDES</span><strong>pctax</strong><svg class="icon " aria-hidden="true" focusable="false"
-  xmlns="http://www.w3.org/2000/svg"
-  width="24"
-  height="24"
-  viewBox="0 0 24 24"
-  fill="none"
-  stroke="currentColor"
-  stroke-width="2"
-  stroke-linecap="round"
-  stroke-linejoin="round"
->
-  <path d="m10 16 1.5 1.5" />
-  <path d="m14 8-1.5-1.5" />
-  <path d="M15 2c-1.798 1.998-2.518 3.995-2.807 5.993" />
-  <path d="m16.5 10.5 1 1" />
-  <path d="m17 6-2.891-2.891" />
-  <path d="M2 15c6.667-6 13.333 0 20-6" />
-  <path d="m20 9 .891.891" />
-  <path d="M3.109 14.109 4 15" />
-  <path d="m6.5 12.5 1 1" />
-  <path d="m7 18 2.891 2.891" />
-  <path d="M9 22c1.798-1.998 2.518-3.995 2.807-5.993" />
-</svg><small><span data-i18n="book-tag-pctax">Microbiome workflows</span></small></a><div><p class="eyebrow"><svg class="icon " aria-hidden="true" focusable="false"
+</svg></a></div></div></article><article class="book-row lilac" id="pctax" data-reveal><div class="book-stage">
+  <a class="book-cover" href="/books/pctax_tutorial/" aria-label="Read the pctax tutorial" data-i18n-aria-label="read-book-pctax" data-tilt><img src="/books/pctax_tutorial/cover2.png" width="678" height="876" alt="" loading="lazy" decoding="async"></a>
+</div><div><p class="eyebrow"><svg class="icon " aria-hidden="true" focusable="false"
   xmlns="http://www.w3.org/2000/svg"
   width="24"
   height="24"
@@ -245,7 +226,7 @@ Try an idea.</h1><p data-i18n="books-title-lead" class="page-lead">Three practic
 >
   <path d="M12 5v16" />
   <path d="M20.001 19A2 2 0 0022 17V5a2 2 0 00-1.999-2L16 3.002A5 5 0 0012 5a5 5 0 00-4-2H4a2 2 0 00-2 2v12a2 2 0 001.999 2H8a5 5 0 014 2 5 5 0 014-2z" />
-</svg> TUTORIAL</p><h2>pctax</h2><p data-i18n="book-desc-pctax">Practical analysis workflows for microbiome and other omics data.</p><div class="card-links"><a class="button primary" href="/books/pctax_tutorial/"><span data-i18n="read-book">Read the tutorial</span><svg class="icon " aria-hidden="true" focusable="false"
+</svg> <span data-i18n="type-tutorial">TUTORIAL</span></p><h2>pctax</h2><p data-i18n="book-desc-pctax">Practical analysis workflows for microbiome and other omics data.</p><ul class="tag-list"><li><span data-i18n="book-chapters-pctax-composition">Community composition</span></li><li><span data-i18n="book-chapters-pctax-diversity">Diversity analysis</span></li><li><span data-i18n="book-chapters-pctax-differential">Differential abundance</span></li><li><span data-i18n="book-chapters-pctax-assembly">Community assembly</span></li></ul><div class="card-links"><a class="button primary" href="/books/pctax_tutorial/"><span data-i18n="read-book">Read the tutorial</span><svg class="icon " aria-hidden="true" focusable="false"
   xmlns="http://www.w3.org/2000/svg"
   width="24"
   height="24"
@@ -271,7 +252,7 @@ Try an idea.</h1><p data-i18n="books-title-lead" class="page-lead">Three practic
 >
   <path d="M7 7h10v10" />
   <path d="M7 17 17 7" />
-</svg></a></div></div></article></section></main><aside class="page-rail"><div class="rail-inner"><p><span data-i18n="on-page">ON THIS PAGE</span></p><nav aria-label="On this page"><a href="#overview"><svg class="icon " aria-hidden="true" focusable="false"
+</svg></a></div></div></article></section></main><aside class="page-rail"><div class="rail-inner"><p><span data-i18n="on-page">ON THIS PAGE</span></p><nav aria-label="On this page" data-i18n-aria-label="aria-rail"><a href="#overview"><svg class="icon " aria-hidden="true" focusable="false"
   xmlns="http://www.w3.org/2000/svg"
   width="24"
   height="24"

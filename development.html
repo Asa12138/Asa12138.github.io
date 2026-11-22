@@ -1,6 +1,22 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Projects · Chen Peng / Asa</title><meta name="description" content="Open-source R packages, research platforms, and applications by Asa."><meta name="theme-color" content="#f3f7fb"><link rel="canonical" href="https://asa12138.github.io/development.html"><meta property="og:title" content="Projects · Chen Peng / Asa"><meta property="og:type" content="website"><meta property="og:image" content="https://asa12138.github.io/assets/main/social.png"><link rel="icon" href="/images/biollbug.png"><link rel="stylesheet" href="/assets/main/site.css?v=20261027-release1"><script src="/assets/main/translations.js?v=20261119-macrophage" defer></script><script src="/assets/main/site.js?v=20261027-release1" defer></script></head>
-<body data-title-en="Projects" data-title-zh="开发"><a class="skip-link" href="#main"><span data-i18n="skip">Skip to content</span></a><header class="site-header"><a class="brand" href="/index.html" aria-label="Asa home">asa<span>.</span><small>life × code</small></a><nav class="primary-nav" aria-label="Main navigation"><a href="/index.html"><svg class="icon " aria-hidden="true" focusable="false"
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Projects · Chen Peng / Asa</title><meta name="description" content="Open-source R packages, research platforms, and applications by Asa."><meta name="theme-color" content="#f4f7fb"><link rel="canonical" href="https://asa12138.github.io/development.html"><meta property="og:title" content="Projects · Chen Peng / Asa"><meta property="og:type" content="website"><meta property="og:image" content="https://asa12138.github.io/assets/main/social.png"><link rel="icon" href="/images/biollbug.png">
+<script>
+  (() => {
+    let theme;
+    try { theme = localStorage.getItem('asa-main-theme-v1'); } catch {}
+    if (theme !== 'light' && theme !== 'dark') {
+      theme = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    }
+    document.documentElement.dataset.theme = theme;
+    document.querySelector('meta[name="theme-color"]').content = theme === 'dark' ? '#0e161d' : '#f4f7fb';
+  })();
+</script>
+<link rel="stylesheet" href="/assets/main/site.css?v=20261122-v2"><script src="/assets/main/translations.js?v=20261122-v2" defer></script><script src="/assets/main/site.js?v=20261122-v2" defer></script>
+</head>
+<body data-title-en="Projects" data-title-zh="开发"><a class="skip-link" href="#main"><span data-i18n="skip">Skip to content</span></a><header class="site-header">
+<div class="header-inner"><a class="brand" href="/index.html" aria-label="Asa home" data-i18n-aria-label="aria-home">asa<span>.</span><small>life × code</small></a><nav class="primary-nav" aria-label="Main navigation" data-i18n-aria-label="aria-nav"><a href="/index.html"><svg class="icon " aria-hidden="true" focusable="false"
   xmlns="http://www.w3.org/2000/svg"
   width="24"
   height="24"
@@ -71,7 +87,10 @@
   <path d="M12 6v14" />
   <path d="M8 8v12" />
   <path d="M4 4v16" />
-</svg><span data-i18n="nav-resources">Resources</span></a></nav><button class="language-toggle" type="button" aria-label="Switch to Chinese" hidden><svg class="icon " aria-hidden="true" focusable="false"
+</svg><span data-i18n="nav-resources">Resources</span></a></nav>
+<div class="header-controls">
+  <button class="theme-toggle" type="button" aria-label="Switch to dark mode" aria-pressed="false" hidden><svg class="icon theme-moon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M20.9 13.35A8.9 8.9 0 0 1 10.65 3.1 9 9 0 1 0 20.9 13.35Z"/></svg><svg class="icon theme-sun" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.5 1.5m11 11L19 19m0-14-1.5 1.5m-11 11L5 19"/></svg></button>
+  <button class="language-toggle" type="button" aria-label="Switch to Chinese" hidden><svg class="icon " aria-hidden="true" focusable="false"
   xmlns="http://www.w3.org/2000/svg"
   width="24"
   height="24"
@@ -88,7 +107,14 @@
   <path d="M7 2h1" />
   <path d="m22 22-5-10-5 10" />
   <path d="M14 18h6" />
-</svg><span class="language-label">中文</span></button></header><div class="page-shell"><main id="main"><section class="page-intro" id="overview"><p class="eyebrow"><svg class="icon " aria-hidden="true" focusable="false"
+</svg><span class="language-label">中文</span></button>
+</div>
+</div>
+<div class="scroll-progress" aria-hidden="true"></div>
+</header>
+<div class="page-shell"><main id="main" tabindex="-1">
+
+<section class="page-intro" id="overview" data-reveal><p class="eyebrow"><svg class="icon " aria-hidden="true" focusable="false"
   xmlns="http://www.w3.org/2000/svg"
   width="24"
   height="24"
@@ -101,8 +127,18 @@
 >
   <path d="M12 19h8" />
   <path d="m4 17 6-6-6-6" />
-</svg>PROJECTS</p><h1 data-i18n="projects-title">Built from curiosity.
-Made to be useful.</h1><p data-i18n="projects-title-lead" class="page-lead">Open-source R packages, research platforms, and a growing collection of small applications.</p></section><section class="package-banner" aria-label="Original package animation"><div><p class="eyebrow"><svg class="icon " aria-hidden="true" focusable="false"
+</svg><span data-i18n="eyebrow-showcase">PROJECTS</span></p><h1 data-i18n="projects-title">Built from curiosity.
+Made to be useful.</h1><p data-i18n="projects-title-lead" class="page-lead">Open-source R packages, research platforms, and a growing collection of small applications.</p></section>
+
+<div class="project-filters filter-chips" role="group" aria-label="Filter projects" data-i18n-aria-label="project-filters" data-needs-js hidden>
+  <button class="filter-chip" type="button" data-project-filter="all" aria-pressed="true" aria-controls="r-packages web-apps"><span data-i18n="filter-all">All</span></button>
+  <button class="filter-chip" type="button" data-project-filter="packages" aria-pressed="false" aria-controls="r-packages"><span data-i18n="filter-r-packages">R packages</span> <span data-project-count="packages">(5)</span></button>
+  <button class="filter-chip" type="button" data-project-filter="research" aria-pressed="false" aria-controls="research-platforms"><span data-i18n="filter-research-platforms">Research &amp; data</span> <span data-project-count="research">(3)</span></button>
+  <button class="filter-chip" type="button" data-project-filter="learning" aria-pressed="false" aria-controls="learning-tools"><span data-i18n="filter-learning-tools">Learning &amp; tools</span> <span data-project-count="learning">(2)</span></button>
+  <button class="filter-chip" type="button" data-project-filter="curiosity" aria-pressed="false" aria-controls="exhibits-life"><span data-i18n="filter-exhibits-life">Exhibits &amp; life</span> <span data-project-count="curiosity">(2)</span></button>
+  <button class="filter-chip" type="button" data-project-filter="games" aria-pressed="false" aria-controls="games"><span data-i18n="filter-games">Games</span> <span data-project-count="games">(1)</span></button>
+</div>
+<section class="package-banner" data-project-group="packages" aria-label="R package overview" data-i18n-aria-label="aria-package-banner" data-reveal><div><p class="eyebrow"><svg class="icon " aria-hidden="true" focusable="false"
   xmlns="http://www.w3.org/2000/svg"
   width="24"
   height="24"
@@ -117,7 +153,7 @@ Made to be useful.</h1><p data-i18n="projects-title-lead" class="page-lead">Open
   <path d="M12 22V12" />
   <polyline points="3.29 7 12 12 20.71 7" />
   <path d="m7.5 4.27 9 5.15" />
-</svg> THE TOOLBOX</p><h2 data-i18n="package-banner">Ideas become packages. Packages become possibilities.</h2><p data-i18n="package-banner-desc">Statistics, microbiome workflows, networks, enrichment, and a little fun with plots.</p></div><div class="animation-frame"><img class="package-animation" src="/images/images20260126.gif" width="1080" height="1080" alt="Original animated showcase of Asa’s R packages"><div class="animation-poster" hidden><svg class="icon " aria-hidden="true" focusable="false"
+</svg> <span data-i18n="toolbox-eyebrow">THE TOOLBOX</span></p><h2 data-i18n="package-banner">Ideas become packages. Packages become possibilities.</h2><p data-i18n="package-banner-desc">Statistics, microbiome workflows, networks, enrichment, and a little fun with plots.</p><nav class="package-jumps tag-list" aria-label="Jump to an R package" data-i18n-aria-label="package-jumps"><a href="#pkg-metanet">MetaNet<svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7 17 17 7M7 7h10v10"/></svg></a><a href="#pkg-pcutils">pcutils<svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7 17 17 7M7 7h10v10"/></svg></a><a href="#pkg-pctax">pctax<svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7 17 17 7M7 7h10v10"/></svg></a><a href="#pkg-reporterscore">ReporterScore<svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7 17 17 7M7 7h10v10"/></svg></a><a href="#pkg-plot4fun">plot4fun<svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7 17 17 7M7 7h10v10"/></svg></a></nav></div><div class="animation-frame"><img class="package-animation" loading="lazy" decoding="async" src="/images/images20260126.gif" width="1080" height="1080" alt="Animated showcase of Asa’s R packages" data-i18n-alt="alt-package-anim"><div class="animation-poster"><svg class="icon " aria-hidden="true" focusable="false"
   xmlns="http://www.w3.org/2000/svg"
   width="24"
   height="24"
@@ -145,7 +181,8 @@ Made to be useful.</h1><p data-i18n="projects-title-lead" class="page-lead">Open
 >
   <rect x="14" y="3" width="5" height="18" rx="1" />
   <rect x="5" y="3" width="5" height="18" rx="1" />
-</svg><span><span data-i18n="pause-animation">Pause animation</span></span></button></div></section><section class="section" id="r-packages"><div class="section-heading"><div><p class="eyebrow"><svg class="icon " aria-hidden="true" focusable="false"
+</svg><span data-animation-label>Pause animation</span></button></div></section>
+<section class="section" id="r-packages" data-project-group="packages" data-reveal><div class="section-heading"><div><p class="eyebrow"><svg class="icon " aria-hidden="true" focusable="false"
   xmlns="http://www.w3.org/2000/svg"
   width="24"
   height="24"
@@ -160,23 +197,25 @@ Made to be useful.</h1><p data-i18n="projects-title-lead" class="page-lead">Open
   <path d="M12 22V12" />
   <polyline points="3.29 7 12 12 20.71 7" />
   <path d="m7.5 4.27 9 5.15" />
-</svg>OPEN SOURCE</p><h2 data-i18n="r-heading">The R toolbox.</h2></div></div><div class="project-grid"><article class="project-card mint"><div class="project-top"><span class="project-symbol"><svg class="icon " aria-hidden="true" focusable="false"
-  xmlns="http://www.w3.org/2000/svg"
-  width="24"
-  height="24"
-  viewBox="0 0 24 24"
-  fill="none"
-  stroke="currentColor"
-  stroke-width="2"
-  stroke-linecap="round"
-  stroke-linejoin="round"
->
-  <rect x="16" y="16" width="6" height="6" rx="1" />
-  <rect x="2" y="16" width="6" height="6" rx="1" />
-  <rect x="9" y="2" width="6" height="6" rx="1" />
-  <path d="M5 16v-3a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v3" />
-  <path d="M12 12V8" />
-</svg></span><span class="type-label">R PACKAGE</span></div><h3>MetaNet</h3><p data-i18n="t083">Network analysis and visualization across biological omics.</p><div class="card-links"><a class="text-link" href="/books/MetaNet_tutorial/"><span data-i18n="t084">Documentation</span><svg class="icon " aria-hidden="true" focusable="false"
+</svg><span data-i18n="eyebrow-oss">OPEN SOURCE</span></p><h2 data-i18n="r-heading">The R toolbox.</h2></div></div><div class="project-grid">
+<article class="project-card mint" id="pkg-metanet" data-reveal>
+  <div class="media-frame cover-book">
+  <a class="media-image" href="/books/MetaNet_tutorial/cover1.png" data-lightbox aria-label="Enlarge image" data-i18n-aria-label="aria-enlarge"><img src="/books/MetaNet_tutorial/cover1.png" width="658" height="802" alt="MetaNet tutorial cover" data-i18n-alt="alt-metanet" loading="lazy" decoding="async"></a>
+  <span class="image-view" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="11" cy="11" r="6.5"/><path d="m20 20-4.5-4.5M8 11h6m-3-3v6"/></svg></span>
+  <img class="cover-badge" src="/books/MetaNet_tutorial/MetaNet.svg" width="200" height="200" alt="MetaNet" loading="lazy" decoding="async">
+</div>
+  <div class="card-body">
+    <p class="type-label"><span data-i18n="type-r-package">R package</span></p>
+    <h3>MetaNet</h3>
+    <p class="card-desc"><span data-i18n="t083">Network analysis and visualization across biological omics.</span></p>
+
+    <div class="install-command">
+  <code>install.packages("MetaNet")</code>
+  <button class="copy-button" type="button" data-copy="install" data-needs-js hidden aria-label="Copy install command" data-i18n-aria-label="copy-install-label">
+    <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></svg><span data-i18n="copy-install">Copy</span>
+  </button>
+</div>
+    <div class="card-links"><a class="text-link" href="/books/MetaNet_tutorial/"><span data-i18n="t084">Documentation</span><svg class="icon " aria-hidden="true" focusable="false"
   xmlns="http://www.w3.org/2000/svg"
   width="24"
   height="24"
@@ -203,20 +242,28 @@ Made to be useful.</h1><p data-i18n="projects-title-lead" class="page-lead">Open
   <path d="M7 7h10v10" />
   <path d="M7 17 17 7" />
 </svg></a>
-</div></article><article class="project-card blue"><div class="project-top"><span class="project-symbol"><svg class="icon " aria-hidden="true" focusable="false"
-  xmlns="http://www.w3.org/2000/svg"
-  width="24"
-  height="24"
-  viewBox="0 0 24 24"
-  fill="none"
-  stroke="currentColor"
-  stroke-width="2"
-  stroke-linecap="round"
-  stroke-linejoin="round"
->
-  <path d="M12 19h8" />
-  <path d="m4 17 6-6-6-6" />
-</svg></span><span class="type-label">R PACKAGE</span></div><h3>pcutils</h3><p data-i18n="t087">Useful functions for statistics, data handling, and visualization.</p><div class="card-links"><a class="text-link" href="https://asa12138.github.io/pcutils/" rel="noopener noreferrer" target="_blank"><span data-i18n="t088">Documentation</span><svg class="icon " aria-hidden="true" focusable="false"
+</div>
+  </div>
+</article>
+
+<article class="project-card blue" id="pkg-pcutils" data-reveal>
+  <div class="media-frame">
+  <a class="media-image" href="/assets/main/illustrations/pkg-pcutils.svg" data-lightbox aria-label="Enlarge image" data-i18n-aria-label="aria-enlarge"><img src="/assets/main/illustrations/pkg-pcutils.svg" width="640" height="360" alt="Notebook sketch of three box plots" data-i18n-alt="alt-pcutils" loading="lazy" decoding="async"></a>
+  <span class="image-view" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="11" cy="11" r="6.5"/><path d="m20 20-4.5-4.5M8 11h6m-3-3v6"/></svg></span>
+
+</div>
+  <div class="card-body">
+    <p class="type-label"><span data-i18n="type-r-package">R package</span></p>
+    <h3>pcutils</h3>
+    <p class="card-desc"><span data-i18n="t087">Useful functions for statistics, data handling, and visualization.</span></p>
+
+    <div class="install-command">
+  <code>install.packages("pcutils")</code>
+  <button class="copy-button" type="button" data-copy="install" data-needs-js hidden aria-label="Copy install command" data-i18n-aria-label="copy-install-label">
+    <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></svg><span data-i18n="copy-install">Copy</span>
+  </button>
+</div>
+    <div class="card-links"><a class="text-link" href="https://asa12138.github.io/pcutils/" rel="noopener noreferrer" target="_blank"><span data-i18n="t088">Documentation</span><svg class="icon " aria-hidden="true" focusable="false"
   xmlns="http://www.w3.org/2000/svg"
   width="24"
   height="24"
@@ -243,29 +290,28 @@ Made to be useful.</h1><p data-i18n="projects-title-lead" class="page-lead">Open
   <path d="M7 7h10v10" />
   <path d="M7 17 17 7" />
 </svg></a>
-</div></article><article class="project-card lilac"><div class="project-top"><span class="project-symbol"><svg class="icon " aria-hidden="true" focusable="false"
-  xmlns="http://www.w3.org/2000/svg"
-  width="24"
-  height="24"
-  viewBox="0 0 24 24"
-  fill="none"
-  stroke="currentColor"
-  stroke-width="2"
-  stroke-linecap="round"
-  stroke-linejoin="round"
->
-  <path d="m10 16 1.5 1.5" />
-  <path d="m14 8-1.5-1.5" />
-  <path d="M15 2c-1.798 1.998-2.518 3.995-2.807 5.993" />
-  <path d="m16.5 10.5 1 1" />
-  <path d="m17 6-2.891-2.891" />
-  <path d="M2 15c6.667-6 13.333 0 20-6" />
-  <path d="m20 9 .891.891" />
-  <path d="M3.109 14.109 4 15" />
-  <path d="m6.5 12.5 1 1" />
-  <path d="m7 18 2.891 2.891" />
-  <path d="M9 22c1.798-1.998 2.518-3.995 2.807-5.993" />
-</svg></span><span class="type-label">R PACKAGE</span></div><h3>pctax</h3><p data-i18n="t091">Practical workflows for microbiome and other omics analyses.</p><div class="card-links"><a class="text-link" href="/books/pctax_tutorial/"><span data-i18n="t092">Documentation</span><svg class="icon " aria-hidden="true" focusable="false"
+</div>
+  </div>
+</article>
+
+<article class="project-card lilac" id="pkg-pctax" data-reveal>
+  <div class="media-frame cover-book">
+  <a class="media-image" href="/books/pctax_tutorial/cover2.png" data-lightbox aria-label="Enlarge image" data-i18n-aria-label="aria-enlarge"><img src="/books/pctax_tutorial/cover2.png" width="678" height="876" alt="pctax tutorial cover" data-i18n-alt="alt-pctax" loading="lazy" decoding="async"></a>
+  <span class="image-view" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="11" cy="11" r="6.5"/><path d="m20 20-4.5-4.5M8 11h6m-3-3v6"/></svg></span>
+  <img class="cover-badge" src="/books/pctax_tutorial/genomics.svg" width="200" height="200" alt="pctax" loading="lazy" decoding="async">
+</div>
+  <div class="card-body">
+    <p class="type-label"><span data-i18n="type-r-package">R package</span></p>
+    <h3>pctax</h3>
+    <p class="card-desc"><span data-i18n="t091">Practical workflows for microbiome and other omics analyses.</span></p>
+
+    <div class="install-command">
+  <code>install.packages("pctax")</code>
+  <button class="copy-button" type="button" data-copy="install" data-needs-js hidden aria-label="Copy install command" data-i18n-aria-label="copy-install-label">
+    <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></svg><span data-i18n="copy-install">Copy</span>
+  </button>
+</div>
+    <div class="card-links"><a class="text-link" href="/books/pctax_tutorial/"><span data-i18n="t092">Documentation</span><svg class="icon " aria-hidden="true" focusable="false"
   xmlns="http://www.w3.org/2000/svg"
   width="24"
   height="24"
@@ -292,24 +338,28 @@ Made to be useful.</h1><p data-i18n="projects-title-lead" class="page-lead">Open
   <path d="M7 7h10v10" />
   <path d="M7 17 17 7" />
 </svg></a>
-</div></article><article class="project-card blue"><div class="project-top"><span class="project-symbol"><svg class="icon " aria-hidden="true" focusable="false"
-  xmlns="http://www.w3.org/2000/svg"
-  width="24"
-  height="24"
-  viewBox="0 0 24 24"
-  fill="none"
-  stroke="currentColor"
-  stroke-width="2"
-  stroke-linecap="round"
-  stroke-linejoin="round"
->
-  <path d="M12 16v5" />
-  <path d="M16 14.639V21" />
-  <path d="M20 10.656V21" />
-  <path d="m22 3-8.646 8.646a.5.5 0 0 1-.708 0L9.354 8.354a.5.5 0 0 0-.707 0L2 15" />
-  <path d="M4 18.463V21" />
-  <path d="M8 14.656V21" />
-</svg></span><span class="type-label">R PACKAGE</span></div><h3>ReporterScore</h3><p data-i18n="t095">Generalized reporter score-based enrichment analysis.</p><div class="card-links"><a class="text-link" href="https://asa12138.github.io/ReporterScore/" rel="noopener noreferrer" target="_blank"><span data-i18n="t096">Documentation</span><svg class="icon " aria-hidden="true" focusable="false"
+</div>
+  </div>
+</article>
+
+<article class="project-card blue" id="pkg-reporterscore" data-reveal>
+  <div class="media-frame">
+  <a class="media-image" href="/assets/main/illustrations/pkg-reporter.svg" data-lightbox aria-label="Enlarge image" data-i18n-aria-label="aria-enlarge"><img src="/assets/main/illustrations/pkg-reporter.svg" width="640" height="360" alt="Notebook sketch of an enrichment lollipop chart" data-i18n-alt="alt-reporter" loading="lazy" decoding="async"></a>
+  <span class="image-view" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="11" cy="11" r="6.5"/><path d="m20 20-4.5-4.5M8 11h6m-3-3v6"/></svg></span>
+
+</div>
+  <div class="card-body">
+    <p class="type-label"><span data-i18n="type-r-package">R package</span></p>
+    <h3>ReporterScore</h3>
+    <p class="card-desc"><span data-i18n="t095">Generalized reporter score-based enrichment analysis.</span></p>
+
+    <div class="install-command">
+  <code>install.packages("ReporterScore")</code>
+  <button class="copy-button" type="button" data-copy="install" data-needs-js hidden aria-label="Copy install command" data-i18n-aria-label="copy-install-label">
+    <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></svg><span data-i18n="copy-install">Copy</span>
+  </button>
+</div>
+    <div class="card-links"><a class="text-link" href="https://asa12138.github.io/ReporterScore/" rel="noopener noreferrer" target="_blank"><span data-i18n="t096">Documentation</span><svg class="icon " aria-hidden="true" focusable="false"
   xmlns="http://www.w3.org/2000/svg"
   width="24"
   height="24"
@@ -336,21 +386,28 @@ Made to be useful.</h1><p data-i18n="projects-title-lead" class="page-lead">Open
   <path d="M7 7h10v10" />
   <path d="M7 17 17 7" />
 </svg></a>
-</div></article><article class="project-card mint"><div class="project-top"><span class="project-symbol"><svg class="icon " aria-hidden="true" focusable="false"
-  xmlns="http://www.w3.org/2000/svg"
-  width="24"
-  height="24"
-  viewBox="0 0 24 24"
-  fill="none"
-  stroke="currentColor"
-  stroke-width="2"
-  stroke-linecap="round"
-  stroke-linejoin="round"
->
-  <path d="M14 9.536V7a4 4 0 0 1 4-4h1.5a.5.5 0 0 1 .5.5V5a4 4 0 0 1-4 4 4 4 0 0 0-4 4c0 2 1 3 1 5a5 5 0 0 1-1 3" />
-  <path d="M4 9a5 5 0 0 1 8 4 5 5 0 0 1-8-4" />
-  <path d="M5 21h14" />
-</svg></span><span class="type-label">R PACKAGE</span></div><h3>plot4fun</h3><p data-i18n="t099">Interesting plots and a more playful side of R.</p><div class="card-links"><a class="text-link" href="https://asa12138.github.io/plot4fun/" rel="noopener noreferrer" target="_blank"><span data-i18n="t100">Documentation</span><svg class="icon " aria-hidden="true" focusable="false"
+</div>
+  </div>
+</article>
+
+<article class="project-card mint" id="pkg-plot4fun" data-reveal>
+  <div class="media-frame">
+  <a class="media-image" href="/assets/main/illustrations/pkg-plot4fun.svg" data-lightbox aria-label="Enlarge image" data-i18n-aria-label="aria-enlarge"><img src="/assets/main/illustrations/pkg-plot4fun.svg" width="640" height="360" alt="Notebook sketch of overlapping plot geometries" data-i18n-alt="alt-plot4fun" loading="lazy" decoding="async"></a>
+  <span class="image-view" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="11" cy="11" r="6.5"/><path d="m20 20-4.5-4.5M8 11h6m-3-3v6"/></svg></span>
+
+</div>
+  <div class="card-body">
+    <p class="type-label"><span data-i18n="type-r-package">R package</span></p>
+    <h3>plot4fun</h3>
+    <p class="card-desc"><span data-i18n="t099">Interesting plots and a more playful side of R.</span></p>
+
+    <div class="install-command">
+  <code>install.packages("plot4fun")</code>
+  <button class="copy-button" type="button" data-copy="install" data-needs-js hidden aria-label="Copy install command" data-i18n-aria-label="copy-install-label">
+    <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></svg><span data-i18n="copy-install">Copy</span>
+  </button>
+</div>
+    <div class="card-links"><a class="text-link" href="https://asa12138.github.io/plot4fun/" rel="noopener noreferrer" target="_blank"><span data-i18n="t100">Documentation</span><svg class="icon " aria-hidden="true" focusable="false"
   xmlns="http://www.w3.org/2000/svg"
   width="24"
   height="24"
@@ -377,189 +434,12 @@ Made to be useful.</h1><p data-i18n="projects-title-lead" class="page-lead">Open
   <path d="M7 7h10v10" />
   <path d="M7 17 17 7" />
 </svg></a>
-</div></article></div></section><section class="section" id="web-apps"><div class="section-heading"><div><p class="eyebrow"><svg class="icon " aria-hidden="true" focusable="false"
-  xmlns="http://www.w3.org/2000/svg"
-  width="24"
-  height="24"
-  viewBox="0 0 24 24"
-  fill="none"
-  stroke="currentColor"
-  stroke-width="2"
-  stroke-linecap="round"
-  stroke-linejoin="round"
->
-  <rect width="18" height="18" x="3" y="3" rx="2" />
-  <path d="M3 9h18" />
-  <path d="M9 21V9" />
-</svg>PLATFORMS & APPS</p><h2 data-i18n="app-heading">A few things you can open.</h2></div></div><div class="project-grid"><article class="project-card blue"><div class="project-top"><span class="project-symbol"><svg class="icon " aria-hidden="true" focusable="false"
-  xmlns="http://www.w3.org/2000/svg"
-  width="24"
-  height="24"
-  viewBox="0 0 24 24"
-  fill="none"
-  stroke="currentColor"
-  stroke-width="2"
-  stroke-linecap="round"
-  stroke-linejoin="round"
->
-  <path d="M14 9.536V7a4 4 0 0 1 4-4h1.5a.5.5 0 0 1 .5.5V5a4 4 0 0 1-4 4 4 4 0 0 0-4 4c0 2 1 3 1 5a5 5 0 0 1-1 3" />
-  <path d="M4 9a5 5 0 0 1 8 4 5 5 0 0 1-8-4" />
-  <path d="M5 21h14" />
-</svg></span><span class="type-label">WEB PLATFORM</span></div><h3>iPhylo</h3><p data-i18n="t104">Interactive biological and chemical taxonomic trees, developed with Yueer Li.</p><div class="card-links"><a class="text-link" href="https://iphylo.net/" rel="noopener noreferrer" target="_blank"><span data-i18n="t105">Open platform</span><svg class="icon " aria-hidden="true" focusable="false"
-  xmlns="http://www.w3.org/2000/svg"
-  width="24"
-  height="24"
-  viewBox="0 0 24 24"
-  fill="none"
-  stroke="currentColor"
-  stroke-width="2"
-  stroke-linecap="round"
-  stroke-linejoin="round"
->
-  <path d="M7 7h10v10" />
-  <path d="M7 17 17 7" />
-</svg></a><a class="text-link" href="/books/iPhylo_tutorial/"><span data-i18n="t106">Tutorial</span><svg class="icon " aria-hidden="true" focusable="false"
-  xmlns="http://www.w3.org/2000/svg"
-  width="24"
-  height="24"
-  viewBox="0 0 24 24"
-  fill="none"
-  stroke="currentColor"
-  stroke-width="2"
-  stroke-linecap="round"
-  stroke-linejoin="round"
->
-  <path d="M7 7h10v10" />
-  <path d="M7 17 17 7" />
-</svg></a>
-</div></article><article class="project-card mint"><div class="project-top"><span class="project-symbol"><svg class="icon " aria-hidden="true" focusable="false"
-  xmlns="http://www.w3.org/2000/svg"
-  width="24"
-  height="24"
-  viewBox="0 0 24 24"
-  fill="none"
-  stroke="currentColor"
-  stroke-width="2"
-  stroke-linecap="round"
-  stroke-linejoin="round"
->
-  <circle cx="12" cy="12" r="10" />
-  <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20" />
-  <path d="M2 12h20" />
-</svg></span><span class="type-label">RESEARCH RESOURCE</span></div><h3>GreenBiome</h3><p data-i18n="t108">Greenland Soil Microbiome Genome and Gene Catalog.</p><div class="card-links"><a class="text-link" href="https://greenbiome.netlify.app/" rel="noopener noreferrer" target="_blank"><span data-i18n="t109">Open resource</span><svg class="icon " aria-hidden="true" focusable="false"
-  xmlns="http://www.w3.org/2000/svg"
-  width="24"
-  height="24"
-  viewBox="0 0 24 24"
-  fill="none"
-  stroke="currentColor"
-  stroke-width="2"
-  stroke-linecap="round"
-  stroke-linejoin="round"
->
-  <path d="M7 7h10v10" />
-  <path d="M7 17 17 7" />
-</svg></a>
-</div></article><article class="project-card lilac"><div class="project-top"><span class="project-symbol"><svg class="icon " aria-hidden="true" focusable="false"
-  xmlns="http://www.w3.org/2000/svg"
-  width="24"
-  height="24"
-  viewBox="0 0 24 24"
-  fill="none"
-  stroke="currentColor"
-  stroke-width="2"
-  stroke-linecap="round"
-  stroke-linejoin="round"
->
-  <path d="M11 21.73a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73z" />
-  <path d="M12 22V12" />
-  <polyline points="3.29 7 12 12 20.71 7" />
-  <path d="m7.5 4.27 9 5.15" />
-</svg></span><span class="type-label">ZTOOLS PLUGIN</span></div><h3>科研小盒</h3><p data-i18n="t111">Journal discovery, literature analysis, and research English practice.</p><div class="card-links"><a class="text-link" href="/apps/research-english/"><span data-i18n="research-english-web">Research English Web</span> ↗</a><a class="text-link" href="https://github.com/Asa12138/micro-tools" rel="noopener noreferrer" target="_blank"><span data-i18n="t112">Source &amp; downloads</span><svg class="icon " aria-hidden="true" focusable="false"
-  xmlns="http://www.w3.org/2000/svg"
-  width="24"
-  height="24"
-  viewBox="0 0 24 24"
-  fill="none"
-  stroke="currentColor"
-  stroke-width="2"
-  stroke-linecap="round"
-  stroke-linejoin="round"
->
-  <path d="M7 7h10v10" />
-  <path d="M7 17 17 7" />
-</svg></a>
-</div></article><article class="project-card blue"><div class="project-top"><span class="project-symbol"><svg class="icon " aria-hidden="true" focusable="false"
-  xmlns="http://www.w3.org/2000/svg"
-  width="24"
-  height="24"
-  viewBox="0 0 24 24"
-  fill="none"
-  stroke="currentColor"
-  stroke-width="2"
-  stroke-linecap="round"
-  stroke-linejoin="round"
->
-  <path d="m5 8 6 6" />
-  <path d="m4 14 6-6 2-3" />
-  <path d="M2 5h12" />
-  <path d="M7 2h1" />
-  <path d="m22 22-5-10-5 10" />
-  <path d="M14 18h6" />
-</svg></span><span class="type-label">LEARNING COMMUNITY</span></div><h3>Asa English Community</h3><p data-i18n="t114">Share useful research expressions and discover material for practice.</p><div class="card-links"><a class="text-link" href="https://asa-english-community.netlify.app/" rel="noopener noreferrer" target="_blank"><span data-i18n="t115">Visit community</span><svg class="icon " aria-hidden="true" focusable="false"
-  xmlns="http://www.w3.org/2000/svg"
-  width="24"
-  height="24"
-  viewBox="0 0 24 24"
-  fill="none"
-  stroke="currentColor"
-  stroke-width="2"
-  stroke-linecap="round"
-  stroke-linejoin="round"
->
-  <path d="M7 7h10v10" />
-  <path d="M7 17 17 7" />
-</svg></a>
-</div></article><article class="project-card mint"><div class="project-top"><span class="project-symbol"><svg class="icon " aria-hidden="true" focusable="false"
-  xmlns="http://www.w3.org/2000/svg"
-  width="24"
-  height="24"
-  viewBox="0 0 24 24"
-  fill="none"
-  stroke="currentColor"
-  stroke-width="2"
-  stroke-linecap="round"
-  stroke-linejoin="round"
->
-  <circle cx="12" cy="12" r="10" />
-  <path d="m16.24 7.76-1.804 5.411a2 2 0 0 1-1.265 1.265L7.76 16.24l1.804-5.411a2 2 0 0 1 1.265-1.265z" />
-</svg></span><span class="type-label">PERSONAL WEB APP</span></div><h3>Qunqing</h3><p data-i18n="qunqing-project">A personal travel atlas with photographs, maps, and small games.</p><div class="card-links"><a class="text-link" href="https://asa12138.github.io/Asa_qunqing/"><span data-i18n="qunqing-project-open">Explore</span><svg class="icon " aria-hidden="true" focusable="false"
-  xmlns="http://www.w3.org/2000/svg"
-  width="24"
-  height="24"
-  viewBox="0 0 24 24"
-  fill="none"
-  stroke="currentColor"
-  stroke-width="2"
-  stroke-linecap="round"
-  stroke-linejoin="round"
->
-  <path d="M7 7h10v10" />
-  <path d="M7 17 17 7" />
-</svg></a></div></article><article class="project-card lilac"><div class="project-top"><span class="project-symbol"><svg class="icon " aria-hidden="true" focusable="false"
-  xmlns="http://www.w3.org/2000/svg"
-  width="24"
-  height="24"
-  viewBox="0 0 24 24"
-  fill="none"
-  stroke="currentColor"
-  stroke-width="2"
-  stroke-linecap="round"
-  stroke-linejoin="round"
->
-  <circle cx="12" cy="12" r="7" />
-  <circle cx="12" cy="12" r="2" />
-</svg></span><span class="type-label">SCIENCE GAME</span></div><h3>巨噬幸存者</h3><p data-i18n="macrophage-project">Steer an immune cell and clear pathogens under the microscope.</p><div class="card-links"><a class="text-link" href="/apps/macrophage-survivor/"><span data-i18n="macrophage-project-open">Play</span> ↗</a></div></article><article class="project-card blue"><div class="project-top"><span class="project-symbol"><svg class="icon " aria-hidden="true" focusable="false"
+</div>
+  </div>
+</article>
+</div></section>
+<div id="web-apps">
+<section class="section" id="research-platforms" data-project-group="research" data-reveal><div class="section-heading"><div><p class="eyebrow"><svg class="icon " aria-hidden="true" focusable="false"
   xmlns="http://www.w3.org/2000/svg"
   width="24"
   height="24"
@@ -571,9 +451,53 @@ Made to be useful.</h1><p data-i18n="projects-title-lead" class="page-lead">Open
   stroke-linejoin="round"
 >
   <ellipse cx="12" cy="5" rx="9" ry="3" />
-  <path d="M3 5V19A9 3 0 0 0 21 19V5" />
-  <path d="M3 12A9 3 0 0 0 21 12" />
-</svg></span><span class="type-label">DATABASE</span></div><h3>CRISPRome</h3><p data-i18n="crispr-project">A resource for exploring CRISPR-Cas systems.</p><div class="card-links"><a class="text-link" href="/databases/CRISPRome/"><span data-i18n="crispr-project-open">Explore</span><svg class="icon " aria-hidden="true" focusable="false"
+  <path d="M3 5v14a9 3 0 0 0 18 0V5" />
+  <path d="M3 12a9 3 0 0 0 18 0" />
+</svg><span data-i18n="eyebrow-research-platforms">RESEARCH &amp; DATA</span></p><h2 data-i18n="research-platforms-heading">Research platforms &amp; databases.</h2></div></div><div class="project-grid">
+<article class="project-card blue" data-reveal>
+  <div class="media-frame cover-book">
+  <a class="media-image" href="/assets/main/illustrations/book-iphylo.svg" data-lightbox aria-label="Enlarge image" data-i18n-aria-label="aria-enlarge"><img src="/assets/main/illustrations/book-iphylo.svg" width="360" height="480" alt="iPhylo cover with a circular taxonomic tree" data-i18n-alt="alt-iphylo" loading="lazy" decoding="async"></a>
+  <span class="image-view" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="11" cy="11" r="6.5"/><path d="m20 20-4.5-4.5M8 11h6m-3-3v6"/></svg></span>
+  <a class="cover-open" href="https://iphylo.net/" rel="noopener noreferrer" target="_blank"><span data-i18n="open-app">Open app</span><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7 17 17 7M7 7h10v10"/></svg></a>
+</div>
+  <div class="card-body">
+    <p class="type-label"><span data-i18n="type-platform">Web platform</span></p>
+    <h3>iPhylo</h3>
+    <p class="card-desc"><span data-i18n="t104">Interactive biological and chemical taxonomic trees, developed with Yueer Li.</span></p>
+    <div class="card-links"><a class="text-link" href="https://iphylo.net/" rel="noopener noreferrer" target="_blank"><span data-i18n="t105">Open platform</span><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7 17 17 7M7 7h10v10"/></svg></a><a class="text-link" href="/books/iPhylo_tutorial/"><span data-i18n="t106">Tutorial</span><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7 17 17 7M7 7h10v10"/></svg></a></div>
+  </div>
+</article>
+
+<article class="project-card mint" data-reveal>
+  <div class="media-frame">
+  <a class="media-image" href="/assets/main/illustrations/db-greenbiome.svg" data-lightbox aria-label="Enlarge image" data-i18n-aria-label="aria-enlarge"><img src="/assets/main/illustrations/db-greenbiome.svg" width="640" height="360" alt="Greenland tundra above a diagram of soil DNA" data-i18n-alt="alt-greenbiome" loading="lazy" decoding="async"></a>
+  <span class="image-view" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="11" cy="11" r="6.5"/><path d="m20 20-4.5-4.5M8 11h6m-3-3v6"/></svg></span>
+  <a class="cover-open" href="https://greenbiome.netlify.app/" rel="noopener noreferrer" target="_blank"><span data-i18n="open-app">Open app</span><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7 17 17 7M7 7h10v10"/></svg></a>
+</div>
+  <div class="card-body">
+    <p class="type-label"><span data-i18n="type-database">Database</span></p>
+    <h3>GreenBiome</h3>
+    <p class="card-desc"><span data-i18n="t108">Greenland Soil Microbiome Genome and Gene Catalog.</span></p>
+    <div class="card-links"><a class="text-link" href="https://greenbiome.netlify.app/" rel="noopener noreferrer" target="_blank"><span data-i18n="t109">Open resource</span><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7 17 17 7M7 7h10v10"/></svg></a></div>
+  </div>
+</article>
+
+<article class="project-card blue" data-reveal>
+  <div class="media-frame cover-logo">
+  <a class="media-image" href="/databases/CRISPRome/images/crispr.png" data-lightbox aria-label="Enlarge image" data-i18n-aria-label="aria-enlarge"><img src="/databases/CRISPRome/images/crispr.png" width="788" height="710" alt="CRISPRome logo with DNA and scissors" data-i18n-alt="alt-crispr" loading="lazy" decoding="async"></a>
+  <span class="image-view" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="11" cy="11" r="6.5"/><path d="m20 20-4.5-4.5M8 11h6m-3-3v6"/></svg></span>
+  <a class="cover-open" href="/databases/CRISPRome/"><span data-i18n="open-app">Open app</span><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7 17 17 7M7 7h10v10"/></svg></a>
+</div>
+  <div class="card-body">
+    <p class="type-label"><span data-i18n="type-database">Database</span></p>
+    <h3>CRISPRome</h3>
+    <p class="card-desc"><span data-i18n="crispr-project">A resource for exploring CRISPR-Cas systems.</span></p>
+    <div class="card-links"><a class="text-link" href="/databases/CRISPRome/"><span data-i18n="crispr-project-open">Explore</span><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7 17 17 7M7 7h10v10"/></svg></a></div>
+  </div>
+</article>
+</div></section>
+
+<section class="section" id="learning-tools" data-project-group="learning" data-reveal><div class="section-heading"><div><p class="eyebrow"><svg class="icon " aria-hidden="true" focusable="false"
   xmlns="http://www.w3.org/2000/svg"
   width="24"
   height="24"
@@ -584,9 +508,114 @@ Made to be useful.</h1><p data-i18n="projects-title-lead" class="page-lead">Open
   stroke-linecap="round"
   stroke-linejoin="round"
 >
-  <path d="M7 7h10v10" />
-  <path d="M7 17 17 7" />
-</svg></a></div></article></div></section><section class="app-note" id="experiments"><svg class="icon " aria-hidden="true" focusable="false"
+  <path d="M12 5v16" />
+  <path d="M20.001 19A2 2 0 0022 17V5a2 2 0 00-1.999-2L16 3.002A5 5 0 0012 5a5 5 0 00-4-2H4a2 2 0 00-2 2v12a2 2 0 001.999 2H8a5 5 0 014 2 5 5 0 014-2z" />
+</svg><span data-i18n="eyebrow-learning-tools">LEARNING &amp; TOOLS</span></p><h2 data-i18n="learning-tools-heading">Study &amp; everyday research tools.</h2></div></div><div class="project-grid">
+<article class="project-card lilac" data-reveal>
+  <div class="media-frame">
+  <a class="media-image" href="/assets/main/illustrations/app-research-box.svg" data-lightbox aria-label="Enlarge image" data-i18n-aria-label="aria-enlarge"><img src="/assets/main/illustrations/app-research-box.svg" width="640" height="360" alt="Journal metrics and a literature search notebook" data-i18n-alt="alt-research-box" loading="lazy" decoding="async"></a>
+  <span class="image-view" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="11" cy="11" r="6.5"/><path d="m20 20-4.5-4.5M8 11h6m-3-3v6"/></svg></span>
+  <a class="cover-open" href="/apps/research-english/"><span data-i18n="open-app">Open app</span><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7 17 17 7M7 7h10v10"/></svg></a>
+</div>
+  <div class="card-body">
+    <p class="type-label"><span data-i18n="type-ztools">ZTools plugin</span></p>
+    <h3><span data-i18n="project-research-box">Research Toolbox</span></h3>
+    <p class="card-desc"><span data-i18n="t111">Journal discovery, literature analysis, and research English practice.</span></p>
+    <div class="card-links"><a class="text-link" href="/apps/research-english/"><span data-i18n="research-english-web">Research English Web</span><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7 17 17 7M7 7h10v10"/></svg></a><a class="text-link" href="https://github.com/Asa12138/micro-tools" rel="noopener noreferrer" target="_blank"><span data-i18n="t112">Source &amp; downloads</span><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7 17 17 7M7 7h10v10"/></svg></a></div>
+  </div>
+</article>
+
+<article class="project-card blue" data-reveal>
+  <div class="media-frame">
+  <a class="media-image" href="/assets/main/illustrations/app-english.svg" data-lightbox aria-label="Enlarge image" data-i18n-aria-label="aria-enlarge"><img src="/assets/main/illustrations/app-english.svg" width="640" height="360" alt="An open research notebook with highlighted sentences" data-i18n-alt="alt-english" loading="lazy" decoding="async"></a>
+  <span class="image-view" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="11" cy="11" r="6.5"/><path d="m20 20-4.5-4.5M8 11h6m-3-3v6"/></svg></span>
+  <a class="cover-open" href="https://asa-english-community.netlify.app/" rel="noopener noreferrer" target="_blank"><span data-i18n="open-app">Open app</span><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7 17 17 7M7 7h10v10"/></svg></a>
+</div>
+  <div class="card-body">
+    <p class="type-label"><span data-i18n="type-community">Learning community</span></p>
+    <h3>Asa English Community</h3>
+    <p class="card-desc"><span data-i18n="t114">Share useful research expressions and discover material for practice.</span></p>
+    <div class="card-links"><a class="text-link" href="https://asa-english-community.netlify.app/" rel="noopener noreferrer" target="_blank"><span data-i18n="t115">Visit community</span><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7 17 17 7M7 7h10v10"/></svg></a></div>
+  </div>
+</article>
+</div></section>
+
+<section class="section" id="exhibits-life" data-project-group="curiosity" data-reveal><div class="section-heading"><div><p class="eyebrow"><svg class="icon " aria-hidden="true" focusable="false"
+  xmlns="http://www.w3.org/2000/svg"
+  width="24"
+  height="24"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <circle cx="12" cy="12" r="10" />
+  <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76" />
+</svg><span data-i18n="eyebrow-exhibits-life">EXHIBITS &amp; LIFE</span></p><h2 data-i18n="exhibits-life-heading">Interactive curiosity &amp; personal worlds.</h2></div></div><div class="project-grid">
+<article class="project-card mint" data-reveal>
+  <div class="media-frame">
+  <a class="media-image" href="/assets/main/illustrations/app-bioscope.svg" data-lightbox aria-label="Enlarge image" data-i18n-aria-label="aria-enlarge"><img src="/assets/main/illustrations/app-bioscope.svg" width="640" height="360" alt="A natural history cabinet with six specimen boxes and a brass microscope" data-i18n-alt="alt-bioscope" loading="lazy" decoding="async"></a>
+  <span class="image-view" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="11" cy="11" r="6.5"/><path d="m20 20-4.5-4.5M8 11h6m-3-3v6"/></svg></span>
+  <a class="cover-open" href="https://bioscope-cabinet.bfzede.workers.dev/index.html" rel="noopener noreferrer" target="_blank"><span data-i18n="open-app">Open app</span><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7 17 17 7M7 7h10v10"/></svg></a>
+</div>
+  <div class="card-body">
+    <p class="type-label"><span data-i18n="type-exhibit">Interactive exhibit</span></p>
+    <h3><span data-i18n="project-bioscope">Cabinet of Living Forms</span></h3>
+    <p class="card-desc"><span data-i18n="bioscope-project">Explore interactive 3D biological specimens, the tree of life, and classic lab instruments.</span></p>
+    <div class="card-links"><a class="text-link" href="https://bioscope-cabinet.bfzede.workers.dev/index.html" rel="noopener noreferrer" target="_blank"><span data-i18n="bioscope-project-open">Enter cabinet</span><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7 17 17 7M7 7h10v10"/></svg></a></div>
+  </div>
+</article>
+
+<article class="project-card mint" data-reveal>
+  <div class="media-frame">
+  <a class="media-image" href="/assets/main/illustrations/app-qunqing.svg" data-lightbox aria-label="Enlarge image" data-i18n-aria-label="aria-enlarge"><img src="/assets/main/illustrations/app-qunqing.svg" width="640" height="360" alt="A travel atlas with blue-green mountains and a camera" data-i18n-alt="alt-qunqing" loading="lazy" decoding="async"></a>
+  <span class="image-view" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="11" cy="11" r="6.5"/><path d="m20 20-4.5-4.5M8 11h6m-3-3v6"/></svg></span>
+  <a class="cover-open" href="https://asa12138.github.io/Asa_qunqing/" rel="noopener noreferrer" target="_blank"><span data-i18n="open-app">Open app</span><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7 17 17 7M7 7h10v10"/></svg></a>
+</div>
+  <div class="card-body">
+    <p class="type-label"><span data-i18n="type-personal-app">Personal web app</span></p>
+    <h3>Qunqing</h3>
+    <p class="card-desc"><span data-i18n="qunqing-project">A personal travel atlas with photographs, maps, and small games.</span></p>
+    <div class="card-links"><a class="text-link" href="https://asa12138.github.io/Asa_qunqing/" rel="noopener noreferrer" target="_blank"><span data-i18n="qunqing-project-open">Explore</span><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7 17 17 7M7 7h10v10"/></svg></a></div>
+  </div>
+</article>
+</div></section>
+
+<section class="section" id="games" data-project-group="games" data-reveal><div class="section-heading"><div><p class="eyebrow"><svg class="icon " aria-hidden="true" focusable="false"
+  xmlns="http://www.w3.org/2000/svg"
+  width="24"
+  height="24"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <line x1="6" x2="10" y1="11" y2="11" />
+  <line x1="8" x2="8" y1="9" y2="13" />
+  <line x1="15" x2="15.01" y1="12" y2="12" />
+  <line x1="18" x2="18.01" y1="10" y2="10" />
+  <path d="M17.32 5H6.68a4 4 0 0 0-3.978 3.59c-.006.052-.01.101-.017.152C2.604 9.416 2 14.456 2 16a3 3 0 0 0 3 3c1 0 1.5-.5 2-1l1.414-1.414A2 2 0 0 1 9.828 16h4.344a2 2 0 0 1 1.414.586L17 18c.5.5 1 1 2 1a3 3 0 0 0 3-3c0-1.545-.604-6.584-.685-7.258-.007-.05-.011-.1-.017-.151A4 4 0 0 0 17.32 5z" />
+</svg><span data-i18n="eyebrow-games">GAMES &amp; PLAY</span></p><h2 data-i18n="games-heading">Playable science &amp; small games.</h2></div></div><div class="project-grid">
+<article class="project-card lilac" data-reveal>
+  <div class="media-frame">
+  <a class="media-image" href="/assets/main/illustrations/app-macrophage.svg" data-lightbox aria-label="Enlarge image" data-i18n-aria-label="aria-enlarge"><img src="/assets/main/illustrations/app-macrophage.svg" width="640" height="360" alt="A cartoon macrophage holding a shield" data-i18n-alt="alt-macrophage" loading="lazy" decoding="async"></a>
+  <span class="image-view" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="11" cy="11" r="6.5"/><path d="m20 20-4.5-4.5M8 11h6m-3-3v6"/></svg></span>
+  <a class="cover-open" href="/apps/macrophage-survivor/"><span data-i18n="open-app">Open app</span><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7 17 17 7M7 7h10v10"/></svg></a>
+</div>
+  <div class="card-body">
+    <p class="type-label"><span data-i18n="type-game">Science game</span></p>
+    <h3><span data-i18n="project-macrophage">Macrophage Survivor</span></h3>
+    <p class="card-desc"><span data-i18n="macrophage-project">Steer an immune cell and clear pathogens under the microscope.</span></p>
+    <div class="card-links"><a class="text-link" href="/apps/macrophage-survivor/"><span data-i18n="macrophage-project-open">Play</span><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7 17 17 7M7 7h10v10"/></svg></a></div>
+  </div>
+</article>
+</div></section>
+</div>
+<section class="app-note" id="experiments" data-reveal><svg class="icon " aria-hidden="true" focusable="false"
   xmlns="http://www.w3.org/2000/svg"
   width="24"
   height="24"
@@ -612,7 +641,7 @@ Made to be useful.</h1><p data-i18n="projects-title-lead" class="page-lead">Open
 >
   <path d="M7 7h10v10" />
   <path d="M7 17 17 7" />
-</svg></a></div></section></main><aside class="page-rail"><div class="rail-inner"><p><span data-i18n="on-page">ON THIS PAGE</span></p><nav aria-label="On this page"><a href="#overview"><svg class="icon " aria-hidden="true" focusable="false"
+</svg></a></div></section></main><aside class="page-rail"><div class="rail-inner"><p><span data-i18n="on-page">ON THIS PAGE</span></p><nav aria-label="On this page" data-i18n-aria-label="aria-rail"><a href="#overview"><svg class="icon " aria-hidden="true" focusable="false"
   xmlns="http://www.w3.org/2000/svg"
   width="24"
   height="24"
@@ -640,7 +669,7 @@ Made to be useful.</h1><p data-i18n="projects-title-lead" class="page-lead">Open
   <path d="M12 22V12" />
   <polyline points="3.29 7 12 12 20.71 7" />
   <path d="m7.5 4.27 9 5.15" />
-</svg><span data-i18n="toc-r-packages">R packages</span></a><a href="#web-apps"><svg class="icon " aria-hidden="true" focusable="false"
+</svg><span data-i18n="toc-r-packages">R packages</span></a><a href="#research-platforms"><svg class="icon " aria-hidden="true" focusable="false"
   xmlns="http://www.w3.org/2000/svg"
   width="24"
   height="24"
@@ -651,10 +680,52 @@ Made to be useful.</h1><p data-i18n="projects-title-lead" class="page-lead">Open
   stroke-linecap="round"
   stroke-linejoin="round"
 >
-  <rect width="18" height="18" x="3" y="3" rx="2" />
-  <path d="M3 9h18" />
-  <path d="M9 21V9" />
-</svg><span data-i18n="toc-web-apps">Platforms &amp; apps</span></a><a href="#experiments"><svg class="icon " aria-hidden="true" focusable="false"
+  <ellipse cx="12" cy="5" rx="9" ry="3" />
+  <path d="M3 5v14a9 3 0 0 0 18 0V5" />
+  <path d="M3 12a9 3 0 0 0 18 0" />
+</svg><span data-i18n="toc-research-platforms">Research &amp; data</span></a><a href="#learning-tools"><svg class="icon " aria-hidden="true" focusable="false"
+  xmlns="http://www.w3.org/2000/svg"
+  width="24"
+  height="24"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path d="M12 5v16" />
+  <path d="M20.001 19A2 2 0 0022 17V5a2 2 0 00-1.999-2L16 3.002A5 5 0 0012 5a5 5 0 00-4-2H4a2 2 0 00-2 2v12a2 2 0 001.999 2H8a5 5 0 014 2 5 5 0 014-2z" />
+</svg><span data-i18n="toc-learning-tools">Learning &amp; tools</span></a><a href="#exhibits-life"><svg class="icon " aria-hidden="true" focusable="false"
+  xmlns="http://www.w3.org/2000/svg"
+  width="24"
+  height="24"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <circle cx="12" cy="12" r="10" />
+  <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76" />
+</svg><span data-i18n="toc-exhibits-life">Exhibits &amp; life</span></a><a href="#games"><svg class="icon " aria-hidden="true" focusable="false"
+  xmlns="http://www.w3.org/2000/svg"
+  width="24"
+  height="24"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <line x1="6" x2="10" y1="11" y2="11" />
+  <line x1="8" x2="8" y1="9" y2="13" />
+  <line x1="15" x2="15.01" y1="12" y2="12" />
+  <line x1="18" x2="18.01" y1="10" y2="10" />
+  <path d="M17.32 5H6.68a4 4 0 0 0-3.978 3.59c-.006.052-.01.101-.017.152C2.604 9.416 2 14.456 2 16a3 3 0 0 0 3 3c1 0 1.5-.5 2-1l1.414-1.414A2 2 0 0 1 9.828 16h4.344a2 2 0 0 1 1.414.586L17 18c.5.5 1 1 2 1a3 3 0 0 0 3-3c0-1.545-.604-6.584-.685-7.258-.007-.05-.011-.1-.017-.151A4 4 0 0 0 17.32 5z" />
+</svg><span data-i18n="toc-games">Games</span></a><a href="#experiments"><svg class="icon " aria-hidden="true" focusable="false"
   xmlns="http://www.w3.org/2000/svg"
   width="24"
   height="24"
