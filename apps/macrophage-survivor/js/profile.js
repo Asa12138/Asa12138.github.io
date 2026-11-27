@@ -22,7 +22,7 @@
     profile.selectedMap=profile.unlocks.maps.indexOf(raw.selectedMap)>=0?raw.selectedMap:'skin';
     profile.stamps=(Array.isArray(raw.stamps)?raw.stamps:[]).filter(function(k){return D.achievements[k];});
     profile.seen=Array.isArray(raw.seen)?raw.seen:[];
-    profile.cleared=Math.min(8,counter(raw.cleared));
+    profile.cleared=Math.min((window.Campaign&&window.Campaign.stages.length)||12,counter(raw.cleared));
     profile.culture={};
     Object.keys(culture).forEach(function(k){profile.culture[k]=Math.min(3,counter(raw.culture&&raw.culture[k]));});
     profile.stains=owned(raw.stains,stains,'dark');
@@ -99,7 +99,7 @@
     if(g.runId && profile.lastSettled===g.runId){g.earnedAtp=0;g.newMaps=[];return queue;}
     if(g.runId)profile.lastSettled=g.runId;
     if(!savedRun||savedRun.runId===g.runId)savedRun=null;
-    g.earnedAtp=Math.floor(g.time/3)+Math.floor(g.kills/5)+(won?40:0);
+    g.earnedAtp=Math.floor(g.time/3)+Math.floor(g.kills/5)+(won?(g.mode==='campaign'&&g.stage>=9?65:40):0);
     profile.mapBest[g.map]=Math.max(profile.mapBest[g.map]||0,Math.floor(g.time));
     if(won&&g.mode==='campaign'&&D.heroes[g.heroId]&&profile.heroWins.indexOf(g.heroId)<0)profile.heroWins.push(g.heroId);
     if(profile.heroWins.length===4&&profile.unlocks.heroes.length===4&&g.stamps.indexOf('grand')<0)g.stamps.push('grand');
@@ -111,7 +111,7 @@
     var maps=profile.unlocks.maps;g.newMaps=[];
     function unlock(k){if(maps.indexOf(k)<0){maps.push(k);g.newMaps.push(D.maps[k].short);}}
     if(won && g.mode==='campaign' && g.stage===profile.cleared+1){
-      profile.cleared=Math.min(8,g.stage);
+      profile.cleared=Math.min(window.Campaign.stages.length,g.stage);
       if(profile.cleared===3)unlock('lung');
       if(profile.cleared===5)Object.keys(D.maps).forEach(unlock);
     }

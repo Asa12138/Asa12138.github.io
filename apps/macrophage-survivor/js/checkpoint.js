@@ -73,7 +73,7 @@
     return s;
   }
   function valid(s){
-    return !!(s && s.v===1 && (s.mode==='campaign'||s.mode==='endless') && s.stage>=1 && s.stage<=8 &&
+    return !!(s && s.v===1 && (s.mode==='campaign'||s.mode==='endless') && s.stage>=1 && s.stage<=window.Campaign.stages.length &&
       D.heroes[s.heroId] && D.maps[s.map] && s.runId && s.time>=0 && s.level>=1 && s.p && s.p.hp>0 &&
       typeof s.p.x==='number' && typeof s.p.y==='number' && Array.isArray(s.p.cargo) && s.levels && s.entities &&
       s.height>0 && ['enemies'].concat(groups).every(function(k){
@@ -112,13 +112,17 @@
       }
     }
     function scale(row){if(typeof row.y==='number')row.y*=ratio;if(typeof row.yy==='number')row.yy*=ratio;}
-    scale(g.p);scale(g.ctl);
+    scale(g.p);scale(g.ctl);if(typeof g.netY==='number')g.netY*=ratio;
+    if(g.netUntil>g.time&&g.netTicks==null){
+      g.netTicks=Math.max(0,Math.ceil((g.netUntil-(g.netTick||g.time))/.85));
+      if(g.netX==null){g.netX=g.p.x;g.netY=g.p.y;}
+    }
     g.enemies=decode(s.entities.enemies);
     ['enemies'].concat(groups).forEach(function(k){
       if(k!=='enemies')g[k]=decode(s.entities[k]);
       g[k].forEach(function(row){relink(row,g.enemies);scale(row);});
     });
-    if(!s.actualTarget&&g.mode==='campaign'&&g.stage>=6&&s.bossSpawned){
+    if(!s.actualTarget&&g.mode==='campaign'&&g.stage>=6&&g.stage<=8&&s.bossSpawned){
       // These targets may already have died in the saved 0.4.x defense window.
       var legacy=['疾行冲锋领主','质粒风暴领主','紫金耐药菌王与疾行冲锋领主'];
       g.actualTarget=legacy[g.stage-6];

@@ -12,7 +12,7 @@
     actin:{name:'肌动蛋白重构',effect:'基础移速 +10%。扩大吞噬范围，远程职业提升射程与拾取距离。',science:'膜下肌动蛋白重排，推动伪足包围颗粒。'},
     ros:{name:'呼吸爆发（ROS）',effect:'每次消化释放活性氧环，升级增加半径和灼伤。',science:'吞噬细胞在呼吸爆发中生成活性氧。'},
     igg:{name:'IgG 抗体弹幕',effect:'自动发射 Y 型弹，优先标记荚膜菌；升级提高火力。',science:'IgG 的 Fc 段可被吞噬细胞的 Fc 受体识别。'},
-    c3:{name:'补体 C3b 级联',effect:'消化或其他攻击清除目标时发射两颗电球，间隔至少 0.65 秒。每球弹射一次，弹射伤害为 65%，电球击杀终止级联。',science:'C3b 沉积在微生物表面，促进调理吞噬。'},
+    c3:{name:'补体 C3b 级联',effect:'消化或其他攻击清除目标时发射两颗电球，间隔至少 0.55 秒。每球弹射一次，弹射伤害为 65%，电球击杀终止级联。',science:'C3b 沉积在微生物表面，促进调理吞噬。'},
     ctl:{name:'细胞毒性 T 细胞',effect:'召唤环绕巡逻的 CTL，优先点杀感染细胞。',science:'CTL 通过穿孔素与颗粒酶促使靶细胞凋亡。'},
     ifn:{name:'γ-干扰素增敏',effect:'增强光束与弹幕火力。命中后标记目标 3 秒，队友也能利用易伤。',science:'γ-干扰素是免疫细胞传递活化信号的一种细胞因子。'},
     mhc:{name:'抗原呈递加速',effect:'缩短主动技能与自动武器冷却。每清除 12 个敌人，额外掉落一颗金色记忆抗原。',science:'抗原呈递细胞将抗原肽展示给 T 细胞，帮助启动特异性免疫应答。'}
@@ -65,13 +65,13 @@
   function capsule(k){return k==='pneumo'||k==='meningo';}
   function cargoSlots(k){return k==='tb'||k==='clostrid'?2:1;}
   var actives={
-    dash:{name:'伪足猛扑',hero:'macrophage',cd:8.5,effect:'向前突进并短暂免伤，沿路吞入最多两只，推进消化 40%。'},
-    net:{name:'胞外诱捕网',hero:'neutrophil',cd:0,effect:'蓄满后定身全场约 5 秒，每秒绞杀 18 点，期间停止耗血。无尽 4 分钟后，首领约 2 秒脱困，网内触杀暂停蓄能。'},
+    dash:{name:'伪足猛扑',hero:'macrophage',cd:7.5,effect:'向前突进并短暂免伤，沿路吞入最多两只，推进消化 40%。'},
+    net:{name:'胞外诱捕网',hero:'neutrophil',cd:0,effect:'蓄满后在当前位置张开 120 半径网域，定身约 4.5 秒并造成 5 段共 60 点绞杀，期间停止耗血且暂停蓄能。高阶防线与无尽 4 分钟后首领约 2.2 秒脱困。'},
     salvo:{name:'穿孔素过载',hero:'nk',cd:10,effect:'连续射出六道穿透光束，末段引发范围爆裂。'},
-    rally:{name:'趋化集结令',hero:'dc',cd:11,effect:'召回军团守卫身边光环，四秒内攻速翻倍并牵引全场抗原。'},
-    mist:{name:'高压酸雾排空',cd:14,cdStep:2,power:45,gain:20,effect:'排空消化或过载充能；扇形破荚膜、腐蚀并减速 40%。',science:'游戏将溶酶体的酸性降解改编为定向酸雾。'},
+    rally:{name:'趋化集结令',hero:'dc',cd:11,effect:'召回军团守卫身边光环，四秒内攻速大幅提升并牵引全场抗原。'},
+    mist:{name:'高压酸雾排空',cd:12,cdStep:1.5,power:55,gain:20,effect:'排空消化舱并向前喷射酸雾，每排空一格额外增伤并掉落抗原；扇形破荚膜、腐蚀并减速 40%。',science:'游戏将溶酶体的酸性降解改编为定向酸雾。'},
     pulse:{name:'活性氧聚爆',cd:13,cdStep:2,power:60,gain:30,effect:'击退近敌、蒸发黏液；脑图手动引爆消耗 8% 屏障。',science:'游戏将局部活性氧反应放大为战术冲击环。'},
-    veil:{name:'白介素护膜',cd:18,cdStep:2.5,power:30,gain:15,effect:'四秒护盾，立即回血 15 并解除减速。',science:'游戏将细胞因子信号改编为保护膜。'}
+    veil:{name:'白介素护膜',cd:17,cdStep:2,power:30,gain:15,effect:'护盾持续 4.5 秒，立即回血 15 并解除减速。',science:'游戏将细胞因子信号改编为保护膜。'}
   };
   ['mist','pulse','veil'].forEach(function(k){upgrades[k]=actives[k];});
   var entries={
@@ -174,6 +174,15 @@
       return (m[0]&&m[0]!=='容量'?m[0]+' ':'')+old+m[2]+'▸'+m[1]+m[2];
     }).join(' · ');
   }
+  var releaseNote={
+    version:'1.0.5',
+    title:'V1.0.5 版本更新公告',
+    items:[
+      ['新增高阶防线（第 9–12 关）','防线战役扩展至 12 关。第 9 关起加入词缀首领、重装队长与耐药菌潮，第 12 关迎来三首领屏障终战（支持三血条同屏显示）；第 1–8 关同步适度上调了精英与首领强度。'],
+      ['中性粒细胞诱捕网平衡','「胞外诱捕网」由全屏改为在释放处张开 120 半径局部网域，绞杀伤害由 4 段 × 18 调整为 5 段 × 12（共 60 点）；网域生效期间暂停蓄能，触杀蓄能、回血及病毒颗粒充能同步下调。'],
+      ['全职业、技能与榜单优化','下调树突状细胞炮台与光环叠伤；优化「高压酸雾排空」不再打断远程职业技能，排空消化舱可增伤并掉落抗原；增强巨噬细胞「伪足猛扑」、补体 C3b、细胞因子风暴、免疫突触猎杀阵与 MAC 破盾上限；无尽深渊结算现已自动上传成绩至平台榜。']
+    ]
+  };
   window.DisplayTier={speedTier:speedTier,reachTier:reachTier,digestTier:digestTier,tierDesc:tierDesc,upgradeDelta:upgradeDelta};
-  window.ImmuneData = {bossKinds:bossKinds,capsule:capsule,cargoSlots:cargoSlots,infected:infected,vulnerability:vulnerability,cooldownScale:cooldownScale,actives:actives,stampHints:stampHints,nextXP:nextXP,antigenValue:antigenValue,heroes:heroes,maps:maps,events:events,achievements:achievements,memorySkills:memorySkills,species:species,upgrades:upgrades,supers:supers,tips:tips,clock:clock};
+  window.ImmuneData = {releaseNote:releaseNote,bossKinds:bossKinds,capsule:capsule,cargoSlots:cargoSlots,infected:infected,vulnerability:vulnerability,cooldownScale:cooldownScale,actives:actives,stampHints:stampHints,nextXP:nextXP,antigenValue:antigenValue,heroes:heroes,maps:maps,events:events,achievements:achievements,memorySkills:memorySkills,species:species,upgrades:upgrades,supers:supers,tips:tips,clock:clock};
 }());

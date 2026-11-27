@@ -176,6 +176,9 @@ kbd{font:600 10px var(--face);letter-spacing:1px;border-radius:6px;border:1px so
 .boss-row span{overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
 .boss-row b{font-size:9px;color:#ffe6b5}
 #bossbar .meter{grid-column:1/-1;position:relative;margin:0;height:7px}
+#bossbar.triple{font-size:10px}
+#bossbar.triple .boss-row{gap:2px 5px;padding:2px 6px;line-height:10px}
+#bossbar.triple .meter{height:5px}
 .boss-row .meter:after{content:"";position:absolute;inset:0;background:linear-gradient(to right,transparent 30%,#fff9 30%,#fff9 calc(30% + 1px),transparent calc(30% + 1px),transparent 65%,#fff9 65%,#fff9 calc(65% + 1px),transparent calc(65% + 1px))}
 #cargo{left:50%;transform:translateX(-50%);bottom:var(--safe-bottom);text-align:center;padding:5px 10px;border-radius:15px;font-size:10px}
 #slots{margin:1px auto 0}
@@ -628,3 +631,11 @@ kbd{font:600 10px var(--face);letter-spacing:1px;border-radius:6px;border:1px so
 #sheet.focused-discovery #sheet-body{display:flex;flex-direction:column;min-height:0}
 #sheet.focused-discovery .briefing{min-height:0;overflow-y:auto}
 #sheet.focused-discovery .primary{flex:none}
+.stage-pick.crisis:not([aria-disabled=true]){border-color:#b48a54;background:linear-gradient(135deg,#2a3240,#1f2d3f)}
+.stage-pick.crisis:not([aria-disabled=true]) small{color:#f5cf8b}
+.changelog-list{padding-right:2px}
+.changelog-item{padding:10px 12px;border:1px solid #3c656c;border-left:3px solid #8de0bd;border-radius:12px;background:linear-gradient(120deg,#183a44,#142b3c)}
+.changelog-item+.changelog-item{margin-top:8px}
+.changelog-item b{display:block;color:#e7fff6;font-size:13px;line-height:1.4}
+.panel .changelog-item p{margin:5px 0 0;color:#cbe2e4;font-size:12px;line-height:1.6}
+.changelog-close{flex:none;width:100%;margin-top:10px}

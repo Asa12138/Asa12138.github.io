@@ -70,6 +70,7 @@
       g.floaters.forEach(function(v){if(v.below)v.below*=H/oldH;});
       g.fibrinNets.forEach(function(v){v.y*=H/oldH;v.yy*=H/oldH;});
       g.rays.forEach(function(r){if(r.kind==='dash'){r.y*=H/oldH;r.yy*=H/oldH;}else r.ty*=H/oldH;});
+      if(typeof g.netY==='number')g.netY*=H/oldH;
     }
     clearInput();
   }
@@ -177,12 +178,12 @@
   function routes(){
     var box=menuPage('routes','CAMPAIGN','防线战役','返回观测站',home),grid=fragment('div','stage-grid');
     C.stages.forEach(function(s){
-      var locked=s.id>Math.min(8,P.data.cleared+1);
-      var b=button('','stage-pick',function(){
+      var locked=s.id>Math.min(C.stages.length,P.data.cleared+1);
+      var b=button('','stage-pick'+(s.id>=9?' crisis':''),function(){
         if(locked){deny(b,'通过第 '+(s.id-1)+' 关后开放「'+s.name+'」。');return;}
         stage=s.id;mode='campaign';home();
       });b.setAttribute('aria-disabled',String(locked));b.setAttribute('aria-pressed',String(s.id===stage));
-      b.appendChild(fragment('small','','第 '+s.id+' 关 · '+D.maps[s.map].short));
+      b.appendChild(fragment('small','','第 '+s.id+' 关 · '+D.maps[s.map].short+(s.id>=9?' · 高阶':'')));
       b.appendChild(fragment('b','',s.name));b.appendChild(fragment('span','',D.clock(s.duration)+(s.id<=P.data.cleared?'　已通关':locked?'　未开放':'　可挑战')));
       grid.appendChild(b);
     });box.appendChild(grid);
@@ -417,10 +418,10 @@
     box.appendChild(detail);box.appendChild(scroll);
     function node(key,shape){
       var a=D.actives[key],superweapon=D.supers[key],obj=a||superweapon||D.upgrades[key];
-      var allowed=[],threshold=9,spec={mode:'campaign',stage:1};
+      var allowed=[],threshold=C.stages.length+1,spec={mode:'campaign',stage:1};
       Object.keys(D.heroes).forEach(function(h){
         spec.hero=D.heroes[h];
-        for(var lv=1;lv<=8;lv++){
+        for(var lv=1;lv<=C.stages.length;lv++){
           spec.stage=lv;
           var ok=superweapon?C.recipeAllowed(spec,key):a?lv>=3&&(!a.hero||a.hero===h):C.skillAllowed(spec,key);
           if(ok){threshold=Math.min(lv,threshold);allowed.push(h);break;}
@@ -644,7 +645,27 @@
     var meta=document.querySelector('meta[name="application-version"]');
     return meta?'V'+meta.content:'';
   }
-  function preferenceRows(box){
+  function releaseNotice(back,manualOpen){
+    var note=D.releaseNote;if(!note){back();return;}
+    var box=sheet('changelog','UPDATE NOTES　/　V'+note.version,note.title),scroll=fragment('div','menu-scroll changelog-list');
+    el('sheet').classList.add('has-menu-footer');
+    note.items.forEach(function(item){
+      var card=fragment('article','changelog-item');
+      card.appendChild(fragment('b','',item[0]));
+      card.appendChild(paragraph(item[1]));
+      scroll.appendChild(card);
+    });
+    box.appendChild(scroll);
+    var done=button(manualOpen?'返回设置':'知道了，进入观测站','primary changelog-close',function(){
+      P.introduce('release/'+note.version);back();
+    });
+    done.id='changelog-close';box.appendChild(done);done.focus();
+  }
+  function openSettings(){
+    var box=menuPage('settings','PREFERENCES','设置','返回观测站',function(){returnHomeTo('settings-open');});preferenceRows(box,true);
+    el('pref-musicOff').focus();
+  }
+  function preferenceRows(box,withNotice){
     [['背景音乐','musicOff'],['游戏音效','muted'],['主动键位置','leftHand'],['移动摇杆','fixedStick']].forEach(function(item){
       var key=item[1],b=button('','pref-row',function(){
         A.unlock();prefTouched[key]=true;
@@ -659,13 +680,15 @@
       b.id='pref-'+key;b.appendChild(document.createTextNode(item[0]));b.appendChild(fragment('span',''));
       box.appendChild(b);
     });
+    if(withNotice&&D.releaseNote){
+      var log=button('','pref-row',function(){releaseNotice(openSettings,true);});
+      log.id='pref-changelog';log.appendChild(document.createTextNode('更新公告'));log.appendChild(fragment('span','','V'+D.releaseNote.version+' ›'));
+      box.appendChild(log);
+    }
     box.appendChild(fragment('p','settings-version','游戏版本 '+versionLabel()));
     syncPreferenceRows();
   }
-  el('settings-open').addEventListener('click',function(){
-    var box=menuPage('settings','PREFERENCES','设置','返回观测站',function(){returnHomeTo('settings-open');});preferenceRows(box);
-    el('pref-musicOff').focus();
-  });
+  el('settings-open').addEventListener('click',openSettings);
   // A touch starts before some mobile WebViews grant audio playback. Keep the
   // unlock listeners until the context is actually running.
   var wakeEvents=['pointerdown','touchend','keydown','click'];
@@ -691,9 +714,10 @@
       if(!prefTouched.fixedStick)fixedStick=v[4]===true;
       syncControls();syncSound();syncPreferenceRows();
       loaded=true;preview=P.data.selectedHero;
-      var saved=CP.get();stage=saved?saved.stage:Math.min(8,P.data.cleared+1);mode=saved?saved.mode:'campaign';
+      var saved=CP.get();stage=saved?saved.stage:Math.min(C.stages.length,P.data.cleared+1);mode=saved?saved.mode:'campaign';
       firstWinPending=P.data.cleared===0;home();el('choose-map').disabled=false;el('home').disabled=false;el('boot-status').hidden=true;
       el('storage-note').textContent=B.storage.status();
+      if(D.releaseNote&&P.data.introduced.indexOf('release/'+D.releaseNote.version)<0)releaseNotice(home,false);
     },function(err){
       var detail=err&&err.storageItem?' / '+err.storageItem:'';
       if(err&&Number.isInteger(err.storageCode))detail+=' ('+err.storageCode+')';
@@ -782,6 +806,9 @@
     if(g.mode==='endless'){
       var risk=C.virulence(g);
       scroll.appendChild(fragment('p','abyss-readout',risk.name+' · 毒力 Lv.'+risk.level+' · 新生敌人生命 '+Math.round(C.hpScale(g)*100)+'% · 接触伤害 '+Math.round(C.contactScale(g)*100)+'%'));
+    }else if(g.mode==='campaign'&&g.stage>=9){
+      var stageSpec=C.stages[g.stage-1];
+      scroll.appendChild(fragment('p','abyss-readout','高阶防线 · 敌方生命 '+Math.round((stageSpec.enemyHp||1)*100)+'% · 接触伤害 '+Math.round(C.contactScale(g)*100)+'% · 重装队长出没'));
     }
     scroll.appendChild(pauseVitals());
     var owned=fragment('section','pause-owned-section'),cards=fragment('div','pause-owned-grid'),strip=fragment('div','pause-unowned-strip');
@@ -995,8 +1022,8 @@
     if(g.mode==='endless'&&focusMechanic('epoch','每两分钟出现新领主，留意毒力和敌群强度。',el('virulence')))return;
     var bosses=g.enemies.filter(function(e){return e.bossSerial&&!e.dead;});
     for(var b=0;b<bosses.length;b++){
-      var boss=bosses[b];
-      if(focusMechanic('boss/'+boss.kind+'/'+boss.phase,(boss.label||'首领')+' · '+C.bossTip(boss.kind,boss.phase),el('bossbar').children[b]))return;
+      var boss=bosses[b],row=el('bossbar').children[Math.min(b,Math.max(0,el('bossbar').children.length-1))];
+      if(focusMechanic('boss/'+boss.kind+'/'+boss.phase,(boss.label||'首领')+' · '+C.bossTip(boss.kind,boss.phase),row))return;
     }
     var net=g.fibrinNets[0];
     if(net&&focusMechanic('fibrin',D.maps.skin.info,null,{x:(net.x+net.xx)/2,y:(net.y+net.yy)/2,r:22}))return;
@@ -1065,7 +1092,7 @@
   }
   function complement(from){
     if(!g.levels.c3||g.time<(g.c3ReadyAt||0))return;
-    g.c3ReadyAt=g.time+.65;
+    g.c3ReadyAt=g.time+.55;
     if(g.event&&g.event.id==='stayup'){
       // Complement is kill-triggered. Stretch the spacing of its queued volleys during fatigue.
       var fatigue=D.events.stayup,elapsed=g.time-(g.event.until-fatigue.duration);
@@ -1076,7 +1103,7 @@
   function emitC3(from){
     var targets=Q.nearby(g,from,220).filter(function(e){return !e.dead && dist(from,e)<220;});
     targets.sort(function(a,b){return dist(from,a)-dist(from,b);});
-    for(var i=0;i<2&&targets.length;i++)shot('c3',from,targets[i%targets.length],4+3*g.levels.c3,1);
+    for(var i=0;i<2&&targets.length;i++)shot('c3',from,targets[i%targets.length],6+3*g.levels.c3,1);
   }
   function killed(e,source){
     if(e.dead)return;breakLinks(e);e.dead=true;Q.onRemoval(g,e,ops,false);if(!e.mirrorFor&&!e.coreFor)Q.countClear(g,e.kind,e,ops);sparks(e.x,e.y,(D.species[e.kind]||D.species.latent).color,9);
@@ -1085,7 +1112,7 @@
       if(g.mode==='campaign'&&g.bossDead){
         g.lastBossKind=e.kind;g.lastBossX=e.x;g.lastBossY=e.y/H;g.lastBossRadius=e.r;g.lastBossTime=g.time;
       }
-      notice(g.mode==='endless'?'领主已清除':g.boss?'尚有领主在场':'关底目标已清除');
+      notice(g.mode==='endless'?'领主已清除':g.boss?'尚有领主在场':(g.stage===12&&!g.reinforceSpawned)?'先遣首领已清除 · 警惕增援':'关底目标已清除');
     }
     A.play('burst');if(e.bossSerial)g.hitStop=.03;fx('ring',e.x,e.y,e.r+8,'#b8ffe9');orb(e.x,e.y,D.antigenValue(e,false));if(source!=='c3')complement(e);
   }
@@ -1143,7 +1170,7 @@
     if(!g.super.storm)return;
     g.stormLoad+=units;
     if(g.stormLoad<4)return;
-    g.stormLoad-=4;A.play('super');var before=g.kills;area(g.p,155,65,'#d2f8ff',false,true);if(g.kills-before>=12)g.swept=true;
+    g.stormLoad-=4;A.play('super');var before=g.kills;area(g.p,155,78,'#d2f8ff',false,true);if(g.kills-before>=12)g.swept=true;
   }
   function finishCargo(v){
     var p=g.p;Q.countClear(g,v.kind,p,ops);p.hp=Math.min(g.hero.hp,p.hp+1.4);A.play('digest');sparks(p.x,p.y,'#ffda6e');floatLabel('消化完成!',p.x,p.y-g.radius,'#ffedac');
@@ -1292,7 +1319,7 @@
       if(g.synapseIn<=0){
         var prey=nearest(p,function(e){return e.supplyFor||D.infected(e.kind)||e.bossSerial;},320);
         if(prey){g.synapseIn=2.8;window.ActiveSkills.fireRay(g,'synapse',prey,angle(p,prey));
-          damage(prey,48,true,null,null,'beam');floatLabel('突触暴击',prey.x,prey.y-18,'#ffda86');}
+          damage(prey,56,true,null,null,'beam');floatLabel('突触暴击',prey.x,prey.y-18,'#ffda86');}
       }
     }
     if(g.super.matrix){
@@ -1306,7 +1333,7 @@
     }
     if(g.super.mac && g.macIn<=0){
       var top=null;g.enemies.forEach(function(e){if(!e.dead && (!top||top.hp<e.hp))top=e;});
-      if(top){var before=g.kills;g.macIn=3.2;damage(top,top.max*.25+12,true,null,top.bossSerial?Math.min(75,top.max*.045):null);fx('hole',top.x,top.y,top.r*.87,'#fff8b4',.6);area(top,75,24,'#9df8e4',false,false,top);if(g.kills-before>=12)g.swept=true;A.play('super');}
+      if(top){var before=g.kills;g.macIn=3.2;damage(top,top.max*.25+12,true,null,top.bossSerial?Math.min(90,top.max*.045):null);fx('hole',top.x,top.y,top.r*.87,'#fff8b4',.6);area(top,75,24,'#9df8e4',false,false,top);if(g.kills-before>=12)g.swept=true;A.play('super');}
     }
   }
   function projectile(s,dt){
@@ -1545,16 +1572,17 @@
     resultRank=g.mode==='endless'&&B.ranks.available()&&resultRow.time<=1000000?
       [1,rankBoards.indexOf(resultRow.map)+1].map(function(board){return {board:board,status:'ready'};}):null;
     var submit=el('rank-submit');
-    submit.hidden=!resultRank;submit.disabled=false;submit.textContent='提交到平台榜';
+    submit.hidden=true;submit.disabled=false;submit.textContent='重试提交';
     el('rank-status').textContent='';
-    var onward=summary.won&&g.mode==='campaign'&&g.stage<8,next=el('next-stage'),again=el('restart');
+    var onward=summary.won&&g.mode==='campaign'&&g.stage<C.stages.length,next=el('next-stage'),again=el('restart');
     next.hidden=!onward;next.classList.toggle('primary',onward);again.classList.toggle('primary',!onward);
     setScreen('result');el('result-title').focus();
+    if(resultRank)submitResultRank(true);
   }
-  async function submitResultRank(){
+  async function submitResultRank(auto){
     var submit=el('rank-submit'),notice=el('rank-status'),rank=resultRank;
     if(!rank||submit.disabled)return;
-    submit.disabled=true;notice.textContent='正在提交成绩…';
+    submit.disabled=true;notice.textContent=auto?'正在自动上传成绩至平台榜…':'正在重试提交成绩…';
     var pending=rank.filter(function(entry){return entry.status==='ready'||entry.status==='retry';});
     var score=resultRow.time;
     await Promise.all(pending.map(async function(entry){
@@ -1566,7 +1594,7 @@
     }));
     if(state!=='result'||resultRank!==rank)return;
     var confirmed=rank.filter(function(entry){return entry.status==='confirmed';}).length;
-    var parts=confirmed===2?['成绩已录入平台总榜和器官榜。']:confirmed===1?['成绩已录入 1 个榜单。']:[];
+    var parts=confirmed===2?[auto?'成绩已自动录入平台总榜和器官榜。':'成绩已录入平台总榜和器官榜。']:confirmed===1?['成绩已录入 1 个榜单。']:[];
     var retry=rank.some(function(entry){return entry.status==='retry';});
     if(rank.some(function(entry){return entry.status==='unknown';}))parts.push('部分成绩待确认，可在平台榜查看。');
     if(!B.ranks.available())parts.push('平台榜暂未开放，可在荣耀排行查看本机战绩。');
@@ -1588,7 +1616,8 @@
     if(g.spawnIn<=0){
       var entry=spawn(chooseSpawn());
       if(entry&&fast===2){entry.x=clamp(entry.x,0,W);entry.y=clamp(entry.y,0,H);}
-      if(entry&&g.mode==='endless'&&g.time>=120&&Math.random()<.18)entry.resistant=true;
+      var stageSpec=g.mode==='campaign'?C.stages[g.stage-1]:null;
+      if(entry&&((g.mode==='endless'&&g.time>=120&&Math.random()<.18)||(stageSpec&&stageSpec.resistant&&Math.random()<stageSpec.resistant)))entry.resistant=true;
       g.spawnIn=C.spawnDelay(g);
     }
     if(g.mode==='endless'&&Math.floor(old/60)<Math.floor(g.time/60)){
@@ -1687,7 +1716,7 @@
     var rows=[],good='#7ff4cb',env='#ffc16f',bad='#ff8ab4';
     function row(name,icon,left,total,col,permanent){if(left>0||permanent)rows.push([name,icon,Math.max(0,left),total,col,permanent]);}
     if(g.event)row(g.event.label,g.event.id==='coffee'?'咖':'夜',g.event.until-g.time,15,g.event.id==='coffee'?good:bad);
-    row('疫苗克制','苗',(g.vaccineUntil||0)-g.time,15,good);row('胞外诱捕网','网',g.netUntil-g.time,4,good);
+    row('疫苗克制','苗',(g.vaccineUntil||0)-g.time,15,good);row('胞外诱捕网','网',g.netUntil-g.time,4.5,good);
     if(g.hot)row('高烧','热',1,1,env,true);
     if(g.map==='lung')row('呼吸气浪',g.windDir>0?'→':'←',g.windUntil-g.time,3.5,env);
     var barrier=el('barrier-readout');barrier.hidden=g.map!=='brain';
@@ -1719,9 +1748,10 @@
   }
   function bossHud(){
     var bar=el('bossbar'),bosses=g.enemies.filter(function(e){return e.bossSerial&&!e.dead;});
-    var count=Math.min(2,bosses.length);
+    var count=Math.min(3,bosses.length);
     while(bar.children.length>count)bar.removeChild(bar.lastChild);
     bar.hidden=!count;
+    bar.classList.toggle('triple',count>=3);
     for(var i=0;i<count;i++){
       var e=bosses[i],row=bar.children[i];
       if(!row){
@@ -1730,7 +1760,7 @@
       }
       var label=(e.label||'关底精英')+(e.affix?' · '+e.affix:'');
       if(row.firstChild.textContent!==label)row.firstChild.textContent=label;
-      row.children[1].textContent='P'+(e.phase||1)+(i===1&&bosses.length>2?'　+'+(bosses.length-2):'');
+      row.children[1].textContent='P'+(e.phase||1)+(i===count-1&&bosses.length>count?'　+'+(bosses.length-count):'');
       row.lastChild.firstChild.style.transform='scaleX('+clamp(e.hp/e.max,0,1)+')';
     }
   }
@@ -1857,7 +1887,7 @@
       if(state==='playing')pause();
       else if(state==='paused')resume();
       else if(!el('sheet').hidden){
-        var back=el('sheet-body').querySelector('.back-nav');if(back)back.click();
+        var back=el('sheet-body').querySelector('.back-nav,#changelog-close');if(back)back.click();
       }
       return;
     }
@@ -1889,11 +1919,11 @@
     });begin.setAttribute('aria-disabled',String(!own&&P.data.atp<D.heroes[preview].cost));box.appendChild(begin);
   });
   el('restart').addEventListener('click',function(){mode=g.mode;stage=g.stage;missionBrief();});
-  el('next-stage').addEventListener('click',function(){if(!g||g.mode!=='campaign'||g.stage>=8)return;mode='campaign';stage=g.stage+1;missionBrief();});
+  el('next-stage').addEventListener('click',function(){if(!g||g.mode!=='campaign'||g.stage>=C.stages.length)return;mode='campaign';stage=g.stage+1;missionBrief();});
   el('pause').addEventListener('click',pause);
   el('coach-next').addEventListener('click',function(){if(g&&g.coaching)showCoach(coachIndex+1);});
   el('coach-skip').addEventListener('click',function(){if(g&&g.coaching)endCoach();});
-  el('back-home').addEventListener('click',function(){stage=g.mode==='campaign'?Math.min(P.data.cleared+1,8):stage;g=null;home();});
+  el('back-home').addEventListener('click',function(){stage=g.mode==='campaign'?Math.min(P.data.cleared+1,C.stages.length):stage;g=null;home();});
   var shareGame=el('share-game');
   B.ready.then(function(){shareGame.hidden=!B.canShareGame();});
   shareGame.addEventListener('click',async function(){
@@ -1901,7 +1931,7 @@
     var message=await B.shareGame();shareGame.disabled=false;
     if(message&&state==='home')showToast(message);
   });
-  el('rank-submit').addEventListener('click',submitResultRank);
+  el('rank-submit').addEventListener('click',function(){submitResultRank(false);});
   bindReportAction(el('share-report'),function(url){return postBattleReport(url,resultRow);},el('report-img'),el('export-status'));
   bindReportAction(el('export'),B.exportReport,el('report-img'),el('export-status'));
 

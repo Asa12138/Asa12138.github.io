@@ -71,7 +71,7 @@
       eventSchedule:[45,90,135],nextEventIdx:0,lastEvent:'',antibioticWaveAt:0,wavePending:false,survivedAntibiotic:false,vaccineTested:false,
       phages:[],phageKills:0,fullBounces:0,pneumoStreak:0,bestPneumoStreak:0,fullDeath:false,ateProbiotic:false,
       fibrinNets:[],nextFibrin:20,nextBreath:15,windUntil:0,windDir:-1,bifidos:[],nextBifido:8,hearts:[],barrier:100,
-      netEnergy:0,netUntil:0,netTick:0,laserIn:0,army:[],armyCap:0,summonIn:0,delayedC3:[],rays:[]});
+      netEnergy:0,netUntil:0,netTick:0,netTicks:0,netX:null,netY:null,laserIn:0,army:[],armyCap:0,summonIn:0,delayedC3:[],rays:[]});
     g.p.hp=g.hero.hp;
     var count=1+Math.floor(Math.random()*2);g.phageSchedule=[];
     while(count--)g.phageSchedule.push(30+Math.random()*120);g.phageSchedule.sort(function(a,b){return a-b;});
@@ -210,14 +210,22 @@
     if(g.map!=='brain')return;g.barrier=Math.max(0,g.barrier-8);
     if(!g.barrier){g.lastHit='barrier';g.p.hp=0;}else if(g.barrier<=28)ops.notice('血脑屏障完整度仅余 '+g.barrier+'%');
   }
-  function armyInterval(kind){return kind==='ctl'?1.55:.96;}
+  var netRadius=120;
+  function netOrigin(g){return {x:g.netX!=null?g.netX:g.p.x,y:g.netY!=null?g.netY:g.p.y};}
+  function inNet(g,e){return !e.dead&&dist(e,netOrigin(g))<=netRadius+e.r;}
+  function armyInterval(kind){return kind==='ctl'?1.55:1.05;}
   function heroTick(g,dt,ops){
     var p=g.p;
     if(g.hero.mode==='nets'){
       if(!(g.netUntil>g.time))p.hp=Math.max(0,p.hp-1.5*dt);if(p.hp<=0)g.lastHit='bleed';
       if(g.netUntil && g.time<=g.netUntil+.04){
-        g.enemies.forEach(function(e){e.root=Math.max(e.root,netRoot(g,e));});
-        if(g.netTick<=g.time && g.netTick<=g.netUntil){var before=g.kills;g.enemies.forEach(function(e){ops.damage(e,18);});if(g.kills-before>=12)g.swept=true;g.netTick+=1;}
+        g.enemies.forEach(function(e){if(inNet(g,e))e.root=Math.max(e.root,netRoot(g,e));});
+        while((g.netTicks||0)>0 && g.netTick<=g.time){
+          var before=g.kills;
+          g.enemies.forEach(function(e){if(inNet(g,e))ops.damage(e,12);});
+          if(g.kills-before>=12)g.swept=true;
+          g.netTicks--;g.netTick+=.85;
+        }
       }
     }
     if(g.hero.mode==='laser'){
@@ -245,9 +253,9 @@
           f.x=p.x+Math.cos(a)*r;f.y=p.y+Math.sin(a)*r;
           var cooldown=armyInterval(k);
           var fatigue=g.event&&g.event.id==='stayup'?1.25:1;
-          f.cool-=dt*(g.rallyUntil>g.time?2:1)*(r<=52?1.5:1)/(fatigue*D.cooldownScale(g.levels));
+          f.cool-=dt*(g.rallyUntil>g.time?1.85:1)*(r<=52?1.35:1)/(fatigue*D.cooldownScale(g.levels));
           if(f.cool<=0){var target=ops.nearest(f,k==='ctl'?function(e){return D.infected(e.kind)||e.hypha;}:function(e){return D.capsule(e.kind)&&!e.mark;},280+g.levels.actin*22);
-            if(target){ops.shot(k==='ctl'?'ctl':'igg',f,target,k==='ctl'?8+3*g.levels.ctl:7+2*g.levels.turret);f.cool=cooldown;}}
+            if(target){ops.shot(k==='ctl'?'ctl':'igg',f,target,k==='ctl'?8+3*g.levels.ctl:6+g.levels.turret);f.cool=cooldown;}}
         }
       });g.army.length=serial;g.armyCap=serial;
       g.summonIn-=dt;if(g.summonIn<=0){var gather=78+g.levels.actin*12,enemy=nearest(nearby(g,p,gather),p,function(e){return dist(e,p)<gather;});
@@ -257,19 +265,24 @@
   }
   function armoredCaptain(e){return e.captain&&e.hp>e.max*.35;}
   function netRoot(g,e){
-    var resistant=g.mode==='endless'&&g.time>=240&&(e.bossSerial||e.captain);
+    var resistant=((g.mode==='endless'&&g.time>=240)||(g.mode==='campaign'&&g.stage>=9))&&(e.bossSerial||e.captain);
     return Math.max(0,g.netUntil-g.time-(resistant?2.3:0));
   }
   function neutroKill(g,e,ops){
     if(armoredCaptain(e))return;
-    ops.kill(e);g.netKills++;ops.storm(1);
-    if(g.netKills%4===0){
-      if(g.levels.acid)ops.area(g.p,28+g.levels.acid*5,2+g.levels.acid,'#b3e595',true);
-      if(g.levels.ros){ops.area(g.p,46+g.levels.ros*14,7+g.levels.ros*6,'#ffcc76',false,true);}
+    var isVirus=e.kind==='virus';
+    ops.kill(e);
+    if(!isVirus){
+      g.netKills++;ops.storm(1);
+      if(g.netKills%4===0){
+        if(g.levels.acid)ops.area(g.p,28+g.levels.acid*5,2+g.levels.acid,'#b3e595',true);
+        if(g.levels.ros){ops.area(g.p,46+g.levels.ros*14,7+g.levels.ros*6,'#ffcc76',false,true);}
+      }
     }
     var late=g.mode==='endless'&&g.time>=240;
-    if(!late||g.time>=g.netUntil)g.netEnergy=Math.min(100,g.netEnergy+(late?(g.time>=360?5:6):8));
-    g.p.hp=Math.min(g.hero.hp,g.p.hp+1.5);
+    var charge=isVirus?2:late?(g.time>=360?4:5):7;
+    if(g.time>=g.netUntil)g.netEnergy=Math.min(100,g.netEnergy+charge);
+    g.p.hp=Math.min(g.hero.hp,g.p.hp+(isVirus?.4:1.2));
 
   }
   function phaseImpact(g,e,ops){
@@ -476,7 +489,8 @@
     if(phase===3&&e.shell>0&&!g.enemies.some(function(v){return !v.dead&&v.supplyFor===e.bossSerial;})){
       e.shell=0;phaseImpact(g,e,ops);ops.notice('供能已断 · 外壳瓦解',3);
     }
-    e.plasmid-=dt;
+    var bossChase=g.mode==='campaign'&&g.stage>=6?Math.min(5,Math.floor(Math.max(0,g.time-g.duration)/15)):0;
+    e.plasmid-=dt*(1+.12*bossChase);
     if(e.plasmid<=0){
       var n=e.variant===2?20:14;
       for(var i=0;i<n&&g.shots.length<240;i++)g.shots.push({kind:'plasmid',x:e.x,y:e.y,a:i*TAU/n+e.age*.2,life:3.2,speed:73});
@@ -519,7 +533,7 @@
     return ids;
   }
   function levelUp(g){if(g.event&&g.event.id==='stayup'&&g.time<g.event.until){g.nightLevels=(g.nightLevels||0)+1;if(g.nightLevels>=2)g.nightStamp=true;}}
-  window.PatrolRules={armyInterval:armyInterval,onRemoval:onRemoval,bossDefense:bossDefense,levelUp:levelUp,bossAction:bossAction,phaseImpact:phaseImpact,countClear:countClear,waveCleared:waveCleared,config:config,occupancy:occupancy,tally:tally,event:event,clocks:clocks,phages:phages,fibrin:fibrin,
+  window.PatrolRules={netRadius:netRadius,inNet:inNet,armyInterval:armyInterval,onRemoval:onRemoval,bossDefense:bossDefense,levelUp:levelUp,bossAction:bossAction,phaseImpact:phaseImpact,countClear:countClear,waveCleared:waveCleared,config:config,occupancy:occupancy,tally:tally,event:event,clocks:clocks,phages:phages,fibrin:fibrin,
     cargoDuration:cargoDuration,rebuildGrid:rebuildGrid,trackEnemy:trackEnemy,nearby:nearby,armoredCaptain:armoredCaptain,netRoot:netRoot,
     enemyTraits:enemyTraits,alkali:alkali,cargoStep:cargoStep,environmental:environmental,barrier:barrier,heroTick:heroTick,neutroKill:neutroKill,stamps:stamps};
 }());

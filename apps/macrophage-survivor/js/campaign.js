@@ -2,14 +2,18 @@
   'use strict';
   var D=window.ImmuneData;
   var stages=[
-    {id:1,name:'破口初阵',map:'skin',duration:45,bossAt:25,elite:'staph',label:'巨型金葡聚落',hp:105},
-    {id:2,name:'荚膜防线',map:'skin',duration:60,bossAt:35,elite:'pneumo',label:'荚膜卫队长',hp:88,targets:2},
-    {id:3,name:'胞内警报',map:'skin',duration:75,bossAt:45,elite:'latent',label:'感染细胞巢',hp:245},
-    {id:4,name:'气浪抗药',map:'lung',duration:90,bossAt:60,elite:'tb',label:'蜡壳重装菌团',hp:345},
-    {id:5,name:'菌王总决战',map:'lung',duration:120,bossAt:75},
-    {id:6,name:'肠道协防',map:'gut',duration:180,bossAt:118,lords:['boss_cdiff']},
-    {id:7,name:'屏障守夜',map:'brain',duration:180,bossAt:115,lords:['boss_crypto']},
-    {id:8,name:'禁区双王',map:'brain',duration:180,bossAt:108,targets:2,lords:['boss_crypto','boss_biofilm']}
+    {id:1,name:'破口初阵',map:'skin',duration:45,bossAt:25,elite:'staph',label:'巨型金葡聚落',hp:120},
+    {id:2,name:'荚膜防线',map:'skin',duration:60,bossAt:35,elite:'pneumo',label:'荚膜卫队长',hp:105,targets:2},
+    {id:3,name:'胞内警报',map:'skin',duration:75,bossAt:45,elite:'latent',label:'感染细胞巢',hp:290},
+    {id:4,name:'气浪抗药',map:'lung',duration:90,bossAt:60,elite:'tb',label:'蜡壳重装菌团',hp:420},
+    {id:5,name:'菌王总决战',map:'lung',duration:120,bossAt:75,bossHp:1380},
+    {id:6,name:'肠道协防',map:'gut',duration:180,bossAt:115,lords:['boss_cdiff'],bossHp:1950,enemyHp:1.08},
+    {id:7,name:'屏障守夜',map:'brain',duration:180,bossAt:112,lords:['boss_crypto'],bossHp:2150,enemyHp:1.15},
+    {id:8,name:'禁区双王',map:'brain',duration:180,bossAt:105,targets:2,lords:['boss_crypto','boss_biofilm'],bossHp:1520,enemyHp:1.22},
+    {id:9,name:'创面溃烂',map:'skin',duration:195,bossAt:105,targets:2,lords:['boss','boss_biofilm'],bossHp:1750,affixes:['迅捷','厚甲'],enemyHp:1.32,enemySpeed:1.06,contact:1.12,captainAt:80,captainStep:32,resistant:.12,formationStep:32,spawnBoost:1.22},
+    {id:10,name:'肺叶风暴',map:'lung',duration:210,bossAt:105,targets:2,lords:['boss','boss_cdiff'],bossHp:1950,affixes:['裂变护卫','迅捷'],enemyHp:1.48,enemySpeed:1.09,contact:1.18,captainAt:70,captainStep:30,resistant:.16,formationStep:32,spawnBoost:1.30},
+    {id:11,name:'菌群失衡',map:'gut',duration:210,bossAt:100,targets:2,lords:['boss_cdiff','boss_biofilm'],bossHp:2150,affixes:['再生','厚甲'],enemyHp:1.65,enemySpeed:1.12,contact:1.25,captainAt:60,captainStep:28,resistant:.20,formationStep:28,spawnBoost:1.38},
+    {id:12,name:'终极耐药潮',map:'brain',duration:240,bossAt:95,targets:2,lords:['boss_crypto','boss'],bossHp:2350,affixes:['厚甲 · 再生','迅捷 · 裂变护卫'],reinforce:{at:165,kind:'boss_biofilm',hp:2200,affix:'迅捷 · 厚甲'},enemyHp:1.85,enemySpeed:1.15,contact:1.32,captainAt:55,captainStep:26,resistant:.24,formationStep:28,spawnBoost:1.48}
   ];
   var gates={actin:1,acid:1,ros:2,igg:2,ctl:3,c3:3,turret:4,ifn:3,mhc:4,mist:3,pulse:3,veil:3};
   function configure(g,mode,stage,map){
@@ -19,13 +23,13 @@
     g.waveClock=0;g.actUntil1=0;g.actUntil2=0;g.shieldHP=0;g.shieldUntil=0;g.rallyUntil=0;
     g.beams=0;g.coffeeDone=0;g.cutLinks=0;g.phageElite=0;g.lowSince=-1;
     g.nextFormation=40;g.epoch=0;g.bossCount=0;g.synapseIn=2;g.stormLoad=0;g.netKills=0;
-    g.nextCaptain=240;g.formationCount=0;
+    g.nextCaptain=endless?240:(s.captainAt||99999);g.formationCount=0;g.reinforceSpawned=false;
     if(endless)g.eventSchedule=[45,90];
     if(!endless&&g.stage<3)g.phageSchedule=[];
     if(!endless&&g.stage<2)g.eventSchedule=[];
     if(!endless&&g.stage===3)g.phageSchedule=[34];
   }
-  function tier(g){return g.mode==='endless'?8:g.stage;}
+  function tier(g){return g.mode==='endless'?stages.length:g.stage;}
   function skillAllowed(g,key){
     if(!gates[key]||gates[key]>tier(g))return false;
     if(D.actives[key])return !['mist','pulse','veil'].some(function(other){return other!==key&&g.levels[other]>0;});
@@ -66,10 +70,13 @@
   }
   var eras=['潜伏定植','耐药扩散','生物被膜','细胞因子枯竭'];
   function era(g){return Math.floor(g.time/120);}
-  function spawnLimit(g){return g.mode==='endless'?90+15*Math.min(3,era(g)):100;}
+  function spawnLimit(g){return g.mode==='endless'?90+15*Math.min(3,era(g)):g.stage>=11?120:g.stage>=9?110:100;}
   function spawnDelay(g){
     var t=g.time;
-    if(g.mode!=='endless')return Math.max(.32,1.05-t*.004)/(g.stage>=6?1.10+.55*Math.min(1,t/55):1);
+    if(g.mode!=='endless'){
+      var s=stages[g.stage-1],boost=s&&s.spawnBoost?s.spawnBoost+.60*Math.min(1,t/55):g.stage>=6?1.10+.55*Math.min(1,t/55):1;
+      return Math.max(g.stage>=9?.22:.32,(1.05-t*.004)/boost);
+    }
     if(t<120)return .95-.53*t/120;
     if(t<240)return .42-.18*(t-120)/120;
     if(t<360)return .24-.07*(t-240)/120;
@@ -83,7 +90,8 @@
     x=(t-360)/30;return 4.8+x*(.55+.055*x);
   }
   function contactScale(g){
-    if(g.mode!=='endless'||era(g)===0)return 1;
+    if(g.mode!=='endless'){var s=stages[g.stage-1];return s&&s.contact||1;}
+    if(era(g)===0)return 1;
     return era(g)===1?1.15:1.35+.22*(era(g)-2);
   }
   function scaleEnemy(g,e){
@@ -95,7 +103,9 @@
       if(g.time>=360)e.frenzied=true;
       return;
     }
-    e.hp=e.max=Math.round(e.max*(1+periods*.16));e.speed*=1+periods*.04;
+    var s=stages[g.stage-1];
+    e.hp=e.max=Math.round(e.max*(1+periods*.16)*(s&&s.enemyHp||1));
+    e.speed*=(1+periods*.04)*(s&&s.enemySpeed||1);
   }
   function virulence(g){
     var lv=Math.floor(g.time/60)+1,index=era(g);
@@ -108,13 +118,14 @@
     if(!e)e=g.enemies.find(function(v){return !v.dead&&!v.captain&&!v.bossSerial&&!v.supplyFor&&(v.kind==='staph'||v.kind==='rod'||v.kind==='tb');});
     if(!e)return;
     e.captain=true;e.r*=1.35;e.max=Math.max(40,Math.round(e.max*2.5));e.hp=e.max;
-    g.nextCaptain=g.time+22;
+    var s=stages[g.stage-1];
+    g.nextCaptain=g.time+(g.mode==='endless'?22:(s&&s.captainStep||30));
     ops.notice('重装队长入场');
   }
   function formation(g,ops){
-    var level=tier(g),h=ops.height(),wave=++g.formationCount;
-    g.nextFormation=g.time+(g.mode==='endless'&&g.time>=360?24:40);
-    var cross=level===4||wave%2===1,n=level>=6?8:5;
+    var level=tier(g),h=ops.height(),wave=++g.formationCount,s=stages[g.stage-1];
+    g.nextFormation=g.time+(g.mode==='endless'&&g.time>=360?24:(g.mode==='campaign'&&s&&s.formationStep)||40);
+    var cross=level===4||wave%2===1,n=g.mode==='campaign'&&g.stage>=11?10:level>=6?8:5;
     for(var i=0;i<n;i++){
       var edge=i%4,across=.27+(.46*(i+.5)/n),kind=cross?'rod':i%4===0?'pylori':'pneumo';
       var x=edge===0?-6:edge===1?366:360*across,y=edge===2?-6:edge===3?h+6:h*across;
@@ -131,14 +142,19 @@
       note:'每个纪元都有新领主加入。生存时长决定当前器官的巡逻排名。'
     };
     var s=stages[stage-1],timed=stage<=5,count=s.targets||1;
-    var target=s.label?(count===2?'两名':'')+s.label:(s.lords||['boss']).map(function(k){return D.species[k].name;}).join('与');
+    var lordKinds=(s.lords||['boss']).concat(s.reinforce?[s.reinforce.kind]:[]);
+    var names=lordKinds.map(function(k){return D.species[k].name;});
+    var target=s.label?(count===2?'两名':'')+s.label:names.length>2?names.slice(0,-1).join('、')+'与'+names[names.length-1]:names.join('与');
     var note=timed?'视野内只剩一个敌人或清场时，波次倒计时加快一倍。':'提前击败目标后仍需守满时间。防守时间到后，存活的首领可继续追击。';
+    if(s.captainAt)note+=' 高阶防线将周期性刷出重装队长与词缀首领。';
+    if(s.reinforce)note+=' 第 '+s.reinforce.at+' 秒将有第三位首领增援。';
     if(s.map==='brain')note+=' 手动释放活性氧聚爆会消耗 8% 屏障，耗尽即失败。';
     var lead=timed?'倒计时结束前击败':'守住防线，并击败';
+    var tipKinds=s.elite?[s.elite]:lordKinds;
     return {title:s.name,target:target,location:'第 '+stage+' 关 · '+D.maps[s.map].name,icon:s.elite||(s.lords||['boss'])[0],
       elite:!!s.elite,goalLead:lead,goalName:target,goalTail:'。',goal:lead+target+'。',
       clockLabel:timed?'波次时限':'最短防守',clock:D.clock(s.duration),
-      arrivalLabel:'目标登场时剩余',arrival:D.clock(s.duration-s.bossAt),note:note+' '+(s.lords||[s.elite||'boss']).map(function(k){return bossTip(k,1);}).join(' ')};
+      arrivalLabel:'目标登场时剩余',arrival:D.clock(s.duration-s.bossAt),note:note+' '+tipKinds.map(function(k){return bossTip(k,1);}).join(' ')};
   }
   function bossTip(kind,phase){
     var tips={
@@ -159,20 +175,27 @@
     if(g.time>=g.duration)return {label:'追击用时',seconds:g.time-g.duration};
     return {label:'防守剩余',seconds:Math.ceil(g.duration-g.time)};
   }
-  function addBoss(g,ops,s,index){
+  function addBoss(g,ops,s,index,override){
     var endless=g.mode==='endless',cycle=endless?Math.max(0,g.epoch-1):Math.max(0,g.stage-5);
-    var kind=s.elite||(s.lords?s.lords[index]:endless?D.bossKinds[(cycle+index)%D.bossKinds.length]:'boss');
-    var e=ops.spawn(kind,index?288:92,-12,true);
-    e.bossSerial=++g.bossCount;e.elite=!!s.elite;e.phase=1;e.variant=0;e.label=s.label||D.species[kind].name;
+    var kind=override?override.kind:(s.elite||(s.lords?s.lords[index]:endless?D.bossKinds[(cycle+index)%D.bossKinds.length]:'boss'));
+    var x=override?180:index?288:92;
+    var e=ops.spawn(kind,x,-12,true);
+    e.bossSerial=++g.bossCount;e.elite=!override&&!!s.elite;e.phase=1;e.variant=0;e.label=(!override&&s.label)||D.species[kind].name;
     if(e.elite){e.hp=e.max=s.hp;e.r*=1.82;e.speed=18;e.fuse=99999;}
     else{
       var baseSpeed=kind==='boss'?26:D.species[kind].speed;
-      var life=endless?1450*(1+.30*cycle+.055*cycle*cycle):[1120,1660,1840,1270][cycle];
+      var life=override?override.hp:endless?1450*(1+.30*cycle+.055*cycle*cycle):(s.bossHp||1380);
       e.speed=baseSpeed;e.affix='';
       if(endless&&g.epoch>=2){
         var affixes=['迅捷','厚甲','再生','裂变护卫'];
         var first=(cycle-1+index)%affixes.length,second=(first+1)%affixes.length;
         e.affix=affixes[first]+(g.epoch>=3?' · '+affixes[second]:'');
+      }else if(override&&override.affix){
+        e.affix=override.affix;
+      }else if(!endless&&s.affixes&&s.affixes[index]){
+        e.affix=s.affixes[index];
+      }
+      if(e.affix){
         if(e.affix.indexOf('迅捷')>=0)e.speed*=1.14;
         if(e.affix.indexOf('厚甲')>=0)life*=1.22;
         e.regenerates=e.affix.indexOf('再生')>=0;e.fission=e.affix.indexOf('裂变')>=0;
@@ -183,11 +206,15 @@
     }
     if(!g.boss||g.boss.dead)g.boss=e;
     g.bossDead=false;g.bossSpawned=true;
-    ops.notice(e.label+'入场',4);ops.sound('boss');return e;
+    ops.notice((override?'最终增援 · ':'')+e.label+'入场',4);ops.sound('boss');return e;
   }
   function tick(g,ops){
     if(tier(g)>=4&&g.time>=g.nextFormation)formation(g,ops);
-    if(g.mode==='endless'&&g.time>=g.nextCaptain)promoteCaptain(g,ops);
+    var s=stages[g.stage-1];
+    if((g.mode==='endless'||(g.mode==='campaign'&&s&&s.captainAt))&&g.time>=g.nextCaptain)promoteCaptain(g,ops);
+    if(g.mode==='campaign'&&s&&s.reinforce&&!g.reinforceSpawned&&g.time>=s.reinforce.at){
+      g.reinforceSpawned=true;addBoss(g,ops,s,2,s.reinforce);
+    }
     if((g.mode==='campaign'&&g.stage<=5?Math.max(g.waveClock||0,g.time):g.time)<g.bossAt)return;
     if(g.mode==='endless'){
       g.epoch++;ops.sound('epoch');g.bossAt+=epochLength;
@@ -199,7 +226,7 @@
       }
     }
     else if(!g.bossSpawned){
-      var s=stages[g.stage-1];g.actualTarget=briefing('campaign',s.id,g.map).target;
+      g.actualTarget=briefing('campaign',s.id,g.map).target;
       addBoss(g,ops,s,0);if(s.targets===2)addBoss(g,ops,s,1);
     }
   }

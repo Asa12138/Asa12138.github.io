@@ -39,7 +39,7 @@
       return {e:e,f:f,d:Math.hypot(e.x-start.x-f*dx,e.y-start.y-f*dy)};
     }).filter(function(v){return !v.e.dead&&v.d<g.reachRadius+v.e.r;}).sort(function(a,b){return a.f-b.f;});
     var count=0;crossed.forEach(function(v){if(count<2&&ops.swallow(v.e))count++;});
-    p.cargo.forEach(function(v){v.progress=Math.min(1,v.progress+.4);});p.inv=Math.max(p.inv,.35);
+    p.cargo.forEach(function(v){v.progress=Math.min(1,v.progress+.4);});p.inv=Math.max(p.inv,.45);
     g.rays.push({kind:'dash',x:start.x,y:start.y,xx:p.x,yy:p.y,born:g.time,until:g.time+.22});ops.fx('ring',p.x,p.y,24,'#a4ffe5');
   }
   function beam(g,ops){
@@ -67,18 +67,31 @@
     var before=g.kills;
     if(k==='dash')dash(g,ops);
     if(k==='net'){
-      g.netEnergy=0;g.netUntil=g.time+4.5;g.netTick=g.time+1;
-      g.enemies.forEach(function(e){e.root=Math.max(e.root,window.PatrolRules.netRoot(g,e));if(e.chargeLeft>0||e.dashLeft>0){e.chargeLeft=0;e.dashLeft=0;e.chargeIn=9;}});
-      ops.fx('ring',p.x,p.y,800,'#f3ffff',.6);
+      var netR=window.PatrolRules.netRadius;
+      g.netEnergy=0;g.netUntil=g.time+4.5;g.netTick=g.time+.85;g.netTicks=5;g.netX=p.x;g.netY=p.y;
+      g.enemies.forEach(function(e){
+        if(e.dead||gap(e,p)>netR+e.r)return;
+        e.root=Math.max(e.root,window.PatrolRules.netRoot(g,e));
+        if(e.chargeLeft>0||e.dashLeft>0){e.chargeLeft=0;e.dashLeft=0;e.chargeIn=9;}
+      });
+      ops.fx('ring',p.x,p.y,netR,'#f3ffff',.55);
     }
     if(k==='salvo'){g.beams=6;g.nextBeam=g.time+.4;g.lastBeamAt=-1;g.lastBeamKills=0;}
     if(k==='rally'){g.rallyUntil=g.time+4;g.army.forEach(function(f){f.x=p.x;f.y=p.y;});ops.fx('ring',p.x,p.y,95,'#ffda85',.6);}
     if(k==='mist'){
-      p.cargo.forEach(function(v){if(v.kind!=='bifido')window.PatrolRules.countClear(g,v.kind,p,ops);});
-      p.cargo=[];g.netEnergy=0;g.beams=0;g.rallyUntil=0;
+      var bonus=0;
+      p.cargo.forEach(function(v){
+        if(v.kind!=='bifido'){
+          window.PatrolRules.countClear(g,v.kind,p,ops);
+          if(ops.orb)ops.orb(p.x,p.y,D.antigenValue(v,false));
+          bonus+=10*D.cargoSlots(v.kind);
+        }
+      });
+      p.cargo=[];g.netEnergy=Math.max(0,(g.netEnergy||0)-30);
+      var mistPower=power+Math.min(50,bonus);
       g.enemies.forEach(function(e){var d=gap(e,p);
         if(!e.dead&&d<=140+e.r&&(d<=e.r||((e.x-p.x)*Math.cos(p.angle)+(e.y-p.y)*Math.sin(p.angle))/d>=.42)){
-          if(D.capsule(e.kind))e.mark=true;e.slowUntil=g.time+3;ops.damage(e,power,false,null,null,'mist');
+          if(D.capsule(e.kind))e.mark=true;e.slowUntil=g.time+3;ops.damage(e,mistPower,false,null,null,'mist');
         }
       });ops.fx('ring',p.x+Math.cos(p.angle)*55,p.y+Math.sin(p.angle)*55,65,'#bbf68c');
     }
@@ -88,7 +101,7 @@
       g.enemies.forEach(function(e,i){var d=gap(e,p);if(!e.dead&&d>0&&d<=125+e.r){e.x+=(e.x-p.x)*25/d;e.y+=(e.y-p.y)*25/d;window.PatrolRules.trackEnemy(g,e,i);}});
     }
     if(k==='veil'){
-      g.shieldHP=power;g.shieldUntil=g.time+4;p.hp=Math.min(g.hero.hp,p.hp+15);
+      g.shieldHP=power;g.shieldUntil=g.time+4.5;p.hp=Math.min(g.hero.hp,p.hp+15);
       ops.fx('ring',p.x,p.y,32,'#a7eaff');
     }
     if(g.kills-before>=12)g.swept=true;
